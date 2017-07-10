@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/materialize.css" type="text/css">
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title><%= title %></title>
+</head>
+<body>
+<header>
+    <nav class="grey darken-1">
+        <div class="nav-wrapper">
+            <% if (user){ %>
+            <a id="logo-container" href="/home" class="brand-logo"><img class="responsive-img" src="/img/logo.png"></a>
+            <% } else { %>
+            <a id="logo-container" href="/" class="brand-logo"><img class="responsive-img" src="/img/logo.png"></a>
+            <% } %>
+            <ul id="nav-full" class="right hide-on-med-and-down">
+                <% if (user){ %>
+                <li><a href="/contactus">Contáctanos</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%= user.owner %><i class="material-icons right">arrow_drop_down</i></a></li>
+                <!-- Dropdown Structure for navigation -->
+                <ul id="dropdown1" class="dropdown-content">
+                    <% if (user.role == 1) { %>
+                    <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
+                    <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
+                    <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un profesor</a></li>
+                    <li><a href="/courses"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
+                    <li><a href="/course/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
+                    <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
+                    <% } else if (user.role == 2) { %>
+                    <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+                    <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
+                    <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+                    <li><a href="/courses"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
+                    <% } else if (user.role == 3) { %>
+                    <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+                    <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+                    <li><a href="/courses"><i class="material-icons">view_carousel</i>Cursos</a></li>
+                    <% } %>
+                    <li class="divider"></li>
+                    <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
+                </ul>
+                <% } else { %>
+                <li><a href="/contactus">Contáctanos</a></li>
+                <li><a href="#modal1">Ingresar</a></li>
+                <% } %>
+            </ul>
+            <form method="get" action="/courses" class="right hide-on-med-and-down">
+                <div class="input-field">
+                    <input id="search" name="name" type="search" placeholder="Buscar cursos">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+            <% if (user){ %>
+            <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="side-nav">
+                <li>
+                    <div class="userView">
+                        <div class="background">
+                            <img src="/img/background.png">
+                        </div>
+                        <img class="circle" src="<%= user.picture %>">
+                        <h5 class="black-text"><%= user.owner %></h5>
+                        <h6 class="black-text"><%= user.email %></h6>
+                    </div>
+                </li>
+                <% if (user.role == 1) { %>
+                <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
+                <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
+                <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un profesor</a></li>
+                <li><a href="/courses"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
+                <li><a href="/course/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
+                <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
+                <li class="divider"></li>
+                <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
+                <% } else if (user.role == 2) { %>
+                <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+                <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
+                <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+                <li><a href="/courses"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
+                <% } else if (user.role == 3) { %>
+                <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+                <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+                <li><a href="/courses"><i class="material-icons">view_carousel</i>Cursos</a></li>
+                <% } %>
+                <li class="divider"></li>
+                <li><a href="/contactus"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
+                <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
+                <% } else { %>
+                <a class="hide-on-large-only" href="/login">Ingresar</a>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    <div class="container hide-on-large-only">
+        <form method="get" action="/courses" class="card">
+            <div class="input-field">
+                <input id="search" name="name" type="search" placeholder="Buscar cursos">
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+
+
+    <!-- Modal Structure for loggin in -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Iniciar sesión</h4>
+            <div class="row">
+                <div class="col l6">
+                    <form action="/login" method="post">
+                        <div class="input-field">
+                            <input type="text" name="username" id="username" class="validate" required>
+                            <label for="username">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="password" id="password" class="validate" minlength="6" required>
+                            <label for="password">Contraseña</label>
+                        </div>
+                        <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
+                    </form>
+                </div>
+                <div class="col l6">
+                    <div class="center-align">
+                        <div class="row">
+                            <p>Si lo prefieres, utiliza Facebook para crear tu cuenta y encontrar los cursos que desees</p>
+                            <a href="/auth/facebook" class="btn btn-primary blue darken-3">Entrar con Facebook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <a href="/login#signup">Si aún no tienes una cuenta, y no quieres usar Facebook, regístrate con tu correo</a>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
+</header>

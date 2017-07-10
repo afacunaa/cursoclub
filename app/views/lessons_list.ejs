@@ -1,0 +1,264 @@
+<%- include header.ejs %>
+
+<main>
+    <% if(user.role == 3) { %>
+    <!-- Renders if it is a student -->
+    <div class="container">
+        <% if (lessons_list.booked.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header orange-text">Clases solicitadas que aún necesitan la aprovación del maestro</h4>
+                    <h6>Debes esperar su aprovación para poder pagarla</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.booked.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.booked[i].course.picture %>" alt="" class="circle">
+                    <span class="title"><%= lessons_list.booked[i].course.name %></span>
+                    <p>Profesor: <a href="<%= lessons_list.booked[i].teacher.url %>"><%= lessons_list.booked[i].teacher.fullName %></a> <br>
+                        <%= lessons_list.booked[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.booked[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% } %>
+        <% if (lessons_list.rejected.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header red-text">Clases rechazadas que debes reprogramar para poder tomar</h4>
+                    <h6>El maestro la rechazó por falta de disponibilidad</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.rejected.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.rejected[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.rejected[i].course.name %></span>
+                    <p>Profesor: <a href="<%= lessons_list.rejected[i].teacher.url %>"><%= lessons_list.rejected[i].teacher.fullName %></a><br>
+                        <%= lessons_list.rejected[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.rejected[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% } %>
+        <% if (lessons_list.accepted.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header blue-text">Clases aceptadas, debes pagarla para poder tomarla</h4>
+                    <h6>Paga tu clase</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.accepted.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.accepted[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.accepted[i].course.name %></span>
+                    <p>Profesor: <a href="<%= lessons_list.accepted[i].teacher.url %>"><%= lessons_list.accepted[i].teacher.fullName %></a><br>
+                        <%= lessons_list.accepted[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.accepted[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% } %>
+        <% if (lessons_list.paid.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header green-text">Clases pagadas, no olvides ser puntual</h4>
+                    <h6>Ten en cuenta los requerimientos que pueda tener la clase</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.paid.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.paid[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.paid[i].course.name %></span>
+                    <p>Profesor: <a href="<%= lessons_list.paid[i].teacher.url %>"><%= lessons_list.paid[i].teacher.fullName %></a><br>
+                        <%= lessons_list.paid[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.paid[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <% } %>
+        <% if (lessons_list.done.length > 0) { %>
+        <div class="row">
+            <h4 class="header green-text">Clases que ya has recibido</h4>
+            <table class="bordered highlight">
+                <tr>
+                    <th>Nombre del curso</th>
+                    <th>Fecha de la clase</th>
+                    <th>Profesor</th>
+                </tr>
+                <% for (var i=0; i<lessons_list.done.length; i++) { %>
+                <tr>
+                    <td><%= lessons_list.done[i].course.name %></td>
+                    <td><%= lessons_list.done[i].nice_date %></td>
+                    <td><a href="<%= lessons_list.done[i].teacher.url %>"><%= lessons_list.done[i].teacher.fullName %></a></td>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+
+    <% if(user.role == 2) { %>
+    <!-- Renders if it is a teacher -->
+    <div class="container">
+        <% if (lessons_list.paid.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header green-text">Clases pagadas, debes darla en la fecha acordada</h4>
+                    <h6>Ten en cuenta los requerimientos que pueda tener la clase y no olvides ser puntual</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.paid.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.paid[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.paid[i].course.name %></span>
+                    <p>Alumno: <a href="<%= lessons_list.paid[i].student.url %>"><%= lessons_list.paid[i].student.fullName %></a><br>
+                        <%= lessons_list.paid[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.paid[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <% } %>
+        <% if (lessons_list.booked.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header orange-text">Clases solicitadas que debes confirmar</h4>
+                    <h6>Debes dar el visto bueno a la clase</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.booked.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.booked[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.booked[i].course.name %></span>
+                    <p>Alumno: <a href="<%= lessons_list.booked[i].student.url %>"><%= lessons_list.booked[i].student.fullName %></a><br>
+                        <%= lessons_list.booked[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.booked[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% } %>
+        <% if (lessons_list.accepted.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header blue-text">Clases aceptadas</h4>
+                    <h6>El alumno debe estar en proceso de pagarla</h6>
+                </li>
+                <% for (var i=0; i<lessons_list.accepted.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.accepted[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.accepted[i].course.name %></span>
+                    <p>Alumno: <a href="<%= lessons_list.accepted[i].student.url %>"><%= lessons_list.accepted[i].student.fullName %></a><br>
+                        <%= lessons_list.accepted[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.accepted[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% } %>
+        <% if (lessons_list.rejected.length > 0) { %>
+        <div class="row">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4 class="header red-text">Clases que no aceptaste</h4>
+                    <h6>El alumno debe reprogramarla para otra fecha o cancelarla</h6>
+                </li>
+            <% for (var i=0; i<lessons_list.rejected.length; i++) { %>
+                <li class="collection-item avatar">
+                    <img src="<%= lessons_list.rejected[i].course.picture %>" class="circle">
+                    <span class="title"><%= lessons_list.rejected[i].course.name %></span>
+                    <p>Alumno: <a href="<%= lessons_list.rejected[i].student.url %>"><%= lessons_list.rejected[i].student.fullName %></a><br>
+                        <%= lessons_list.rejected[i].nice_date %>
+                    </p>
+                    <a href="<%= lessons_list.rejected[i].url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                </li>
+            <% } %>
+            </ul>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% } %>
+        <% if (lessons_list.done.length > 0) { %>
+        <div class="row">
+            <h4 class="header green-text">Clases que ya has dado</h4>
+            <table class="bordered highlight">
+                <tr>
+                    <th>Nombre del curso</th>
+                    <th>Fecha de la clase</th>
+                    <th>Alumno</th>
+                </tr>
+                <% for (var i=0; i<lessons_list.done.length; i++) { %>
+                <tr>
+                    <td><%= lessons_list.done[i].course.name %></td>
+                    <td><%= lessons_list.done[i].nice_date %></td>
+                    <td><a href="<%= lessons_list.done[i].student.url %>"><%= lessons_list.done[i].student.fullName %></a></td>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+
+    <% if(user.role == 1) { %>
+    <!-- Renders if it is us -->
+    <% if (lessons_list.length > 0) { %>
+    <div class="container">
+    <div class="row">
+        <h4 class="header green-text">Clases</h4>
+        <table class="bordered highlight">
+            <tr>
+                <th>Nombre del curso</th>
+                <th>Fecha de la clase</th>
+                <th>Estado</th>
+                <th>Profesor</th>
+                <th>Alumno</th>
+            </tr>
+            <% for (var i=0; i<lessons_list.length; i++) { %>
+            <tr>
+                <td><%= lessons_list[i].course.name %></td>
+                <td><%= lessons_list[i].nice_date %></td>
+                <td><%= lessons_list[i].state %></td>
+                <td><a href="<%= lessons_list[i].teacher.url %>"><%= lessons_list[i].teacher.fullName %></a></td>
+                <td><a href="<%= lessons_list[i].student.url %>"><%= lessons_list[i].student.fullName %></a></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+    <% } else { %>
+    <p>No hay clases :(</p>
+    <% } %>
+    <% } %>
+    </div>
+</main>
+
+<%- include footer.ejs %>

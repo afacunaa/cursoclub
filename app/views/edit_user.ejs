@@ -1,0 +1,68 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <h2>Editar datos de la cuenta</h2>
+        <h5>Si solo deseas cambiar el correo electrónico, deja los campos de contraseña vacíos</h5>
+        <br>
+        <div class="row">
+            <form method="post" action="" id="edit">
+                <div class="row">
+                    <div class="input-field col l3 m3 s6">
+                        <input type="text" name="username" id="username" value="<%= user.username %>" disabled required />
+                        <label for="username">Nombre de usuario</label>
+                    </div>
+                    <div class="col s6 m3 l3">
+                        <p>Notificaciones por correo electrónico</p>
+                        <div class="switch">
+                            <label>
+                                Desactivadas
+                                <% if (user.subscription) { %>
+                                <input name="subscription" id="subscription_switch" type="checkbox" value="true" checked>
+                                <% } else { %>
+                                <input name="subscription" id="subscription_switch" type="checkbox" value="true">
+                                <% } %>
+                                <span class="lever"></span>
+                                Activadas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <input type="text" name="email" id="email" value="<%= user.email %>" required />
+                        <label for="email">Correo electrónico</label>
+                    </div>
+                </div>
+                <% if ( user.picture && user.picture.indexOf('scontent.xx.fbcdn.net') > -1 ) { %>
+                <h6>No almacenamos tu contraseña, tus datos de acceso son manejados por Facebook</h6>
+                <% } else { %>
+                <div class="row">
+                    <div class="input-field col l4 m4 s12">
+                        <input type="password" name="old_password" id="old_password" />
+                        <label for="old_password">Contraseña actual</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <input type="password" name="new_password" id="new_password" disabled/>
+                        <label for="new_password">Contraseña nueva</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <input type="password" name="password_confirmation" id="password_confirmation" disabled/>
+                        <label for="oldPassword">Confirmar contraseña nueva</label>
+                        <span id="message"></span>
+                    </div>
+                    <% } %>
+                    <% if (message) { %>
+                    <% if (message == 'success')  { %>
+                    <p class="green-text">Cambios realizados correctamente</p>
+                    <% } else if (message == 'email') { %>
+                    <p class="green-text">Información actualizada correctamente</p>
+                    <% } else { %>
+                    <p class="red-text">Contraseña actual incorrecta</p>
+                    <% } } %>
+                </div>
+                <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar" >Guardar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<%- include footer.ejs %>

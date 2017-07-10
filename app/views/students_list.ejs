@@ -1,0 +1,32 @@
+<%- include header.ejs %>
+
+<main>
+    <% if (students_list.length == 0) { %>
+    <p>No hay ningun profesor</p>
+    <% } else { %>
+    <div class="container">
+        <table class="bordered highlight">
+            <thead>
+            <tr>
+                <th><h5>Nombre del estudiante</h5></th>
+                <th><h5>Nombre del usuario</h5></th>
+                <th><h5>ID del estudiante</h5></th>
+                <th><h5>Fecha de nacimiento</h5></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (var i=0; i<students_list.length; i++) { %>
+            <tr>
+                <th><%= students_list[i].fullName %></th>
+                <th><%= students_list[i].username %></th>
+                <th><a href="<%= students_list[i].url%>"><%= students_list[i].id %></a></th>
+                <th><%= students_list[i].nice_birthday %></th>
+            </tr>
+            <% } %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<%- include footer.ejs %>

@@ -1,0 +1,117 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <h2>Editar perfil</h2>
+        <div class="row">
+            <div class="center-align">
+                <% if (user.picture) { %>
+                <img class="responsive-img" src="<%= user.picture %>">
+                <% } else { %>
+                <img class="responsive-img" src="/img/silueta.png">
+                <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                <% } %>
+                <form action="/user/<%= user.id %>/uploadPicture" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="userId" value="<%= user.id %>">
+                    <input type="file" name="picture">
+                    <button class="btn" type="submit">Subir imagen</button>
+                </form>
+            </div>
+            <form method="post" action="" id="edit">
+                <div class="row">
+                    <% if (user.role == 1) { %>
+                    <div class="input-field col l6 m6 s12">
+                        <input type="text" name="firstname" id="firstname" value="<%= teacher.firstName %>" required />
+                        <label for="firstname">Nombre</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <input type="text" name="lastname" id="lastname" value="<%= teacher.lastName %>" required />
+                        <label for="lastname">Apellido</label>
+                    </div>
+                    <% } else { %>
+                    <div class="input-field col l6 m6 s12">
+                        <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
+                        <input type="text" name="firstname" id="firstname" value="<%= teacher.firstName %>" readonly required />
+                        <label for="firstname">Nombre</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
+                        <input type="text" name="lastname" id="lastname" value="<%= teacher.lastName %>" readonly required />
+                        <label for="lastname">Apellido</label>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <% if (user.role == 1) { %>
+                        <input type="text" name="document" id="document" value="<%= teacher.document %>" required/>
+                        <% } else {%>
+                        <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
+                        <input type="text" name="document" id="document" value="<%= teacher.document %>" required readonly/>
+                        <% } %>
+                        <label for="document">Cédula de ciudadanía</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <input class="datepicker" type="date" name="birthday" id="birthday" placeholder="Fecha de nacimiento" value="<%= birthdayString %>" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" name="address" id="address" value="<%= teacher.address %>" required />
+                        <label for="address">Dirección</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <input type="text" name="phone" id="phone" value="<%= teacher.phone %>" required />
+                        <label for="phone">Teléfono</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <a href="/user/update">Cambiar información de usuario de la cuenta</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="description" name="description" class="materialize-textarea"><%= teacher.description %></textarea>
+                        <label for="description">Descripción</label>
+                    </div>
+                </div>
+                <% if (user.role == 1) { %>
+                <% for (var i=0; i<courses_list.length; i++) { %>
+                <% if (teacher.courses.indexOf(courses_list[i].id) > -1) { %>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input type="checkbox" name="course" id="<%= 'course'+courses_list[i].id %>" value="<%= courses_list[i].id %>" checked />
+                        <label for="<%= 'course'+courses_list[i].id %>"><%= courses_list[i].name %></label>
+                    </div>
+                    <div class="input-field col s9">
+                        <input type="text" name="<%= 'price'+courses_list[i].id %>" id="<%= 'course_price'+courses_list[i].id %>" value="<%= teacher.getPriceOfCourse(courses_list[i].id) %>" />
+                        <label for="<%= 'price'+courses_list[i].id %>">Precio por hora de clase</label>
+                    </div>
+                </div>
+                <% } else { %>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input type="checkbox" name="course" id="<%= 'course'+courses_list[i].id %>" value="<%= courses_list[i].id %>" />
+                        <label for="<%= 'course'+courses_list[i].id %>"><%= courses_list[i].name %></label>
+                    </div>
+                    <div class="input-field col s9">
+                        <input type="text" name="<%= 'price'+courses_list[i].id %>" id="<%= 'course_price'+courses_list[i].id %>" />
+                        <label for="<%= 'price'+courses_list[i].id %>">Precio por hora de clase</label>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+                <% } else { %>
+                <% for (var i=0; i<teacher.courses.length; i++) { %>
+                <input type="hidden" name="course" id="<%= 'course'+teacher.courses[i] %>" value="<%= teacher.courses[i] %>">
+                <input type="hidden" name="<%= 'price'+teacher.courses[i] %>" id="<%= 'course_price'+teacher.courses[i] %>" value="<%= teacher.getPriceOfCourse(teacher.courses[i]) %>" />
+                <% } %>
+                <% } %>
+                <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar" >Aceptar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<%- include footer.ejs %>

@@ -1,0 +1,13 @@
+<%- include header.ejs %>
+
+<h1>Activación de la cuenta</h1>
+
+<% if (success) { %>
+<h3 class="green-text">Felicitaciones</h3>
+<h4><%= message %></h4>
+<% } else { %>
+<h3 class="red-text">Oh no!</h3>
+<h4><%= message %></h4>
+<% } %>
+
+<%- include footer.ejs %>

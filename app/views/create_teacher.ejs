@@ -1,0 +1,59 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <form method="post" action="">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" name="firstname" id="firstname" required>
+                    <label for="firstname">Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" name="lastname" id="lastname" required>
+                    <label for="lastname">Apellido</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" name="document" id="document" required>
+                    <label for="document">Cédula de ciudadanía</label>
+                </div>
+                <div class="input-field col s6">
+                    <input class="datepicker" type="date" name="birthday" id="birthday" required>
+                    <label for="birthday">Fecha de nacimiento</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" name="address" id="address" required>
+                    <label for="address">Dirección</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" name="phone" id="phone" required>
+                    <label for="phone">Teléfono</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="email" name="email" id="email" class="validate" required>
+                    <label for="email">Correo electrónico</label>
+                </div>
+            </div>
+            <% for (var i=0; i<courses_list.length; i++) { %>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input type="checkbox" name="course" id="<%= 'course'+courses_list[i].id %>" value="<%= courses_list[i].id %>">
+                    <label for="<%= 'course'+courses_list[i].id %>"><%= courses_list[i].name %></label>
+                </div>
+                <div class="input-field col s8">
+                    <input type="text" name="<%= 'price'+courses_list[i].id %>" id="<%= 'course_price'+courses_list[i].id %>" >
+                    <label for="<%= 'course'+courses_list[i].id %>">Precio por hora de clase</label>
+                </div>
+            </div>
+            <% } %>
+            <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
+        </form>
+    </div>
+</main>
+
+<%- include footer.ejs %>

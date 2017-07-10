@@ -1,0 +1,21 @@
+<%- include header.ejs %>
+
+<h3>ID: <%= teacher.id %></h3>
+<h3>Nombre: <%= teacher.firstName %></h3>
+<h3>Apellido: <%= teacher.lastName %></h3>
+<h3>Precio: <%= teacher.pricePerHour %></h3>
+<h3>Fecha nacimiento: <%= teacher.nice_birthday %></h3>
+<h3>Fecha creación: <%= teacher.nice_created %></h3>
+<h3>Numero de cursos: <%= teacher.courses.length %></h3>
+
+<form method="post" action="">
+<input type="submit" value="Eliminar">
+</form>
+
+<% for (var i=0; i<teacher.courses.length; i++) { %>
+<h2>Nombre del curso: <%= teacher_courses[i].name %></h2>
+<% } %>
+
+
+
+<%- include footer.ejs %>

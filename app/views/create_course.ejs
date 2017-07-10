@@ -1,0 +1,32 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <form method="post" action="" name="main" id="main">
+            <div class="input-field">
+                <input type="text" name="name" id="name" required>
+                <label for="name">Nombre</label>
+            </div>
+            <label class="select-label" for="category">Categoría</label>
+            <div class="input-field">
+                <select class="" id="category" name="category" form="main" required>
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option value="Académico">Académico</option>
+                    <option value="Deporte">Deporte</option>
+                    <option value="Tiempo libre">Tiempo libre</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <input type="text" name="description" id="description" required>
+                <label for="description">Descripción</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="requirement" id="requirement">
+                <label for="requirement">Requisitos</label>
+            </div>
+            <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
+        </form>
+    </div>
+</main>
+
+<%- include footer.ejs %>

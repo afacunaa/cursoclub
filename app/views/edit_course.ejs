@@ -1,0 +1,58 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <img class="responsive-img" src="<%= course.picture %>">
+        <form method="post" action="/course/<%= course.id %>/uploadPicture" enctype="multipart/form-data">
+            <input type="hidden" name="userId" value="<%= course.id %>">
+            <div class="input-field file-field">
+                <div class="btn indigo">
+                    <span>File</span>
+                <input type="file" name="picture">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Imágen con tamaño no mayor a 6 mb">
+                </div>
+            </div>
+            <button class="btn" type="submit">Subir imagen</button>
+        </form>
+        <br>
+        <div class="divider"></div>
+        <form method="post" action="" name="main" id="main">
+            <div class="input-field">
+                <input type="text" name="name" id="name" required value="<%= course.name %>">
+                <label for="name">Nombre</label>
+            </div>
+            <label class="select-label" for="category">Categoría</label>
+            <div class="input-field">
+                <select class="" id="category" name="category" form="main" required>
+                    <option value="" disabled>Seleccionar</option>
+                    <% if (course.category == 'Académico') { %>
+                    <option value="Académico" selected>Académico</option>
+                    <option value="Deporte">Deporte</option>
+                    <option value="Tiempo libre">Tiempo libre</option>
+                    <% } else if (course.category == 'Deporte') { %>
+                    <option value="Académico">Académico</option>
+                    <option value="Deporte" selected>Deporte</option>
+                    <option value="Tiempo libre">Tiempo libre</option>
+                    <% } else { %>
+                    <option value="Académico">Académico</option>
+                    <option value="Deporte">Deporte</option>
+                    <option value="Tiempo libre" selected>Tiempo libre</option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="input-field">
+                <input type="text" name="description" id="description" required value="<%= course.description %>">
+                <label for="description">Descripción</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="requirement" id="requirement" value="<%= course.requirement %>">
+                <label for="requirement">Requisitos</label>
+            </div>
+            <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
+        </form>
+    </div>
+</main>
+
+<%- include footer.ejs %>

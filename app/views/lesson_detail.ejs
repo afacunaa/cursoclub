@@ -1,0 +1,124 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <h2 class="header"><%= lesson.course.name %></h2>
+            <div class="col s3">
+                <img class="responsive-img" src="<%= lesson.course.picture %>">
+            </div>
+            <div class="col s9">
+                <% if (lesson.state == 'Solicitada') { %>
+                <h4 class="orange-text"><%= lesson.state %></h4>
+                <% } else if (lesson.state == 'Aceptada') { %>
+                <h4 class="blue-text"><%= lesson.state %></h4>
+                <% } else if (lesson.state == 'Rechazada') { %>
+                <h4 class="red-text"><%= lesson.state %></h4>
+                <% } else if (lesson.state == 'Cancelada') { %>
+                <h4 class="red-text"><%= lesson.state %></h4>
+                <% } else if (lesson.state == 'Pendiente') { %>
+                <h4 class="blue-text"><%= lesson.state %></h4>
+                <% } else { %>
+                <h4 class="green-text"><%= lesson.state %></h4>
+                <% } %>
+                <h4>Fecha: <%= lesson.nice_date %></h4>
+                <h4>Profesor: <a href="<%= lesson.teacher.url %>"><%= lesson.teacher.fullName %></a></h4>
+                <h4>Alumno: <a href="<%= lesson.student.url %>"><%= lesson.student.fullName %></a></h4>
+                <% if (lesson.message) { %>
+                <p><%= lesson.student.fullName %> ha escrito un comentario sobre la clase: </p>
+                <blockquote><%= lesson.message %></blockquote>
+                <% } %>
+            </div>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <% if (user.role == 2) { %>
+        <!-- Renders if it is a teacher -->
+        <% if (lesson.state == 'Solicitada') { %>
+        <h4 class="header">Debes confirmar la clase</h4>
+        <form action="/lesson/<%= lesson.id %>/stateUpdate" method="post">
+            <div class="row">
+                <div class="col s6">
+                    <button name="state" class="btn" type="submit" value="1">Aceptar</button>
+                </div>
+                <div class="col s6">
+                    <button name="state" class="btn red darken-3" type="submit" value="0">Rechazar</button>
+                </div>
+            </div>
+        </form>
+        <% } else if (lesson.state == 'Aceptada') { %>
+        <h4 class="header">En espera de ser pagada</h4>
+        <% } else if (lesson.state == 'Rechazada') { %>
+        <h4 class="header">Aún no ha sido reprogramada por el alumno</h4>
+        <% } else if (lesson.state == 'Cancelada') { %>
+        <h4 class="header">La clase fue cancelada. No hay más acciones asociadas a esta clase</h4>
+        <% } else if (lesson.state == 'Pendiente') { %>
+        <h4 class="header">La clase ya fue pagada. No olvides estar pendiente de ella. Una vez pase, el alumno la marcará como recibida.</h4>
+        <% } else { %>
+        <h4 class="header">La clase ya fue dada. No hay más acciones asociadas a esta clase</h4>
+        <% } %>
+
+        <% } else if (user.role == 3) { %>
+        <!-- Renders if it is a student -->
+        <% if (lesson.state == 'Solicitada') { %>
+        <h4 class="header">Debes esperar que el profesor confirme la clase</h4>
+        <% } else if (lesson.state == 'Aceptada') { %>
+        <h4 class="header">La clase ya fue aceptada, puedes pagarla</h4>
+        <h4>Precio a pagar: $<%= lesson.teacher.getPriceOfCourse(lesson.course.id)%></h4>
+        <div class="row">
+            <div class="col s6">
+                <form action="/lesson/<%= lesson.id %>/stateUpdate" method="post">
+                    <button name="state" class="btn blue" type="submit" value="3">Pagar clase</button>
+                </form>
+            </div>
+            <div class="col s6">
+                <form action="/lesson/<%= lesson.id %>/stateUpdate" method="post">
+                    <button name="state" class="btn red" type="submit" value="2">Cancelar clase</button>
+                </form>
+            </div>
+        </div>
+        <% } else if (lesson.state == 'Rechazada') { %>
+        <h4 class="header">La clase debe ser reprogramada</h4>
+        <div class="row">
+            <div class="col s6">
+                <a class="btn" href="/lesson/<%= lesson.id %>/update?offset=0&teacherId=<%= lesson.teacher.id %>">Reprogramar clase</a>
+            </div>
+            <div class="col s6">
+                <form action="/lesson/<%= lesson.id %>/stateUpdate" method="post">
+                    <button name="state" class="btn red" type="submit" value="2">Cancelar clase</button>
+                </form>
+            </div>
+        </div>
+        <% } else if (lesson.state == 'Cancelada') { %>
+        <h4 class="header">La clase fue cancelada. No hay más acciones asociadas a esta clase</h4>
+        <% } else if (lesson.state == 'Pendiente') { %>
+        <% if (lesson.date > new Date()) { %>
+        <h4 class="header">La clase ya fue pagada. No olvides estar pendiente de ella</h4>
+        <p>Cuando pase la clase se habilitará este botón para que califiques al profesor</p>
+        <a class="btn disabled" href="#">Clase recibida</a>
+        <% } else { %>
+        <h4>Esperamos que tu clase haya sido muy productiva</h4>
+        <h6>Tómate un segundo para darle una calificación a tu profesor <%= lesson.teacher.firstName %></h6>
+        <form action="/lesson/<%= lesson.id %>/stateUpdate" method="post">
+            <input type="hidden" name="teacherId" value="<%= lesson.teacher.id %>">
+            <div class="row">
+                <div class="col s5">
+                    <p class="range-field">
+                        <input type="range" name="score" id="score" min="1" max="5" />
+                        <label for="score">Calificación 0 - 5</label>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <button name="state" class="btn green" type="submit" value="4">Clase recibida</button>
+        </form>
+        <% } %>
+        <% } else { %>
+        <h4 class="header">La clase ya fue dada. No hay más acciones asociadas a esta clase</h4>
+        <% } %>
+        <% } %>
+    </div>
+</main>
+
+<%- include footer.ejs %>

@@ -1,0 +1,160 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <div class="center-align">
+            <h1>Reserva de clase</h1>
+            <div class="row">
+                <div class="col s6">
+                    <h3><%= course.name %></h3>
+                    <img class="responsive-img" src="<%= course.picture %>">
+                    <h6><%= course.description %></h6>
+                </div>
+                <div class="col s6">
+                    <h3><%= teacher.fullName %></h3>
+                    <img class="responsive-img" src="<%= teacher_user.picture %>">
+                    <h6><%= teacher_user.email %></h6>
+                    <h6><%= teacher.phone %></h6>
+                </div>
+            </div>
+            <br>
+            <h3>El precio de la clase es de: $<%= teacher.getPriceOfCourse(course.id)%></h3>
+            <br>
+            <div class="divider" id="calendar"></div>
+            <br>
+            <h5>Selecciona la fecha:</h5>
+            <div class="row">
+                <div class="col s4">
+                    <form action="#calendar" method="get">
+                        <input type="hidden" name="teacherId" id="teacherId" value="<%= teacher.id %>">
+                        <input type="hidden" name="courseId" id="courseId" value="<%= course.id %>">
+                        <input type="hidden" name="offset" value="<%= displacement - 1 %>">
+                        <% if (displacement == 0) { %>
+                        <button class="btn purple disabled" type="submit"><i class="small material-icons">skip_previous</i></button>
+                        <% } else { %>
+                        <button class="btn purple" type="submit"><i class="small material-icons">skip_previous</i></button>
+                        <% } %>
+                    </form>
+                </div>
+                <div class="col s4">
+                    <h6>Lunes <%= week[0].getDate() +' de ' + monthNames[week[0].getMonth()] + ' de ' + week[0].getFullYear() +
+                        ' al Domingo ' + week[6].getDate() + ' de ' + monthNames[week[6].getMonth()] + ' de ' + week[6].getFullYear() %></h6>
+                </div>
+                <div class="col s4">
+                    <form action="#calendar" method="get">
+                        <input type="hidden" name="teacherId" id="teacherId" value="<%= teacher.id %>">
+                        <input type="hidden" name="courseId" id="courseId" value="<%= course.id %>">
+                        <input type="hidden" name="offset" value="<%= displacement + 1 %>">
+                        <button class="btn purple" type="submit"><i class="small material-icons">skip_next</i></button>
+                    </form>
+                </div>
+            </div>
+            <form action="" method="post">
+                <table class="bordered highlight">
+                    <% var hour = 8 %>
+                    <tr>
+                        <th><p>Hora</p></th>
+                        <th>Lunes <%= week[0].getDate() %></th>
+                        <th>Martes <%= week[1].getDate() %></th>
+                        <th>Miércoles <%= week[2].getDate() %></th>
+                        <th>Jueves <%= week[3].getDate() %></th>
+                        <th>Viernes <%= week[4].getDate() %></th>
+                        <th>Sábado <%= week[5].getDate() %></th>
+                        <th>Domingo <%= week[6].getDate() %></th>
+                    </tr>
+                    <% for (var i=0; i<12; i++) { %>
+                    <tr>
+                        <td><%= hour + ' - ' + (hour+1) %></td>
+                        <% if (teacher.schedule.indexOf(i) > -1) { %>
+                        <% if (notAvailable.indexOf(i) > -1 || week[0] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i %>" name="schedule" value="<%= week[0] +'<' + hour %>" disabled>
+                            <label for="d<%= i %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i %>" name="schedule" value="<%= week[0] +'<' + hour %>">
+                            <label for="d<%= i %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                        <% if (teacher.schedule.indexOf(i+12) > -1) { %>
+                        <% if (notAvailable.indexOf(i+12) > -1 || week[1] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i + 12 %>" name="schedule" value="<%= week[1] +'<' + hour %>" disabled>
+                            <label for="d<%= i + 12 %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i + 12 %>" name="schedule" value="<%= week[1] +'<' + hour %>">
+                            <label for="d<%= i + 12 %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                        <% if (teacher.schedule.indexOf(i+(12*2)) > -1) { %>
+                        <% if (notAvailable.indexOf(i+(12*2)) > -1 || week[2] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i + (12*2) %>" name="schedule" value="<%= week[2] +'<' + hour %>" disabled>
+                            <label for="d<%= i + (12*2) %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i + (12*2) %>" name="schedule" value="<%= week[2] +'<' + hour %>">
+                            <label for="d<%= i + (12*2) %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                        <% if (teacher.schedule.indexOf(i+(12*3)) > -1) { %>
+                        <% if (notAvailable.indexOf(i+(12*3)) > -1 || week[3] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i + (12*3) %>" name="schedule" value="<%= week[3] +'<' + hour %>" disabled>
+                            <label for="d<%= i + (12*3) %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i + (12*3) %>" name="schedule" value="<%= week[3] +'<' + hour %>">
+                            <label for="d<%= i + (12*3) %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                        <% if (teacher.schedule.indexOf(i+(12*4)) > -1) { %>
+                        <% if (notAvailable.indexOf(i+(12*4)) > -1 || week[4] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i + (12*4) %>" name="schedule" value="<%= week[4] +'<' + hour %>" disabled>
+                            <label for="d<%= i + (12*4) %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i + (12*4) %>" name="schedule" value="<%= week[4] +'<' + hour %>">
+                            <label for="d<%= i + (12*4) %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                        <% if (teacher.schedule.indexOf(i+(12*5)) > -1) { %>
+                        <% if (notAvailable.indexOf(i+(12*5)) > -1 || week[5] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i + (12*5) %>" name="schedule" value="<%= week[5] +'<' + hour %>" disabled>
+                            <label for="d<%= i + (12*5) %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i + (12*5) %>" name="schedule" value="<%= week[5] +'<' + hour %>">
+                            <label for="d<%= i + (12*5) %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                        <% if (teacher.schedule.indexOf(i+(12*6)) > -1) { %>
+                        <% if (notAvailable.indexOf(i+(12*6)) > -1 || week[6] < new Date()) { %>
+                        <td><input type="radio" id="d<%= i + (12*6) %>" name="schedule" value="<%= week[6] +'<' + hour %>" disabled>
+                            <label for="d<%= i + (12*6) %>"></label>
+                            <% } else { %>
+                        <td><input type="radio" id="d<%= i + (12*6) %>" name="schedule" value="<%= week[6] +'<' + hour %>">
+                            <label for="d<%= i + (12*6) %>"></label>
+                            <% } } else { %>
+                        <td><a href="#" class="btn disabled"></a>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% hour++ %>
+                    <% } %>
+                </table>
+                <br>
+                <div class="input-field">
+                    <textarea id="lesson_message" name="lesson_message" class="materialize-textarea"></textarea>
+                    <label for="lesson_message">Opcional. Temas que quieres profundizar o un mensaje que quieras dar al profesor acerca de la clase</label>
+                </div>
+                <input type="submit" class="btn lime" value="Reservar clase">
+            </form>
+        </div>
+    </div>
+</main>
+
+<%- include footer.ejs %>

@@ -1,0 +1,145 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <% if (user.role == 1) { %>
+        <h3>Portal de administración</h3>
+
+        <% } else if (user.role == 2) {
+        let booked = 0, paid = 0;
+        for (var j=0; j<person.lessons.length; j++) {
+            if (person.lessons[j].state === 'Solicitada') {
+                booked += 1;
+            } else if (person.lessons[j].state === 'Pendiente') {
+                paid += 1;
+            }
+        }
+        %>
+        <% if (booked > 0) { %>
+        <div class="chip orange">
+            <% if (booked === 1) { %>
+            <%= booked %> clase solicitada
+            <% } else { %>
+            <%= booked %> clases solicitadas
+            <% } %>
+        </div>
+        <% } %>
+        <% if (paid > 0) { %>
+        <div class="chip green">
+            <% if (paid === 1) { %>
+            <%= paid %> clase pendiente
+            <% } else { %>
+            <%= paid %> clases pendientes
+            <% } %>
+        </div>
+        <% } %>
+        <h3>Portal de profesor</h3>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <% if (user.picture) { %>
+                <img class="responsive-img" src="<%= user.picture %>">
+                <% } else { %>
+                <img class="responsive-img" src="/img/silueta.png">
+                <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                <% } %>
+            </div>
+            <div class="col l6 m6 s12">
+                <h4><%= person.fullName %></h4>
+                <h5><i class="small material-icons">email</i> <%= user.email %></h5>
+                <h5><i class="small material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></h5>
+                <h5><i class="small material-icons">call</i> <%= person.phone %></h5>
+                <br>
+                <% if (person.courses.length > 0) { %>
+                <div class="divider"></div>
+                <br>
+                <h5>Eres profesor de los siguientes cursos:</h5>
+                <ul class="collection">
+                    <% for (var i=0; i<person.courses.length; i++) { %>
+                    <li class="collection-item avatar">
+                        <img class="circle" src="<%= person.courses[i].picture %>">
+                        <span class="title"><a href="<%= person.courses[i].url %>"><%= person.courses[i].name %></a></span>
+                        <p>Precio por hora de clase: $<%= person.getPriceOfCourse(person.courses[i].id) %></p>
+                    </li>
+                    <% } %>
+                </ul>
+                <p>Para modificar la información de tus cursos debes comunicarte con nosotros</p>
+                <% } else { %>
+                <h5>Para añadir nuevos cursos debes comunicarte con nosotros</h5>
+                <% } %>
+                <br>
+                <h5>No olvides mantener actualizado tu <a href="/teacher/<%= user.teacher %>/scheduleUpdate">horario de disponibilidad</a></h5>
+            </div>
+        </div>
+        <% } else if (user.role == 3) {
+            let accepted = 0, paid = 0, rejected = 0;
+            for (var j=0; j<person.lessons.length; j++) {
+                if (person.lessons[j].state === 'Aceptada') {
+                    accepted += 1;
+                } else if (person.lessons[j].state === 'Pendiente') {
+                    paid += 1;
+                } else if (person.lessons[j].state === 'Rechazada') {
+                    rejected += 1;
+                }
+            }
+        %>
+        <% if (accepted > 0) { %>
+        <div class="chip lime">
+            <% if (accepted === 1) { %>
+            <%= accepted %> clase aceptada
+            <% } else { %>
+            <%= accepted %> clases aceptadas
+            <% } %>
+        </div>
+        <% } %>
+        <% if (paid > 0) { %>
+        <div class="chip green">
+            <% if (paid === 1) { %>
+            <%= paid %> clase pendiente
+            <% } else { %>
+            <%= paid %> clases pendientes
+            <% } %>
+        </div>
+        <% } %>
+        <% if (rejected > 0) { %>
+        <div class="chip red">
+            <% if (rejected === 1) { %>
+            <%= rejected %> clase rechazada
+            <% } else { %>
+            <%= rejected %> clases rechazadas
+            <% } %>
+        </div>
+        <% } %>
+        <h3>Portal de alumno</h3>
+
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <% if (user.picture) { %>
+                <img class="responsive-img" src="<%= user.picture %>">
+                <% } else { %>
+                <img class="responsive-img" src="/img/silueta.png">
+                <p>Actualiza tu foto para que tus profesores puedan saber algo más sobre ti</p>
+                <% } %>
+            </div>
+            <div class="col l6 m6 s12">
+                <h4><%= person.fullName %></h4>
+                <h5><i class="small material-icons">email</i> <%= user.email %></h5>
+                <h5><i class="small material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></h5>
+                <% if (person.address) { %>
+                <h5><i class="small material-icons">location_on</i> <%= person.address %></h5>
+                <% } else { %>
+                <h5 class="red-text"><i class="small material-icons">location_on</i> Debes actualizar tu dirección para poder solicitar clases</h5>
+                <% } if (person.phone) { %>
+                <h5><i class="small material-icons">call</i> <%= person.phone %></h5>
+                <% } else { %>
+                <h5 class="orange-text"><i class="small material-icons">call</i> Proporciona tu teléfono por si debes ser contactado</h5>
+                <% } %>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+    <%- include category_list.ejs %>
+
+</main>
+
+<%- include footer.ejs %>

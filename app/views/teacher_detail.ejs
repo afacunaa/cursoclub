@@ -1,0 +1,57 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <img class="responsive-img" src="<%= teacher_user.picture %>">
+            </div>
+            <h6>
+                <% for (var i=0; i<Math.floor(teacher.score); i++) { %>
+                <i class="small material-icons">grade</i>
+                <% } %>
+                <%= teacher.score %>
+            </h6>
+            <div class="col l6 m6 s12">
+                <h4><%= teacher.fullName %></h4>
+                <h5><i class="small material-icons">email</i> <%= teacher_user.email %></h5>
+                <h5><i class="small material-icons">perm_contact_calendar</i> <%= teacher.nice_birthday %></h5>
+                <h5><i class="small material-icons">call</i> <%= teacher.phone %></h5>
+                <br>
+                <% if (teacher.courses.length > 0) { %>
+                <div class="divider"></div>
+                <br>
+                <h5><%= teacher.firstName %> es profesor de <%= teacher.courses.length %> curso(s) </h5>
+                <ul class="collection">
+                    <% for (var i=0; i<teacher.courses.length; i++) { %>
+                    <li class="collection-item avatar">
+                        <img class="circle" src="<%= teacher.courses[i].picture %>">
+                        <span class="title"><a href="<%= teacher.courses[i].url %>"><%= teacher.courses[i].name %></a></span>
+                        <p>Precio por hora de clase: $<%= teacher.getPriceOfCourse(teacher.courses[i].id) %></p>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } %>
+            </div>
+        </div>
+        <div class="row">
+            <p>Acerca de <%= teacher.firstName %>:</p>
+            <blockquote><%= teacher.description %></blockquote>
+        </div>
+        <% if (user.role == 1) { %>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <a class="btn" href="/teacher/<%= teacher.id %>/update">Editar información</a>
+            </div>
+            <div class="col l6 m6 s12">
+                <form method="post" action="/teacher/<%= teacher.id %>/delete">
+                    <button class="btn red" type="submit" value="Eliminar">Eliminar profesor</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
+</main>
+
+<%- include footer.ejs %>
