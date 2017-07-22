@@ -2,7 +2,7 @@ module.exports = {
     'project_name': 'cursoclub',
     'adminname': 'cursoclub_admin',
     'adminmail': 'equipo.cursoclub@gmail.com',
-    'host': "http://cursoclub.herokuapp.com",
+    'host': "https://cursoclub.com",
     'email_smtp_host': 'Your Email SMTP',
     'email_smtp_port': 'YOUR SMTP PORT',
     "smtp_from_email": "equipo.cursoclub@gmail.com",
