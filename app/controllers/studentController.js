@@ -66,7 +66,6 @@ exports.create_student_post = function (req, res, next) {
         }
     );
     let hash = bcrypt.hashSync(req.body.new_password);
-    let username;
     let user = new User(
         {
             role: constants.student_role,
@@ -79,28 +78,36 @@ exports.create_student_post = function (req, res, next) {
             student: student.id
         }
     );
+    let query;
     async.parallel({
         student_save: function (callback) {
             student.save(callback);
         },
         user_save: function (callback) {
-            username = user.email.substring(0, user.email.indexOf('@'));
-            User.find({ 'username': new RegExp(username, 'i') }, callback)
+            User.findOne({ 'email': user.email }, callback)
                 .exec(function (err, results) {
-                    if (err) { return res.send(err) }
-                    if (results.length > 0) {
-                        username += results.length;
+                    if (err) {
+                        return res.send(err)
                     }
-                    user.username = username;
-                    user.save(function (err) {
-                        if (err) { return res.send(err) }
-                    });
+                    if (!results) {
+                        user.save();
+                        query = 'signup=true';
+                    } else {
+                        if (!results.student && results.teacher){
+                            results.student = student.id;
+                            results.save();
+                            query = 'signup=true';
+                        } else {
+                            //res.redirect('/login?creationError=true');
+                            query = 'creationError=true'
+                        }
+                    }
                 });
         }
     }, function (err, results) {
         if (err) { return next(err) }
-        emailer.welcome_student_email(user.email, user.activation_route, student.firstName, username);
-        res.redirect('/login?signup=true')
+        emailer.welcome_student_email(user.email, user.activation_route, student.firstName, user.username);
+        res.redirect('/login?'+query);
     });
 };
 

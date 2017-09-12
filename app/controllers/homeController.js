@@ -73,7 +73,14 @@ exports.login = function(req, res) {
 					"correo electrónico con tu información de ingreso y un enlace para activar tu cuenta",
                 user: req.user
             });
-		} else {
+		} else if (req.query.creationError === 'true') {
+            res.render('login', {
+                title: 'Iniciar sesión',
+                error: req.flash("error"),
+                success: "El correo electrónico ya está en uso en esa modalidad",
+                user: req.user
+            });
+        } else {
             res.render('login', {
                 title: 'Iniciar sesión',
                 error: req.flash("error"),

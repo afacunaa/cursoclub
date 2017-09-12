@@ -1,0 +1,10 @@
+.cc_navbar{
+    height: 190px;
+    background: linear-gradient(45deg, #ffffff, #005e64);
+}
+.cc_searchbar{
+    height: 70px;
+}
+.cc_socialicon{
+    max-width: 20px;
+}

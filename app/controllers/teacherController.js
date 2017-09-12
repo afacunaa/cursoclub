@@ -89,7 +89,6 @@ exports.create_teacher_post = function (req, res, next) {
             teacher: teacher.id }
     );
     let prices = teacher.pricePerHour;
-    let username;
     for (let i = 0; i < teacher.courses.length; i++){
         //console.log('Precios seleccionados: '+req.body['price'+teacher.courses[i]]);
         text = '<'+teacher.courses[i]+':'+req.body['price'+teacher.courses[i]]+'>';
@@ -114,21 +113,26 @@ exports.create_teacher_post = function (req, res, next) {
             teacher.save(callback);
         },
         user_save: function (callback) {
-            username = user.email.substring(0, user.email.indexOf('@'));
-            User.find({ 'username': new RegExp(username, 'i') }, callback)
+            User.findOne({ 'email': user.email }, callback)
                 .exec(function (err, results) {
-                    if (results.length > 0) {
-                        username += results.length;
+                    if (err) {
+                        return res.send(err)
                     }
-                    user.username = username;
-                    user.save(function (err) {
-                        if (err) { return res.send(err) }
-                    });
+                    if (!results) {
+                        user.save();
+                    } else {
+                        if (!results.teacher && results.student){
+                            results.teacher = teacher.id;
+                            results.save();
+                        } else {
+
+                        }
+                    }
                 });
         }
     }, function (err, results) {
         if (err) { return next(err) }
-        emailer.welcome_teacher_email(user.email, user.activation_route, teacher.firstName, username);
+        emailer.welcome_teacher_email(user.email, user.activation_route, teacher.firstName, user.username);
         res.redirect(teacher.url);
     });
 };

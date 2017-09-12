@@ -90,7 +90,6 @@ module.exports = function(passport) {
                                 lastName: profile.name.familyName,
                             }
                         );
-                        console.log('Estudiante: '+newStudent.firstName+' '+newStudent.lastName);
                         let newUser = new User(
                             {   role: constants.student_role,
                                 email: profile.emails[0].value,
@@ -101,7 +100,6 @@ module.exports = function(passport) {
                                 picture: profile.photos[0].value,
                                 student: newStudent.id  }
                         );
-                        console.log('User: '+newUser.email+' '+newUser.username);
                         // save our user to the database
                         newStudent.save(function (err) {
                             if (err) {

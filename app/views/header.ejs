@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/materialize.css" type="text/css">
+    <link rel="stylesheet" href="/css/cursoclub_style.css" type="text/css">
     <link rel="icon" type="image/png" href="/img/favicon.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,7 +11,7 @@
 </head>
 <body>
 <header>
-    <nav class="grey lighten-2" style="height: 190px;background: linear-gradient(45deg, #ffffff, #005e64);">
+    <nav class="grey lighten-2 cc_navbar">
         <div class="nav-wrapper">
             <% if (user){ %>
             <a id="logo-container" href="/home" class="brand-logo"><img class="responsive-img" src="/img/cursoclub_mini.png"></a>
@@ -50,7 +51,7 @@
                 <li><a href="#modal1">Ingresar</a></li>
                 <% } %>
             </ul>
-            <form method="get" action="/courses" class="right hide-on-med-and-down" style="height: 70px">
+            <form method="get" action="/courses" class="right hide-on-med-and-down cc_searchbar">
                 <div class="input-field">
                     <input id="search" name="name" type="search" placeholder="Buscar cursos">
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
