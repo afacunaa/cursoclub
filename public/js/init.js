@@ -30,6 +30,21 @@ $('.datepicker').pickadate({
     }
 });
 $(document).ready(function(){
+    $('.carousel').carousel();
+});
+autoplay();
+function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 6000);
+}
+function prevSlide() {
+    $('.carousel').carousel('prev');
+}
+function nextSlide() {
+    $('.carousel').carousel('next');
+}
+$('.carousel.carousel-slider').carousel({fullWidth: true, indicators: true});
+$(document).ready(function(){
     $('.tooltipped').tooltip({delay: 50});
 });
 $('#old_password').on('keyup', function () {

@@ -1,18 +1,31 @@
 <%- include header.ejs %>
 
 <main>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <div class="row center">
-
-                <h5 class="header col s12 light">El lugar perfecto para encontrar los cursos de aquello que siempre quisiste aprender</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col l7 m7 s12">
+                <div class="carousel carousel-slider" data-indicators="true">
+                    <div class="carousel-item">
+                        <a href="#one!"><img src="/img/learn.png"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#two!"><img src="/img/pencils.png"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#three!"><img src="/img/painting.png"></a>
+                    </div>
+                    <a class="prev" onclick="prevSlide()">&#10094;</a>
+                    <a class="next" onclick="nextSlide()">&#10095;</a>
+                </div>
             </div>
-            <div class="row center">
-                <a href="#modal1" class="btn-large waves-effect waves-light orange hide-on-med-and-down">Iniciar sesión / Registrarse</a>
-                <a href="/login" class="btn-large waves-effect waves-light orange hide-on-large-only">Iniciar sesión / Registrarse</a>
+            <div class="col l5 m5 s12">
+                <div class="center">
+                <a href="#modal1" class="btn-large waves-effect waves-light purple hide-on-med-and-down">Inicia sesión o Regístrate</a>
+                <a href="/login" class="btn-large waves-effect waves-light purple hide-on-large-only">Inicia sesión o Regístrate</a>
+                </div>
             </div>
-            <br><br>
         </div>
+        <br><br>
     </div>
 
     <%- include category_list.ejs %>
