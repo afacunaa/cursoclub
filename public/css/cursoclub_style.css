@@ -2,6 +2,20 @@ nav {
     height: 190px;
     line-height: 190px;
 }
+.cc_btn{
+    width: 100%;
+    background-color: #d05b18;
+}
+.cc_btn:hover{
+    background-color: #49034c;
+}
+.cc_btn_menu{
+    width: 100%;
+    background-color: #49034c;
+}
+.cc_btn_menu:hover{
+    background-color: #d05b18;
+}
 .cc_searchbar{
     height: 70px;
 }
@@ -13,7 +27,7 @@ nav {
 }
 .cc_category_title_h{
     position: absolute;
-    top: 20px;
+    top: 150px;
     left: 0;
     width: 100%;
 }

@@ -11,13 +11,15 @@
 </head>
 <body>
 <header>
-    <nav class="white nav-extended">
+    <nav class="white nav">
         <div class="nav-wrapper">
+            <div class="container">
             <% if (user){ %>
             <a id="logo-container" href="/home" class="brand-logo"><img class="responsive-img" src="/img/cursoclub_logo_small.png"></a>
             <% } else { %>
-            <a id="logo-container" href="/" class="brand-logo center"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
+            <a id="logo-container" href="/" class="brand-logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
             <% } %>
+
             <ul id="nav-full" class="right hide-on-med-and-down">
                 <% if (user){ %>
                 <li><a href="/contactus">Contáctanos</a></li>
@@ -47,17 +49,9 @@
                     <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
                 </ul>
                 <% } else { %>
-                <li><a href="/contactus" class="black-text">Contáctanos</a></li>
-                <li><a href="#modal1" class="black-text">Ingresar</a></li>
+                <li><a href="#modal1" class="btn cc_btn">Ingresar</a></li>
                 <% } %>
             </ul>
-            <form method="get" action="/courses" class="right hide-on-med-and-down cc_searchbar">
-                <div class="input-field">
-                    <input id="search" name="name" type="search" placeholder="Buscar cursos">
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
             <% if (user){ %>
             <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="side-nav">
@@ -98,19 +92,11 @@
                 <% } %>
             </ul>
         </div>
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1" class="active" >Inicio</a></li>
-                    <li class="tab col s3"><a href="#test2">Cursos</a></li>
-                    <li class="tab col s3"><a href="#test3">Nosotros</a></li>
-                    <li class="tab col s3 disabled"><a href="#test4">Blog</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 
-    <div class="container hide-on-large-only">
+
+    <div class="container">
         <form method="get" action="/courses" class="card">
             <div class="input-field">
                 <input id="search" name="name" type="search" placeholder="Buscar cursos">
