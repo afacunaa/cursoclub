@@ -16,7 +16,7 @@
                 <h4><%= teacher.fullName %></h4>
                 <h5><i class="small material-icons">email</i> <%= teacher_user.email %></h5>
                 <h5><i class="small material-icons">perm_contact_calendar</i> <%= teacher.nice_birthday %></h5>
-                <h5><i class="small material-icons">call</i> <%= teacher.phone %></h5>
+                <h5><i class="small material-icons">call</i> <%= teacher.phone.substr(0,6)+'...' %></h5>
                 <br>
                 <% if (teacher.courses.length > 0) { %>
                 <div class="divider"></div>

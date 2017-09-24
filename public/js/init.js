@@ -30,20 +30,19 @@ $('.datepicker').pickadate({
     }
 });
 $(document).ready(function(){
-    $('.carousel').carousel();
+    $('.carousel.carousel-slider').carousel({fullWidth: true, indicators: true});
 });
 autoplay();
 function autoplay() {
-    $('.carousel').carousel('next');
     setTimeout(autoplay, 6000);
+    $('.carousel').carousel('next');
 }
 function prevSlide() {
-    $('.carousel').carousel('prev');
+    $('.carousel.carousel-slider').carousel('prev');
 }
 function nextSlide() {
-    $('.carousel').carousel('next');
+    $('.carousel.carousel-slider').carousel('next');
 }
-$('.carousel.carousel-slider').carousel({fullWidth: true, indicators: true});
 $(document).ready(function(){
     $('.tooltipped').tooltip({delay: 50});
 });
