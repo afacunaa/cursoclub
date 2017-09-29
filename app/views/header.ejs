@@ -15,9 +15,9 @@
         <div class="nav-wrapper">
             <div class="container">
             <% if (user){ %>
-            <a id="logo-container" href="/home" class="brand-logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
+            <a id="logo-container" href="/home" class="brand-logo cc_brand_logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
             <% } else { %>
-            <a id="logo-container" href="/" class="brand-logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
+            <a id="logo-container" href="/" class="brand-logo cc_brand_logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
             <% } %>
 
             <ul id="nav-full" class="right hide-on-med-and-down">
@@ -87,7 +87,7 @@
                 <li><a href="/contactus"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
                 <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
                 <% } else { %>
-                <a class="hide-on-large-only btn-flat" href="/login">Ingresar</a>
+                <a class="hide-on-large-only btn-flat cc_mobile_btn_login" href="/login">Ingresar</a>
                 <% } %>
             </ul>
         </div>
