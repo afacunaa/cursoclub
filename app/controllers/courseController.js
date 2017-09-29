@@ -3,6 +3,7 @@
  */
 
 let Course = require('../models/course');
+let User = require('../models/user');
 let async = require('async');
 let multer = require('multer');
 
@@ -75,8 +76,18 @@ exports.course_detail = function (req, res, next) {
     //res.send('Detalle de curso ' + req.params.id);
     Course.findOne({ _id: req.params.id })
         .populate('teachers')
-        .exec(function (err, result) {
-            res.render('course_detail', { title: 'Detalle de curso', course: result, user: req.user });
+        .exec(function (err, course) {
+            let usersId = [];
+            for (let i=0; i<course.teachers.length; i++) {
+                usersId.push(course.teachers[i].id);
+            }
+            User.find({ 'teacher': { $in: usersId } })
+                .exec(function (err, user_result) {
+                if (err){
+                    return next(err);
+                }
+                res.render('course_detail', { title: 'Detalle de curso', course: course, teacher_user: user_result, user: req.user });
+            });
         });
 };
 
