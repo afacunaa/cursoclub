@@ -22,7 +22,7 @@ let now = new Date();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-let storage = multer.diskStorage({
+/*let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, constant.upload_directory )
     },
@@ -31,6 +31,15 @@ let storage = multer.diskStorage({
     }
 });
 let upload = multer( {storage: storage, limits: { fileSize: 6000000 }} );
+
+app.use(upload.single('picture'));*/
+
+let upload = multer( {
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 8 * 1024 * 1024
+    }
+} );
 
 app.use(upload.single('picture'));
 

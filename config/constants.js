@@ -23,5 +23,6 @@ module.exports = {
     "lesson_canceled":'Cancelada',
     "lesson_paid":'Pendiente',
     "lesson_done":'Realizada',
-    "upload_directory":"./public/uploads/"
+    "upload_directory":"./public/uploads/",
+    "google_bucket_name": "cursoclub-uploads"
 };

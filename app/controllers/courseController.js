@@ -5,7 +5,14 @@
 let Course = require('../models/course');
 let User = require('../models/user');
 let async = require('async');
-let multer = require('multer');
+let constants = require('../../config/constants');
+
+let Storage = require('@google-cloud/storage');
+let storage = Storage({
+    projectId: 'curso-club-web',
+    keyFilename: '/home/andres/Documentos/cursoclub/cursoclub_auth.json'
+});
+let bucket = storage.bucket(constants.google_bucket_name);
 
 // Display all courses GET
 exports.course_list = function (req, res, next) {
@@ -142,8 +149,16 @@ exports.update_course_post = function (req, res, next) {
 
 //Update course's picture POST
 exports.update_course_picture_post = function (req, res, next) {
-    Course.findOneAndUpdate({ _id: req.params.id }, { $set: { picture: '/uploads/'+req.file.filename } }, { new: true }, function(err, doc) {
-        if (err) { return next(err) }
-        res.redirect('/course/' + doc.id);
+    let filename = Date.now() + req.file.originalname;
+    let blob = bucket.file(filename);
+    let blobStream = blob.createWriteStream();
+    blobStream.on('finish', function () {
+        // The public URL can be used to directly access the file via HTTP.
+        let publicUrl = 'https://storage.googleapis.com/'+constants.google_bucket_name+'/'+filename;
+        Course.findOneAndUpdate({ _id: req.params.id }, { $set: { picture: publicUrl } }, { new: true }, function(err, doc) {
+            if (err) { return next(err) }
+            res.redirect('/course/' + doc.id);
+        });
     });
+    blobStream.end(req.file.buffer);
 };

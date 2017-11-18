@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "curso-club-web",
+  "private_key_id": "5144f102b1b4d926b1552bd1c5154352dfc4a145",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCuVvK2KtP8qsEA\nrTNs8zrstOThJAty+smsuJX+Dz3BVmMVtUMJvqhc6i6NycH3ia9VQTho/FERmMSy\nuPrqX4L5YZagxjU/AxfaqRh1PaabRn2CbxfvCgWS3j3Dz7BFPkZQtAcfTKrn7E5K\n0Xhe8t4xDL6+TARZad0sRvrXTdimysXseGk1PxL7J5BIuD9a2xi5D1SzigVcJKtc\n2w4SO4PShnkf81+yCwQbHgoYRsnmZgMEx+Osyj2CLxitbiLc2BIzwtleArkyLCjb\ng+dgw2Lg+wd+RgU9/sfBhXZgfQzepOD0H/sYsAkeU6VMwKYsIt7p85OWDcedl+3R\ntd+b13RBAgMBAAECggEAGq536uVXGD5R13aqfiwjgoKU3NgVYH19TA/b9MwEWYiN\nFY9uORmSztWQVmbgZrANw3B936NuDNFimS+yRxhjBSOoV+a902z3w6FJevf6fZ0m\nLEYwVYclHzsgHM22XoKPZF6JEIM9TM1flhfE4lMtKjiXIKylpcGL9fDPBxCE7dGt\nyWzUh0MsZVucLDpeXKGWzTOmYiju8Wjh5QI9yDQ9n2dx/AWuJd+2GiGLgKbjY5EN\nAhneH8i/mmbGrpYI3hK9NujB6DWohOVN1RY1s5pU7JRssylWbxXgNvE2AiBa51iV\nUgwY4Y3OoG3Hod+ct2HjsZJu+ntUTlt4qhLUX8yjuQKBgQDpQScOJGPUJOXwFZ2h\nzL8e07wa3OsnW8A/zZxfrT5BE8dB5Svl+D/cKMxSJH1RTPitsZpuXIwA5saVCh7l\n6hjEsK3sKLkDv/4z7mV37DpmLlV9M9xOLVYFXEia6IMSJSY8j007MMCx9ddL1VPz\n1Ma1rANGhMUR6qWN7Y2tGV9APwKBgQC/VxMhe41OPVHe46lGv/u6oOkpQMOx42bw\nb/Mcl+HnbmxHuzi+f0wm7f0+0CV03H3OiCRQq7JiTSTMZV8TmPdEsJ3DLAIsbA7z\n5TSe4e18I3oREKB/qx59xIF9tmXDmgMKa6CZEXgxRn2s1bo4xfaM5i+VyTKwPrgA\nfwvNxzQrfwKBgGHvvjM86kF/wJ/eo5H1AuYxptBso7uh1YW0kgzGE9aFNGuhip4D\nbuTEqI1wzsFdHSjo4lumNg6G1yhq2HBWq1GikVQQASbm7Rfm5+nDYP3YRILOTJjy\nhiS4C7AnIilzOavBy36nyLCv9Vbc2mQNmeVbtQBd7NTJ/fsqnArrFUhHAoGBALVT\ndHrHlprtu5eJklLM/2bWtP92M75x7Yyv2ule+iOTXqP/xf+prWY7JUKQiN6dUdAW\n7qtQe0VzLAtTie2Nic8bvPZHz2t/oA/8R4jGPIPnLvfbFO7IIKY5Qin7X6clXfpT\nEqfciVXRIqpXBRpmaIcQYUoGmLWzSjaWL358aHFLAoGBAN1e62PNaHmF8JLxyLoa\nH4R1llVWRUkWmaa8gL9Zy5k5G7MwBOgPyNDEql59qsrmh/PLypiwy3xmf6Bjrygl\nsmPtYBAyeCf60NObUOSckqyQX8Td9nhbpeSpV6kVV1UnSN0v6UcIGckZdpuff2Kx\nRsAxiB6zUJ5i9UwxIrEALr2L\n-----END PRIVATE KEY-----\n",
+  "client_email": "curso-club-web@appspot.gserviceaccount.com",
+  "client_id": "107594047032188369451",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/curso-club-web%40appspot.gserviceaccount.com"
+}

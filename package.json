@@ -41,6 +41,7 @@
     "request": "latest",
     "serve-favicon": "~2.3.0",
     "simple-encryptor": "latest",
-    "underscore": "latest"
+    "underscore": "latest",
+    "@google-cloud/storage": "1.2.1"
   }
 }
