@@ -5,8 +5,7 @@
 let User = require('../models/user');
 let async = require('async');
 let bcrypt = require('bcrypt-nodejs');
-let multer = require('multer');
-let constants = require('../../config/constants');
+let uploader = require('../../lib/upload');
 
 // Activate user GET
 exports.activate_user_get = function (req, res, next) {
@@ -115,12 +114,6 @@ exports.update_user_post = function (req, res, next) {
 
 //Update user's picture POST
 exports.update_user_picture_post = function (req, res, next) {
-    User.findOneAndUpdate({ _id: req.user.id }, { $set: { picture: '/uploads/'+req.file.filename } }, { new: true }, function(err, doc) {
-        if (err) { return next(err) }
-        if (doc.role === 2) {
-            res.redirect('/teacher/' + doc.teacher);
-        } else if (doc.role === 3) {
-            res.redirect('/home');
-        }
-    });
+    uploader.uploadFile(req, 'User');
+    res.redirect('/home');
 };
