@@ -1,4 +1,5 @@
 let express = require('express');
+let blogEntryController = require('../app/controllers/blogEntryController');
 let homeController = require('../app/controllers/homeController');
 let courseController = require('../app/controllers/courseController');
 let lessonController = require('../app/controllers/lessonController');
@@ -248,6 +249,36 @@ router.get('/transactions', transactionController.transaction_list);
 
 // GET transaction detail
 router.get('/transaction/:id', transactionController.transaction_detail);
+
+
+/* BlogEntry routes */
+
+// GET BlogEntry creation
+router.get('/blog/create', blogEntryController.create_blogEntry_get);
+
+// POST BlogEntry creation
+router.post('/blog/create', blogEntryController.create_blogEntry_post);
+
+// GET BlogEntry update
+router.get('/blog/:id/update', blogEntryController.update_blogEntry_get);
+
+// POST BlogEntry update
+router.post('/blog/:id/update', blogEntryController.update_blogEntry_post);
+
+// GET BlogEntry deletion
+router.get('/blog/:id/delete', blogEntryController.delete_blogEntry_get);
+
+// POST BlogEntry deletion
+router.post('/blog/:id/delete', blogEntryController.delete_blogEntry_post);
+
+// GET BlogEntry list
+router.get('/blogs', blogEntryController.blogEntry_list);
+
+// GET BlogEntry detail
+router.get('/blog/:id', blogEntryController.blogEntry_detail_get);
+
+// POST BlogEntry detail
+router.post('/blog/:id', blogEntryController.blogEntry_detail_post);
 
 
 module.exports = router;

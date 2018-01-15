@@ -33,7 +33,7 @@ exports.teacher_detail = function (req, res, next) {
     if (req.isAuthenticated()) {
         async.parallel({
                 first: function (callback) {
-                    Teacher.findById(req.params.id, callback).populate('courses');
+                    Teacher.findById(req.params.id, callback).populate('courses.course');
                 },
                 second: function (callback) {
                     User.findOne({teacher: req.params.id}).exec(callback);
@@ -69,6 +69,17 @@ exports.create_teacher_get = function (req, res, next) {
 exports.create_teacher_post = function (req, res, next) {
     //res.send('Crear profesor');
     let hash = bcrypt.hashSync(req.body.document);
+    let groupDoes = Boolean(req.body.groupDoes);
+    let courses = [];
+    let courseWithPrice = {};
+    let coursesId = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
+    for (let i=0; i < coursesId.length; i++){
+        courseWithPrice = {
+            course: coursesId[i],
+            pricePerHour: req.body['price'+coursesId[i]]
+        };
+        courses.push(courseWithPrice);
+    }
     let teacher = new Teacher(
         {   firstName: req.body.firstname,
             lastName: req.body.lastname,
@@ -77,7 +88,14 @@ exports.create_teacher_post = function (req, res, next) {
             birthday: req.body.birthday,
             address: req.body.address,
             phone: req.body.phone,
-            courses: (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",")  }
+            courses: courses,
+            workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
+            groupLesson: {
+                does: groupDoes,
+                maxStudents: req.body.maxStudents,
+                discountPerStudent: req.body.discountPerStudent
+            }
+        }
     );
     let user = new User(
         {   role: constants.teacher_role,
@@ -88,17 +106,10 @@ exports.create_teacher_post = function (req, res, next) {
             owner: teacher.fullName,
             teacher: teacher.id }
     );
-    let prices = teacher.pricePerHour;
-    for (let i = 0; i < teacher.courses.length; i++){
-        //console.log('Precios seleccionados: '+req.body['price'+teacher.courses[i]]);
-        text = '<'+teacher.courses[i]+':'+req.body['price'+teacher.courses[i]]+'>';
-        prices = prices.concat('/',text);
-    }
-    teacher.pricePerHour = prices;
     // First, update all courses' teachers list adding teacher's ID and then save the new created teacher
     async.series({
         course_save: function (callback) {
-            Course.find({ _id: { $in: teacher.courses }}, callback)
+            Course.find({ _id: { $in: coursesId }}, callback)
                 .exec(function (err, result) {
                     if (err){return res.send(err)}
                     for (let i=0; i<result.length; i++){
@@ -189,6 +200,7 @@ exports.update_teacher_get = function (req, res, next) {
     async.parallel({
             first: function (callback) {
                 Teacher.findById( req.params.id, callback )
+                    .populate('courses.course')
             },
             second: function (callback) {
                 Course.find({ /*'teachers': req.params.id*/ }).exec(callback);
@@ -196,7 +208,22 @@ exports.update_teacher_get = function (req, res, next) {
         }, function (err, results) {
             if (err) { return next(err) }
             let birthdayString = moment(results.first.birthday).utc().format('YYYY-MM-DD');
-            res.render('edit_teacher', { title: 'Editar profesor', teacher: results.first, courses_list: results.second, birthdayString: birthdayString, user: req.user })
+            let teacher_courses_list = [];
+            let teacher_courses_list_pricePerHour = [];
+            for (let i=0; i<results.first.courses.length; i++){
+                teacher_courses_list.push(results.first.courses[i].course.id);
+                teacher_courses_list_pricePerHour.push(results.first.courses[i].pricePerHour);
+            }
+            res.render('edit_teacher',
+                {
+                    title: 'Editar profesor',
+                    teacher: results.first,
+                    teacher_courses_list: teacher_courses_list,
+                    teacher_courses_list_pricePerHour: teacher_courses_list_pricePerHour,
+                    courses_list: results.second,
+                    birthdayString: birthdayString,
+                    user: req.user
+                })
         }
     );
 };
@@ -217,13 +244,24 @@ exports.update_teacher_post = function (req, res, next) {
             schedule: (typeof req.body.schedule==='undefined') ? [] : req.body.schedule.toString().split(",")
         }
     );*/
-    let courses = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
+    /*let courses = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
     // Different update for User
     let prices = '';
     for (let i = 0; i < courses.length; i++){
         //console.log('Precios seleccionados: '+req.body['price'+teacher.courses[i]]);
         text = '<'+courses[i]+':'+req.body['price'+courses[i]]+'>';
         prices = prices.concat('/', text);
+    }*/
+    let courses = [];
+    let courseWithPrice = {};
+    let groupDoes = Boolean(req.body.groupDoes);
+    let coursesId = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
+    for (let i=0; i < coursesId.length; i++){
+        courseWithPrice = {
+            course: coursesId[i],
+            pricePerHour: req.body['price'+coursesId[i]]
+        };
+        courses.push(courseWithPrice);
     }
     // First, update all courses' teachers list adding teacher's ID and then save the new created teacher
     async.series({
@@ -240,7 +278,7 @@ exports.update_teacher_post = function (req, res, next) {
                 });
         },
         course_update: function (callback) {
-            Course.find({ _id: { $in: courses }}, callback)
+            Course.find({ _id: { $in: coursesId }}, callback)
                 .exec(function (err, result) {
                     if (err){return res.send(err)}
                     for (let i=0; i<result.length; i++){
@@ -271,8 +309,13 @@ exports.update_teacher_post = function (req, res, next) {
                     description: req.body.description,
                     address: req.body.address,
                     phone: req.body.phone,
-                    pricePerHour: prices,
-                    courses: (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(","),
+                    workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
+                    courses: courses,
+                    groupLesson: {
+                        does: groupDoes,
+                        maxStudents: req.body.maxStudents,
+                        discountPerStudent: req.body.discountPerStudent
+                    },
                     updatedAt: new Date()
                 }
             }, {new: true}, function (err, doc) {

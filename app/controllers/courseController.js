@@ -104,7 +104,9 @@ exports.create_course_post = function (req, res, next) {
         {   name: req.body.name,
             category: req.body.category,
             description: req.body.description,
-            requirement: req.body.requirement   }
+            requirement: req.body.requirement,
+            keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(','),
+        }
     );
     course.save(function (err) {
         if (err) {return next(err) }

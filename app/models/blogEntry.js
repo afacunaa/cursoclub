@@ -1,0 +1,36 @@
+/**
+ * Created by andres on 23/11/17.
+ */
+
+let moment = require('moment');
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
+
+let blogEntrySchema = new Schema({
+    title: { type: String, required: true},
+    body: { type: String, required: true },
+    image: String,
+    author: String,
+    keywords: [String],
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+    comments: [{ user: { type: Schema.Types.ObjectId, ref: 'User' }, post: String, postDate: { type: Date, default: Date.now } }]
+});
+
+blogEntrySchema.virtual('url').get(function () {
+    return '/blog/' + this._id;
+});
+
+blogEntrySchema.virtual('nice_created').get(function () {
+    return moment(this.createdAt).locale('es').format('dddd, D MMMM, YYYY');
+});
+
+blogEntrySchema.virtual('nice_updated').get(function () {
+    return moment(this.updatedAt).locale('es').format('dddd, MMMM D, YYYY');
+});
+
+blogEntrySchema.methods.niceCommentPostDate = function(date) {
+    return moment(date).locale('es').format('dddd, MMMM D, YYYY, h:mm:ss A');
+};
+
+module.exports = mongoose.model( 'BlogEntry', blogEntrySchema );

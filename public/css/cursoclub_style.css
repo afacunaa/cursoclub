@@ -86,3 +86,9 @@ nav {
 .carousel-slider {
     height: 330px !important;
 }
+.cc-blog-comment-date {
+    font-size: 11px;
+}
+.cc-keep-line-breaks {
+    white-space: pre-wrap;
+}

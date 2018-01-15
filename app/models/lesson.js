@@ -10,6 +10,8 @@ let lessonSchema = new Schema({
     date: { type: Date, required: true },
     state: { type: String, enum: ['Solicitada', 'Aceptada', 'Rechazada', 'Pendiente', 'Realizada'], required: true },
     message: String,
+    answer: String,
+    address: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     student : { type: Schema.Types.ObjectId, ref: 'Student' },

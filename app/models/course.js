@@ -12,6 +12,7 @@ let courseSchema = new Schema({
     description: String,
     requirement: String,
     picture: String,
+    keywords: [{ type: String }],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     teachers : [{ type: Schema.Types.ObjectId, ref: 'Teacher' }]

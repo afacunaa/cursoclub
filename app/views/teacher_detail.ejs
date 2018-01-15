@@ -4,7 +4,12 @@
     <div class="container">
         <div class="row">
             <div class="col l6 m6 s12">
+                <% if(teacher_user.picture) { %>
                 <img class="responsive-img" src="<%= teacher_user.picture %>">
+                <% } else { %>
+                <img class="responsive-img" src="/img/silueta.png">
+                <p><%= teacher.firstName %> no ha subido una imagen</p>
+                <% } %>
             </div>
             <h6>
                 <% for (var i=0; i<Math.floor(teacher.score); i++) { %>
@@ -14,20 +19,35 @@
             </h6>
             <div class="col l6 m6 s12">
                 <h4><%= teacher.fullName %></h4>
-                <h5><i class="small material-icons">email</i> <%= teacher_user.email %></h5>
-                <h5><i class="small material-icons">perm_contact_calendar</i> <%= teacher.nice_birthday %></h5>
-                <h5><i class="small material-icons">call</i> <%= teacher.phone.substr(0,6)+'...' %></h5>
+                <h5><i class="small material-icons">date_range</i> <%= teacher.nice_birthday %></h5>
+                <% if(teacher.groupLesson.does) { %>
+                <h5><i class="small material-icons">group</i> Da clases grupales a máximo <%= teacher.groupLesson.maxStudents %> personas</h5>
+                <% } else { %>
+                <h5><i class="small material-icons">person</i> No da clases grupales%></h5>
+                <% } %>
+                <h5><i class="small material-icons">location_on</i> Clases en: </h5>
+                <div>
+                    <ul>
+                        <% for (var i=0; i<teacher.workingArea.length; i++) {%>
+                        <li><h6><i class="tiny material-icons">location_searching</i> <%= teacher.workingArea[i] %></h6></li>
+                        <% } %>
+                    </ul>
+                </div>
                 <br>
                 <% if (teacher.courses.length > 0) { %>
                 <div class="divider"></div>
                 <br>
-                <h5><%= teacher.firstName %> es profesor de <%= teacher.courses.length %> curso(s) </h5>
+                <% if(teacher.courses.length > 1) { %>
+                <h5><%= teacher.firstName %> es profesor de <%= teacher.courses.length %> cursos </h5>
+                <% } else { %>
+                <h5><%= teacher.firstName %> es profesor de <%= teacher.courses.length %> curso </h5>
+                <% } %>
                 <ul class="collection">
                     <% for (var i=0; i<teacher.courses.length; i++) { %>
                     <li class="collection-item avatar">
-                        <img class="circle" src="<%= teacher.courses[i].picture %>">
-                        <span class="title"><a href="<%= teacher.courses[i].url %>"><%= teacher.courses[i].name %></a></span>
-                        <p>Precio por hora de clase: $<%= teacher.getPriceOfCourse(teacher.courses[i].id) %></p>
+                        <img class="circle" src="<%= teacher.courses[i].course.picture %>">
+                        <span class="title"><a href="<%= teacher.courses[i].course.url %>"><%= teacher.courses[i].course.name %></a></span>
+                        <p>Precio por hora de clase: $<%= teacher.courses[i].pricePerHour %></p>
                     </li>
                     <% } %>
                 </ul>
@@ -36,7 +56,7 @@
         </div>
         <div class="row">
             <p>Acerca de <%= teacher.firstName %>:</p>
-            <blockquote><%= teacher.description %></blockquote>
+            <blockquote class="cc-keep-line-breaks"><%= teacher.description %></blockquote>
         </div>
         <% if (user.role == 1) { %>
         <div class="row">

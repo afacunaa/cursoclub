@@ -13,13 +13,22 @@ let teacherSchema = new Schema({
     score: { type: Number, min: 0, max: 5 },
     schedule: [ { type: Number, min: 0, max: 83 } ],
     description: String,
-    pricePerHour: String ,
+    groupLesson: {
+        does: Boolean,
+        maxStudents: Number,
+        discountPerStudent: Number
+    },
+    workingArea: [String],
     birthday: { type: Date, required: true },
     address: { type: String, required: true },
     phone: { type: String, minlength: 7, maxlength: 10 },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
-    courses : [ { type: Schema.Types.ObjectId, ref: 'Course' } ],
+    courses : [ {
+        _id: false,
+        course: { type: Schema.Types.ObjectId, ref: 'Course' },
+        pricePerHour: Number
+    } ],
     lessons : [ { type: Schema.Types.ObjectId, ref: 'Lesson' } ]
 });
 

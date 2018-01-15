@@ -1,0 +1,44 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <h3><%= blogEntry.title %></h3>
+        <p><%= blogEntry.nice_created %></p>
+        <br>
+        <p class="cc-keep-line-breaks"><%= blogEntry.body %></p>
+        <br>
+        <p>Escrito por: <%= blogEntry.author %></p>
+        <p><%=blogEntry.keywords%></p>
+        <br>
+        <div id="comentarios" class="divider"></div>
+        <br>
+        <h4>Comentarios</h4>
+        <form action="" method="post">
+            <div class="row">
+                <div class="input-field col s12 m9 l10">
+                    <textarea class="materialize-textarea" name="comment_text" id="comment_text" required></textarea>
+                    <label for="comment_text">Escribir un comentario</label>
+                </div>
+                <div class="col s12 m3 l2">
+                    <button class="waves-effect waves-light btn lime" type="submit" value="Aceptar">Comentar</button>
+                </div>
+            </div>
+        </form>
+        <% if (blogEntry.comments.length > 0) { %>
+        <ul class="collection">
+            <% for (var i=0; i<blogEntry.comments.length; i++) { %>
+            <li class="collection-item avatar">
+                <img src="<%= blogEntry.comments[i].user.picture %>" class="circle" >
+                <span class="title"><%= blogEntry.comments[i].user.owner %></span>
+                <p class="cc-blog-comment-date"><%= blogEntry.niceCommentPostDate(blogEntry.comments[i].postDate) %></p>
+                <p><%= blogEntry.comments[i].post %></p>
+            </li>
+            <% } %>
+        </ul>
+        <% } else { %>
+        <p>Aún no hay comentarios. Sé el primero en comentar</p>
+        <% } %>
+    </div>
+</main>
+
+<%- include footer.ejs %>

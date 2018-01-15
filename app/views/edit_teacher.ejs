@@ -56,9 +56,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m6 l6">
                         <input type="text" name="address" id="address" value="<%= teacher.address %>" required />
                         <label for="address">Dirección</label>
+                    </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input type="text" name="workingArea" id="workingArea" value="<%= teacher.workingArea %>" required>
+                        <label for="workingArea">Área de trabajo</label>
                     </div>
                 </div>
                 <div class="row">
@@ -71,25 +75,50 @@
                     </div>
                 </div>
                 <div class="row">
+                    <p>Clases grupales</p>
+                    <div class="input-field col s4 m4 l4">
+                        <div class="switch">
+                            <label>
+                                Desactivadas
+                                <% if (teacher.groupLesson.does) { %>
+                                <input name="groupDoes" id="groupDoes_switch" type="checkbox" value="true" checked>
+                                <% } else { %>
+                                <input name="groupDoes" id="groupDoes_switch" type="checkbox" value="true">
+                                <% } %>
+                                <span class="lever"></span>
+                                Activadas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-field col s4 m4 l4">
+                        <input type="number" name="maxStudents" id="maxStudents" value="<%= teacher.groupLesson.maxStudents %>" class="validate">
+                        <label for="maxStudents">Número máximo de alumnos</label>
+                    </div>
+                    <div class="input-field col s4 m4 l4">
+                        <input type="number" name="discountPerStudent" id="discountPerStudent" value="<%= teacher.groupLesson.discountPerStudent %>" class="validate">
+                        <label for="discountPerStudent">Porcentaje de descuento por cada estudiante</label>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12">
                         <textarea id="description" name="description" class="materialize-textarea"><%= teacher.description %></textarea>
                         <label for="description">Descripción</label>
                     </div>
                 </div>
                 <% if (user.role == 1) { %>
-                <% for (var i=0; i<courses_list.length; i++) { %>
-                <% if (teacher.courses.indexOf(courses_list[i].id) > -1) { %>
+                    <% for (var i=0; i<courses_list.length; i++) { %>
+                        <% if (teacher_courses_list.indexOf(courses_list[i].id) > -1) { %>
                 <div class="row">
                     <div class="input-field col s3">
                         <input type="checkbox" name="course" id="<%= 'course'+courses_list[i].id %>" value="<%= courses_list[i].id %>" checked />
                         <label for="<%= 'course'+courses_list[i].id %>"><%= courses_list[i].name %></label>
                     </div>
                     <div class="input-field col s9">
-                        <input type="text" name="<%= 'price'+courses_list[i].id %>" id="<%= 'course_price'+courses_list[i].id %>" value="<%= teacher.getPriceOfCourse(courses_list[i].id) %>" />
+                        <input type="text" name="<%= 'price'+courses_list[i].id %>" id="<%= 'course_price'+courses_list[i].id %>" value="<%= teacher_courses_list_pricePerHour[teacher_courses_list.indexOf(courses_list[i].id)] %>" />
                         <label for="<%= 'price'+courses_list[i].id %>">Precio por hora de clase</label>
                     </div>
                 </div>
-                <% } else { %>
+                        <% } else { %>
                 <div class="row">
                     <div class="input-field col s3">
                         <input type="checkbox" name="course" id="<%= 'course'+courses_list[i].id %>" value="<%= courses_list[i].id %>" />
@@ -100,13 +129,13 @@
                         <label for="<%= 'price'+courses_list[i].id %>">Precio por hora de clase</label>
                     </div>
                 </div>
-                <% } %>
-                <% } %>
+                        <% } %>
+                    <% } %>
                 <% } else { %>
-                <% for (var i=0; i<teacher.courses.length; i++) { %>
+                    <% for (var i=0; i<teacher.courses.length; i++) { %>
                 <input type="hidden" name="course" id="<%= 'course'+teacher.courses[i] %>" value="<%= teacher.courses[i] %>">
                 <input type="hidden" name="<%= 'price'+teacher.courses[i] %>" id="<%= 'course_price'+teacher.courses[i] %>" value="<%= teacher.getPriceOfCourse(teacher.courses[i]) %>" />
-                <% } %>
+                    <% } %>
                 <% } %>
                 <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar" >Aceptar</button>
             </form>
