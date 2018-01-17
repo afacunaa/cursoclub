@@ -11,20 +11,60 @@
 </head>
 <body>
 <header>
-    <nav class="white">
-        <div class="nav-wrapper">
-            <div class="container">
-            <% if (user){ %>
-            <a id="logo-container" href="/home" class="brand-logo cc_brand_logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
-            <% } else { %>
-            <a id="logo-container" href="/" class="brand-logo cc_brand_logo"><img class="cc_header_logo" src="/img/cursoclub_logo_small.png"></a>
-            <% } %>
-
-            <ul id="nav-full" class="right hide-on-med-and-down">
+    <div class="navbar-fixed">
+        <nav class="blue-grey darken-3 nav-large">
+            <div class="nav-wrapper">
+                <div class="container">
                 <% if (user){ %>
-                <li><a class="dropdown-button btn cc_btn" href="#!" data-activates="dropdown1"><%= user.owner %><i class="material-icons right">arrow_drop_down</i></a></li>
-                <!-- Dropdown Structure for navigation -->
-                <ul id="dropdown1" class="dropdown-content">
+                <a id="logo-container" href="/home" class="brand-logo cc_brand_logo"><img id="main-logo" name="main-logo" class="cc_header_logo-large" src="/img/cursoclub_logo_small.png"></a>
+                <% } else { %>
+                <a id="logo-container" href="/" class="brand-logo cc_brand_logo"><img id="main-logo" name="main-logo" class="cc_header_logo-large" src="/img/cursoclub_logo_small.png"></a>
+                <% } %>
+                <ul id="nav-full" class="right hide-on-med-and-down">
+                    <% if (user){ %>
+                    <li><a class="dropdown-button btn cc_btn" href="#!" data-activates="dropdown1"><%= user.owner %><i class="material-icons right">arrow_drop_down</i></a></li>
+                    <!-- Dropdown Structure for navigation -->
+                    <ul id="dropdown1" class="dropdown-content">
+                        <% if (user.role == 1) { %>
+                        <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
+                        <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
+                        <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un profesor</a></li>
+                        <li><a href="/courses"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
+                        <li><a href="/course/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
+                        <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
+                        <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
+                        <% } else if (user.role == 2) { %>
+                        <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+                        <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
+                        <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+                        <li><a href="/courses"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
+                        <% } else if (user.role == 3) { %>
+                        <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+                        <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+                        <li><a href="/courses"><i class="material-icons">view_carousel</i>Cursos</a></li>
+                        <% } %>
+                        <li class="divider"></li>
+                        <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
+                    </ul>
+                    <% } else { %>
+                    <li><a href="#modal1" class="btn cc_btn">Ingresar</a></li>
+                    <% } %>
+                </ul>
+                <% if (user){ %>
+                <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="black-text material-icons">menu</i></a>
+                <ul id="nav-mobile" class="side-nav">
+                    <li>
+                        <div class="userView">
+                            <div class="background">
+                                <img src="/img/background.png">
+                            </div>
+                            <img class="circle" src="<%= user.picture %>">
+                            <h5 class="black-text"><%= user.owner %></h5>
+                            <h6 class="black-text"><%= user.email %></h6>
+                        </div>
+                    </li>
                     <% if (user.role == 1) { %>
                     <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
                     <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
@@ -32,7 +72,6 @@
                     <li><a href="/courses"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
                     <li><a href="/course/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
                     <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
-                    <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
                     <li class="divider"></li>
                     <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
                     <% } else if (user.role == 2) { %>
@@ -46,54 +85,19 @@
                     <li><a href="/courses"><i class="material-icons">view_carousel</i>Cursos</a></li>
                     <% } %>
                     <li class="divider"></li>
+                    <li><a href="/contactus"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
                     <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
+                    <% } else { %>
+                    <a class="hide-on-large-only btn-flat cc_mobile_btn_login" href="/login">Ingresar</a>
+                    <% } %>
                 </ul>
-                <% } else { %>
-                <li><a href="#modal1" class="btn cc_btn">Ingresar</a></li>
-                <% } %>
-            </ul>
-            <% if (user){ %>
-            <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="black-text material-icons">menu</i></a>
-            <ul id="nav-mobile" class="side-nav">
-                <li>
-                    <div class="userView">
-                        <div class="background">
-                            <img src="/img/background.png">
-                        </div>
-                        <img class="circle" src="<%= user.picture %>">
-                        <h5 class="black-text"><%= user.owner %></h5>
-                        <h6 class="black-text"><%= user.email %></h6>
-                    </div>
-                </li>
-                <% if (user.role == 1) { %>
-                <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
-                <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
-                <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un profesor</a></li>
-                <li><a href="/courses"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
-                <li><a href="/course/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
-                <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
-                <li class="divider"></li>
-                <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
-                <% } else if (user.role == 2) { %>
-                <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
-                <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
-                <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
-                <li><a href="/courses"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
-                <% } else if (user.role == 3) { %>
-                <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
-                <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
-                <li><a href="/courses"><i class="material-icons">view_carousel</i>Cursos</a></li>
-                <% } %>
-                <li class="divider"></li>
-                <li><a href="/contactus"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
-                <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
-                <% } else { %>
-                <a class="hide-on-large-only btn-flat cc_mobile_btn_login" href="/login">Ingresar</a>
-                <% } %>
-            </ul>
-        </div>
-        </div>
-    </nav>
+            </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="blank-space">
+    </div>
 
 
     <div class="container">

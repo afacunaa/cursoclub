@@ -1,12 +1,21 @@
-nav {
+nav.nav-large {
     height: 190px;
     line-height: 190px;
+}
+nav.nav-small{
+    height: 60px;
+    line-height: 60px;
 }
 .cc_brand_logo{
     max-height: 100px;
 }
-.cc_header_logo{
+.cc_header_logo-large{
     padding-top: 20px;
+    max-width: 100%;
+}
+.cc_header_logo-small{
+    padding-top: 8px;
+    max-width: 30%;
 }
 .cc_mobile_btn_login{
     position: absolute;
@@ -91,4 +100,19 @@ nav {
 }
 .cc-keep-line-breaks {
     white-space: pre-wrap;
+}
+.blank-space {
+    height: 150px;
+}
+
+/*transitions*/
+header,
+nav,
+a,
+img,
+li {
+    transition: .7s all;
+    -moz-transition: .7s all;
+    -webkit-transition: .7s all;
+    -o-transition: .7s all;
 }
