@@ -2,36 +2,44 @@
 
 <main>
     <div class="container">
-        <table class="bordered highlight">
-            <tr>
-                <th>Fecha</th>
-                <th>Descripción</th>
-                <th>Curso</th>
-                <th>Profesor</th>
-                <th>Alumno</th>
-            </tr>
-            <% for (var i=0; i<transactions_list.length; i++) { %>
-            <tr>
-                <td><p><%= transactions_list[i].nice_created %></p></td>
-                <% if (transactions_list[i].description.indexOf('Cancelada') > -1) { %>
-                <td><p class="red-text text-darken-4 tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
-                <% } else if (transactions_list[i].description.indexOf('Rechazada') > -1) { %>
-                <td><p class="pink-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
-                <% } else if (transactions_list[i].description.indexOf('Solicitada') > -1) { %>
-                <td><p class="orange-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
-                <% } else if (transactions_list[i].description.indexOf('Aceptada') > -1) { %>
-                <td><p class="indigo-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
-                <% } else if (transactions_list[i].description.indexOf('Pendiente') > -1) { %>
-                <td><p class="blue-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
-                <% } else { %>
-                <td><p class="green-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
-                <% } %>
-                <td><a href="<%= transactions_list[i].lesson.course.url %>"><%= transactions_list[i].lesson.course.name %></a></td>
-                <td><a href="<%= transactions_list[i].lesson.teacher.url %>"><%= transactions_list[i].lesson.teacher.fullName %></a></td>
-                <td><a href="<%= transactions_list[i].lesson.student.url %>"><%= transactions_list[i].lesson.student.fullName %></a></td>
-            </tr>
-            <% } %>
-        </table>
+        <img class="responsive-img" src="<%= blogEntry.image %>">
+        <form method="post" action="/blog/<%= blogEntry.idTitle %>/uploadPicture" enctype="multipart/form-data">
+            <input type="hidden" name="userId" value="<%= blogEntry.idTitle %>">
+            <div class="input-field file-field">
+                <div class="btn indigo">
+                    <span>File</span>
+                    <input type="file" name="picture">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Imágen con tamaño no mayor a 6 mb">
+                </div>
+            </div>
+            <button class="btn" type="submit">Subir imagen</button>
+        </form>
+        <br>
+        <form method="post" action="" name="main" id="main">
+            <div class="input-field">
+                <input type="text" name="title" id="title" required value="<%= blogEntry.title %>">
+                <label for="title">Título</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="idTitle" id="idTitle" required value="<%= blogEntry.idTitle %>">
+                <label for="idTitle">Título identificación</label>
+            </div>
+            <div class="input-field">
+                <textarea class="materialize-textarea" name="body" id="body" required><%= blogEntry.body %></textarea>
+                <label for="body">Contenido</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="author" id="author" required value="<%= blogEntry.author %>">
+                <label for="description">Autor</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="keywords" id="keywords" value="<%= blogEntry.keywords %>">
+                <label for="keywords">Palabras clave</label>
+            </div>
+            <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Guardar</button>
+        </form>
     </div>
 </main>
 

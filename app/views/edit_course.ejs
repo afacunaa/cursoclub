@@ -3,7 +3,7 @@
 <main>
     <div class="container">
         <img class="responsive-img" src="<%= course.picture %>">
-        <form method="post" action="/course/<%= course.id %>/uploadPicture" enctype="multipart/form-data">
+        <form method="post" action="/curso/<%= course.idName %>/uploadPicture" enctype="multipart/form-data">
             <input type="hidden" name="userId" value="<%= course.id %>">
             <div class="input-field file-field">
                 <div class="btn indigo">

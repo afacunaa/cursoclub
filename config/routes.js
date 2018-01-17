@@ -260,25 +260,28 @@ router.get('/blog/create', blogEntryController.create_blogEntry_get);
 router.post('/blog/create', blogEntryController.create_blogEntry_post);
 
 // GET BlogEntry update
-router.get('/blog/:id/update', blogEntryController.update_blogEntry_get);
+router.get('/blog/:idTitle/update', blogEntryController.update_blogEntry_get);
 
 // POST BlogEntry update
-router.post('/blog/:id/update', blogEntryController.update_blogEntry_post);
+router.post('/blog/:idTitle/update', blogEntryController.update_blogEntry_post);
+
+// POST BlogEntry's picture update
+router.post('/blog/:idTitle/uploadPicture', blogEntryController.update_blogEntry_picture_post);
 
 // GET BlogEntry deletion
-router.get('/blog/:id/delete', blogEntryController.delete_blogEntry_get);
+router.get('/blog/:idTitle/delete', blogEntryController.delete_blogEntry_get);
 
 // POST BlogEntry deletion
-router.post('/blog/:id/delete', blogEntryController.delete_blogEntry_post);
+router.post('/blog/:idTitle/delete', blogEntryController.delete_blogEntry_post);
 
 // GET BlogEntry list
 router.get('/blogs', blogEntryController.blogEntry_list);
 
 // GET BlogEntry detail
-router.get('/blog/:id', blogEntryController.blogEntry_detail_get);
+router.get('/blog/:idTitle', blogEntryController.blogEntry_detail_get);
 
-// POST BlogEntry detail
-router.post('/blog/:id', blogEntryController.blogEntry_detail_post);
+// POST BlogEntry detail - Make a comment
+router.post('/blog/:idTitle', blogEntryController.blogEntry_detail_post);
 
 
 module.exports = router;

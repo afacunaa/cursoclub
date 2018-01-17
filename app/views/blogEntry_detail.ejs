@@ -2,13 +2,18 @@
 
 <main>
     <div class="container">
-        <h3><%= blogEntry.title %></h3>
-        <p><%= blogEntry.nice_created %></p>
+        <div class="cc_category_image">
+            <img class="responsive-img cc_blog_image" src="<%= blogEntry.image %>">
+            <span class="cc_blog_title">
+                <h3><%= blogEntry.title %></h3>
+                <p>Por: <%= blogEntry.author %></p>
+                <p><%= blogEntry.nice_created %></p>
+            </span>
+        </div>
         <br>
         <p class="cc-keep-line-breaks"><%= blogEntry.body %></p>
         <br>
-        <p>Escrito por: <%= blogEntry.author %></p>
-        <p><%=blogEntry.keywords%></p>
+        <p style="font-size: 12px">Palabras clave: <%=blogEntry.keywords%></p>
         <br>
         <div id="comentarios" class="divider"></div>
         <br>

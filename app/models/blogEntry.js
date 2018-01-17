@@ -8,6 +8,7 @@ let Schema = mongoose.Schema;
 
 let blogEntrySchema = new Schema({
     title: { type: String, required: true},
+    idTitle: String,
     body: { type: String, required: true },
     image: String,
     author: String,
@@ -18,7 +19,7 @@ let blogEntrySchema = new Schema({
 });
 
 blogEntrySchema.virtual('url').get(function () {
-    return '/blog/' + this._id;
+    return '/blog/' + this.idTitle;
 });
 
 blogEntrySchema.virtual('nice_created').get(function () {
