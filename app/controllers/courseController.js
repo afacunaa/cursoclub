@@ -73,7 +73,7 @@ exports.course_list = function (req, res, next) {
 // Display the details of a course GET
 exports.course_detail = function (req, res, next) {
     //res.send('Detalle de curso ' + req.params.id);
-    Course.findOne({ _id: req.params.id })
+    Course.findOne({ idName: req.params.idName })
         .populate('teachers')
         .exec(function (err, course) {
             let usersId = [];
@@ -102,6 +102,7 @@ exports.create_course_post = function (req, res, next) {
     //res.send('Crear curso');
     let course = new Course(
         {   name: req.body.name,
+            idName: req.body.idName,
             category: req.body.category,
             description: req.body.description,
             requirement: req.body.requirement,
@@ -116,18 +117,18 @@ exports.create_course_post = function (req, res, next) {
 
 // Delete a course GET
 exports.delete_course_get = function (req, res, next) {
-    res.send('Eliminar curso ' + req.params.id);
+    res.send('Eliminar curso ' + req.params.idName);
 };
 
 // Delete a course POST
 exports.delete_course_post = function (req, res, next) {
-    res.send('Eliminar curso ' + req.params.id);
+    res.send('Eliminar curso ' + req.params.idName);
 };
 
 // Update a course GET
 exports.update_course_get = function (req, res, next) {
     //res.send('Actualizar curso ' + req.params.id);
-    Course.findById(req.params.id).exec(function (err, result) {
+    Course.findOne({ idName: req.params.idName }).exec(function (err, result) {
         if (err) { return next(err) }
         res.render('edit_course', {title: 'Editar curso', course: result, user: req.user })
     });
@@ -136,7 +137,17 @@ exports.update_course_get = function (req, res, next) {
 // Update a course POST
 exports.update_course_post = function (req, res, next) {
     //res.send('Actualizar curso ' + req.params.id);
-    Course.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.body.name, category: req.body.category, description: req.body.description, requirement: req.body.requirement, updatedAt: new Date() } }, { new: true }, function(err, doc) {
+    Course.findOneAndUpdate({ idName: req.params.idName }, {
+        $set:
+            {
+                name: req.body.name,
+                idName: req.body.idName,
+                category: req.body.category,
+                description: req.body.description,
+                requirement: req.body.requirement,
+                keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(','),
+                updatedAt: new Date() } },
+        { new: true }, function(err, doc) {
         res.redirect(doc.url);
     });
 };
@@ -144,5 +155,5 @@ exports.update_course_post = function (req, res, next) {
 //Update course's picture POST
 exports.update_course_picture_post = function (req, res, next) {
     uploader.uploadFile(req, 'Course');
-    res.redirect('/course/' + req.params.id);
+    res.redirect('/curso/' + req.params.idName);
 };

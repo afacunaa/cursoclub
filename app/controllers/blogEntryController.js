@@ -60,8 +60,7 @@ exports.create_blogEntry_post = function (req, res, next) {
             title: req.body.title,
             body: req.body.body,
             author: req.body.author,
-            keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(','),
-            image:req.body.image
+            keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(',')
         }
     );
     blogEntry.save(function (err) {

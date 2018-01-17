@@ -40,8 +40,8 @@ module.exports = function (app, passport) {
 router.get('/', homeController.index);
 router.get('/login', homeController.login);
 router.get('/home', homeController.home);//home
-router.get('/contactus', homeController.contactus_get);
-router.post('/contactus', homeController.contactus_post);
+router.get('/contactenos', homeController.contactus_get);
+router.post('/contactenos', homeController.contactus_post);
 router.get('/logout', homeController.logout);
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: '/login', // redirect to the secure profile section
@@ -65,31 +65,31 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 /* Course routes */
 
 // GET course creation
-router.get('/course/create', courseController.create_course_get);
+router.get('/curso/create', courseController.create_course_get);
 
 // POST course creation
-router.post('/course/create', courseController.create_course_post);
+router.post('/curso/create', courseController.create_course_post);
 
 // GET course update
-router.get('/course/:id/update', courseController.update_course_get);
+router.get('/curso/:idName/update', courseController.update_course_get);
 
 // POST course update
-router.post('/course/:id/update', courseController.update_course_post);
+router.post('/curso/:idName/update', courseController.update_course_post);
 
 // POST course's picture update
-router.post('/course/:id/uploadPicture', courseController.update_course_picture_post);
+router.post('/curso/:idName/uploadPicture', courseController.update_course_picture_post);
 
 // GET course deletion
-router.get('/course/:id/delete', courseController.delete_course_get);
+router.get('/curso/:idName/delete', courseController.delete_course_get);
 
 // POST course deletion
-router.post('/course/:id/delete', courseController.delete_course_post);
+router.post('/curso/:idName/delete', courseController.delete_course_post);
 
 // GET course list
-router.get('/courses', courseController.course_list);
+router.get('/cursos', courseController.course_list);
 
 // GET course detail
-router.get('/course/:id', courseController.course_detail);
+router.get('/curso/:idName', courseController.course_detail);
 
 
 /* Lesson routes */

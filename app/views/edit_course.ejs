@@ -23,6 +23,10 @@
                 <input type="text" name="name" id="name" required value="<%= course.name %>">
                 <label for="name">Nombre</label>
             </div>
+            <div class="input-field">
+                <input type="text" name="idName" id="idName" required value="<%= course.idName %>">
+                <label for="idName">Nombre identificador</label>
+            </div>
             <label class="select-label" for="category">Categoría</label>
             <div class="input-field">
                 <select class="" id="category" name="category" form="main" required>
@@ -49,6 +53,10 @@
             <div class="input-field">
                 <input type="text" name="requirement" id="requirement" value="<%= course.requirement %>">
                 <label for="requirement">Requisitos</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="keywords" id="keywords" value="<%= course.keywords %>">
+                <label for="keywords">Palabras clave</label>
             </div>
             <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
         </form>

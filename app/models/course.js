@@ -13,7 +13,7 @@ let courseSchema = new Schema({
     requirement: String,
     picture: String,
     keywords: [{ type: String }],
-    latinName: String,
+    idName: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     teachers : [{ type: Schema.Types.ObjectId, ref: 'Teacher' }]
@@ -30,7 +30,7 @@ courseSchema.virtual('image').get(function () {
 });
 
 courseSchema.virtual('url').get(function () {
-    return '/course/' + this._id;
+    return '/curso/' + this.idName;
 });
 
 courseSchema.virtual('nice_created').get(function () {
