@@ -1,5 +1,6 @@
 let User = require('../models/user');
 let Lesson = require('../models/lesson');
+let BlogEntry = require('../models/blogEntry');
 let Teacher = require('../models/teacher');
 let Student = require('../models/student');
 let constants = require('../../config/constants');
@@ -8,7 +9,13 @@ let async = require('async');
 
 
 exports.index = function (req, res) {
-	res.render('index', {title: 'Curso Club', user: req.user})
+    console.log("Visitante: "+req.ip);
+    BlogEntry.find({})
+        .sort('-createdAt')
+        .exec(function (err, results) {
+            if (err) { return res.send(res) }
+            res.render('index', { title: 'Curso Club', lastBlogEntry: results[0], user: req.user })
+        });
 };
 
 exports.home = function(req, res) {
@@ -28,7 +35,7 @@ exports.home = function(req, res) {
 				});
 		} else if (req.user.role === constants.teacher_role) {
             Teacher.findById( req.user.teacher )
-                .populate('lessons courses')
+                .populate('lessons courses.course')
                 .exec(function (err, result) {
                     if (err) { return res.send(err) }
                     res.render('home.ejs', {
@@ -99,4 +106,7 @@ exports.contactus_post = function (req, res) {
     emailer.contactus(req.body.firstname, req.body.email, req.body.message);
     res.render('contact', { title: 'Contáctanos', sent: true, user: req.user })
 };
-    
+
+exports.aboutus_get = function (req, res) {
+    res.render('aboutus', { title: 'Acerca de nosotros', user: req.user })
+};

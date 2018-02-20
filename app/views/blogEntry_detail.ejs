@@ -4,20 +4,21 @@
     <div class="container">
         <div class="cc_category_image">
             <img class="responsive-img cc_blog_image" src="<%= blogEntry.image %>">
-            <span class="cc_blog_title">
+            <div class="cc_blog_title">
                 <h3><%= blogEntry.title %></h3>
                 <p>Por: <%= blogEntry.author %></p>
                 <p><%= blogEntry.nice_created %></p>
-            </span>
+            </div>
         </div>
         <br>
         <p class="cc-keep-line-breaks"><%= blogEntry.body %></p>
         <br>
-        <p style="font-size: 12px">Palabras clave: <%=blogEntry.keywords%></p>
+        <p class="cc-blog-keywords">Palabras clave: <%=blogEntry.keywords%></p>
         <br>
         <div id="comentarios" class="divider"></div>
         <br>
         <h4>Comentarios</h4>
+        <% if (user) { %>
         <form action="" method="post">
             <div class="row">
                 <div class="input-field col s12 m9 l10">
@@ -29,19 +30,26 @@
                 </div>
             </div>
         </form>
-        <% if (blogEntry.comments.length > 0) { %>
+            <% if (blogEntry.comments.length > 0) { %>
         <ul class="collection">
-            <% for (var i=0; i<blogEntry.comments.length; i++) { %>
+                <% for (var i=0; i<blogEntry.comments.length; i++) { %>
             <li class="collection-item avatar">
+                <% if(blogEntry.comments[i].user.picture) { %>
                 <img src="<%= blogEntry.comments[i].user.picture %>" class="circle" >
+                <% } else { %>
+                <img src="/img/silueta.png" class="circle" >
+                <% } %>
                 <span class="title"><%= blogEntry.comments[i].user.owner %></span>
                 <p class="cc-blog-comment-date"><%= blogEntry.niceCommentPostDate(blogEntry.comments[i].postDate) %></p>
                 <p><%= blogEntry.comments[i].post %></p>
             </li>
-            <% } %>
+                <% } %>
         </ul>
-        <% } else { %>
+            <% } else { %>
         <p>Aún no hay comentarios. Sé el primero en comentar</p>
+            <% } %>
+        <% } else { %>
+        <p>Para leer los comentarios y escribir los tuyos, debes iniciar sesión</p>
         <% } %>
     </div>
 </main>

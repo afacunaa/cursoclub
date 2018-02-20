@@ -1,18 +1,22 @@
 <%- include header.ejs %>
 
 <main>
+    <br>
     <div class="container">
+        <h4 class="blue-text">Detalle del usuario</h4>
         <div class="row">
             <div class="col l6 m6 s12">
+                <% if(student_user.picture) { %>
                 <img class="responsive-img" src="<%= student_user.picture %>">
+                <% } else { %>
+                <img class="responsive-img" src="/img/silueta.png">
+                <% } %>
             </div>
             <div class="col l6 m6 s12">
                 <h4><%= student.fullName %></h4>
-                <h5><i class="small material-icons">email</i> <%= student_user.email %></h5>
                 <h5><i class="small material-icons">perm_contact_calendar</i> <%= student.nice_birthday %></h5>
                 <% if (student.address) { %>
                 <h5><i class="small material-icons">location_on</i> <%= student.address %></h5>
-                <h5><i class="small material-icons">call</i> <%= student.phone %></h5>
                 <% } else { %>
                 <h5 class="red-text"><i class="small material-icons">info_outline</i> No ha actualizado sus datos</h5>
                 <% } %>

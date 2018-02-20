@@ -8,57 +8,85 @@ let Teacher = require('../models/teacher');
 let Student = require('../models/student');
 let Course = require('../models/course');
 let Transaction = require('../models/transaction');
+let Bill = require('../models/bill');
 let constants = require('../../config/constants');
 let emailer = require('../../lib/email');
 let async = require('async');
 let moment = require('moment');
 
-function classifyLessons(list_lessons) {
-    let booked = [], accepted = [], rejected = [], canceled = [], paid = [], done = [];
-    for (let i=0; i<list_lessons.length; i++) {
-        if (list_lessons[i].state === constants.lesson_booked) {
-            booked.push(list_lessons[i]);
-        } else if (list_lessons[i].state === constants.lesson_accepted) {
-            accepted.push(list_lessons[i]);
-        } else if (list_lessons[i].state === constants.lesson_rejected) {
-            rejected.push(list_lessons[i]);
-        } else if (list_lessons[i].state === constants.lesson_canceled) {
-            canceled.push(list_lessons[i]);
-        } else if (list_lessons[i].state === constants.lesson_paid) {
-            paid.push(list_lessons[i]);
-        } else {
-            done.push(list_lessons[i]);
-        }
+function getGroupedLessonsStateName(state) {
+    if (state === constants.billPendingState) {
+        return "groupPending";
+    } else if (state === constants.billAcceptedState) {
+        return "groupAccepted";
+    } else if (state === constants.billPaidState) {
+        return "groupPaid";
+    } else if (state === constants.billDoneState) {
+        return "groupDone";
+    } else {
+        return "groupCanceled";
     }
-    return {
-        booked: booked,
-        accepted: accepted,
-        rejected: rejected,
-        canceled: canceled,
-        paid: paid,
-        done: done
-    };
 }
 
 // Display all lessons GET
 exports.lesson_list = function (req, res, next) {
     //res.send('Lista de clases');
     try {
-        if (req.user.role === constants.teacher_role){
-            Lesson.find({ 'teacher': req.user.teacher })
-                .populate('teacher student course')
-                .exec(function (err, list_lessons) {
-                    if (err) { return next(err) }
-                    let new_list_lessons = classifyLessons(list_lessons);
-                    res.render('lessons_list', { title: 'Listado de clases', lessons_list: new_list_lessons, user: req.user })
-                });
-        } else if (req.user.role === constants.student_role){
-            Lesson.find({ 'student': req.user.student })
-                .populate('teacher student course')
-                .exec(function (err, list_lessons) {
-                    if (err) { return next(err) }
-                    let new_list_lessons = classifyLessons(list_lessons);
-                    res.render('lessons_list', { title: 'Listado de clases', lessons_list: new_list_lessons, user: req.user })
+        let query = {};
+        if (req.user.role === constants.teacher_role) {
+            query['teacher'] = req.user.teacher;
+        } else if (req.user.role === constants.student_role) {
+            query['student'] = req.user.student;
+        }
+        if (req.user.role === constants.teacher_role || req.user.role === constants.student_role) {
+            Bill.find( query )
+                .exec(function (err, list_bills) {
+                    if (err) {
+                        return next(err)
+                    }
+                    let classifiedGroupedLessons = {
+                        groupPending: [],
+                        groupAccepted: [],
+                        groupCanceled: [],
+                        groupPaid: [],
+                        groupDone: []
+                    };
+                    if (list_bills.length > 0) {
+                        query['bill'] = { $in: list_bills };
+                        Lesson.find( query )
+                            .sort('date')
+                            .populate('teacher student course')
+                            .exec(function (err, list_lessons) {
+                                if (err) {
+                                    return next(err)
+                                }
+                                for (let i = 0; i < list_bills.length; i++) {
+                                    let lessonsOfBill = [];
+                                    for (let j=0; j<list_lessons.length; j++) {
+                                        if (String(list_lessons[j].bill) === list_bills[i].id) {
+                                            lessonsOfBill.push(list_lessons[j]);
+                                        }
+                                    }
+                                    classifiedGroupedLessons[getGroupedLessonsStateName(list_bills[i].state)]
+                                        .push(
+                                            {
+                                                lessons: lessonsOfBill,
+                                                bill: list_bills[i]
+                                            });
+                                }
+                                res.render('lessons_list', {
+                                    title: 'Listado de clases',
+                                    classifiedGroupedLessons: classifiedGroupedLessons,
+                                    user: req.user
+                                });
+                            });
+                    } else {
+                        res.render('lessons_list', {
+                            title: 'Listado de clases',
+                            classifiedGroupedLessons: classifiedGroupedLessons,
+                            user: req.user
+                        });
+                    }
                 });
         } else {
             Lesson.find({ })
@@ -86,13 +114,17 @@ exports.create_lesson_get = function (req, res, next) {
     //res.send('Crear clase');
     let week = [];
     let notAvailable = [];
+    let hoursADay = constants.hoursADay;
+    let firstHour = constants.firstHour;
+    let weeksAhead = Number(constants.weeksAhead);
     let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    let displacement = Number(req.query.offset);
+    let displacement = 0;
     let today = new Date();
-    let notToday = new Date(moment(today).add(displacement, 'w')); //new Date(today.setDate(today.getDay() + ( 7 * displacement ) ));
-    let monday = new Date(moment(notToday).startOf('isoWeek'));
+    let notToday = new Date(moment(today).add(weeksAhead, 'w')); //new Date(today.setDate(today.getDay() + ( 7 * displacement ) ));
+    let firstDay = new Date(moment(today).startOf('isoWeek'));
+    let lastDay = new Date(moment(notToday).endOf('isoWeek'));
     for (let i = 0; i < 7; i++) {
-        week[i] = new Date(moment(monday).add(i, 'd')); // Obtains the Date of the monday of the current week
+        week[i] = new Date(moment(firstDay).add(i, 'd')); // Obtains the Date of the monday of the current week
     }
     async.parallel({
             first: function (callback) {
@@ -106,17 +138,34 @@ exports.create_lesson_get = function (req, res, next) {
             },
             fourth: function (callback) {
                 User.findOne({ teacher: req.query.teacherId }, callback);
+            },
+            fifth: function (callback) {
+                Student.findById( req.user.student, callback );
             }
         }, function (err, results) {
             if (err) { return next(err) }
+            console.log('numero de clases: '+results.third.length);
             for (let i = 0; i< results.third.length; i++){
-                if (moment(results.third[i].date).isBetween(moment(week[0]), moment(week[6]), 'day', '[]')) {
+                if (moment(results.third[i].date).isBetween(moment(firstDay), moment(lastDay), 'day', '[]')) {
                     let day = moment(results.third[i].date).isoWeekday() - 1;
                     let hour = moment(results.third[i].date).hour();
-                    notAvailable.push((day*12)+hour-8);
+                    notAvailable.push(Math.abs(moment(firstDay).diff(moment(results.third[i].date), 'weeks')) + '' + Number((day*hoursADay)+hour-firstHour));
                 }
             }
-            res.render('book_lesson', { title: 'Reservar clase', teacher: results.first, course: results.second, teacher_user: results.fourth, notAvailable: notAvailable, week: week, monthNames: monthNames, displacement: displacement, user: req.user }); //res.render('teacher_detail', { title: 'Detalle de profesor', teacher: results.first, teacher_user: results.second, user: req.user });
+            res.render('book_lesson',
+                {
+                    title: 'Reservar clase',
+                    teacher: results.first,
+                    course: results.second,
+                    teacher_user: results.fourth,
+                    student: results.fifth,
+                    notAvailable: notAvailable,
+                    week: week,
+                    monthNames: monthNames,
+                    displacement: displacement,
+                    firstHour: firstHour,
+                    hoursADay: hoursADay,
+                    user: req.user }); //res.render('teacher_detail', { title: 'Detalle de profesor', teacher: results.first, teacher_user: results.second, user: req.user });
         }
     );
 
@@ -124,42 +173,64 @@ exports.create_lesson_get = function (req, res, next) {
 
 // Create a lesson POST
 exports.create_lesson_post = function (req, res, next) {
-    let end = req.body.schedule.indexOf('<');
-    let dateString = req.body.schedule.substring(0, end);
-    let hour = req.body.schedule.substring(end+1, req.body.schedule.length);
-    let lessonDate = new Date(dateString);
-    lessonDate.setHours(hour);
-    lessonDate.setMinutes(0);
-    lessonDate.setSeconds(0);
-    lessonDate.setMilliseconds(0);
-    let lesson = new Lesson(
-        {   date: lessonDate,
-            state: constants.lesson_booked,
+    let lessonDates = [];
+    let lessonDatesString = req.body.selectedDates.split(',');
+    for (let i=0; i<lessonDatesString.length; i++) {
+        lessonDates.push(new Date(lessonDatesString[i]));
+    }
+    let lessons = [];
+    let lesson;
+    let bill = new Bill(
+        {
+            state: constants.billPendingState,
+            total: req.body.totalInput,
             student: req.user.student,
-            message: req.body.lesson_message,
-            teacher: req.query.teacherId,
-            course: req.query.courseId  }
+            teacher: req.query.teacherId
+        }
     );
+    for (let i=0; i< lessonDates.length; i++){
+        lesson = new Lesson(
+            {
+                date: lessonDates[i],
+                state: constants.lesson_booked,
+                address: req.body.address,
+                numberOfStudents: req.body.numberOfStudents,
+                student: req.user.student,
+                message: req.body.lesson_message,
+                teacher: req.query.teacherId,
+                course: req.query.courseId,
+                bill: bill.id
+            }
+        );
+        lessons.push(lesson);
+    }
+    let sentence = "Se han solicitado " + lessons.length + " clases, por $" + req.body.totalInput;
     let transaction = new Transaction(
-        {   lesson: lesson.id,
-            description: 'Clase solicitada. Nueva clase apartada' }
+        {
+            bill: bill.id,
+            description: sentence
+        }
     );
     async.parallel({
         update_teacher: function (callback) {
-            Teacher.findById( lesson.teacher, callback)
+            Teacher.findById( lessons[0].teacher, callback)
                 .exec(function (err, result) {
-                    if (err){return res.send(err)}
-                    result.lessons.push(lesson.id);
+                    if (err){ return res.send(err) }
+                    for (let i=0; i<lessons.length; i++){
+                        result.lessons.push(lessons[i].id);
+                    }
                     result.save(function (err) {
                         if (err) { return res.send(err) }
                     })
                 });
         },
         update_student: function (callback) {
-            Student.findById( lesson.student, callback)
+            Student.findById( lessons[0].student, callback)
                 .exec(function (err, result) {
                     if (err){return res.send(err)}
-                    result.lessons.push(lesson.id);
+                    for (let i=0; i<lessons.length; i++) {
+                        result.lessons.push(lessons[i].id);
+                    }
                     result.save(function (err) {
                         if (err) { return res.send(err) }
                     })
@@ -169,12 +240,19 @@ exports.create_lesson_post = function (req, res, next) {
             transaction.save(callback);
         },
         save_lesson: function (callback) {
-            lesson.save(callback);
+            Lesson.insertMany(lessons, callback, function (err, results) {
+                if (err) {
+                    res.next(err);
+                }
+            });
+        },
+        save_bill: function (callback) {
+            bill.save(callback);
         }
     }, function (err, results) {
         if (err) { return next(err) }
-        emailer.notificate_new_class(lesson);
-        res.redirect(lesson.url);
+        //emailer.notificate_new_class(lesson);
+        res.redirect(bill.url);
     });
 };
 

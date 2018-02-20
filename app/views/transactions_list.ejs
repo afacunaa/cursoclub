@@ -6,7 +6,6 @@
             <tr>
                 <th>Fecha</th>
                 <th>Descripción</th>
-                <th>Curso</th>
                 <th>Profesor</th>
                 <th>Alumno</th>
             </tr>
@@ -14,21 +13,20 @@
             <tr>
                 <td><p><%= transactions_list[i].nice_created %></p></td>
                 <% if (transactions_list[i].description.indexOf('Cancelada') > -1) { %>
-                <td><p class="red-text text-darken-4 tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
+                <td><p class="red-text text-darken-4 tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else if (transactions_list[i].description.indexOf('Rechazada') > -1) { %>
-                <td><p class="pink-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
+                <td><p class="pink-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else if (transactions_list[i].description.indexOf('Solicitada') > -1) { %>
-                <td><p class="orange-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
+                <td><p class="orange-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else if (transactions_list[i].description.indexOf('Aceptada') > -1) { %>
-                <td><p class="indigo-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
+                <td><p class="indigo-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else if (transactions_list[i].description.indexOf('Pendiente') > -1) { %>
-                <td><p class="blue-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
+                <td><p class="blue-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else { %>
-                <td><p class="green-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].lesson.id %>"><%= transactions_list[i].description %></p></td>
+                <td><p class="green-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } %>
-                <td><a href="<%= transactions_list[i].lesson.course.url %>"><%= transactions_list[i].lesson.course.name %></a></td>
-                <td><a href="<%= transactions_list[i].lesson.teacher.url %>"><%= transactions_list[i].lesson.teacher.fullName %></a></td>
-                <td><a href="<%= transactions_list[i].lesson.student.url %>"><%= transactions_list[i].lesson.student.fullName %></a></td>
+                <td><a href="<%= transactions_list[i].bill.teacher.url %>"><%= transactions_list[i].bill.teacher.fullName %></a></td>
+                <td><a href="<%= transactions_list[i].bill.student.url %>"><%= transactions_list[i].bill.student.fullName %></a></td>
             </tr>
             <% } %>
         </table>

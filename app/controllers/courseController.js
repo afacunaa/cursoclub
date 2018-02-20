@@ -16,7 +16,7 @@ exports.course_list = function (req, res, next) {
         name = name.replace(/[ií]/g, '[ií]');
         name = name.replace(/[oó]/g, '[oó]');
         name = name.replace(/[uúü]/g, '[uúü]');
-        Course.find({ name: new RegExp(name, 'i') })
+        Course.find({ keywords: new RegExp(name, 'i') })
             .populate('teachers')
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }

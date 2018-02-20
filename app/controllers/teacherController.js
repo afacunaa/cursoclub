@@ -336,9 +336,10 @@ exports.update_teacher_post = function (req, res, next) {
 };
 
 exports.update_teacher_schedule_get = function (req, res, next) {
+    let hoursADay = constants.hoursADay;
     Teacher.findById( req.user.teacher )
         .exec(function (err, result) {
-            res.render('edit_schedule', { title: 'Editar mi horario', teacher: result, user: req.user });
+            res.render('edit_schedule', { title: 'Editar mi horario', teacher: result, hoursADay: hoursADay, user: req.user });
         });
 };
 

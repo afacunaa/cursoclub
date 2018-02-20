@@ -1,58 +1,95 @@
 <%- include header.ejs %>
 
 <main>
-    <div class="row">
-        <div class="col l12 m12 s12">
-            <div id="slider" class="slider">
-                <ul class="slides">
-                    <li>
-                        <a href="/login"><img src="/img/car1.jpeg" class="responsive-img"></a>
-                    </li>
-                    <li>
-                        <a href="/cursos"><img src="/img/car3.jpeg" class="responsive-img"></a>
-                    </li>
-                    <li>
-                        <a href="#nosotros"><img src="/img/car2.jpeg" class="responsive-img"></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div id="slider" class="slider">
+        <ul class="slides">
+            <li>
+                <a href="/login">
+                    <img src="/img/car1.jpeg" class="responsive-img hide-on-small-only">
+                    <img src="/img/car1-small.jpeg" class="responsive-img hide-on-med-and-up">
+                    <div class="cc_slider_text" align="center">
+                        <h2 class="black-text">¡Bienvenido a Curso Club! <i class="material-icons medium">search</i></h2>
+                        <br>
+                        <h4 class="black-text">
+                            Aquí encontrarás diversos cursos e instructores personalizados, para que aprendas, te diviertas
+                            o mejores tu estado físico.
+                        </h4>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/cursos">
+                    <img src="/img/car2.jpeg" class="responsive-img hide-on-small-only">
+                    <img src="/img/car2-small.jpeg" class="responsive-img hide-on-med-and-up">
+                    <div class="cc_slider_text" align="center">
+                        <h2 class="white-text"><strong>¿Qué hacemos?</strong></h2>
+                        <br>
+                        <h4 class="white-text">
+                            A través de nuestra plataforma te conectamos con instructores particulares que van a donde tú estás,
+                            para ofrecerte una gran variedad de actividades de tu interés.
+                            <br>
+                            <br>
+                            Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
+                        </h4>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/nosotros">
+                    <img src="/img/car3.jpeg" class="responsive-img hide-on-small-only">
+                    <img src="/img/car3-small.jpeg" class="responsive-img hide-on-med-and-up">
+                    <div class="cc_slider_text" align="center">
+                        <h2 class="black-text"><strong>¿Cómo lo hacemos?</strong></h2>
+                        <br>
+                        <h4 class="black-text">
+                            Selecciona la fecha y hora de tus clases, págalas a través de la plataforma. El instructor llegará
+                            a la puerta de tu casa.
+                            <br>
+                            <br>
+                            <strong>¡Aprende desde la comodidad de tu hogar!</strong>
+                        </h4>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="<%= lastBlogEntry.url %>">
+                    <img src="<%= lastBlogEntry.image %>" class="responsive-img">
+                    <div class="cc_slider_text">
+                        <h3 class="white-text">
+                            <strong>Visita nuestro blog</strong>
+                        </h3>
+                        <br>
+                        <h4 class="white-text"><%= lastBlogEntry.title %></h4>
+                        <h5 class="white-text">
+                            <%= lastBlogEntry.nice_created %>
+                        </h5>
+                    </div>
+                </a>
+            </li>
+        </ul>
     </div>
-    <br><br>
-
-    <div class="container">
-        <div class="row btn-block">
-            <div class="col l4 m4 s12 cc_div_menu" style="padding-bottom: 20px">
-                <a href="/contactenos" class="btn cc_btn_menu">Contáctanos</a>
-            </div>
-            <div class="col l4 m4 s12 cc_div_menu" style="padding-bottom: 20px">
-                <a href="#" class="btn cc_btn_menu">Nosotros</a>
-            </div>
-            <div class="col l4 m4 s12" style="padding-bottom: 20px">
-                <a href="#" class="btn cc_btn_menu tooltipped" data-position="top" data-delay="50" data-tooltip="Proximamente">Blog</a>
-            </div>
-        </div>
-    </div>
+    <br>
+    <br>
 
     <%- include category_list.ejs %>
 
-    <div class="container">
-        <div class="row">
-            <h4 class="header center red-text">Utilizar Curso Club es muy sencillo</h4>
-            <div class="col l4 m4 s12">
-                <img class="responsive-img" src="/img/Instrucciones1.png">
-                <p>Ingresa a Curso Club y regístrate completamente gratis</p>
-            </div>
-            <div class="col l4 m4 s12">
-                <img class="responsive-img" src="/img/Instrucciones2.png">
-                <p>Busca el curso que quieres, escoge el profesor, y reserva la clase en la fecha y hora que prefieras.<br>Una vez recibas confirmación del profesor, paga tu clase por internet</p>
-            </div>
-            <div class="col l4 m4 s12">
-                <img class="responsive-img" src="/img/Instrucciones3.png">
-                <p>Recibe la clase en la fecha y lugar acordado</p>
-            </div>
+    <div class="row">
+        <h4 class="header center red-text">Utilizar Curso Club es muy sencillo</h4>
+        <div class="col l4 m4 s12">
+            <img class="responsive-img" src="/img/Instrucciones1.png">
+            <p>Ingresa a Curso Club y regístrate completamente gratis</p>
         </div>
-        <br>
+        <div class="col l4 m4 s12">
+            <img class="responsive-img" src="/img/Instrucciones2.png">
+            <p>Busca el curso que quieres, escoge el profesor, y reserva la clase en la fecha y hora que prefieras.<br>Una vez recibas confirmación del profesor, paga tu clase por internet</p>
+        </div>
+        <div class="col l4 m4 s12">
+            <img class="responsive-img" src="/img/Instrucciones3.png">
+            <p>Recibe la clase en la fecha y lugar acordado</p>
+        </div>
+    </div>
+    <br>
+    <div class="container">
         <h4 class="header center green-text">Aprende más sobre Curso Club</h4>
         <div class="video-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/HWp5ljXyIN4" frameborder="0" allowfullscreen></iframe>

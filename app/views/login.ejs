@@ -3,7 +3,7 @@
 <main>
     <div class="container">
         <div class="row">
-            <h3>Inicio de sesión</h3>
+            <h3 class="blue-text">Inicio de sesión</h3>
             <form action="/login" method="post">
                 <div class="col l6 m6 s12">
                     <% if (error.length > 0) { %>
@@ -26,7 +26,7 @@
                     <% } %>
                     <div class="row">
                         <div class="input-field">
-                            <input class="validate" type="text" name="username" id="username" required>
+                            <input class="validate" type="text" name="username" id="username" required autofocus>
                             <label for="username">Nombre de usuario</label>
                         </div>
                     </div>
@@ -39,15 +39,15 @@
                     </div>
                     <div class="row">
                         <div class="input-field">
-                            <input class="btn" type="submit" value="Entrar">
+                            <input class="btn green" type="submit" value="Entrar">
                         </div>
                     </div>
                     <br>
                 </div>
-                <div class="center-align">
-                    <div class="col l6 m6 s12">
-                        <p>Como estudiante, puedes utilizar Facebook para acceder</p>
-                        <a href="/auth/facebook" class="btn btn-primary blue darken-3">Entrar con Facebook</a>
+                <div class="col l6 m6 s12">
+                    <p class="center">Utiliza Facebook para acceder</p>
+                    <div class="center-align">
+                        <a href="/auth/facebook" class="btn blue darken-3">Entrar con Facebook</a>
                     </div>
                 </div>
             </form>
@@ -56,8 +56,17 @@
         <div class="divider"></div>
         <br>
         <div id="signup" class="row">
-        <h3>Formulario de registro para estudiantes</h3>
-        <h5 class="red lighten-4">Si eres un profesor y estas interesado en hacer parte de Curso Club, debes <a href="/contactus">contactarnos</a></h5>
+            <div class="row">
+                <div class="card grey darken-1">
+                    <div class="card-content">
+                        <h5 class="white-text">
+                            <i class="material-icons">warning</i> Si estas interesado en ser un instructor de Curso Club, debes
+                            <a class="blue-text" href="/contactenos">contactárnos</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <h3 class="indigo-text">Formulario de registro para usuarios</h3>
             <form method="post" action="student/create">
                 <div class="row">
                     <div class="input-field col l6 m6 s12">

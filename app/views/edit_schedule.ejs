@@ -4,7 +4,7 @@
     <div class="container">
         <form action="/teacher/<%=user.teacher%>/scheduleUpdate" method="post">
             <table class="bordered highlight">
-                <% var hour = 8 %>
+                <% var hour = 7 %>
                 <tr>
                     <th><p>Hora</p></th>
                     <th>Lunes</th>
@@ -15,58 +15,18 @@
                     <th>Sábado</th>
                     <th>Domingo</th>
                 </tr>
-                <% for (var i=0; i<12; i++) { %>
+                <% for (var i=0; i<hoursADay; i++) { %>
                 <tr>
                     <td><%= hour + ' - ' + (hour+1) %></td>
-                    <% if (teacher.schedule.indexOf(i) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i %>" name="schedule" value="<%= i %>" checked>
+                    <% for (var j=0; j<7; j++) { /*7 days of the week*/ %>
+                    <% if (teacher.schedule.indexOf(i + (hoursADay * j)) > -1) { %>
+                    <td><input type="checkbox" id="d<%= i + (hoursADay * j) %>" name="schedule" value="<%= i + (hoursADay * j) %>" checked>
                         <% } else { %>
-                    <td><input type="checkbox" id="d<%= i %>" name="schedule" value="<%= i %>">
+                    <td><input type="checkbox" id="d<%= i + (hoursADay * j) %>" name="schedule" value="<%= i + (hoursADay * j) %>">
                         <% } %>
-                        <label for="d<%= i %>"><%= i %></label>
+                        <label for="d<%= i + (hoursADay * j) %>"><%= i + (hoursADay * j) %></label>
                     </td>
-                    <% if (teacher.schedule.indexOf(i+12) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i + 12 %>" name="schedule" value="<%= i + 12 %>" checked>
-                        <% } else { %>
-                    <td><input type="checkbox" id="d<%= i + 12 %>" name="schedule" value="<%= i + 12 %>">
-                        <% } %>
-                        <label for="d<%= i + 12 %>"><%= i + 12 %></label>
-                    </td>
-                    <% if (teacher.schedule.indexOf(i+(12*2)) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i + (12*2) %>" name="schedule" value="<%= i + (12*2) %>" checked>
-                        <% } else { %>
-                    <td><input type="checkbox" id="d<%= i + (12*2) %>" name="schedule" value="<%= i + (12*2) %>">
-                        <% } %>
-                        <label for="d<%= i + (12*2) %>"><%= i + (12*2) %></label>
-                    </td>
-                    <% if (teacher.schedule.indexOf(i+(12*3)) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i + (12*3) %>" name="schedule" value="<%= i + (12*3) %>" checked>
-                        <% } else { %>
-                    <td><input type="checkbox" id="d<%= i + (12*3) %>" name="schedule" value="<%= i + (12*3) %>">
-                        <% } %>
-                        <label for="d<%= i + (12*3) %>"><%= i + (12*3) %></label>
-                    </td>
-                    <% if (teacher.schedule.indexOf(i+(12*4)) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i + (12*4) %>" name="schedule" value="<%= i + (12*4) %>" checked>
-                        <% } else { %>
-                    <td><input type="checkbox" id="d<%= i + (12*4) %>" name="schedule" value="<%= i + (12*4) %>">
-                        <% } %>
-                        <label for="d<%= i + (12*4) %>"><%= i + (12*4) %></label>
-                    </td>
-                    <% if (teacher.schedule.indexOf(i+(12*5)) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i + (12*5) %>" name="schedule" value="<%= i + (12*5) %>" checked>
-                        <% } else { %>
-                    <td><input type="checkbox" id="d<%= i + (12*5) %>" name="schedule" value="<%= i + (12*5) %>">
-                        <% } %>
-                        <label for="d<%= i + (12*5) %>"><%= i + (12*5) %></label>
-                    </td>
-                    <% if (teacher.schedule.indexOf(i+(12*6)) > -1) { %>
-                    <td><input type="checkbox" id="d<%= i + (12*6) %>" name="schedule" value="<%= i + (12*6) %>" checked>
-                        <% } else { %>
-                    <td><input type="checkbox" id="d<%= i + (12*6) %>" name="schedule" value="<%= i + (12*6) %>">
-                        <% } %>
-                        <label for="d<%= i + (12*6) %>"><%= i + (12*6) %></label>
-                    </td>
+                    <% } %>
                 </tr>
                 <% hour++ %>
                 <% } %>

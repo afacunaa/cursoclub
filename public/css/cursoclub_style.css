@@ -1,22 +1,3 @@
-nav.nav-large {
-    height: 190px;
-    line-height: 190px;
-}
-nav.nav-small{
-    height: 60px;
-    line-height: 60px;
-}
-.cc_brand_logo{
-    max-height: 100px;
-}
-.cc_header_logo-large{
-    padding-top: 20px;
-    max-width: 100%;
-}
-.cc_header_logo-small{
-    padding-top: 8px;
-    max-width: 30%;
-}
 .cc_mobile_btn_login{
     position: absolute;
     top:0;
@@ -75,9 +56,6 @@ nav.nav-small{
 .cc-keep-line-breaks {
     white-space: pre-wrap;
 }
-.blank-space {
-    height: 150px;
-}
 .cc_blog_image {
     max-height: 80%;
 }
@@ -91,15 +69,39 @@ nav.nav-small{
     background: rgba(0,0,0,0.7);
     padding: 10px;
 }
-
-/*transitions*/
-header,
-nav,
-a,
-img,
-li {
-    transition: .7s all;
-    -moz-transition: .7s all;
-    -webkit-transition: .7s all;
-    -o-transition: .7s all;
+.cc-blog-keywords{
+    font-size: 12px;
+}
+.cc-teacher-picture-list {
+    max-height: 150px;
+}
+.cc-pictures-lesson-booking {
+    max-height: 150px;
+}
+.cc-score-stars {
+    margin: 0px !important;
+}
+.cc_slider_text {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    letter-spacing: -1px;
+    padding: 10px;
+}
+.cc-nav {
+    background-color: #00053f;
+    height: 87px;
+}
+.cc-nav-element {
+    top: 10px;
+}
+.cc-nav-element {
+    top: 10px;
+}
+a.cc-nav-element {
+    margin-top: 12px;
+}
+a.cc-nav-element:hover  {
+    background-color: #000577;
 }

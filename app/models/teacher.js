@@ -11,7 +11,7 @@ let teacherSchema = new Schema({
     lastName: { type: String, required: true },
     document: { type: String, required: true, unique: true },
     score: { type: Number, min: 0, max: 5 },
-    schedule: [ { type: Number, min: 0, max: 83 } ],
+    schedule: [ { type: Number, min: 0, max: 111 } ],
     description: String,
     groupLesson: {
         does: Boolean,
@@ -33,10 +33,10 @@ let teacherSchema = new Schema({
 });
 
 teacherSchema.methods.getPriceOfCourse = function (courseId) {
-    let index = this.pricePerHour.indexOf(courseId);
-    let start = this.pricePerHour.indexOf(':', index);
-    let end = this.pricePerHour.indexOf('>', index);
-    return this.pricePerHour.substring(start+1, end)
+    for (let i=0; i<this.courses.length; i++) {
+        if (this.courses[i].course.toString() === courseId.toString())
+            return this.courses[i].pricePerHour;
+    }
 };
 
 teacherSchema.virtual('fullName').get(function () {
@@ -45,6 +45,16 @@ teacherSchema.virtual('fullName').get(function () {
 
 teacherSchema.virtual('url').get(function () {
     return '/teacher/' + this._id;
+});
+
+teacherSchema.virtual('workingAreaAsLine').get(function () {
+    let line = "";
+    for (let i=0; i<this.workingArea.length; i++){
+        line += this.workingArea[i];
+        if (i !== this.workingArea.length - 1)
+            line += ", ";
+    }
+    return line;
 });
 
 teacherSchema.virtual('nice_birthday').get(function () {

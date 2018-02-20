@@ -12,12 +12,14 @@ let lessonSchema = new Schema({
     message: String,
     answer: String,
     address: String,
+    numberOfStudents: Number,
+    price: Number,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     student : { type: Schema.Types.ObjectId, ref: 'Student' },
     teacher : { type: Schema.Types.ObjectId, ref: 'Teacher' },
     course : { type: Schema.Types.ObjectId, ref: 'Course' },
-    payment : { type: Schema.Types.ObjectId, ref: 'Payment' }
+    bill: { type: Schema.Types.ObjectId, ref: 'Bill' }
 });
 
 lessonSchema.virtual('url').get(function () {
@@ -26,6 +28,10 @@ lessonSchema.virtual('url').get(function () {
 
 lessonSchema.virtual('nice_date').get(function () {
     return moment(this.date).locale('es').format('dddd, D MMMM, YYYY, h:mm:ss A');
+});
+
+lessonSchema.virtual('nice_date_short').get(function () {
+    return moment(this.date).locale('es').format('DD/MM/YYYY, h:mm:ss A');
 });
 
 lessonSchema.virtual('nice_created').get(function () {

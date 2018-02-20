@@ -1,4 +1,5 @@
 let express = require('express');
+let billController = require('../app/controllers/billController');
 let blogEntryController = require('../app/controllers/blogEntryController');
 let homeController = require('../app/controllers/homeController');
 let courseController = require('../app/controllers/courseController');
@@ -41,6 +42,7 @@ router.get('/', homeController.index);
 router.get('/login', homeController.login);
 router.get('/home', homeController.home);//home
 router.get('/contactenos', homeController.contactus_get);
+router.get('/nosotros', homeController.aboutus_get);
 router.post('/contactenos', homeController.contactus_post);
 router.get('/logout', homeController.logout);
 router.post('/login', passport.authenticate('local-login', {
@@ -89,7 +91,7 @@ router.post('/curso/:idName/delete', courseController.delete_course_post);
 router.get('/cursos', courseController.course_list);
 
 // GET course detail
-router.get('/curso/:idName', courseController.course_detail);
+router.get('/curso/:category/:idName', courseController.course_detail);
 
 
 /* Lesson routes */
@@ -283,5 +285,34 @@ router.get('/blog/:idTitle', blogEntryController.blogEntry_detail_get);
 // POST BlogEntry detail - Make a comment
 router.post('/blog/:idTitle', blogEntryController.blogEntry_detail_post);
 
+
+/* Bill routes */
+
+// GET Bill creation
+router.get('/bill/create', billController.create_bill_get);
+
+// POST Bill creation
+router.post('/bill/create', billController.create_bill_post);
+
+// GET Bill update
+router.get('/bill/:id/update', billController.update_bill_get);
+
+// POST Bill update
+router.post('/bill/:id/update', billController.update_bill_post);
+
+// POST Bill update state
+router.post('/bill/:id/stateUpdate', billController.update_bill_state_post);
+
+// GET Bill deletion
+router.get('/bill/:id/delete', billController.delete_bill_get);
+
+// POST Bill deletion
+router.post('/bill/:id/delete', billController.delete_bill_post);
+
+// GET Bill list
+router.get('/bills', billController.bill_list);
+
+// GET Bill detail
+router.get('/bill/:id', billController.bill_detail);
 
 module.exports = router;

@@ -30,7 +30,7 @@ courseSchema.virtual('image').get(function () {
 });
 
 courseSchema.virtual('url').get(function () {
-    return '/curso/' + this.idName;
+    return '/curso/' + this.category +'/' + this.idName;
 });
 
 courseSchema.virtual('nice_created').get(function () {

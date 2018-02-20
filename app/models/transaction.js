@@ -10,7 +10,7 @@ let transactionSchema = new Schema({
     description: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
-    lesson : { type: Schema.Types.ObjectId, ref: 'Lesson' }
+    bill : { type: Schema.Types.ObjectId, ref: 'Bill' }
 });
 
 transactionSchema.virtual('url').get(function () {

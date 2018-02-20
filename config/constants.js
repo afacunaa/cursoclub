@@ -12,6 +12,14 @@ module.exports = {
     "admin_role": 1,
     "teacher_role": 2,
     "student_role": 3,
+    "hoursADay":16,
+    "firstHour":6,
+    "weeksAhead":4,
+    "billPendingState":"Pendiente por aprobación",
+    "billCanceledState":"Clases rechazadas",
+    "billAcceptedState":"Pendiente por pago",
+    "billPaidState":"Pagado",
+    "billDoneState":"Finalizado",
     'facebookAuth': {
         'clientID': '179051199293941', // your App ID
         'clientSecret': '5dab981c87e0969a7920b8c9527fd475', // your App Secret

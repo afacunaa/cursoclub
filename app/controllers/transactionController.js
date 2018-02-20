@@ -3,7 +3,6 @@
  */
 
 let Transaction = require('../models/transaction');
-let Lesson = require('../models/lesson');
 
 // Display all transactions GET
 exports.transaction_list = function (req, res, next) {
@@ -11,9 +10,9 @@ exports.transaction_list = function (req, res, next) {
     Transaction.find({ })
         .sort('-createdAt')
         .populate( {
-            path: 'lesson',
+            path: 'bill',
             populate: {
-                path: 'course teacher student'
+                path: 'teacher student'
             }
         } )
         .exec(function (err, list_transactions) {

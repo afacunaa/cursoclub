@@ -33,7 +33,7 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
 });
 $(document).ready(function(){
-    $('.slider').slider({height: $(window).height()});
+    $('.slider').slider({ height: 550 });
 });
 
 $(document).ready(function(){
@@ -53,14 +53,4 @@ $('#password_confirmation').on('keyup', function () {
         $('#message').html('Las contraseñas coinciden').css('color', 'green');
     } else
         $('#message').html('La contraseña no coincide').css('color', 'red');
-});
-
-$(document).on("scroll", function() {
-    if($(document).scrollTop()>100) {
-        $("nav").removeClass("nav-large").addClass("nav-small");
-        $('#main-logo').removeClass("cc_header_logo-large").addClass("cc_header_logo-small");
-    } else {
-        $("nav").removeClass("nav-small").addClass("nav-large");
-        $('#main-logo').removeClass("cc_header_logo-small").addClass("cc_header_logo-large");
-    }
 });
