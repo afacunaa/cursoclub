@@ -1,50 +1,33 @@
-.cc_mobile_btn_login{
+.cc-mobile-btn-login{
     position: absolute;
     top:0;
     left: 0;
 }
-.cc_btn{
-    width: 100%;
-    background-color: #d05b18;
-}
-.cc_btn:hover{
-    background-color: #49034c;
-}
-.cc_btn_menu{
-    width: 100%;
-    background-color: #49034c;
-}
-.cc_btn_menu:hover{
-    background-color: #d05b18;
-}
-.cc_searchbar{
-    height: 70px;
-}
-.cc_socialicon{
+.cc-socialicon{
     max-width: 20px;
 }
-.cc_category_image{
+.cc-image-with-text{
     position: relative;
 }
-.cc_category_title_h{
+.cc-category-title-h{
     position: absolute;
     top: 70%;
     left: 0;
     width: 100%;
 }
-.cc_category_title_ac{
+.cc-category-title-ac{
     color: white;
     letter-spacing: -1px;
     background: #3e952d;
     padding: 10px;
 }
-.cc_category_title_tr{
+.cc-category-title-tr{
     color: white;
     letter-spacing: -1px;
     background: #49034c;
     padding: 10px;
 }
-.cc_category_title_ft{
+.cc-category-title-ft{
     color: white;
     letter-spacing: -1px;
     background: #d05b18;
@@ -56,10 +39,10 @@
 .cc-keep-line-breaks {
     white-space: pre-wrap;
 }
-.cc_blog_image {
+.cc-blog-image {
     max-height: 80%;
 }
-.cc_blog_title {
+.cc-blog-title {
     position: absolute;
     bottom: 5%;
     left: 0;
@@ -81,7 +64,7 @@
 .cc-score-stars {
     margin: 0px !important;
 }
-.cc_slider_text {
+.cc-slider-text {
     position: absolute;
     top: 20%;
     left: 0;
@@ -104,4 +87,7 @@ a.cc-nav-element {
 }
 a.cc-nav-element:hover  {
     background-color: #000577;
+}
+.cc-course-info-img {
+    width: 50%;
 }

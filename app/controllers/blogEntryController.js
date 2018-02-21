@@ -8,22 +8,18 @@ let uploader = require('../../lib/upload');
 // Display all blogEntry GET
 exports.blogEntry_list = function (req, res, next) {
     //res.send('Lista de transaccions');
-    if (req.isAuthenticated()) {
-        BlogEntry.find({})
-            .sort('-createdAt')
-            .exec(function (err, list_blogEntry) {
-                if (err) {
-                    return next(err)
-                }
-                res.render('blogEntry_list', {
-                    title: 'Blog de CursoClub',
-                    blogEntry_list: list_blogEntry,
-                    user: req.user
-                });
+    BlogEntry.find({})
+        .sort('-createdAt')
+        .exec(function (err, list_blogEntry) {
+            if (err) {
+                return next(err)
+            }
+            res.render('blogEntry_list', {
+                title: 'Blog de CursoClub',
+                blogEntry_list: list_blogEntry,
+                user: req.user
             });
-    } else {
-        res.redirect("/login");
-    }
+        });
 };
 
 // Display the details of a blogEntry GET
