@@ -2,21 +2,23 @@
 
 <main>
     <br>
+    <% if (user.role == 1) { %>
     <div class="container">
-        <% if (user.role == 1) { %>
         <h3>Portal de administración</h3>
-
-        <% } else if (user.role == 2) {
-        let booked = 0, paid = 0;
-        for (var j=0; j<person.lessons.length; j++) {
-            if (person.lessons[j].state === 'Solicitada') {
-                booked += 1;
-            } else if (person.lessons[j].state === 'Pendiente') {
-                paid += 1;
-            }
-        }
-        %>
+        <ul class="collection">
+            <li class="collection-item"><h5><a href="/transactions"><i class="material-icons">history</i> Lista de operaciones</a></h5></li>
+            <li class="collection-item"><h5><a href="/usageTrack"><i class="material-icons">flag</i> Registro de utilización</a></h5></li>
+            <li class="collection-item"><h5><a href="/teachers"><i class="material-icons">recent_actors</i> Lista de instructores</a></h5></li>
+            <li class="collection-item"><h5><a href="/teacher/create"><i class="material-icons">person_pin</i> Añadir a un instructor</a></h5></li>
+            <li class="collection-item"><h5><a href="/cursos"><i class="material-icons">view_carousel</i> Lista de cursos</a></h5></li>
+            <li class="collection-item"><h5><a href="/curso/create"><i class="material-icons">note_add</i> Añadir un curso</a></h5></li>
+            <li class="collection-item"><h5><a href="/students"><i class="material-icons">recent_actors</i> Lista de usuarios</a></h5></li>
+            <li class="collection-item"><h5><a href="/blogs"><i class="material-icons">library_books</i> Blog</a></h5></li>
+        </ul>
+    </div>
+    <% } else if (user.role == 2) { %>
         <% if (booked > 0) { %>
+    <div class="container">
         <div class="chip orange">
             <% if (booked === 1) { %>
             <%= booked %> clase solicitada
@@ -34,14 +36,14 @@
             <% } %>
         </div>
         <% } %>
-        <h3>Portal de profesor</h3>
+        <h3>Portal de instructor</h3>
         <div class="row">
             <div class="col l6 m6 s12">
                 <% if (user.picture) { %>
                 <img class="responsive-img" src="<%= user.picture %>">
                 <% } else { %>
                 <img class="responsive-img" src="/img/silueta.png">
-                <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                <p>Actualiza tu foto para que los usuarios puedan saber algo más sobre ti</p>
                 <% } %>
             </div>
             <div class="col l6 m6 s12">
@@ -50,16 +52,16 @@
                 <h5><i class="small material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></h5>
                 <h5><i class="small material-icons">call</i> <%= person.phone %></h5>
                 <br>
-                <% if (person.courses.length > 0) { %>
+                <% if (courses.length > 0) { %>
                 <div class="divider"></div>
                 <br>
-                <h5>Eres profesor de los siguientes cursos:</h5>
+                <h5>Eres instructor de los siguientes cursos:</h5>
                 <ul class="collection">
-                    <% for (var i=0; i<person.courses.length; i++) { %>
+                    <% for (var i=0; i<courses.length; i++) { %>
                     <li class="collection-item avatar">
-                        <img class="circle" src="<%= person.courses[i].course.picture %>">
-                        <span class="title"><a href="<%= person.courses[i].course.url %>"><%= person.courses[i].course.name %></a></span>
-                        <p>Precio por hora de clase: $ <%= person.getPriceOfCourse(person.courses[i].course) %></p>
+                        <img class="circle" src="<%= courses[i].picture %>">
+                        <span class="title"><a href="<%= courses[i].url %>"><%= courses[i].name %></a></span>
+                        <p>Precio por hora de clase: $ <%= person.getPriceOfCourse(courses[i].id) %></p>
                     </li>
                     <% } %>
                 </ul>
@@ -71,20 +73,11 @@
                 <h5>No olvides mantener actualizado tu <a href="/teacher/<%= user.teacher %>/scheduleUpdate">horario de disponibilidad</a></h5>
             </div>
         </div>
-        <% } else if (user.role == 3) {
-            let accepted = 0, paid = 0, rejected = 0;
-            for (var j=0; j<person.lessons.length; j++) {
-                if (person.lessons[j].state === 'Aceptada') {
-                    accepted += 1;
-                } else if (person.lessons[j].state === 'Pendiente') {
-                    paid += 1;
-                } else if (person.lessons[j].state === 'Rechazada') {
-                    rejected += 1;
-                }
-            }
-        %>
+    </div>
+    <% } else if (user.role == 3) { %>
+    <div class="container">
         <% if (accepted > 0) { %>
-        <div class="chip lime">
+        <div class="chip blue">
             <% if (accepted === 1) { %>
             <%= accepted %> clase aceptada
             <% } else { %>
@@ -136,11 +129,9 @@
                 <% } %>
             </div>
         </div>
-        <% } %>
     </div>
-
     <%- include category_list.ejs %>
-
+    <% } %>
 </main>
 
 <%- include footer.ejs %>

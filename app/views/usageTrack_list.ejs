@@ -1,0 +1,24 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <table class="bordered highlight">
+            <tr>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Dirección IP</th>
+                <th>Detalle</th>
+            </tr>
+            <% for (var i=0; i<usageTrack_list.length; i++) { %>
+            <tr>
+                <td><p><%= usageTrack_list[i].nice_created_short %></p></td>
+                <td><p><%= usageTrack_list[i].user %></p></td>
+                <td><p><%= usageTrack_list[i].ipAddress %></p></td>
+                <td><p><%= usageTrack_list[i].detail %></p></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+</main>
+
+<%- include footer.ejs %>

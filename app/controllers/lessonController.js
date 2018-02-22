@@ -144,7 +144,6 @@ exports.create_lesson_get = function (req, res, next) {
             }
         }, function (err, results) {
             if (err) { return next(err) }
-            console.log('numero de clases: '+results.third.length);
             for (let i = 0; i< results.third.length; i++){
                 if (moment(results.third[i].date).isBetween(moment(firstDay), moment(lastDay), 'day', '[]')) {
                     let day = moment(results.third[i].date).isoWeekday() - 1;

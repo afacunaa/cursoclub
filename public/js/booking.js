@@ -41,6 +41,7 @@ function updateView(week) {
     $('#sunday-header').text(week[6].getDate());
     let schedule = JSON.parse("["+$('#schedule').val()+"]");
     let notAvailable = $('#notAvailable').val().split(',');
+    let mustChange = $('#mustChange').val().split(',');
     let hoursADay = Number($('#hoursADay').val());
     let displacement = $('#offset').val();
     let id;
@@ -54,6 +55,9 @@ function updateView(week) {
                 } else if (selectedArray.indexOf(displacement + '<d' + id) > -1) {
                     $('#d' + id).removeClass().addClass('btn green');
                     $('#i' + id).text('event_available');
+                } else if (mustChange.indexOf(displacement + '' + id) > -1) {
+                    $('#d' + id).removeClass().addClass('btn orange');
+                    $('#i' + id).text('event_busy');
                 } else {
                     $('#d' + id).removeClass().addClass('btn white');
                     $('#i' + id).text('event_available');

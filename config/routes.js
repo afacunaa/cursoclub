@@ -1,13 +1,14 @@
 let express = require('express');
 let billController = require('../app/controllers/billController');
 let blogEntryController = require('../app/controllers/blogEntryController');
-let homeController = require('../app/controllers/homeController');
 let courseController = require('../app/controllers/courseController');
+let homeController = require('../app/controllers/homeController');
 let lessonController = require('../app/controllers/lessonController');
 let paymentController = require('../app/controllers/paymentController');
 let studentController = require('../app/controllers/studentController');
 let teacherController = require('../app/controllers/teacherController');
 let transactionController = require('../app/controllers/transactionController');
+let usageTrackController = require('../app/controllers/usageTrackController');
 let userController = require('../app/controllers/userController');
 let router = express.Router();
 let passport = require('passport');
@@ -314,5 +315,12 @@ router.get('/bills', billController.bill_list);
 
 // GET Bill detail
 router.get('/bill/:id', billController.bill_detail);
+
+
+/* UsageTrack routes */
+
+// GET transaction list
+router.get('/usageTrack', usageTrackController.usageTrack_list);
+
 
 module.exports = router;

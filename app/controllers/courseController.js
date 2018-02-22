@@ -4,6 +4,7 @@
 
 let Course = require('../models/course');
 let User = require('../models/user');
+let UsageTrack = require('../models/usageTrack');
 let uploader = require('../../lib/upload');
 
 // Display all courses GET
@@ -20,6 +21,21 @@ exports.course_list = function (req, res, next) {
             .populate('teachers')
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
+                let user;
+                if (req.user) {
+                    user = req.user.username;
+                } else {
+                    user = 'Anónimo';
+                }
+                let usageTrack = UsageTrack(
+                    {
+                        ipAddress: req.ip,
+                        user: user,
+                        detail: 'Realizó una búsqueda de: ' + req.query.name
+                    }
+                );
+                usageTrack.save();
+
                 res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query:req.query.name, user: req.user });
             });
     } else if (req.query.category !== undefined){

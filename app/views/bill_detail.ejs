@@ -20,7 +20,11 @@
                 <h5><strong>Instructor: </strong><a href="<%= bill.teacher.url %>"><%= bill.teacher.fullName %></a></h5>
                 <h5><strong>Usuario: </strong><a href="<%= bill.student.url %>"><%= bill.student.fullName %></a></h5>
                 <h5><i class="material-icons">people</i> <strong>Número de personas que reciben la clase:</strong> <%= list_lessons[0].numberOfStudents %></h5>
+                <% if (list_lessons[0].message) { %>
                 <h5><i class="material-icons">message</i> <strong>Mensaje sobre la clase:</strong> <%= list_lessons[0].message %></h5>
+                <% } else { %>
+                <h5><i class="material-icons">message</i> No hay ningún mensaje adicional.</h5>
+                <% } %>
             </div>
         </div>
         <div class="row">
@@ -54,6 +58,16 @@
                             <form action="/bill/<%= bill.id %>/stateUpdate" method="post">
                                 <div class="col s5 offset-s3">
                                     <button name="state" class="btn green" type="submit" value="2"><i class="material-icons left">payment</i>Pagar</button>
+                                </div>
+                            </form>
+                            <% } %>
+                            <% if (user.role === 3 && bill.state === 'Clases rechazadas') { %>
+                            <form action="/bill/<%= bill.id %>/update" method="get">
+                                <div class="col s5 offset-s3">
+                                    <input type="hidden" name="teacherId" id="teacherId" value="<%= bill.teacher.id %>">
+                                    <input type="hidden" name="courseId" id="courseId" value="<%= list_lessons[0].course.id %>">
+                                    <input type="hidden" name="offset" value="0">
+                                    <button class="btn blue" type="submit"><i class="material-icons left">event_note</i>Reprogramar</button>
                                 </div>
                             </form>
                             <% } %>

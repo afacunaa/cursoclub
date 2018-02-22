@@ -3,21 +3,21 @@
 <main>
     <div class="container">
         <div class="center-align">
-            <h3>Reserva de clase</h3>
+            <h3>Reprogramación de clases</h3>
             <div class="row">
                 <div class="col s6">
-                    <h4><%= course.name %></h4>
-                    <img class="responsive-img cc-pictures-lesson-booking" src="<%= course.picture %>">
-                    <h6><%= course.description %></h6>
+                    <h4><%= list_lessons[0].course.name %></h4>
+                    <img class="responsive-img cc-pictures-lesson-booking" src="<%= list_lessons[0].course.picture %>">
+                    <h6><%= list_lessons[0].course.description %></h6>
                 </div>
                 <div class="col s6">
-                    <h4><%= teacher.fullName %></h4>
+                    <h4><%= bill.teacher.fullName %></h4>
                     <% if (teacher_user.picture) { %>
                     <img src="<%= teacher_user.picture %>" class="responsive-img cc-pictures-lesson-booking">
                     <% } else { %>
                     <img class="responsive-img cc-pictures-lesson-booking" src="/img/silueta.png">
                     <% } %>
-                    <h6>Precio por hora de clase: $<span id="pricePerHour"><%= teacher.getPriceOfCourse(course.id)%></span></h6>
+                    <h6>Precio por hora de clase: $<span id="pricePerHour"><%= bill.teacher.getPriceOfCourse(list_lessons[0].course.id)%></span></h6>
                 </div>
             </div>
             <br>
@@ -27,15 +27,15 @@
 
             <form action="" method="post">
                 <div class="row">
-                    <input type="hidden" name="teacherId" id="teacherId" value="<%= teacher.id %>">
-                    <input type="hidden" name="courseId" id="courseId" value="<%= course.id %>">
-                    <input type="hidden" name="discountPerStudent" id="discountPerStudent" value="<%= teacher.groupLesson.discountPerStudent %>">
+                    <input type="hidden" name="teacherId" id="teacherId" value="<%= bill.teacher.id %>">
+                    <input type="hidden" name="courseId" id="courseId" value="<%= list_lessons[0].course.id %>">
+                    <input type="hidden" name="discountPerStudent" id="discountPerStudent" value="<%= bill.teacher.groupLesson.discountPerStudent %>">
                     <input type="hidden" name="week" id="week" value="<%= week %>">
                     <input type="hidden" name="offset" id="offset" value="<%= displacement %>">
                     <input type="hidden" name="notAvailable" id="notAvailable" value="<%= notAvailable %>">
-                    <input type="hidden" name="mustChange" id="mustChange" value="[]">
+                    <input type="hidden" name="mustChange" id="mustChange" value="<%= mustChange %>">
                     <input type="hidden" name="hoursADay" id="hoursADay" value="<%= hoursADay %>">
-                    <input type="hidden" name="schedule" id="schedule" value="<%= teacher.schedule %>">
+                    <input type="hidden" name="schedule" id="schedule" value="<%= bill.teacher.schedule %>">
                     <input type="hidden" name="selectedDates" id="selectedDates">
                     <input type="hidden" name="totalInput" id="totalInput">
                     <div class="col s4">
@@ -68,12 +68,15 @@
                     <tr>
                         <td><%= hour + ' - ' + (hour+1) %></td>
                         <% for (var j=0; j<7; j++) { /*7 days of week*/ %>
-                        <% if (teacher.schedule.indexOf(i + (hoursADay * j)) > -1) { %>
-                            <% if (notAvailable.indexOf(displacement + '' + Number(i + (hoursADay * j))) > -1 || week[j] < new Date()) { %>
+                            <% if (bill.teacher.schedule.indexOf(i + (hoursADay * j)) > -1) { %>
+                                <% if (notAvailable.indexOf(displacement + '' + Number(i + (hoursADay * j))) > -1 || week[j] < new Date()) { %>
                         <td><div class="btn red darken-4" id="d<%= i + (hoursADay * j) %>" onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>', '<%= hour %>', <%= JSON.stringify(week) %>)"><i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_busy</i></div>
-                            <% } else { %>
+                                <% } else if (mustChange.indexOf(displacement + '' + Number(i + (hoursADay * j))) > -1) { %>
+                        <td><div class="btn orange" id="d<%= i + (hoursADay * j) %>" onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>', '<%= hour %>', <%= JSON.stringify(week) %>)"><i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_busy</i></div>
+                                <% } else { %>
                         <td><div class="btn white" id="d<%= i + (hoursADay * j) %>" onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>', '<%= hour %>', <%= JSON.stringify(week) %>)"><i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_available</i></div>
-                            <% } } else { %>
+                                <% }
+                            } else { %>
                         <td><div class="btn disabled" id="d<%= i + (hoursADay * j) %>"><i class="material-icons">clear</i></div>
                             <% } %>
                         </td>
@@ -86,15 +89,19 @@
                 <h5>Información adicional:</h5>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" name="address" id="address" required value="<%= student.address %>">
+                        <input type="text" name="address" id="address" value="<%= list_lessons[0].address %>" required>
                         <label for="address">Lugar para recibir la clase</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <select onchange="changeMoreStudents()" id="numberOfStudents" name="numberOfStudents" required>
-                            <% for (var k=1; k<=teacher.groupLesson.maxStudents; k++ ) { %>
+                            <% for (var k=1; k<=bill.teacher.groupLesson.maxStudents; k++ ) { %>
+                                <% if (k === list_lessons[0].numberOfStudents) { %>
+                            <option value="<%= k %>" selected><%= k %></option>
+                                <% } else { %>
                             <option value="<%= k %>"><%= k %></option>
+                                <% } %>
                             <% } %>
                         </select>
                         <label class="select-label" for="numberOfStudents">Número de personas que toman la clase</label>
@@ -108,7 +115,7 @@
                 </div>
                 <h5>El total de la reserva es: <i class="material-icons">$</i><span id="total">0</span></h5>
                 <br>
-                <button type="submit" class="btn lime" value="Reservar clase">Reservar</button>
+                <button type="submit" class="btn orange" value="Reservar clase">Reprogramar</button>
             </form>
         </div>
     </div>

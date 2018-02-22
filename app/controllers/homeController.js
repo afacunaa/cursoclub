@@ -3,6 +3,8 @@ let Lesson = require('../models/lesson');
 let BlogEntry = require('../models/blogEntry');
 let Teacher = require('../models/teacher');
 let Student = require('../models/student');
+let Course = require('../models/course');
+let UsageTrack = require('../models/usageTrack');
 let constants = require('../../config/constants');
 let emailer = require('../../lib/email');
 let async = require('async');
@@ -21,31 +23,69 @@ exports.index = function (req, res) {
 exports.home = function(req, res) {
 	if (req.isAuthenticated()) {
 		if (req.user.role === constants.student_role) {
-			Student.findById( req.user.student )
-				.populate('lessons')
-				.exec(function (err, result) {
-					if (err) { return res.send(err) }
-					res.render('home.ejs', {
-						title: 'Curso Club',
-						error: req.flash("error"),
-						success: req.flash("success"),
-						person: result,
-						user: req.user
-					});
-				});
-		} else if (req.user.role === constants.teacher_role) {
-            Teacher.findById( req.user.teacher )
-                .populate('lessons courses.course')
-                .exec(function (err, result) {
-                    if (err) { return res.send(err) }
-                    res.render('home.ejs', {
-                        title: 'Curso Club',
-                        error: req.flash("error"),
-                        success: req.flash("success"),
-                        person: result,
-                        user: req.user
-                    });
+		    async.parallel({
+                find_student: function (callback) {
+                    Student.findById(req.user.student, callback);
+                },
+                accepted_lessons: function (callback) {
+                    Lesson.count({ 'state': constants.lesson_accepted }, callback);
+                },
+                paid_lessons: function (callback) {
+                    Lesson.count({ 'state': constants.lesson_paid }, callback);
+                },
+                rejected_lessons: function (callback) {
+                    Lesson.count({ 'state': constants.lesson_rejected}, callback);
+                },
+                record_usageTrack: function (callback) {
+                    let usageTrack = UsageTrack(
+                        {
+                            ipAddress: req.ip,
+                            user: req.user.username,
+                            detail: 'Ingreso a home'
+                        }
+                    );
+                    usageTrack.save(callback);
+                }
+            }, function (err, results) {
+                if (err) { return res.send(err) }
+                res.render('home.ejs', {
+                    title: 'Curso Club',
+                    error: req.flash("error"),
+                    success: req.flash("success"),
+                    person: results.find_student,
+                    accepted: results.accepted_lessons,
+                    paid: results.paid_lessons,
+                    rejected: results.rejected_lessons,
+                    user: req.user
                 });
+            });
+		} else if (req.user.role === constants.teacher_role) {
+            async.parallel({
+                find_teacher: function (callback) {
+                    Teacher.findById(req.user.teacher, callback);
+                },
+                find_courses: function (callback) {
+                    Course.find({ 'teachers': req.user.teacher }, callback);
+                },
+                booked_lessons: function (callback) {
+                    Lesson.count({ 'state': constants.lesson_booked }, callback);
+                },
+                paid_lessons: function (callback) {
+                    Lesson.count({ 'state': constants.lesson_paid }, callback);
+                }
+            }, function (err, results) {
+                if (err) { return res.send(err) }
+                res.render('home.ejs', {
+                    title: 'Curso Club',
+                    error: req.flash("error"),
+                    success: req.flash("success"),
+                    person: results.find_teacher,
+                    courses: results.find_courses,
+                    booked: results.booked_lessons,
+                    paid: results.paid_lessons,
+                    user: req.user
+                });
+            });
 		} else {
             res.render('home.ejs', {
                 title: 'Curso Club',
