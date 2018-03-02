@@ -49,8 +49,15 @@
                                 <strong><%= classifiedGroupedLessons["groupAccepted"][i]
                                             .lessons[classifiedGroupedLessons["groupAccepted"][i].lessons.length-1].nice_date %></strong>
                             </p>
-                            <a href="<%= classifiedGroupedLessons["groupAccepted"][i].bill.url %>" class="secondary-content">
-                                <i class="material-icons medium">class</i>
+                            <% if (user.role === 3) { %>
+                            <form action="/bill/<%= classifiedGroupedLessons["groupAccepted"][i].bill.id %>/stateUpdate" method="post">
+                                <div>
+                                    <button name="state" class="btn green tooltipped" type="submit" value="2" data-position="right" data-delay="20" data-tooltip="Pagar todas las clases"><i class="material-icons left">payment</i></button>
+                                </div>
+                            </form>
+                            <% } %>
+                            <a href="<%= classifiedGroupedLessons["groupAccepted"][i].bill.url %>" class="secondary-content btn tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>Detalles
                             </a>
                         </li>
                         <% } %>
@@ -162,9 +169,37 @@
                                 <strong><%= classifiedGroupedLessons["groupPending"][i]
                                             .lessons[classifiedGroupedLessons["groupPending"][i].lessons.length-1].nice_date %></strong>
                             </p>
-                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="secondary-content">
-                                <i class="material-icons medium">class</i>
+                            <% if (user.role === 2) { %>
+                            <form action="/bill/<%= classifiedGroupedLessons["groupPending"][i].bill.id %>/stateUpdate" method="post">
+                                <div>
+                                    <button name="state" class="btn green tooltipped" type="submit" value="1" data-position="right" data-delay="20" data-tooltip="Aceptar todas las clases"><i class="material-icons left">check</i></button>
+                                    <button name="state" class="btn red tooltipped" type="submit" value="0" data-position="left" data-delay="20" data-tooltip="Rechazar todas las clases"><i class="material-icons left">clear</i></button>
+                                </div>
+                            </form>
+                            <% } %>
+                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="secondary-content btn tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>Detalles
                             </a>
+                            <div class="fixed-action-btn horizontal cc-fab-bills">
+                                <a class="btn-floating btn-large orange">
+                                    <i class="material-icons">menu</i>
+                                </a>
+                                <form action="/bill/<%= classifiedGroupedLessons["groupPending"][i].bill.id %>/stateUpdate" method="post">
+                                    <ul>
+                                        <li>
+                                            <button name="state" class="btn-floating green tooltipped" type="submit" value="1" data-position="right" data-delay="20" data-tooltip="Aceptar todas las clases"><i class="material-icons left">check</i></button>
+                                        </li>
+                                        <li>
+                                            <button name="state" class="btn-floating red tooltipped" type="submit" value="0" data-position="left" data-delay="20" data-tooltip="Rechazar todas las clases"><i class="material-icons left">clear</i></button>
+                                        </li>
+                                        <li>
+                                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="btn-floating tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                                <i class="material-icons">class</i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
                         </li>
                         <% } %>
                     </ul>
@@ -216,7 +251,16 @@
                                 <strong><%= classifiedGroupedLessons["groupCanceled"][i]
                                             .lessons[classifiedGroupedLessons["groupCanceled"][i].lessons.length-1].nice_date %></strong>
                             </p>
-                            <a href="<%= classifiedGroupedLessons["groupCanceled"][i].bill.url %>" class="secondary-content"><i class="material-icons medium">class</i></a>
+                            <% if (user.role === 3) { %>
+                            <form action="/bill/<%= classifiedGroupedLessons["groupCanceled"][i].bill.id %>/update" method="get">
+                                <div>
+                                    <button class="btn blue tooltipped" type="submit" data-position="right" data-delay="20" data-tooltip="Reprogramar las clases"><i class="material-icons left">edit</i></button>
+                                </div>
+                            </form>
+                            <% } %>
+                            <a href="<%= classifiedGroupedLessons["groupCanceled"][i].bill.url %>" class="secondary-content btn tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>Detalles
+                            </a>
                         </li>
                         <% } %>
                     </ul>
@@ -252,16 +296,21 @@
                                 </tr>
                                 <% for (var i=0; i<classifiedGroupedLessons["groupDone"].length; i++) { %>
                                 <tr>
-                                    <td><%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.name %></td>
+                                    <td>
+                                        <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.url %>">
+                                        <%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.name %></a>
+                                    </td>
                                     <td>Entre <%= classifiedGroupedLessons["groupDone"][i].lessons[0].nice_date_short %> y
                                         <%= classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1].nice_date_short %></td>
                                     <% if(user.role == 3) { %>
-                                    <td><a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.url %>">
+                                    <td>
+                                        <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.url %>">
                                             <%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.fullName %>
                                         </a>
                                     </td>
                                     <% } else { %>
-                                    <td><a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.url %>">
+                                    <td>
+                                        <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.url %>">
                                             <%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.fullName %>
                                         </a>
                                     </td>

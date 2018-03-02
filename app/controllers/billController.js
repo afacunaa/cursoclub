@@ -180,7 +180,7 @@ exports.update_bill_state_post = function (req, res, next) {
         description = ' clases aceptadas. Cambio en estado de clases a: ' + constants.lesson_accepted
     } else if (req.body.state === '0') {
         updateBillValues['state'] = constants.billCanceledState;
-        updateLessonValues['state'] = constants.lesson_canceled;
+        updateLessonValues['state'] = constants.lesson_rejected;
         description = ' clases canceladas. Cambio en estado de clases a: ' + constants.lesson_canceled
     } else if (req.body.state === '2') {
         updateBillValues['state'] = constants.billPaidState;

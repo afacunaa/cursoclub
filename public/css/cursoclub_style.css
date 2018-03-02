@@ -91,3 +91,8 @@ a.cc-nav-element:hover  {
 .cc-course-info-img {
     width: 50%;
 }
+.cc-fab-bills {
+    position: absolute;
+    display: inline-block;
+    right: 24px;
+}

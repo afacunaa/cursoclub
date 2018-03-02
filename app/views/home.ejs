@@ -17,8 +17,8 @@
         </ul>
     </div>
     <% } else if (user.role == 2) { %>
-        <% if (booked > 0) { %>
     <div class="container">
+        <% if (booked > 0) { %>
         <div class="chip orange">
             <% if (booked === 1) { %>
             <%= booked %> clase solicitada
@@ -131,6 +131,7 @@
         </div>
     </div>
     <%- include category_list.ejs %>
+    <%- include instructions.ejs %>
     <% } %>
 </main>
 
