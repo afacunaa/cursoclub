@@ -62,7 +62,7 @@
     max-height: 150px;
 }
 .cc-score-stars {
-    margin: 0px !important;
+    margin: 0 !important;
 }
 .cc-slider-text {
     position: absolute;
@@ -71,6 +71,23 @@
     width: 100%;
     letter-spacing: -1px;
     padding: 10px;
+}
+@media only screen and (max-width: 600px) {
+    .cc-slider-text {
+        top: 0;
+    }
+    .cc-slider-text h4 {
+        font-size: 1.8rem;
+    }
+}
+.cc-slider-text-blog {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    letter-spacing: -1px;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
 }
 .cc-nav {
     background-color: #00053f;
@@ -91,8 +108,10 @@ a.cc-nav-element:hover  {
 .cc-course-info-img {
     width: 50%;
 }
-.cc-fab-bills {
-    position: absolute;
-    display: inline-block;
-    right: 24px;
+.cc-home-img {
+    width: 50%;
+}
+.side-nav {
+    max-height: 100%;
+    overflow-y: auto;
 }

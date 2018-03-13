@@ -51,7 +51,6 @@
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
                             <li><a href="/curso/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
                             <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
-                            <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
                             <li class="divider"></li>
                             <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
                             <% } else if (user.role == 2) { %>
@@ -65,6 +64,7 @@
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
                             <% } %>
                             <li class="divider"></li>
+                            <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
                             <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
                         </ul>
                     </li>
@@ -73,47 +73,67 @@
                     <% } %>
                 </ul>
                 <% if (user){ %>
-                <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="black-text material-icons">menu</i></a>
-                <ul id="nav-mobile" class="side-nav">
-                    <li>
-                        <div class="userView">
-                            <div class="background">
-                                <img src="/img/background.png">
-                            </div>
-                            <img class="circle" src="<%= user.picture %>">
-                            <h5 class="black-text"><%= user.owner %></h5>
-                            <h6 class="black-text"><%= user.email %></h6>
-                        </div>
-                    </li>
-                    <% if (user.role == 1) { %>
-                    <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
-                    <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
-                    <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un profesor</a></li>
-                    <li><a href="/cursos"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
-                    <li><a href="/curso/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
-                    <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
-                    <% } else if (user.role == 2) { %>
-                    <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
-                    <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
-                    <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
-                    <li><a href="/cursos"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
-                    <% } else if (user.role == 3) { %>
-                    <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
-                    <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
-                    <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
-                    <% } %>
-                    <li class="divider"></li>
-                    <li><a href="/contactus"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
-                    <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
-                    <% } else { %>
-                    <a class="hide-on-large-only btn-flat cc-mobile-btn-login white-text" href="/login">Ingresar</a>
-                    <% } %>
-                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+                <% } else { %>
+                <a class="hide-on-large-only btn-flat cc-mobile-btn-login white-text" href="/login">Ingresar</a>
+                <% } %>
             </div>
         </nav>
     </div>
+
+    <!--Sidenav structure-->
+    <% if (user) { %>
+    <ul id="nav-mobile" class="side-nav">
+        <li>
+            <div class="userView">
+                <div class="background">
+                    <img src="/img/background.png">
+                </div>
+                <% if (user.picture) { %>
+                <img class="circle" src="<%= user.picture %>">
+                <% } else { %>
+                <img class="circle" src="/img/silueta.png">
+                <% } %>
+                <h5 class="black-text"><%= user.owner %></h5>
+                <h6 class="black-text"><%= user.email %></h6>
+            </div>
+        </li>
+        <li>
+            <form method="get" action="/cursos">
+                <div class="card input-field">
+                    <input id="search" name="name" type="search" placeholder="Buscar cursos">
+                    <i class="material-icons">search</i>
+                </div>
+            </form>
+        </li>
+        <li><a href="/home"><i class="material-icons">home</i>Inicio</a></li>
+        <% if (user.role == 1) { %>
+        <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
+        <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de profesores</a></li>
+        <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un profesor</a></li>
+        <li><a href="/cursos"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
+        <li><a href="/curso/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
+        <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de estudiantes</a></li>
+        <li class="divider"></li>
+        <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
+        <% } else if (user.role == 2) { %>
+        <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+        <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
+        <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+        <li><a href="/cursos"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
+        <% } else if (user.role == 3) { %>
+        <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
+        <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
+        <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
+        <% } %>
+        <li class="divider"></li>
+        <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
+        <li><a href="/contactenos"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
+        <li><a href="/nosotros"><i class="material-icons">group</i>Nosotros</a></li>
+        <li class="divider"></li>
+        <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
+    </ul>
+    <% } %>
 
     <!-- Modal Structure for loggin in -->
     <div id="modal1" class="modal">

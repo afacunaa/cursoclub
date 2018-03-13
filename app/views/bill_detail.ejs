@@ -47,10 +47,10 @@
                             <% if (user.role === 2 && bill.state === 'Pendiente por aprobación') { %>
                             <form action="/bill/<%= bill.id %>/stateUpdate" method="post">
                                 <div class="col s4">
-                                    <button name="state" class="btn green" type="submit" value="1"><i class="material-icons left">check</i>Aceptar</button>
+                                    <button name="state" class="btn green darken-4" type="submit" value="1"><i class="material-icons left">check</i>Aceptar</button>
                                 </div>
                                 <div class="col s4">
-                                    <button name="state" class="btn red" type="submit" value="0"><i class="material-icons left">clear</i>Rechazar</button>
+                                    <button name="state" class="btn red darken-4" type="submit" value="0"><i class="material-icons left">clear</i>Rechazar</button>
                                 </div>
                             </form>
                             <% } %>

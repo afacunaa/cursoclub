@@ -9,7 +9,7 @@
                         Clases aceptadas <i class="material-icons right">expand_more</i>
                         <span class="badge"><%= classifiedGroupedLessons["groupAccepted"].length %></span>
                     </h4>
-                    <% if(user.role == 3) { %>
+                    <% if(user.role === 3) { %>
                     <h6>El instructor aceptó dictar estas clases. Debes <span class="blue-text">pagarlas</span> para poder recibirlas.</h6>
                     <% } else { %>
                     <h6>Clases que aceptaste. Debes <span class="blue-text">esperar</span> a que sean pagadas por el usuario.</h6>
@@ -29,7 +29,7 @@
                                 <br>
                                 $ <%= classifiedGroupedLessons["groupAccepted"][i].bill.total %>
                             </p>
-                            <% if(user.role == 3) { %>
+                            <% if(user.role === 3) { %>
                             <p>
                                 Instructor:
                                 <a href="<%= classifiedGroupedLessons["groupAccepted"][i].lessons[0].teacher.url %>">
@@ -52,12 +52,15 @@
                             <% if (user.role === 3) { %>
                             <form action="/bill/<%= classifiedGroupedLessons["groupAccepted"][i].bill.id %>/stateUpdate" method="post">
                                 <div>
-                                    <button name="state" class="btn green tooltipped" type="submit" value="2" data-position="right" data-delay="20" data-tooltip="Pagar todas las clases"><i class="material-icons left">payment</i></button>
+                                    <button name="state" class="btn green tooltipped" type="submit" value="2" data-position="right" data-delay="20" data-tooltip="Pagar todas las clases"><i class="material-icons left">payment</i>Pagar</button>
                                 </div>
                             </form>
                             <% } %>
-                            <a href="<%= classifiedGroupedLessons["groupAccepted"][i].bill.url %>" class="secondary-content btn tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                            <a href="<%= classifiedGroupedLessons["groupAccepted"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-small-only" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
                                 <i class="material-icons left">class</i>Detalles
+                            </a>
+                            <a href="<%= classifiedGroupedLessons["groupAccepted"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-med-and-up" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>
                             </a>
                         </li>
                         <% } %>
@@ -70,7 +73,7 @@
                         Clases pagadas <i class="material-icons right">expand_more</i>
                         <span class="badge"><%= classifiedGroupedLessons["groupPaid"].length %></span>
                     </h4>
-                    <% if(user.role == 3) { %>
+                    <% if(user.role === 3) { %>
                     <h6>
                         No olvides <span class="green-text">cumplir con el horario</span>.
                         Ten en cuenta los requerimientos que pueda tener la clase.
@@ -96,7 +99,7 @@
                                 <br>
                                 $ <%= classifiedGroupedLessons["groupPaid"][i].bill.total %>
                             </p>
-                            <% if(user.role == 3) { %>
+                            <% if(user.role === 3) { %>
                             <p>
                                 Instructor:
                                 <a href="<%= classifiedGroupedLessons["groupPaid"][i].lessons[0].teacher.url %>">
@@ -116,8 +119,12 @@
                                 <strong><%= classifiedGroupedLessons["groupPaid"][i]
                                             .lessons[classifiedGroupedLessons["groupPaid"][i].lessons.length-1].nice_date %></strong>
                             </p>
-                            <a href="<%= classifiedGroupedLessons["groupPaid"][i].bill.url %>" class="secondary-content">
-                                <i class="material-icons medium">class</i></a>
+                            <a href="<%= classifiedGroupedLessons["groupPaid"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-small-only" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons medium">class</i>Detalles
+                            </a>
+                            <a href="<%= classifiedGroupedLessons["groupPaid"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-med-and-up" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>
+                            </a>
                         </li>
                         <% } %>
                     </ul>
@@ -129,7 +136,7 @@
                         Clases solicitadas <i class="material-icons right">expand_more</i>
                         <span class="badge"><%= classifiedGroupedLessons["groupPending"].length %></span>
                     </h4>
-                    <% if(user.role == 3) { %>
+                    <% if(user.role === 3) { %>
                     <h6>Debes <span class="orange-text">esperar</span> la aprovación del instructor antes de pagarlas.</h6>
                     <% } else { %>
                     <h6>Debes dar tu <span class="orange-text">visto bueno</span> para que el usuario pueda proceder a pagarlas.</h6>
@@ -149,7 +156,7 @@
                                 <br>
                                 $ <%= classifiedGroupedLessons["groupPending"][i].bill.total %>
                             </p>
-                            <% if(user.role == 3) { %>
+                            <% if(user.role === 3) { %>
                             <p>
                                 Instructor:
                                 <a href="<%= classifiedGroupedLessons["groupPending"][i].lessons[0].teacher.url %>">
@@ -172,34 +179,17 @@
                             <% if (user.role === 2) { %>
                             <form action="/bill/<%= classifiedGroupedLessons["groupPending"][i].bill.id %>/stateUpdate" method="post">
                                 <div>
-                                    <button name="state" class="btn green tooltipped" type="submit" value="1" data-position="right" data-delay="20" data-tooltip="Aceptar todas las clases"><i class="material-icons left">check</i></button>
-                                    <button name="state" class="btn red tooltipped" type="submit" value="0" data-position="left" data-delay="20" data-tooltip="Rechazar todas las clases"><i class="material-icons left">clear</i></button>
+                                    <button name="state" class="btn green darken-4 tooltipped" type="submit" value="1" data-position="right" data-delay="20" data-tooltip="Aceptar todas las clases"><i class="material-icons left">check</i>Aceptar</button>
+                                    <button name="state" class="btn red darken-4 tooltipped" type="submit" value="0" data-position="left" data-delay="20" data-tooltip="Rechazar todas las clases"><i class="material-icons left">clear</i>Rechazar</button>
                                 </div>
                             </form>
                             <% } %>
-                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="secondary-content btn tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-small-only" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
                                 <i class="material-icons left">class</i>Detalles
                             </a>
-                            <div class="fixed-action-btn horizontal cc-fab-bills">
-                                <a class="btn-floating btn-large orange">
-                                    <i class="material-icons">menu</i>
-                                </a>
-                                <form action="/bill/<%= classifiedGroupedLessons["groupPending"][i].bill.id %>/stateUpdate" method="post">
-                                    <ul>
-                                        <li>
-                                            <button name="state" class="btn-floating green tooltipped" type="submit" value="1" data-position="right" data-delay="20" data-tooltip="Aceptar todas las clases"><i class="material-icons left">check</i></button>
-                                        </li>
-                                        <li>
-                                            <button name="state" class="btn-floating red tooltipped" type="submit" value="0" data-position="left" data-delay="20" data-tooltip="Rechazar todas las clases"><i class="material-icons left">clear</i></button>
-                                        </li>
-                                        <li>
-                                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="btn-floating tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
-                                                <i class="material-icons">class</i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
+                            <a href="<%= classifiedGroupedLessons["groupPending"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-med-and-up" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>
+                            </a>
                         </li>
                         <% } %>
                     </ul>
@@ -211,7 +201,7 @@
                         Clases rechazadas <i class="material-icons right">expand_more</i>
                         <span class="badge"><%= classifiedGroupedLessons["groupCanceled"].length %></span>
                     </h4>
-                    <% if(user.role == 3) { %>
+                    <% if(user.role === 3) { %>
                     <h6>El instructor las rechazó por falta de disponibilidad en alguno de los horarios. Deben ser <span class="red-text">reprogramadas</span>.</h6>
                     <% } else { %>
                     <h6>El usuario debe <span class="red-text">reprogramar</span> estas clases.</h6>
@@ -231,7 +221,7 @@
                                 <br>
                                 $ <%= classifiedGroupedLessons["groupCanceled"][i].bill.total %>
                             </p>
-                            <% if(user.role == 3) { %>
+                            <% if(user.role === 3) { %>
                             <p>
                                 Instructor:
                                 <a href="<%= classifiedGroupedLessons["groupCanceled"][i].lessons[0].teacher.url %>">
@@ -254,12 +244,15 @@
                             <% if (user.role === 3) { %>
                             <form action="/bill/<%= classifiedGroupedLessons["groupCanceled"][i].bill.id %>/update" method="get">
                                 <div>
-                                    <button class="btn blue tooltipped" type="submit" data-position="right" data-delay="20" data-tooltip="Reprogramar las clases"><i class="material-icons left">edit</i></button>
+                                    <button class="btn blue tooltipped" type="submit" data-position="right" data-delay="20" data-tooltip="Reprogramar las clases"><i class="material-icons left">edit</i>Reprogramar</button>
                                 </div>
                             </form>
                             <% } %>
-                            <a href="<%= classifiedGroupedLessons["groupCanceled"][i].bill.url %>" class="secondary-content btn tooltipped" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                            <a href="<%= classifiedGroupedLessons["groupCanceled"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-small-only" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
                                 <i class="material-icons left">class</i>Detalles
+                            </a>
+                            <a href="<%= classifiedGroupedLessons["groupCanceled"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-med-and-up" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
+                                <i class="material-icons left">class</i>
                             </a>
                         </li>
                         <% } %>
@@ -269,10 +262,14 @@
             <li>
                 <div class="collapsible-header">
                     <h4 class="header blue-grey-text">
+                        <% if(user.role === 3) { %>
                         Clases recibidas <i class="material-icons right">expand_more</i>
+                        <% } else { %>
+                        Clases dictadas <i class="material-icons right">expand_more</i>
+                        <% } %>
                         <span class="badge"><%= classifiedGroupedLessons["groupDone"].length %></span>
                     </h4>
-                    <% if(user.role == 3) { %>
+                    <% if(user.role === 3) { %>
                     <h6>El <strong>historial</strong> de todas las clases que has tomado con nosotros.</h6>
                     <% } else { %>
                     <h6>El <strong>historial</strong> de todas las clases que has dictado con nosotros.</h6>
@@ -288,7 +285,7 @@
                                 <tr>
                                     <th>Nombre del curso</th>
                                     <th>Fecha de la clase</th>
-                                    <% if(user.role == 3) { %>
+                                    <% if(user.role === 3) { %>
                                     <th>Instructor</th>
                                     <% } else { %>
                                     <th>Usuario</th>
@@ -302,7 +299,7 @@
                                     </td>
                                     <td>Entre <%= classifiedGroupedLessons["groupDone"][i].lessons[0].nice_date_short %> y
                                         <%= classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1].nice_date_short %></td>
-                                    <% if(user.role == 3) { %>
+                                    <% if(user.role === 3) { %>
                                     <td>
                                         <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.url %>">
                                             <%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.fullName %>
@@ -325,7 +322,7 @@
         </ul>
     </div>
 
-    <% if(user.role == 1) { %>
+    <% if(user.role === 1) { %>
     <!-- Renders if it is us -->
         <% if (lessons_list.length > 0) { %>
     <div class="container">
