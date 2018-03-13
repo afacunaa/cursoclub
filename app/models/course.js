@@ -33,6 +33,10 @@ courseSchema.virtual('url').get(function () {
     return '/curso/' + this.category +'/' + this.idName;
 });
 
+courseSchema.virtual('short_url').get(function () {
+    return '/curso/' + this.idName;
+});
+
 courseSchema.virtual('nice_created').get(function () {
     return moment(this.createdAt).locale('es').format('dddd, D MMMM, YYYY, h:mm:ss A');
 });

@@ -51,6 +51,7 @@
                     </div>
                 </a>
             </li>
+            <% if (lastBlogEntry) { %>
             <li>
                 <a href="<%= lastBlogEntry.url %>">
                     <img src="<%= lastBlogEntry.image %>" class="responsive-img">
@@ -66,6 +67,7 @@
                     </div>
                 </a>
             </li>
+            <% } %>
         </ul>
     </div>
     <br>

@@ -74,7 +74,7 @@
                 <% } else if (user.role === 2) { %>
                 <h3 class="blue-text">Tu perfil aparece en esta sección</h3>
                 <% } else { %>
-                <a class="btn" href="<%= course.url %>/update">Modificar</a>
+                <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
                 <% } } catch(e){} } else { %>
                 <p>Inicia sesión para ver detalles de los profesores</p>
                 <% } %>
