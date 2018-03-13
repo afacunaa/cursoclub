@@ -4,7 +4,6 @@ let BlogEntry = require('../models/blogEntry');
 let Teacher = require('../models/teacher');
 let Student = require('../models/student');
 let Course = require('../models/course');
-let UsageTrack = require('../models/usageTrack');
 let constants = require('../../config/constants');
 let emailer = require('../../lib/email');
 let async = require('async');
@@ -35,16 +34,6 @@ exports.home = function(req, res) {
                 },
                 rejected_lessons: function (callback) {
                     Lesson.count({ 'state': constants.lesson_rejected}, callback);
-                },
-                record_usageTrack: function (callback) {
-                    let usageTrack = UsageTrack(
-                        {
-                            ipAddress: req.ip,
-                            user: req.user.username,
-                            detail: 'Ingreso a home'
-                        }
-                    );
-                    usageTrack.save(callback);
                 }
             }, function (err, results) {
                 if (err) { return res.send(err) }

@@ -11,6 +11,7 @@ exports.usageTrack_list = function (req, res, next) {
     if (req.isAuthenticated()){
         if (req.user.role === constants.admin_role) {
             UsageTrack.find({})
+                .sort('-createdAt')
                 .exec(function (err, list_usageTrack) {
                     if (err) {
                         return next(err)

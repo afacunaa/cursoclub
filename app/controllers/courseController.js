@@ -31,38 +31,35 @@ exports.course_list = function (req, res, next) {
                     {
                         ipAddress: req.ip,
                         user: user,
-                        detail: 'Realizó una búsqueda de: ' + req.query.name
+                        detail: 'Búsqueda: ' + req.query.name
                     }
                 );
                 usageTrack.save();
-
                 res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query:req.query.name, user: req.user });
             });
-    } else if (req.query.category !== undefined){
+    } else if (req.query.category !== undefined) {
         Course.find({ category: req.query.category })
             .populate('teachers')
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
+                let user;
+                if (req.user) {
+                    user = req.user.username;
+                } else {
+                    user = 'Anónimo';
+                }
+                let usageTrack = UsageTrack(
+                    {
+                        ipAddress: req.ip,
+                        user: user,
+                        detail: 'Por categoría: ' + req.query.category
+                    }
+                );
+                usageTrack.save();
                 res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query:req.query.category, user: req.user });
             });
     } else {
         if (req.user && req.user.role === 2) {
-            /*let user_teacher;
-            async.series({
-                    first: function (callback) {
-                        Teacher.findById( user.teacher, callback ).exec(function (err, teacher) {
-                            if (err) {return err}
-                            user_teacher = teacher;
-                        });
-                    },
-                    second: function (callback) {
-                        Course.find({ 'teachers': user_teacher }).exec(callback);
-                    }
-                }, function (err, results) {
-                    if (err) { return next(err) }
-                    res.render('delete_teacher', { title: 'Eliminar profesor', teacher: results.first, teacher_courses: results.second, user: req.user })
-                }
-            );*/
             Course.find({ 'teachers': req.user.teacher })
                 .exec(function (err, list_courses) {
                     if (err) { return next(err) }
