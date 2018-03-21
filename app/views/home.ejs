@@ -4,7 +4,7 @@
     <br>
     <% if (user.role == 1) { %>
     <div class="container">
-        <h3>Portal de administración</h3>
+        <h4>Portal de administración</h4>
         <ul class="collection">
             <li class="collection-item"><h5><a href="/transactions"><i class="material-icons">history</i> Lista de operaciones</a></h5></li>
             <li class="collection-item"><h5><a href="/usageTrack"><i class="material-icons">flag</i> Registro de utilización</a></h5></li>
@@ -36,21 +36,52 @@
             <% } %>
         </div>
         <% } %>
-        <h3>Portal de instructor</h3>
+        <h4 class="cc-corporate-blue-text">Portal de instructor</h4>
         <div class="row">
-            <div class="col l6 m6 s12">
+            <div class="col l5 m5 s12">
                 <% if (user.picture) { %>
-                <img class="responsive-img" src="<%= user.picture %>">
+                <img class="responsive-img hide-on-small-only" src="<%= user.picture %>">
+                <img class="responsive-img hide-on-med-and-up cc-home-img" src="<%= user.picture %>">
                 <% } else { %>
                 <img class="responsive-img" src="/img/silueta.png">
                 <p>Actualiza tu foto para que los usuarios puedan saber algo más sobre ti</p>
                 <% } %>
+                <% if (person.description) { %>
+                <blockquote class="cc-keep-line-breaks"><%= person.description %></blockquote>
+                <% } else { %>
+                <div class="card yellow lighten-2">
+                    <div class="card-content">
+                        <p class="flow-text"><i class="material-icons blue-text">new_releases</i> No olvides mantener actualizado tu <a href="/teacher/<%= user.teacher %>/scheduleUpdate">horario de disponibilidad</a></p>
+                    </div>
+                </div>
+                <% } %>
             </div>
-            <div class="col l6 m6 s12">
+            <div class="col l7 m7 s12">
                 <h4><%= person.fullName %></h4>
-                <h5><i class="small material-icons">email</i> <%= user.email %></h5>
-                <h5><i class="small material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></h5>
-                <h5><i class="small material-icons">call</i> <%= person.phone %></h5>
+                <p class="flow-text"><i class="material-icons">email</i> <%= user.email %></p>
+                <p class="flow-text"><i class="material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></p>
+                <p class="flow-text"><i class="material-icons">call</i> <%= person.phone %></p>
+                <h6 class="cc-score-stars amber-text">
+                    <% for (var i=0; i<Math.floor(person.score); i++) { %>
+                    <i class="small material-icons">grade</i>
+                    <% } %>
+                    <%= person.score %>
+                </h6>
+                <% if(person.groupLesson.does) { %>
+                <p class="flow-text"><i class="small material-icons">group</i> Da clases grupales a máximo <%= person.groupLesson.maxStudents %> personas</p>
+                <% } else { %>
+                <p class="flow-text"><i class="small material-icons">person</i> No da clases grupales%></p>
+                <% } %>
+                <p class="flow-text"><i class="small material-icons">location_on</i> Clases en: </p>
+                <div>
+                    <ul>
+                        <% for (var i=0; i<person.workingArea.length; i++) {%>
+                        <li>
+                            <h6><i class="tiny material-icons">location_searching</i> <%= person.workingArea[i] %></h6>
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
                 <br>
                 <% if (courses.length > 0) { %>
                 <div class="divider"></div>
@@ -70,7 +101,11 @@
                 <h5>Para añadir nuevos cursos debes comunicarte con nosotros</h5>
                 <% } %>
                 <br>
-                <h5>No olvides mantener actualizado tu <a href="/teacher/<%= user.teacher %>/scheduleUpdate">horario de disponibilidad</a></h5>
+                <div class="card light-green lighten-2">
+                    <div class="card-content">
+                        <p class="flow-text"><i class="material-icons blue-text">new_releases</i> No olvides mantener actualizado tu <a href="/teacher/<%= user.teacher %>/scheduleUpdate">horario de disponibilidad</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -103,7 +138,7 @@
             <% } %>
         </div>
         <% } %>
-        <h3>Portal de usuario</h3>
+        <h4 class="cc-corporate-blue-text">Portal de usuario</h4>
 
         <div class="row">
             <div class="col l6 m6 s12">

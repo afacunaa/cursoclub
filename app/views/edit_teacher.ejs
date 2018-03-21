@@ -2,65 +2,68 @@
 
 <main>
     <div class="container">
-        <h2>Editar perfil</h2>
+        <h4 class="cc-corporate-blue-text">Editar perfil</h4>
         <div class="row">
-            <div class="center-align">
+            <div class="col l4 m4 s4" align="center">
                 <% if (user.picture) { %>
                 <img class="responsive-img" src="<%= user.picture %>">
                 <% } else { %>
                 <img class="responsive-img" src="/img/silueta.png">
                 <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
                 <% } %>
-                <form action="/user/<%= user.id %>/uploadPicture" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="userId" value="<%= user.id %>">
-                    <input type="file" name="picture">
-                    <button class="btn" type="submit">Subir imagen</button>
-                </form>
+                <div>
+                    <a href="#modal_upload_picture" class="btn">Cambiar imagen</a>
+                </div>
             </div>
+            <br>
             <form method="post" action="" id="edit">
-                <div class="row">
-                    <% if (user.role == 1) { %>
-                    <div class="input-field col l6 m6 s12">
-                        <input type="text" name="firstname" id="firstname" value="<%= teacher.firstName %>" required />
-                        <label for="firstname">Nombre</label>
-                    </div>
-                    <div class="input-field col l6 m6 s12">
-                        <input type="text" name="lastname" id="lastname" value="<%= teacher.lastName %>" required />
-                        <label for="lastname">Apellido</label>
-                    </div>
-                    <% } else { %>
-                    <div class="input-field col l6 m6 s12">
-                        <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
-                        <input type="text" name="firstname" id="firstname" value="<%= teacher.firstName %>" readonly required />
-                        <label for="firstname">Nombre</label>
-                    </div>
-                    <div class="input-field col l6 m6 s12">
-                        <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
-                        <input type="text" name="lastname" id="lastname" value="<%= teacher.lastName %>" readonly required />
-                        <label for="lastname">Apellido</label>
-                    </div>
-                    <% } %>
+                <div class="col l8 m8 s12">
+                    <a href="/user/update"><h5><i class="material-icons">settings</i> Cambiar información de acceso a la cuenta</h5></a>
                 </div>
-                <div class="row">
-                    <div class="input-field col l6 m6 s12">
+                <div class="col l8 m8 s12">
+                    <div class="row">
                         <% if (user.role == 1) { %>
-                        <input type="text" name="document" id="document" value="<%= teacher.document %>" required/>
-                        <% } else {%>
-                        <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
-                        <input type="text" name="document" id="document" value="<%= teacher.document %>" required readonly/>
+                        <div class="input-field col l6 m6 s12">
+                            <input type="text" name="firstname" id="firstname" value="<%= teacher.firstName %>" required />
+                            <label for="firstname">Nombre</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input type="text" name="lastname" id="lastname" value="<%= teacher.lastName %>" required />
+                            <label for="lastname">Apellido</label>
+                        </div>
+                        <% } else { %>
+                        <div class="input-field col l6 m6 s12">
+                            <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
+                            <input type="text" name="firstname" id="firstname" value="<%= teacher.firstName %>" readonly required />
+                            <label for="firstname">Nombre</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
+                            <input type="text" name="lastname" id="lastname" value="<%= teacher.lastName %>" readonly required />
+                            <label for="lastname">Apellido</label>
+                        </div>
                         <% } %>
-                        <label for="document">Cédula de ciudadanía</label>
-                    </div>
-                    <div class="input-field col l6 m6 s12">
-                        <input class="datepicker" type="date" name="birthday" id="birthday" placeholder="Fecha de nacimiento" value="<%= birthdayString %>" required />
+                        <div class="input-field col l6 m6 s12">
+                            <% if (user.role == 1) { %>
+                            <input type="text" name="document" id="document" value="<%= teacher.document %>" required/>
+                            <% } else {%>
+                            <h6 class="red-text">Solo Curso Club puede modificar este campo</h6>
+                            <input type="text" name="document" id="document" value="<%= teacher.document %>" required readonly/>
+                            <% } %>
+                            <label for="document">Cédula de ciudadanía</label>
+                        </div>
+                        <div class="input-field col l6 m6 s12">
+                            <input class="datepicker" type="date" name="birthday" id="birthday" placeholder="Fecha de nacimiento" value="<%= birthdayString %>" required />
+                            <label for="birthday">Fecha de nacimiento</label>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m6 l6">
+                    <div class="input-field col l6 m6 s12">
                         <input type="text" name="address" id="address" value="<%= teacher.address %>" required />
                         <label for="address">Dirección</label>
                     </div>
-                    <div class="input-field col s12 m6 l6">
+                    <div class="input-field col l6 m6 s12">
                         <input type="text" name="workingArea" id="workingArea" value="<%= teacher.workingArea %>" required>
                         <label for="workingArea">Área de trabajo</label>
                     </div>
@@ -69,9 +72,6 @@
                     <div class="input-field col l6 m6 s12">
                         <input type="text" name="phone" id="phone" value="<%= teacher.phone %>" required />
                         <label for="phone">Teléfono</label>
-                    </div>
-                    <div class="input-field col l6 m6 s12">
-                        <a href="/user/update">Cambiar información de usuario de la cuenta</a>
                     </div>
                 </div>
                 <div class="row">
@@ -141,6 +141,43 @@
             </form>
         </div>
     </div>
+    <div class="modal" id="modal_upload_picture">
+        <form method="post" action="/user/<%= user.id %>/uploadPicture" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col l6 m6 s6">
+                        <h6>Imagen actual</h6>
+                        <% if (user.picture) { %>
+                        <img class="responsive-img cc-edit-user-picture-modal" src="<%= user.picture %>">
+                        <% } else { %>
+                        <img class="responsive-img" src="/img/silueta.png">
+                        <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                        <% } %>
+                    </div>
+                    <div class="col l6 m6 s6">
+                        <h6>Nueva imagen</h6>
+                        <output id="new-image"></output>
+                        <div id="new-image-info"></div>
+                    </div>
+                </div>
+                <input type="hidden" name="userId" value="<%= user.id %>">
+                <div class="input-field file-field">
+                    <div class="btn indigo">
+                        <span>Elegir archivo</span>
+                        <input type="file" name="picture" id="picture-input">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path" id="file-name" type="text" placeholder="Imágen con tamaño no mayor a 6 mb">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submit-upload" class="btn cc-corporate-blue" type="submit" disabled>Subir imagen</button>
+                <a href="#!" class="modal-action modal-close btn-flat">Cancelar</a>
+            </div>
+        </form>
+    </div>
 </main>
+<script type="text/javascript" src="/js/uploadFileManager.js"></script>
 
 <%- include footer.ejs %>

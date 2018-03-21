@@ -9,30 +9,34 @@
         <br>
         <div class="divider"></div>
         <% } %>
-        <% for (var i=0; i<blogEntry_list.length; i++) { %>
-        <% if (i%2==0) { %>
-        <div class="row">
-        <% } %>
-            <div class="col l6 m6 s12">
-                <div class="card">
-                    <div class="card-image">
-                        <a href="<%= blogEntry_list[i].url %>"><img src="<%= blogEntry_list[i].image %>">
-                        <span class="card-title"><%= blogEntry_list[i].title %></span></a>
-                        <% if (user && user.role === 1) { %>
-                        <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= blogEntry_list[i].url %>/update"><i class="material-icons">mode_edit</i></a>
-                        <% } %>
-                    </div>
-                    <div class="card-content">
-                        <p><%= blogEntry_list[i].body.substr(0, 220) %> ...</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="<%= blogEntry_list[i].url %>">Leer más</a>
+        <% if (blogEntry_list.length > 0 ) { %>
+            <% for (var i=0; i<blogEntry_list.length; i++) { %>
+                <% if (i%2==0) { %>
+            <div class="row">
+                <% } %>
+                <div class="col l6 m6 s12">
+                    <div class="card">
+                        <div class="card-image">
+                            <a href="<%= blogEntry_list[i].url %>"><img src="<%= blogEntry_list[i].image %>">
+                            <span class="card-title"><%= blogEntry_list[i].title %></span></a>
+                            <% if (user && user.role === 1) { %>
+                            <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= blogEntry_list[i].url %>/update"><i class="material-icons">mode_edit</i></a>
+                            <% } %>
+                        </div>
+                        <div class="card-content">
+                            <p><%= blogEntry_list[i].body.substr(0, 220) %> ...</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="<%= blogEntry_list[i].url %>">Leer más</a>
+                        </div>
                     </div>
                 </div>
+                <% if (i%2==0) { %>
             </div>
-        <% if (i%2==0) { %>
-        </div>
-        <% } %>
+                <% } %>
+            <% } %>
+        <% } else { %>
+        <p class="flow-text">Aún no hay ningún artículo, pero estamos trabajando para tenerlo pronto.</p>
         <% } %>
     </div>
 </main>

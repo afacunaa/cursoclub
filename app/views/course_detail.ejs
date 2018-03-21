@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="center-align">
-                <h1><%= course.name %></h1>
+                <h4 class="cc-corporate-blue-text"><%= course.name %></h4>
                 <img class="responsive-img cc-course-info-img" src="<%= course.picture %>">
-                <h5><%= course.description %></h5>
-                <% if (course.requirement != '') { %>
-                <h5>El curso requiere: <%= course.requirement %></h5>
+                <p class="flow-text"><%= course.description %></p>
+                <% if (course.requirement) { %>
+                <h6>El curso requiere: <%= course.requirement %></h6>
                 <%} else { %>
                 <h6>Este curso no tiene requisitos</h6>
                 <% } %>

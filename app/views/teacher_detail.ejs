@@ -3,9 +3,9 @@
 <main>
     <br>
     <div class="container">
-        <h4 class="blue-text">Detalle del instructor</h4>
+        <h4 class="cc-corporate-blue-text">Detalle del instructor</h4>
         <div class="row">
-            <div class="col l6 m6 s12">
+            <div class="col l4 m4 s12">
                 <% if(teacher_user.picture) { %>
                 <img class="responsive-img" src="<%= teacher_user.picture %>">
                 <% } else { %>
@@ -13,7 +13,7 @@
                 <p><%= teacher.firstName %> no ha subido una imagen</p>
                 <% } %>
             </div>
-            <div class="col l6 m6 s12">
+            <div class="col l8 m8 s12">
                 <h4><%= teacher.fullName %></h4>
                 <h6 class="cc-score-stars amber-text">
                     <% for (var i=0; i<Math.floor(teacher.score); i++) { %>

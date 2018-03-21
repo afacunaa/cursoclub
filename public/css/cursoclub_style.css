@@ -115,3 +115,19 @@ a.cc-nav-element:hover  {
     max-height: 100%;
     overflow-y: auto;
 }
+.cc-corporate-green-text {
+    color: #46C01F;
+}
+.cc-corporate-blue-text {
+    color: #00053f;
+}
+.cc-corporate-blue {
+    background-color: #00053f;
+}
+.cc-corporate-blue:hover {
+    background-color: #000577;
+}
+.cc-edit-user-picture-modal {
+    max-height: 250px;
+    max-width: 300px;
+}

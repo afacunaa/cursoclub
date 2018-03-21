@@ -72,30 +72,27 @@
                     <li><a href="#modal1" class="cc-nav-element"><strong>Ingresar</strong></a></li>
                     <% } %>
                 </ul>
-                <% if (user){ %>
                 <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
-                <% } else { %>
-                <a class="hide-on-large-only btn-flat cc-mobile-btn-login white-text" href="/login">Ingresar</a>
-                <% } %>
             </div>
         </nav>
     </div>
 
     <!--Sidenav structure-->
-    <% if (user) { %>
     <ul id="nav-mobile" class="side-nav">
         <li>
             <div class="userView">
                 <div class="background">
                     <img src="/img/background.png">
                 </div>
-                <% if (user.picture) { %>
+                <% if (user) { %>
+                    <% if (user.picture) { %>
                 <img class="circle" src="<%= user.picture %>">
-                <% } else { %>
+                    <% } else { %>
                 <img class="circle" src="/img/silueta.png">
-                <% } %>
+                    <% } %>
                 <h5 class="black-text"><%= user.owner %></h5>
                 <h6 class="black-text"><%= user.email %></h6>
+                <% } %>
             </div>
         </li>
         <li>
@@ -107,7 +104,8 @@
             </form>
         </li>
         <li><a href="/home"><i class="material-icons">home</i>Inicio</a></li>
-        <% if (user.role == 1) { %>
+        <% if (user) { %>
+            <% if (user.role == 1) { %>
         <li><a href="/transactions"><i class="material-icons">textsms</i>Lista de operaciones</a></li>
         <li><a href="/teachers"><i class="material-icons">recent_actors</i>Lista de instructores</a></li>
         <li><a href="/teacher/create"><i class="material-icons">person_pin</i>Añadir a un instructor</a></li>
@@ -116,29 +114,33 @@
         <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de usuarios</a></li>
         <li class="divider"></li>
         <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
-        <% } else if (user.role == 2) { %>
+            <% } else if (user.role == 2) { %>
         <li><a href="/teacher/<%= user.teacher %>/update"><i class="material-icons">settings</i>Editar perfil</a></li>
         <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
         <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
         <li><a href="/cursos"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
-        <% } else if (user.role == 3) { %>
+            <% } else if (user.role == 3) { %>
         <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
         <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
         <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
+            <% } %>
         <% } %>
         <li class="divider"></li>
         <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
         <li><a href="/contactenos"><i class="material-icons">perm_phone_msg</i> Contáctanos</a></li>
         <li><a href="/nosotros"><i class="material-icons">group</i>Nosotros</a></li>
         <li class="divider"></li>
+        <% if (user) { %>
         <li><a href="/logout"><i class="material-icons">input</i>Cerrar sesión</a></li>
+        <% } else { %>
+        <li><a href="/login"><i class="material-icons">input</i>Ingresar</a></li>
+        <% } %>
     </ul>
-    <% } %>
 
     <!-- Modal Structure for loggin in -->
     <div id="modal1" class="modal">
         <div class="modal-content">
-            <h4 class="blue-text">Iniciar sesión</h4>
+            <h4 class="cc-corporate-green-text">Iniciar sesión</h4>
             <div class="row">
                 <div class="col l6">
                     <form action="/login" method="post">

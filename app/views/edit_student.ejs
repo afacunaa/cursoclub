@@ -2,28 +2,23 @@
 
 <main>
     <div class="container">
-        <h2>Editar perfil</h2>
-        <% if (user.picture) { %>
-        <img class="responsive-img" src="<%= user.picture %>" style="max-width: 50%">
-        <% } else { %>
-        <img class="responsive-img" src="/img/silueta.png">
-        <p>Actualiza tu foto para que tus profesores puedan saber algo más sobre ti</p>
-        <% } %>
-        <% if ( user.picture && user.picture.indexOf('scontent.xx.fbcdn.net') > -1 ) { %>
-        <h6>La imagen es de Facebook, debes cambiarla allá para que se refleje</h6>
-        <br>
-        <% } else { %>
-        <div class="center-align">
-            <form action="/user/<%= user.id %>/uploadPicture" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="userId" value="<%= user.id %>">
-                <input type="file" name="picture">
-                <button class="btn" type="submit">Subir imagen</button>
-            </form>
-        </div>
-        <% } %>
-        <div id="signup" class="row">
-            <form method="post" action="">
-                <div class="row">
+        <h4 class="cc-corporate-blue-text">Editar perfil</h4>
+        <div class="row">
+            <div class="col l4 m4 s4" align="center">
+                <% if (user.picture) { %>
+                <img class="responsive-img" src="<%= user.picture %>">
+                <% } else { %>
+                <img class="responsive-img" src="/img/silueta.png">
+                <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                <% } %>
+                <div>
+                    <a href="#modal_upload_picture" class="btn">Cambiar imagen</a>
+                </div>
+            </div>
+            <br>
+            <div class="col l8 m8 s12">
+                <form method="post" action="" id="edit">
+                    <a href="/user/update"><h5><i class="material-icons">settings</i> Cambiar información de acceso a la cuenta</h5></a>
                     <div class="input-field col l6 m6 s12">
                         <input type="text" name="firstname" id="firstname" value="<%= student. firstName %>" required>
                         <label for="firstname">Nombre</label>
@@ -44,20 +39,52 @@
                         <input class="datepicker" type="date" name="birthday" id="birthday" value="<%= birthdayString %>" required>
                         <label for="birthday">Fecha de nacimiento</label>
                     </div>
-                </div>
-                <div class="row">
                     <div class="input-field col l6 m6 s12">
                         <input class="validate" type="email" name="email" id="email" value="<%= user.email %>" required disabled>
                         <label for="email">Correo electrónico</label>
                     </div>
-                    <div class="col l6 m6 s12">
-                        <a href="/user/update">Cambiar correo electrónico, configuración de notificaciones y/o contraseña</a>
-                    </div>
-                </div>
-                <button class="btn green" type="submit">Editar</button>
-            </form>
+                    <button class="btn green" type="submit">Guardar</button>
+                </form>
+            </div>
         </div>
     </div>
+    <div class="modal" id="modal_upload_picture">
+        <form method="post" action="/user/<%= user.id %>/uploadPicture" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col l6 m6 s6">
+                        <h6>Imagen actual</h6>
+                        <% if (user.picture) { %>
+                        <img class="responsive-img cc-edit-user-picture-modal" src="<%= user.picture %>">
+                        <% } else { %>
+                        <img class="responsive-img" src="/img/silueta.png">
+                        <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                        <% } %>
+                    </div>
+                    <div class="col l6 m6 s6">
+                        <h6>Nueva imagen</h6>
+                        <output id="new-image"></output>
+                        <div id="new-image-info"></div>
+                    </div>
+                </div>
+                <input type="hidden" name="userId" value="<%= user.id %>">
+                <div class="input-field file-field">
+                    <div class="btn indigo">
+                        <span>Elegir archivo</span>
+                        <input type="file" name="picture" id="picture-input">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path" id="file-name" type="text" placeholder="Imágen con tamaño no mayor a 6 mb">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submit-upload" class="btn cc-corporate-blue" type="submit" disabled>Subir imagen</button>
+                <a href="#!" class="modal-action modal-close btn-flat">Cancelar</a>
+            </div>
+        </form>
+    </div>
 </main>
+<script type="text/javascript" src="/js/uploadFileManager.js"></script>
 
 <%- include footer.ejs %>
