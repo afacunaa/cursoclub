@@ -57,71 +57,78 @@ exports.delete_bill_post = function (req, res, next) {
 // Update a bill GET
 exports.update_bill_get = function (req, res, next) {
     //res.send('Actualizar factura ' + req.params.id);
-    let week = [];
-    let notAvailable = [];
-    let mustChange = [];
-    let hoursADay = constants.hoursADay;
-    let firstHour = constants.firstHour;
-    let weeksAhead = Number(constants.weeksAhead);
-    let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    let displacement = 0;
-    let today = new Date();
-    let notToday = new Date(moment(today).add(weeksAhead, 'w')); //new Date(today.setDate(today.getDay() + ( 7 * displacement ) ));
-    let firstDay = new Date(moment(today).startOf('isoWeek'));
-    let lastDay = new Date(moment(notToday).endOf('isoWeek'));
-    for (let i = 0; i < 7; i++) {
-        week[i] = new Date(moment(firstDay).add(i, 'd')); // Obtains the Date of the monday of the current week
+    if (req.isAuthenticated()) {
+        let week = [];
+        let notAvailable = [];
+        let mustChange = [];
+        let hoursADay = constants.hoursADay;
+        let firstHour = constants.firstHour;
+        let weeksAhead = Number(constants.weeksAhead);
+        let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        let displacement = 0;
+        let today = new Date();
+        let notToday = new Date(moment(today).add(weeksAhead, 'w')); //new Date(today.setDate(today.getDay() + ( 7 * displacement ) ));
+        let firstDay = new Date(moment(today).startOf('isoWeek'));
+        let lastDay = new Date(moment(notToday).endOf('isoWeek'));
+        for (let i = 0; i < 7; i++) {
+            week[i] = new Date(moment(firstDay).add(i, 'd')); // Obtains the Date of the monday of the current week
+        }
+        async.parallel({
+            find_bill: function (callback) {
+                Bill.findById(req.params.id, callback)
+                    .populate('teacher student payment')
+            },
+            find_lessons_from_bill: function (callback) {
+                Lesson.find({'bill': req.params.id}, callback)
+                    .sort('date')
+                    .populate('course')
+            },
+            find_lessons_unavailable: function (callback) {
+                Lesson.find({
+                    'teacher': req.query.teacherId,
+                    'state': {$in: [constants.lesson_accepted, constants.lesson_paid]}
+                }, callback);
+            },
+            find_user_picture: function (callback) {
+                User.find({'teacher': req.query.teacherId}, callback);
+            }
+        }, function (err, results) {
+            if (err) {
+                return res.send(err);
+            }
+            for (let i = 0; i < results.find_lessons_unavailable.length; i++) {
+                if (moment(results.find_lessons_unavailable[i].date).isBetween(moment(firstDay), moment(lastDay), 'day', '[]')) {
+                    let day = moment(results.find_lessons_unavailable[i].date).isoWeekday() - 1;
+                    let hour = moment(results.find_lessons_unavailable[i].date).hour();
+                    notAvailable.push(Math.abs(moment(firstDay).diff(moment(results.find_lessons_unavailable[i].date), 'weeks')) + '' + Number((day * hoursADay) + hour - firstHour));
+                }
+            }
+            for (let i = 0; i < results.find_lessons_from_bill.length; i++) {
+                if (moment(results.find_lessons_from_bill[i].date).isBetween(moment(firstDay), moment(lastDay), 'day', '[]')) {
+                    let day = moment(results.find_lessons_from_bill[i].date).isoWeekday() - 1;
+                    let hour = moment(results.find_lessons_from_bill[i].date).hour();
+                    mustChange.push(Math.abs(moment(firstDay).diff(moment(results.find_lessons_from_bill[i].date), 'weeks')) + '' + Number((day * hoursADay) + hour - firstHour));
+                }
+            }
+            res.render('edit_bill',
+                {
+                    title: 'Reprogramar clases',
+                    bill: results.find_bill,
+                    list_lessons: results.find_lessons_from_bill,
+                    teacher_user: results.find_user_picture,
+                    notAvailable: notAvailable,
+                    mustChange: mustChange,
+                    week: week,
+                    monthNames: monthNames,
+                    displacement: displacement,
+                    firstHour: firstHour,
+                    hoursADay: hoursADay,
+                    user: req.user
+                });
+        });
+    } else {
+        res.redirect('/login');
     }
-    async.parallel({
-        find_bill: function (callback) {
-            Bill.findById( req.params.id, callback )
-                .populate('teacher student payment')
-        },
-        find_lessons_from_bill: function (callback) {
-            Lesson.find({ 'bill': req.params.id }, callback)
-                .sort('date')
-                .populate('course')
-        },
-        find_lessons_unavailable: function (callback) {
-            Lesson.find({ 'teacher': req.query.teacherId, 'state': { $in: [constants.lesson_accepted, constants.lesson_paid] } }, callback);
-        },
-        find_user_picture: function (callback) {
-            User.find({ 'teacher': req.query.teacherId }, callback);
-        }
-    }, function (err, results) {
-        if (err) {
-            return res.send(err);
-        }
-        for (let i = 0; i<results.find_lessons_unavailable.length; i++) {
-            if (moment(results.find_lessons_unavailable[i].date).isBetween(moment(firstDay), moment(lastDay), 'day', '[]')) {
-                let day = moment(results.find_lessons_unavailable[i].date).isoWeekday() - 1;
-                let hour = moment(results.find_lessons_unavailable[i].date).hour();
-                notAvailable.push(Math.abs(moment(firstDay).diff(moment(results.find_lessons_unavailable[i].date), 'weeks')) + '' + Number((day*hoursADay)+hour-firstHour));
-            }
-        }
-        for (let i=0; i<results.find_lessons_from_bill.length; i++) {
-            if (moment(results.find_lessons_from_bill[i].date).isBetween(moment(firstDay), moment(lastDay), 'day', '[]')) {
-                let day = moment(results.find_lessons_from_bill[i].date).isoWeekday() - 1;
-                let hour = moment(results.find_lessons_from_bill[i].date).hour();
-                mustChange.push(Math.abs(moment(firstDay).diff(moment(results.find_lessons_from_bill[i].date), 'weeks')) + '' + Number((day*hoursADay)+hour-firstHour));
-            }
-        }
-        res.render('edit_bill',
-            {
-                title: 'Reprogramar clases',
-                bill: results.find_bill,
-                list_lessons: results.find_lessons_from_bill,
-                teacher_user: results.find_user_picture,
-                notAvailable: notAvailable,
-                mustChange: mustChange,
-                week: week,
-                monthNames: monthNames,
-                displacement: displacement,
-                firstHour: firstHour,
-                hoursADay: hoursADay,
-                user: req.user
-            });
-    });
 };
 
 // Update a bill POST
@@ -134,7 +141,7 @@ exports.update_bill_post = function (req, res, next) {
     }
     async.parallel({
         update_bill: function (callback) {
-            Bill.findByIdAndUpdate(req.params.id, { $set: { 'state': constants.billPendingState, updatedAt: new Date() } }, { new: true }, callback);
+            Bill.findByIdAndUpdate(req.params.id, { $set: { 'state': constants.billPendingState, updatedAt: new Date(), total: req.body.totalInput } }, { new: true }, callback);
         },
         update_lessons: function (callback) {
             Lesson.find({ 'bill': req.params.id }, callback)
@@ -147,9 +154,28 @@ exports.update_bill_post = function (req, res, next) {
                             results[i].date = lessonDates[i];
                             results[i].state = constants.lesson_booked;
                             results[i].message = req.body.lesson_message;
+                            results[i].numberOfStudents = req.body.numberOfStudents;
                             results[i].address = req.body.address;
                             results[i].updatedAt = new Date();
                             results[i].save();
+                        }
+                        if (lessonDates.length > results.length) {
+                            for (let i=results.length; i < lessonDates.length; i++) {
+                                let lesson = new Lesson(
+                                    {
+                                        date: lessonDates[i],
+                                        state: constants.lesson_booked,
+                                        address: req.body.address,
+                                        numberOfStudents: req.body.numberOfStudents,
+                                        student: req.user.student,
+                                        message: req.body.lesson_message,
+                                        teacher: req.body.teacherId,
+                                        course: req.body.courseId,
+                                        bill: req.params.id
+                                    }
+                                );
+                                lesson.save();
+                            }
                         }
                     }
                 );

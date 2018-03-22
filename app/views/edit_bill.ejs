@@ -37,6 +37,7 @@
                     <input type="hidden" name="hoursADay" id="hoursADay" value="<%= hoursADay %>">
                     <input type="hidden" name="schedule" id="schedule" value="<%= bill.teacher.schedule %>">
                     <input type="hidden" name="selectedDates" id="selectedDates">
+                    <input type="hidden" name="edit" id="edit" value="true">
                     <input type="hidden" name="totalInput" id="totalInput">
                     <div class="col s4">
                         <div class="btn purple disabled" id="previousWeek" onclick="switchWeek(-1, <%= JSON.stringify(week) %>)"><i class="small material-icons">skip_previous</i></div>
@@ -115,7 +116,7 @@
                 </div>
                 <h5>El total de la reserva es: <i class="material-icons">$</i><span id="total">0</span></h5>
                 <br>
-                <button type="submit" class="btn orange" value="Reservar clase">Reprogramar</button>
+                <button type="submit" id="submit-button" class="btn orange" value="Reservar clase" disabled>Reprogramar</button>
             </form>
         </div>
     </div>

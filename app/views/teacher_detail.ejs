@@ -19,7 +19,7 @@
                     <% for (var i=0; i<Math.floor(teacher.score); i++) { %>
                     <i class="small material-icons">grade</i>
                     <% } %>
-                    <%= teacher.score %>
+                    <%= parseFloat(teacher.score).toFixed(2) %>
                 </h6>
                 <h5><i class="small material-icons">date_range</i> <%= teacher.nice_birthday %></h5>
                 <% if(teacher.groupLesson.does) { %>

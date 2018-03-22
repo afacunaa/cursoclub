@@ -51,7 +51,7 @@
                 <% } else { %>
                 <div class="card yellow lighten-2">
                     <div class="card-content">
-                        <p class="flow-text"><i class="material-icons blue-text">new_releases</i> No olvides mantener actualizado tu <a href="/teacher/<%= user.teacher %>/scheduleUpdate">horario de disponibilidad</a></p>
+                        <p class="flow-text"><i class="material-icons blue-text">new_releases</i> <a href="/teacher/<%= user.teacher %>/update">Actualiza</a> tu foto para que los usuarios puedan saber algo más sobre ti</p>
                     </div>
                 </div>
                 <% } %>
@@ -65,7 +65,7 @@
                     <% for (var i=0; i<Math.floor(person.score); i++) { %>
                     <i class="small material-icons">grade</i>
                     <% } %>
-                    <%= person.score %>
+                    <%= parseFloat(person.score).toFixed(2) %>
                 </h6>
                 <% if(person.groupLesson.does) { %>
                 <p class="flow-text"><i class="small material-icons">group</i> Da clases grupales a máximo <%= person.groupLesson.maxStudents %> personas</p>
