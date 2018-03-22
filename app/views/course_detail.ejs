@@ -1,4 +1,4 @@
-<section><%- include header.ejs %></section>
+<%- include header.ejs %>
 
 <main>
     <div class="container">
@@ -16,7 +16,7 @@
                 <div class="divider"></div>
                 <br>
                 <% if (user) { %>
-                <% try { if (user && user.role === 3) { %>
+                    <% if (user.role === 3) { %>
                 <div class="row left-align">
                     <div class="col l12 m12 s12">
                         <% if (course.teachers.length) { %>
@@ -75,7 +75,7 @@
                 <h3 class="blue-text">Tu perfil aparece en esta sección</h3>
                 <% } else { %>
                 <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
-                <% } } catch(e){} } else { %>
+                <% } } else { %>
                 <p>Inicia sesión para ver detalles de los profesores</p>
                 <% } %>
             </div>
@@ -83,4 +83,4 @@
     </div>
 </main>
 
-<section><%- include footer.ejs %></section>
+<%- include footer.ejs %>

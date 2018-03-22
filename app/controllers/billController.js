@@ -203,29 +203,29 @@ exports.update_bill_state_post = function (req, res, next) {
     if (req.body.state === '1') {
         updateBillValues['state'] = constants.billAcceptedState;
         updateLessonValues['state'] = constants.lesson_accepted;
-        description = ' clases aceptadas. Cambio en estado de clases a: ' + constants.lesson_accepted
+        description = 'Clases aceptadas. Cambio en estado de clases a: ' + constants.lesson_accepted;
     } else if (req.body.state === '0') {
         updateBillValues['state'] = constants.billCanceledState;
         updateLessonValues['state'] = constants.lesson_rejected;
-        description = ' clases canceladas. Cambio en estado de clases a: ' + constants.lesson_canceled
+        description = 'Clases canceladas. Cambio en estado de clases a: ' + constants.lesson_canceled;
     } else if (req.body.state === '2') {
         updateBillValues['state'] = constants.billPaidState;
         updateLessonValues['state'] = constants.lesson_paid;
-        description = ' clases pagadas. Cambio en estado de clases a: ' + constants.lesson_paid
+        description = 'Clases pagadas. Cambio en estado de clases a: ' + constants.lesson_paid;
     } else if (req.body.state === '3') {
         updateBillValues['state'] = constants.billPendingState;
         updateLessonValues['state'] = constants.lesson_booked;
-        description = ' clases solicitadas. Cambio en estado de clases a: ' + constants.lesson_booked
+        description = 'Clases solicitadas. Cambio en estado de clases a: ' + constants.lesson_booked;
     } else if (req.body.state === '4') {
         updateBillValues['state'] = constants.billDoneState;
         updateLessonValues['state'] = constants.lesson_done;
-        description = ' clases finalizadas. Cambio en estado de clases a: ' + constants.lesson_done;
+        description = 'Clases finalizadas. Cambio en estado de clases a: ' + constants.lesson_done;
     }
     updateBillValues['updatedAt'] = new Date();
     updateLessonValues['updatedAt'] = new Date();
     Bill.findByIdAndUpdate(req.params.id, { $set: updateBillValues }, { new: true }, function(err, doc) {
         if (err) {res.send(err)}
-        if (req.body.state === '4'){
+        if (req.body.state === '4') {
             async.parallel({
                 teacher_update: function (callback) {
                     Teacher.findById( doc.teacher, callback )
@@ -268,7 +268,7 @@ exports.update_bill_state_post = function (req, res, next) {
                     let transaction = new Transaction(
                         {
                             bill: doc.id,
-                            description: lesson.length + description
+                            description: description
                         }
                     );
                     transaction.save(function (err) {

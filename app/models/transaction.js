@@ -21,6 +21,10 @@ transactionSchema.virtual('nice_created').get(function () {
     return moment(this.createdAt).locale('es').format('dddd, D MMMM, YYYY, h:mm:ss A');
 });
 
+transactionSchema.virtual('nice_created_short').get(function () {
+    return moment(this.createdAt).locale('es').format('DD/MM/YYYY, h:mm:ss A');
+});
+
 transactionSchema.virtual('nice_updated').get(function () {
     return moment(this.updatedAt).locale('es').format('dddd, MMMM D, YYYY, h:mm:ss A');
 });

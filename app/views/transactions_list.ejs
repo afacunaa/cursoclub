@@ -11,12 +11,12 @@
             </tr>
             <% for (var i=0; i<transactions_list.length; i++) { %>
             <tr>
-                <td><p><%= transactions_list[i].nice_created %></p></td>
+                <td><p><%= transactions_list[i].nice_created_short %></p></td>
                 <% if (transactions_list[i].description.indexOf('Cancelada') > -1) { %>
                 <td><p class="red-text text-darken-4 tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else if (transactions_list[i].description.indexOf('Rechazada') > -1) { %>
                 <td><p class="pink-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
-                <% } else if (transactions_list[i].description.indexOf('Solicitada') > -1) { %>
+                <% } else if (transactions_list[i].description.indexOf('reprogramado') > -1 || transactions_list[i].description.indexOf('solicitado') > -1) { %>
                 <td><p class="orange-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
                 <% } else if (transactions_list[i].description.indexOf('Aceptada') > -1) { %>
                 <td><p class="indigo-text tooltipped" data-position="left" data-delay="50" data-tooltip="<%= transactions_list[i].bill.id %>"><%= transactions_list[i].description %></p></td>
