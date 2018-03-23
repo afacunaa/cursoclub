@@ -131,3 +131,6 @@ a.cc-nav-element:hover  {
     max-height: 250px;
     max-width: 300px;
 }
+.cc-input-star {
+    cursor: pointer;
+}

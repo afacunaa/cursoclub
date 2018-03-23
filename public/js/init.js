@@ -56,3 +56,14 @@ $('#password_confirmation').on('keyup', function () {
     } else
         $('#message').html('La contraseña no coincide').css('color', 'red');
 });
+function checkStar(id) {
+    let starValueInput = $('#score');
+    for (let i=0; i<=5; i++) {
+        $('#star'+i).removeClass('yellow-text').text('star_border');
+        starValueInput.val(0);
+    }
+    for (let i=0; i<=id; i++){
+        $('#star'+i).addClass('yellow-text').text('star');
+        starValueInput.val(id);
+    }
+}
