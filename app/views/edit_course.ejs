@@ -31,18 +31,26 @@
             <div class="input-field">
                 <select class="" id="category" name="category" form="main" required>
                     <option value="" disabled>Seleccionar</option>
-                    <% if (course.category == 'Académico') { %>
+                    <% if (course.category === 'Académico') { %>
                     <option value="Académico" selected>Académico</option>
                     <option value="Entrenamiento físico">Entrenamiento físico</option>
                     <option value="Tiempo libre">Tiempo libre</option>
-                    <% } else if (course.category == 'Deporte') { %>
+                    <option value="Virtual">Virtual</option>
+                    <% } else if (course.category === 'Entrenamiento físico') { %>
                     <option value="Académico">Académico</option>
                     <option value="Entrenamiento físico" selected>Entrenamiento físico</option>
                     <option value="Tiempo libre">Tiempo libre</option>
-                    <% } else { %>
+                    <option value="Virtual">Virtual</option>
+                    <% } else if (course.category === 'Tiempo libre') { %>
                     <option value="Académico">Académico</option>
                     <option value="Entrenamiento físico">Entrenamiento físico</option>
                     <option value="Tiempo libre" selected>Tiempo libre</option>
+                    <option value="Virtual">Virtual</option>
+                    <% } else { %>
+                    <option value="Académico">Académico</option>
+                    <option value="Entrenamiento físico">Entrenamiento físico</option>
+                    <option value="Tiempo libre">Tiempo libre</option>
+                    <option value="Virtual" selected>Virtual</option>
                     <% } %>
                 </select>
             </div>
@@ -58,7 +66,13 @@
                 <input type="text" name="keywords" id="keywords" value="<%= course.keywords %>">
                 <label for="keywords">Palabras clave</label>
             </div>
-            <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
+            <div class="input-field">
+                <input type="text" name="externalLink" id="keywords">
+                <label for="externalLink">Enlace externo</label>
+            </div>
+            <div align="center">
+                <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Aceptar</button>
+            </div>
         </form>
     </div>
 </main>

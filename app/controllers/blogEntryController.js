@@ -47,7 +47,7 @@ exports.blogEntry_detail_post = function (req, res, next) {
                 post: req.body.comment_text,
                 postDate: Date.now()
             };
-            blogEntry_result.comments.push(comment);
+            blogEntry_result.comments = blogEntry_result.comments.concat([comment]);
             blogEntry_result.save();
             res.redirect(blogEntry_result.url+'#comentarios');
         });

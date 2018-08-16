@@ -8,7 +8,7 @@ let Schema = mongoose.Schema;
 
 let courseSchema = new Schema({
     name: { type: String, required: true },
-    category: { type: String, enum: ['Académico', 'Tiempo libre', 'Entrenamiento físico'] },
+    category: { type: String, enum: ['Académico', 'Tiempo libre', 'Entrenamiento físico', 'Virutal'] },
     description: String,
     requirement: String,
     picture: String,
@@ -16,7 +16,8 @@ let courseSchema = new Schema({
     idName: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
-    teachers : [{ type: Schema.Types.ObjectId, ref: 'Teacher' }]
+    teachers: [{ type: Schema.Types.ObjectId, ref: 'Teacher' }],
+    externalLink: String
 });
 
 courseSchema.virtual('image').get(function () {

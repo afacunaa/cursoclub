@@ -22,7 +22,11 @@ let userSchema = new Schema({
     teacher: { type: Schema.Types.ObjectId, ref: 'Teacher' },
     student: { type: Schema.Types.ObjectId, ref: 'Student' },
     createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
+    updatedAt: { type: Date, default: Date.now },
+    recoveryProcess : {
+        active: Boolean,
+        secretKey: String
+    }
 });
 
 userSchema.methods.validPassword = function(password) {
@@ -39,6 +43,14 @@ userSchema.virtual('nice_created').get(function () {
 
 userSchema.virtual('nice_updated').get(function () {
     return moment(this.updatedAt).locale('es').format('dddd, MMMM D, YYYY, h:mm:ss A');
+});
+
+userSchema.virtual('picture_or_not').get(function () {
+    if (this.picture) {
+        return this.picture;
+    } else {
+        return '/img/silueta.png';
+    }
 });
 
 module.exports = mongoose.model( 'User', userSchema );

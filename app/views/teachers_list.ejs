@@ -8,22 +8,26 @@
         <table class="bordered highlight">
             <thead>
             <tr>
-                <th><h5>Nombre del profesor</h5></th>
-                <th><h5>Nombre del usuario</h5></th>
-                <th><h5>ID del profesor</h5></th>
-                <th><h5>Fecha de nacimiento</h5></th>
+                <th>Nombre del profesor</th>
+                <th>Cédula</th>
+                <th>Ciudad</th>
+                <th>Fecha de registro</th>
+                <th>Activo</th>
+                <th>Premium</th>
             </tr>
             </thead>
             <tbody>
             <% for (var i=0; i<teachers_list.length; i++) { %>
             <tr>
-                <th><%= teachers_list[i].fullName %></th>
-                <th><%= teachers_list[i].username %></th>
-                <th><a href="<%= teachers_list[i].url%>"><%= teachers_list[i].id %></a></th>
-                <th><%= teachers_list[i].nice_birthday %></th>
+                <th><a href="<%= teachers_list[i].url %>"><%= teachers_list[i].fullName %></a></th>
+                <th><%= teachers_list[i].document %></th>
+                <th><%= teachers_list[i].city %></th>
+                <th><%= teachers_list[i].nice_created %></th>
+                <th><%= teachers_list[i].member.isMember %></th>
+                <th><%= teachers_list[i].member.isPremium %></th>
             </tr>
             <% } %>
-            <% } %>
+        <% } %>
             </tbody>
         </table>
     </div>

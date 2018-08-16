@@ -10,8 +10,6 @@
             <div class="col s9">
                 <% if (bill.state === 'Pendiente por aprobación') { %>
                 <h4 class="orange-text"><%= bill.state %></h4>
-                <% } else if (bill.state === 'Pendiente por pago') { %>
-                <h4 class="blue-text"><%= bill.state %></h4>
                 <% } else if (bill.state === 'Clases rechazadas') { %>
                 <h4 class="red-text"><%= bill.state %></h4>
                 <% } else { %>
@@ -19,7 +17,6 @@
                 <% } %>
                 <h5><strong>Instructor: </strong><a href="<%= bill.teacher.url %>"><%= bill.teacher.fullName %></a></h5>
                 <h5><strong>Usuario: </strong><a href="<%= bill.student.url %>"><%= bill.student.fullName %></a></h5>
-                <h5><i class="material-icons">people</i> <strong>Número de personas que reciben la clase:</strong> <%= list_lessons[0].numberOfStudents %></h5>
                 <% if (list_lessons[0].message) { %>
                 <h5><i class="material-icons">message</i> <strong>Mensaje sobre la clase:</strong> <%= list_lessons[0].message %></h5>
                 <% } else { %>
@@ -51,13 +48,6 @@
                                 </div>
                                 <div class="col s4">
                                     <button name="state" class="btn red darken-4" type="submit" value="0"><i class="material-icons left">clear</i>Rechazar</button>
-                                </div>
-                            </form>
-                            <% } %>
-                            <% if (user.role === 3 && bill.state === 'Pendiente por pago') { %>
-                            <form action="/bill/<%= bill.id %>/stateUpdate" method="post">
-                                <div class="col s5 offset-s3">
-                                    <button name="state" class="btn green" type="submit" value="2"><i class="material-icons left">payment</i>Pagar</button>
                                 </div>
                             </form>
                             <% } %>

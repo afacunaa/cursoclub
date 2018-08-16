@@ -1,0 +1,94 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <% if (user.role === 1) { %>
+        <h5 class="cc-corporate-orange-text">Conversación de <%= otherUser.user.owner %> con <%= ownUser.user.owner %></h5>
+        <% if (otherUser.unread) { %>
+        <p class="red-text"><%= otherUser.user.owner %> no ha leído el último mensaje</p>
+        <% } else { %>
+        <p class="green-text"><%= otherUser.user.owner %> ya leyó el último mensaje</p>
+        <% } %>
+        <% if (ownUser.unread) { %>
+        <p class="red-text"><%= ownUser.user.owner %> no ha leído el último mensaje</p>
+        <% } else { %>
+        <p class="green-text"><%= ownUser.user.owner %> ya leyó el último mensaje</p>
+        <% } %>
+        <div id="messages-area" class="card-panel grey lighten-5 cc-messages-area">
+            <% for (var i=0; i<conversation.message.length; i++) { %>
+                <% if (String(conversation.message[i].sender) === String(ownUser.user.id)) { %>
+            <div align="right">
+                <div class="row">
+                    <div class="col l6 m6 s11 offset-l6 offset-m6 offset-s1">
+                        <div class="card-panel blue lighten-3 cc-message-card">
+                            <p class="cc-message-date"><%= conversation.getNiceDate(conversation.message[i].createdAt) %></p>
+                            <p class="cc-keep-line-breaks"><%= conversation.message[i].text %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <% } else { %>
+            <div align="left">
+                <div class="row">
+                    <div class="col l6 m6 s11">
+                        <div class="card-panel teal lighten-4 cc-message-card">
+                            <p class="cc-message-date"><%= conversation.getNiceDate(conversation.message[i].createdAt) %></p>
+                            <p class="cc-keep-line-breaks"><%= conversation.message[i].text %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <% } %>
+            <% } %>
+        </div>
+        <% } else { %>
+        <h5 class="cc-corporate-orange-text">Conversación con <%= otherUser.user.owner %></h5>
+        <div id="messages-area" class="card-panel grey lighten-5 cc-messages-area">
+            <% for (var i=0; i<conversation.message.length; i++) { %>
+                <% if (String(conversation.message[i].sender) === String(user.id)) { %>
+            <div align="right">
+                <div class="row">
+                    <div class="col l6 m6 s11 offset-l6 offset-m6 offset-s1">
+                        <div class="card-panel grey lighten-3 cc-message-card">
+                            <p class="cc-message-date"><%= conversation.getNiceDate(conversation.message[i].createdAt) %></p>
+                            <p class="cc-keep-line-breaks"><%= conversation.message[i].text %></p>
+                        </div>
+                    <% if (i === conversation.message.length - 1 && !otherUser.unread) { %>
+                        <p class="cc-message-date"><i class="tiny material-icons">check</i>Leído</p>
+                    <% } %>
+                    </div>
+                </div>
+            </div>
+                <% } else { %>
+            <div align="left">
+                <div class="row">
+                    <div class="col l6 m6 s11">
+                        <div class="card-panel teal lighten-4 cc-message-card">
+                            <p class="cc-message-date"><%= conversation.getNiceDate(conversation.message[i].createdAt) %></p>
+                            <p class="cc-keep-line-breaks"><%= conversation.message[i].text %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <% } %>
+            <% } %>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <form method="post" action="">
+            <div class="row">
+                <div class="input-field col l10 m10 s8">
+                    <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+                    <label for="message">Escribe tu mensaje</label>
+                </div>
+                <div class="input-field col l2 m2 s4">
+                    <button class="btn cc-corporate-green">Enviar</button>
+                </div>
+            </div>
+        </form>
+        <% } %>
+    </div>
+</main>
+<script type="text/javascript" src="/js/conversationHandler.js"></script>
+
+<%- include footer.ejs %>

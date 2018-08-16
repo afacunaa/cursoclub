@@ -5,6 +5,7 @@
 let User = require('../models/user');
 let async = require('async');
 let bcrypt = require('bcrypt-nodejs');
+let emailer = require('../../lib/email');
 let uploader = require('../../lib/upload');
 
 // Activate user GET
@@ -108,7 +109,7 @@ exports.update_user_post = function (req, res, next) {
             }
         }, {new: true}, function (err, doc) {
             res.render('edit_user', {title: 'Editar usuario', user: doc, message: 'email' })
-        })
+        });
     }
 };
 
@@ -116,4 +117,51 @@ exports.update_user_post = function (req, res, next) {
 exports.update_user_picture_post = function (req, res, next) {
     uploader.uploadFile(req, 'User');
     res.redirect('/home');
+};
+
+//Recover password GET
+exports.recovery_user_get = function (req, res, next) {
+    //let continueProcess = req.query.continueProcess ? req.query.continueProcess : undefined;
+    res.render('recover_password', {
+        title: 'Recuperar contraseña',
+        user: req.user,
+        continueProcess: req.query.continueProcess,
+        done: req.query.done
+    });
+};
+
+//Recover password POST
+exports.recovery_user_post = function (req, res, next) {
+    if (req.body.submit === 'yes'){
+        User.findOne({email: req.query.user})
+            .exec(function (err, result) {
+                if (err) {
+                    return next(err);
+                }
+                if (result) {
+                    if (result.recoveryProcess.active && req.query.key === result.recoveryProcess.secretKey) {
+                        result.password = bcrypt.hashSync(req.body.new_password);
+                        result.updatedAt = new Date();
+                        result.recoveryProcess.active = false;
+                        result.save();
+                    }
+                }
+                res.redirect('/login');
+            })
+    } else {
+        User.findOne({email: req.body.username})
+            .exec(function (err, result) {
+                if (err) {
+                    return next(err);
+                }
+                if (result) {
+                    result.recoveryProcess.active = true;
+                    let hashedKey = bcrypt.hashSync(req.body.new_password);
+                    result.recoveryProcess.secretKey = hashedKey;
+                    result.save();
+                    emailer.recoverPassword(result, hashedKey)
+                }
+                res.redirect('/user/recovery?done=yes')
+            });
+    }
 };

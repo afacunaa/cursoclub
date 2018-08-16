@@ -18,15 +18,11 @@
                     <input type="text" name="document" id="document" required>
                     <label for="document">Cédula de ciudadanía</label>
                 </div>
-                <div class="input-field col s12 m6 l6">
-                    <input class="datepicker" type="date" name="birthday" id="birthday" required>
-                    <label for="birthday">Fecha de nacimiento</label>
-                </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l6">
-                    <input type="text" name="address" id="address" required>
-                    <label for="address">Dirección</label>
+                    <input type="text" name="city" id="city" required>
+                    <label for="city">Ciudad</label>
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <input type="text" name="workingArea" id="workingArea" required>
@@ -41,27 +37,6 @@
                 <div class="input-field col s12 m6 l6">
                     <input type="email" name="email" id="email" class="validate" required>
                     <label for="email">Correo electrónico</label>
-                </div>
-            </div>
-            <div class="row">
-                <p>Clases grupales</p>
-                <div class="input-field col s4 m4 l4">
-                    <div class="switch">
-                        <label>
-                            Desactivadas
-                            <input name="groupDoes" id="groupDoes" type="checkbox" value="true" checked>
-                            <span class="lever"></span>
-                            Activadas
-                        </label>
-                    </div>
-                </div>
-                <div class="input-field col s4 m4 l4">
-                    <input type="number" name="maxStudents" id="maxStudents" class="validate">
-                    <label for="maxStudents">Número máximo de alumnos</label>
-                </div>
-                <div class="input-field col s4 m4 l4">
-                    <input type="number" name="discountPerStudent" id="discountPerStudent" class="validate">
-                    <label for="discountPerStudent">Porcentaje de descuento por cada estudiante</label>
                 </div>
             </div>
             <% for (var i=0; i<courses_list.length; i++) { %>

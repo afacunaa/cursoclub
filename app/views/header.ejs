@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="/css/cursoclub_style.css" type="text/css">
     <link rel="icon" type="image/png" href="/img/favicon.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><%= title %></title>
+    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/init.js"></script>
 </head>
 <body>
 <header>
@@ -51,6 +55,7 @@
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
                             <li><a href="/curso/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
                             <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de usuarios</a></li>
+                            <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Lista de mensajes</a></li>
                             <li class="divider"></li>
                             <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
                             <% } else if (user.role == 2) { %>
@@ -58,10 +63,12 @@
                             <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
                             <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
+                            <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Mensajes</a></li>
                             <% } else if (user.role == 3) { %>
                             <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
                             <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
+                            <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Mensajes</a></li>
                             <% } %>
                             <li class="divider"></li>
                             <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
@@ -69,7 +76,7 @@
                         </ul>
                     </li>
                     <% } else { %>
-                    <li><a href="#modal1" class="cc-nav-element"><strong>Ingresar</strong></a></li>
+                    <li><a href="#modal1" class="cc-nav-element"><strong>INGRESAR</strong></a></li>
                     <% } %>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
@@ -152,13 +159,16 @@
                             <input type="password" name="password" id="password" class="validate" minlength="6" required>
                             <label for="password">Contraseña</label>
                         </div>
+                        <div>
+                            <a href="/user/recovery">¿Olvidaste tu contraseña?</a>
+                        </div>
                         <button class="waves-effect waves-light btn green" type="submit" value="Entrar">Entrar</button>
                     </form>
                 </div>
                 <div class="col l6">
                     <div class="center-align">
                         <div class="row">
-                            <p>Utiliza Facebook para acceder</p>
+                            <p>Utiliza Facebook para acceder como usuario</p>
                             <a href="/auth/facebook" class="btn blue darken-3">Entrar con Facebook</a>
                         </div>
                     </div>
@@ -167,7 +177,7 @@
             <br>
             <div class="row">
                 <p>Si aún no tienes una cuenta, y no quieres usar Facebook, <a href="/login#signup">regístrate con tu correo</a></p>
-                <p>Si estas interesado en ser un <strong>instructor</strong> de Curso Club, debes, <a href="/contactenos">contactarnos</a></p>
+                <p>Si estás interesado en ser un <strong>instructor</strong>, <a href="/teacher/signup">diligencia el formulario de pre-registro</a></p>
             </div>
         </div>
         <div class="modal-footer">

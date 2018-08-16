@@ -10,7 +10,7 @@ let uploader = require('../../lib/upload');
 // Display all courses GET
 exports.course_list = function (req, res, next) {
     //res.send('Lista de cursos');
-    if (req.query.name !== undefined){
+    if (req.query.name !== undefined) {
         let name = req.query.name;
         name = name.replace(/[aá]/g, '[aá]');
         name = name.replace(/[eé]/g, '[eé]');
@@ -35,10 +35,16 @@ exports.course_list = function (req, res, next) {
                     }
                 );
                 usageTrack.save();
-                res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query:req.query.name, user: req.user });
+                res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.name, user: req.user });
             });
     } else if (req.query.category !== undefined) {
-        Course.find({ category: req.query.category })
+        let param;
+        if (req.query.category === 'Domicilio') {
+            param = ['Tiempo libre', 'Académico', 'Entrenamiento físico'];
+        } else {
+            param = [req.query.category];
+        }
+        Course.find({ category: { $in: param } })
             .populate('teachers')
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
@@ -56,14 +62,14 @@ exports.course_list = function (req, res, next) {
                     }
                 );
                 usageTrack.save();
-                res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query:req.query.category, user: req.user });
+                res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.category, user: req.user });
             });
     } else {
         if (req.user && req.user.role === 2) {
             Course.find({ 'teachers': req.user.teacher })
                 .exec(function (err, list_courses) {
                     if (err) { return next(err) }
-                    res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query:req.query.category, user: req.user });
+                    res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.category, user: req.user });
                 });
         } else {
             Course.find({})

@@ -1,0 +1,107 @@
+<div id="slider" class="slider">
+    <ul class="slides">
+        <% if (environment !== 'v') { %>
+        <li>
+            <a href="/cursos">
+                <img src="/img/CC1.png" class="responsive-img hide-on-small-only">
+                <img src="/img/car1-small.png" class="responsive-img hide-on-med-and-up">
+                <div class="cc-slider-text" align="center">
+                    <h2 class="black-text cc-font-title">¡Bienvenido!</h2>
+                    <br>
+                    <h4 class="black-text">
+                        ¿Estás buscando clases a domicilio? <strong>Curso Club</strong> tiene justo lo que necesitas.
+                        <br>
+                        <br>
+                        En <strong>Curso Club</strong> encontrarás instructores expertos en diferentes áreas para que reserves tu clase con quien más te guste.
+                        <br>
+                        <br>
+                        Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
+                    </h4>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/login">
+                <img src="/img/CC2.png" class="responsive-img hide-on-small-only">
+                <img src="/img/car2-small.png" class="responsive-img hide-on-med-and-up">
+                <div class="cc-slider-text" align="center">
+                    <h2 class="black-text cc-font-title"><strong>Y ¿Cómo funciona?</strong></h2>
+                    <br>
+                    <h4 class="black-text">
+                        <strong>¡Muy fácil!</strong> Regístrate totalmente gratis.
+                        <br>
+                        Ingresa a la categoría y temática que más llame tu atención.
+                        <br>
+                        Mira los instructores que <strong>Curso Club</strong> tiene para ti
+                        <br>
+                        Reserva el día y hora que quieras.
+                        <br>
+                        Y listo, <strong>¡Recibe tu clase a domicilio!</strong>
+                    </h4>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="/contactenos">
+                <img src="/img/CC3.png" class="responsive-img hide-on-small-only">
+                <img src="/img/car3-small.png" class="responsive-img hide-on-med-and-up">
+                <div class="cc-slider-text" align="center">
+                    <h2 class="black-text cc-font-title"><strong>¿Y si quiero hacer parte de Curso Club?</strong></h2>
+                    <br>
+                    <h4 class="black-text">
+                        En <strong>Curso Club</strong> nos preocupa la seguridad de nuestros clientes e instructores especializados.
+                        <br>
+                        <br>
+                        Así que si deseas hacer parte de <strong>Curso Club</strong> contáctanos <u>aquí</u>
+                        <br>
+                        <br>
+                        <strong>¡Haz que tu perfil profesional llegue a muchas personas más!</strong>
+                    </h4>
+                </div>
+            </a>
+        </li>
+        <% } %>
+        <% if (environment === 'v') { %>
+        <li>
+            <a href="/cursos?category=Virtual">
+                <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only">
+                <div class="cc-slider-text">
+                    <div align="center">
+                        <h2 class="black-text cc-font-title">¡Bienvenido!</h2>
+                        <br>
+                        <h4 class="black-text">
+                            Encuentra aquí diversos cursos virtuales* para que aprendas sobre lo que más te gusta sin moverte de donde estás.
+                        </h4>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <% } %>
+        <% if (lastBlogEntry) { %>
+        <li>
+            <a href="<%= lastBlogEntry.url %>">
+                <img src="<%= lastBlogEntry.image %>" class="responsive-img">
+                <div class="cc-slider-text-blog">
+                    <h3 class="white-t% t">
+                        <strong>Visita nuestro blog</strong>
+                    </h3>
+                    <br>
+                    <h4 class="white-text"><%= lastBlogEntry.title %></h4>
+                    <h5 class="white-text">
+                        <%= lastBlogEntry.nice_created %>
+                    </h5>
+                </div>
+            </a>
+        </li>
+        <% } %>
+    </ul>
+    <% if (environment === 'v') { %>
+    <br>
+    <div class="container">
+        <p class="black-text">
+            * Los cursos presentados aquí corresponden a recomendaciones. Curso Club no es el propietario de dichos cursos,
+            únicamente los promocionamos y damos a conocer. Para más información consulta nuestros Términos y Condiciones.
+        </p>
+    </div>
+    <% } %>
+</div>

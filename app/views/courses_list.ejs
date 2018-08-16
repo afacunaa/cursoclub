@@ -2,11 +2,47 @@
 
 <main>
     <div class="container">
-        <% if (courses_list.length == 0) { %>
+        <% if (courses_list.length === 0) { %>
         <p>No hay ningun curso</p>
         <% } else { %>
+        <br>
+        <div class="row">
+            <% if (!query) { %>
+            <div class="chip cc-corporate-green">
+                Todos
+            </div>
+            <% } else { %>
+            <a href="/cursos">
+                <div class="chip">
+                    Todos
+                </div>
+            </a>
+            <% } %>
+            <% if (query === 'Domicilio') { %>
+            <div class="chip cc-corporate-orange">
+                Solo a domicilio
+            </div>
+            <% } else { %>
+            <a href="/cursos?category=Domicilio">
+                <div class="chip">
+                    Solo a domicilio
+                </div>
+            </a>
+            <% } %>
+            <% if (query === 'Virtual') { %>
+            <div class="chip cc-corporate-purple">
+                Solo virtuales
+            </div>
+            <% } else { %>
+            <a href="/cursos?category=Virtual">
+                <div class="chip">
+                    Solo virtuales
+                </div>
+            </a>
+            <% } %>
+        </div>
             <% for (var i=0; i<courses_list.length; i++) { %>
-                <% if (i % 3 == 0) { %>
+                <% if (i % 3 === 0) { %>
         <div class="row">
                 <% } %>
             <div class="col l4 m6 s12">
@@ -19,17 +55,21 @@
                     </div>
                     <div class="card-content">
                         <span class="card-title"><%= courses_list[i].name %></span>
+                        <% if (courses_list[i].category === 'Virtual') { %>
+                        <h6 class="red-text"><i class="material-icons">warning</i> Este curso es virtual</h6>
+                        <% } %>
                         <p><%= courses_list[i].description %></p>
                     </div>
                     <div class="card-action">
                         <a class="green-text" href="<%= courses_list[i].url %>">Detalles</a>
+                        <% if (courses_list[i].category === 'Virtual') { %>
+                        <a class="blue-text" href="<%= courses_list[i].externalLink %>">Ir al sitio del curso</a>
+                        <% } %>
                     </div>
                 </div>
             </div>
-                <%if (i % 3 == 2) { %>
+                <%if (i % 3 === 2 || i === courses_list.length - 1) { %>
         </div>
-                <% } else if (i == courses_list.length -1) { %>
-    </div>
                 <% } %>
             <% } %>
         <% } %>

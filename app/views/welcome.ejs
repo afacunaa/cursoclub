@@ -1,0 +1,81 @@
+<%- include header.ejs %>
+
+<main class="cc-corporate-purple-background">
+    <div class="cc-welcome-space" align="center">
+        <img src="/img/welcome<%= Math.floor((Math.random() * 3) + 1) %>.png" class="">
+        <div class="cc-welcome-content">
+            <div class="row">
+                <h2 class="cc-font-title">Curso Club</h2>
+                <h4>¿Qué estás buscando?</h4>
+            </div>
+            <div class="row">
+                <div class="col l6 m6 s12">
+                    <a class="btn-large cc-corporate-purple cc-welcome-button" href="/?env=n">Clases particualres a domicilio</a>
+                </div>
+                <div class="col l6 m6 s12">
+                    <a class="btn-large cc-corporate-green cc-welcome-button" href="/?env=v">Cursos virtuales</a>
+                </div>
+            </div>
+            <div class="row">
+                <a class="btn-large cc-corporate-orange cc-welcome-button" href="/teacher/signup">Soy instructor y quiero dar clases a domicilio</a>
+            </div>
+        </div>
+    </div>
+    <div class="row" align="center">
+        <div class="col l6 m6 s12 cc-corporate-green-background">
+            <h4><strong>QUIERO TOMAR UNA CLASE</strong></h4>
+            <div class="row">
+	        <p class="flow-text">
+		    1. Ingresa y registrate para que puedas ver todo lo que tenemos disponible para ti. <br>
+	            <i class="material-icons medium">keyboard_arrow_down</i> <br>
+                    2. Elige la categoría que más te llame la atención y busca el curso que más te gusta. <br>
+		    <i class="material-icons medium">keyboard_arrow_down</i> <br>
+		    3. Selecciona al instructor que más llame tu atención y se ajuste mejor a tus necesidades. <br>
+		    <i class="material-icons medium">keyboard_arrow_down</i> <br>
+		    4. Programa la fecha y hora en el calendario y acuerda con tu instructor los detalles.
+		</p>
+            </div>
+            <div class="row">
+                <h5>Ahora solo tienes que esperar el día de tu clase, disfrutar, aprender y pagarla
+                    directamente a tu instructor.</h5>
+                <h5>¡Sin tramites ni tarjetas!</h5>
+            </div>
+        </div>
+        <div class="col l6 m6 s12 cc-corporate-orange-background">
+            <h4><strong>QUIERO OFRECER CLASES</strong></h4>
+            <div class="row">
+                <p class="flow-text">
+		    1. Llena el formulario en Curso Club con todas tus aptitudes y habilidades; da clic
+                        en "Regístrate" y espera nuestra confirmación. <br>
+	            <i class="material-icons medium">keyboard_arrow_down</i> <br>
+                    2. Una vez recibas nuestro mensaje de confirmación, completa tu perfil. <br>
+	            <i class="material-icons medium">keyboard_arrow_down</i> <br>
+                    3. Ingresa al calendario y organiza los días y horas en los que ofreceras tus clases. <br>
+	            <i class="material-icons medium">keyboard_arrow_down</i> <br>
+	            4. ¡Tu anuncio está listo! Acepta las solicitudes de los usuarios interesados y
+                        recuerda los detalles de la clase.</p>
+            </div>
+            <div class="row">
+                <h5>Anota en tu agenda el día de la clase, comparte tus conocimientos y recibe tu pago
+                    directamente. </h5>
+                <h5>¡Sin comisiones ni tramites bancarios!</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row" align="center">
+	<h4>
+	    <strong>¿LO QUE BUSCAS ES UN CURSO VIRTUAL?</strong>
+	</h4>
+	<p class="flow-text">
+	    Da clic en Cursos virtuales y explora todos los cursos que tenemos en el portafolio. <br>
+	    Una vez selecciones el que más te gusta serás redirigido a la página del mismo para que
+	    puedas ver todos los detalles. <br>
+	    Estos cursos no son propiedad de Curso Club, son recomendaciones que te damos y los promocionamos
+	    porque estamos seguros que te van a gustar.
+	</p>
+	<a class="btn cc-corporate-green" href="/?env=v">Aprende algo nuevo</a>
+	<p></p>
+    </div>
+</main>
+
+<%- include footer.ejs %>

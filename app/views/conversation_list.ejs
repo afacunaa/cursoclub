@@ -1,0 +1,61 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <h5 class="cc-corporate-green-text">Lista de mensajes</h5>
+        <ul class="collection">
+            <% for (var i=0; i<conversation_list.length; i++) { %>
+                <% if (user.role === 1) { %>
+            <li class="collection-item avatar">
+                <img class="circle" src="<%= conversation_list[i].user2.user.picture_or_not %>">
+                <a href="<%= conversation_list[i].url %>">
+                    <span class="title"><%= conversation_list[i].user2.user.owner %> con <%= conversation_list[i].user1.user.owner %></span>
+                </a>
+                <p class="cc-message-date">
+                    <%= conversation_list[i].getNiceDate(conversation_list[i].message[conversation_list[i].message.length -1].createdAt) %>
+                </p>
+                <p>
+                    <%= conversation_list[i].message[conversation_list[i].message.length -1].text.substr(0, 100) %>
+                </p>
+                <a href="<%= conversation_list[i].url %>" class="secondary-content btn"><i class="material-icons">mail_outline</i></a>
+            </li>
+                <% } else { %>
+                    <% if (conversation_list[i].message.length > 0) { %>
+            <li class="collection-item avatar">
+                        <% if (user.id === conversation_list[i].user1.user.id) { %>
+                <img class="circle" src="<%= conversation_list[i].user2.user.picture_or_not %>">
+                        <% } else { %>
+                <img class="circle" src="<%= conversation_list[i].user1.user.picture_or_not %>">
+                        <% } %>
+                <a href="<%= conversation_list[i].url %>">
+                        <% if (user.id === conversation_list[i].user1.user.id) { %>
+                <span class="title"><%= conversation_list[i].user2.user.owner %></span>
+                        <% } else { %>
+                <span class="title"><%= conversation_list[i].user1.user.owner %></span>
+                        <% } %>
+                </a>
+                <p class="cc-message-date">
+                    <%= conversation_list[i].getNiceDate(conversation_list[i].message[conversation_list[i].message.length -1].createdAt) %>
+                </p>
+                <p>
+                        <% if ((user.id === conversation_list[i].user1.user.id && conversation_list[i].user1.unread) || (user.id === conversation_list[i].user2.user.id && conversation_list[i].user2.unread)) { %>
+                    <strong>
+                        <% } %>
+                        <%= conversation_list[i].message[conversation_list[i].message.length -1].text.substr(0, 100) %>
+                        <% if ((user.id === conversation_list[i].user1.user.id && conversation_list[i].user1.unread) || (user.id === conversation_list[i].user2.user.id && conversation_list[i].user2.unread)) { %>
+                    </strong>
+                        <% } %>
+                </p>
+                <a href="<%= conversation_list[i].url %>" class="secondary-content btn"><i class="material-icons">mail_outline</i></a>
+            </li>
+                    <% } %>
+                <% } %>
+            <% } %>
+        </ul>
+        <% if (conversation_list.length < 1) { %>
+        <h5>Aún no tienes ninguna conversación</h5>
+        <% } %>
+    </div>
+</main>
+
+<%- include footer.ejs %>

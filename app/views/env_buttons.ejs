@@ -1,0 +1,17 @@
+<br>
+<div class="row">
+    <div class="col l6 m6 s6" align="center">
+        <% if (environment === 'v') { %>
+        <a class="waves-effect btn-large cc-corporate-purple waves-light" href="/?env=n">A domicilio</a>
+        <% } else { %>
+        <a class="waves-effect btn-large black waves-light disabled" href="/?env=n">A domicilio</a>
+        <% } %>
+    </div>
+    <div class="col l6 m6 s6" align="center">
+        <% if (environment === 'v') { %>
+        <a class="waves-effect btn-large black waves-light disabled" href="/?env=v">Virtuales</a>
+        <% } else { %>
+        <a class="waves-effect btn-large cc-corporate-green waves-light" href="/?env=v">Virtuales</a>
+        <% } %>
+    </div>
+</div>

@@ -116,23 +116,22 @@ function changeMoreStudents() {
 function setTotal() {
     let pricePerHour = Number($('#pricePerHour').text());
     let numberOfStudents = Number($('#numberOfStudents').val());
-    let discountPerStudent = Number($('#discountPerStudent').val());
     total = pricePerHour * selectedArray.length * numberOfStudents;
     $('#total').text(total);
     $('#totalInput').val(total);
     let difference = $('#mustChange').val().split(',').length - selectedArray.length;
     if ($('#edit').val() && difference >= 0) {
         if (difference > 1) {
-            Materialize.toast('Debes seleccionar ' + difference + ' clases más', 1500);
+            //Materialize.toast('Debes seleccionar ' + difference + ' clases más', 1500);
             $('#submit-button').prop('disabled', true);
         } else if (difference === 1) {
-            Materialize.toast('Debes seleccionar ' + difference + ' clase más', 1500);
+            //Materialize.toast('Debes seleccionar ' + difference + ' clase más', 1500);
             $('#submit-button').prop('disabled', true);
         } else {
-            Materialize.toast('Ya modificaste las clases que debías cambiar, sin embargo puedes añadir más', 3000);
+            //Materialize.toast('Ya modificaste las clases que debías cambiar, sin embargo puedes añadir más', 3000);
             $('#submit-button').prop('disabled', false);
         }
     } else {
-        Materialize.toast('La cuenta va en: $' + total, 1500);
+        //Materialize.toast('La cuenta va en: $' + total, 1500);
     }
 }

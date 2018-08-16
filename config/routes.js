@@ -2,6 +2,7 @@ let express = require('express');
 let billController = require('../app/controllers/billController');
 let blogEntryController = require('../app/controllers/blogEntryController');
 let courseController = require('../app/controllers/courseController');
+let conversationController = require('../app/controllers/conversationController');
 let homeController = require('../app/controllers/homeController');
 let lessonController = require('../app/controllers/lessonController');
 let paymentController = require('../app/controllers/paymentController');
@@ -187,6 +188,15 @@ router.get('/teacher/create', teacherController.create_teacher_get);
 // POST teacher creation
 router.post('/teacher/create', teacherController.create_teacher_post);
 
+// GET teacher registration
+router.get('/teacher/signup', teacherController.registration_teacher_get);
+
+// POST teacher creation second part
+router.post('/teacher/signup', teacherController.registration_teacher_post);
+
+// POST teacher creation complete
+router.post('/teacher/complete-signup', teacherController.registration_complete_teacher_post);
+
 // GET teacher update
 router.get('/teacher/:id/update', teacherController.update_teacher_get);
 
@@ -214,11 +224,17 @@ router.get('/teacher/:id', teacherController.teacher_detail);
 
 /* User routes */
 
-// GET teacher update
+// GET user update
 router.get('/user/update', userController.update_user_get);
 
-// POST teacher update
+// POST user update
 router.post('/user/update', userController.update_user_post);
+
+// GET uset recovery
+router.get('/user/recovery', userController.recovery_user_get);
+
+// POST user recovery
+router.post('/user/recovery', userController.recovery_user_post);
 
 // POST user's picture update
 router.post('/user/:id/uploadPicture', userController.update_user_picture_post);
@@ -319,8 +335,22 @@ router.get('/bill/:id', billController.bill_detail);
 
 /* UsageTrack routes */
 
-// GET transaction list
+// GET UsageTrack list
 router.get('/usageTrack', usageTrackController.usageTrack_list);
+
+/* Conversation routes */
+
+// GET Conversation list
+router.get('/mensajes', conversationController.conversation_list);
+
+// GET Conversation detail new
+router.get('/mensaje/nuevo/:id', conversationController.conversation_new);
+
+// GET Conversation detail
+router.get('/mensaje/detalle/:id', conversationController.conversation_detail);
+
+// POST Conversation detail
+router.post('/mensaje/detalle/:id', conversationController.conversation_detail_new_message);
 
 
 module.exports = router;

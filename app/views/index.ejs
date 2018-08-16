@@ -1,90 +1,68 @@
 <%- include header.ejs %>
 
 <main>
-    <div id="slider" class="slider">
-        <ul class="slides">
-            <li>
-                <a href="/login">
-                    <img src="/img/car1.jpeg" class="responsive-img hide-on-small-only">
-                    <img src="/img/car1-small.jpeg" class="responsive-img hide-on-med-and-up">
-                    <div class="cc-slider-text" align="center">
-                        <h2 class="black-text">¡Bienvenido a Curso Club! <i class="material-icons medium">search</i></h2>
-                        <br>
-                        <h4 class="black-text">
-                            Aquí encontrarás diversos cursos e instructores personalizados, para que aprendas, te diviertas
-                            o mejores tu estado físico.
-                        </h4>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="/cursos">
-                    <img src="/img/car2.jpeg" class="responsive-img hide-on-small-only">
-                    <img src="/img/car2-small.jpeg" class="responsive-img hide-on-med-and-up">
-                    <div class="cc-slider-text" align="center">
-                        <h2 class="white-text"><strong>¿Qué hacemos?</strong></h2>
-                        <br>
-                        <h4 class="white-text">
-                            A través de nuestra plataforma te conectamos con instructores particulares que van a donde tú estás,
-                            para ofrecerte una gran variedad de actividades de tu interés.
-                            <br>
-                            <br>
-                            Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
-                        </h4>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="/nosotros">
-                    <img src="/img/car3.jpeg" class="responsive-img hide-on-small-only">
-                    <img src="/img/car3-small.jpeg" class="responsive-img hide-on-med-and-up">
-                    <div class="cc-slider-text" align="center">
-                        <h2 class="black-text"><strong>¿Cómo lo hacemos?</strong></h2>
-                        <br>
-                        <h4 class="black-text">
-                            Selecciona la fecha y hora de tus clases, págalas a través de la plataforma. El instructor llegará
-                            a la puerta de tu casa.
-                            <br>
-                            <br>
-                            <strong>¡Aprende desde la comodidad de tu hogar!</strong>
-                        </h4>
-                    </div>
-                </a>
-            </li>
-            <% if (lastBlogEntry) { %>
-            <li>
-                <a href="<%= lastBlogEntry.url %>">
-                    <img src="<%= lastBlogEntry.image %>" class="responsive-img">
-                    <div class="cc-slider-text-blog">
-                        <h3 class="white-text">
-                            <strong>Visita nuestro blog</strong>
-                        </h3>
-                        <br>
-                        <h4 class="white-text"><%= lastBlogEntry.title %></h4>
-                        <h5 class="white-text">
-                            <%= lastBlogEntry.nice_created %>
-                        </h5>
-                    </div>
-                </a>
-            </li>
-            <% } %>
-        </ul>
+
+    <%- include env_buttons.ejs %>
+
+    <%- include carousel.ejs %>
+
+    <br>
+    <br>
+    <% if (environment !== 'v') { %>
+    <div class="row">
+        <div class="col l6 m6 s12">
+            <%- include instructions.ejs %>
+        </div>
+        <div class="col l6 m6 s12">
+            <%- include category_list.ejs %>
+        </div>
     </div>
-    <br>
-    <br>
 
-    <%- include category_list.ejs %>
 
-    <%- include instructions.ejs %>
+
 
     <br>
     <div class="container">
-        <h4 class="header center cc-corporate-green-text">Aprende más sobre Curso Club</h4>
+        <h4 class="header center cc-corporate-green-text cc-font-title">Aprende más sobre Curso Club</h4>
         <div class="video-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/HWp5ljXyIN4" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
-
+    <% } %>
+    <% if (environment === 'v') { %>
+    <br>
+    <div class="row" align="center">
+        <h4 class="cc-corporate-purple-text cc-font-title">Lista de cursos virtuales</h4>
+        <% for (var i=0; i<courses_list.length; i++) { %>
+            <% if (i % 3 === 0) { %>
+        <div class="row">
+            <% } %>
+            <div class="col l4 m6 s12">
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <a href="<%= courses_list[i].url %>"><img src="<%= courses_list[i].picture %>"></a>
+                <% if (user && user.role === 1) { %>
+                        <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= courses_list[i].short_url %>/update"><i class="material-icons">mode_edit</i></a>
+                <% } %>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title"><%= courses_list[i].name %></span>
+                        <p><%= courses_list[i].description %></p>
+                    </div>
+                    <div class="card-action">
+                        <a class="green-text" href="<%= courses_list[i].url %>">Detalles</a>
+                <% if (courses_list[i].category === 'Virtual') { %>
+                        <a class="blue-text" href="<%= courses_list[i].externalLink %>">Ir al sitio del curso</a>
+                <% } %>
+                    </div>
+                </div>
+            </div>
+            <%if (i % 3 === 2 || i === courses_list.length - 1) { %>
+        </div>
+            <% } %>
+        <% } %>
+    </div>
+    <% } %>
 </main>
 
 <%- include footer.ejs %>

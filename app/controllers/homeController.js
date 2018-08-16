@@ -10,13 +10,45 @@ let async = require('async');
 
 
 exports.index = function (req, res) {
-    console.log("Visitante: "+req.ip);
-    BlogEntry.find({})
-        .sort('-createdAt')
-        .exec(function (err, results) {
-            if (err) { return res.send(res) }
-            res.render('index', { title: 'Curso Club', lastBlogEntry: results[0], user: req.user })
+    //console.log("Visitante: "+req.ip);
+    let environment;
+    if(req.query.env === 'v') {
+        environment = 'v'
+    } else if (req.query.env === 'n') {
+        environment = 'n';
+    }
+    if (!environment) {
+        res.render('welcome', {
+            title: 'Curso Club',
+            user: req.user,
+            environment: environment
+        })
+    } else {
+        async.parallel({
+            findBlog: function (callback) {
+                BlogEntry.find({}, callback)
+                    .sort('-createdAt')
+            },
+            findCourses: function (callback) {
+                let category;
+                if (environment === 'v') {
+                    category = 'Virtual';
+                } else {
+                    category = ''
+                }
+                Course.find({ category: category }, callback)
+            }
+        }, function (err, results) {
+            if (err) { return res.send(err) }
+            res.render('index', {
+                title: 'Curso Club',
+                lastBlogEntry: results.findBlog[0],
+                courses_list: results.findCourses,
+                user: req.user,
+                environment: environment
+            })
         });
+    }
 };
 
 exports.home = function(req, res) {
@@ -34,6 +66,15 @@ exports.home = function(req, res) {
                 },
                 rejected_lessons: function (callback) {
                     Lesson.count({ 'state': constants.lesson_rejected}, callback);
+                },
+                users: function (callback) {
+                    User.find({ 'teacher': { $ne : null} }, callback)
+                        .populate( {
+                            path: 'teacher',
+                            populate: {
+                                path: 'courses.course'
+                            }
+                        } );
                 }
             }, function (err, results) {
                 if (err) { return res.send(err) }
@@ -45,6 +86,7 @@ exports.home = function(req, res) {
                     accepted: results.accepted_lessons,
                     paid: results.paid_lessons,
                     rejected: results.rejected_lessons,
+                    users_list: results.users,
                     user: req.user
                 });
             });
@@ -101,7 +143,7 @@ exports.login = function(req, res) {
 		res.redirect('/home');
 	} else {
         console.log('Usuario no en sesion');
-        if (req.query.signup === 'true'){
+        if (req.query.signup === 'true') {
             res.render('login', {
                 title: 'Iniciar sesión',
                 error: req.flash("error"),
@@ -109,7 +151,14 @@ exports.login = function(req, res) {
 					"correo electrónico con tu información de ingreso y un enlace para activar tu cuenta",
                 user: req.user
             });
-		} else if (req.query.creationError === 'true') {
+		} else if (req.query.teacherSignup === 'true') {
+            res.render('login', {
+                title: 'Iniciar sesión',
+                error: req.flash("error"),
+                success: "Tu registro ha sido exitoso. Revisaremos tu formulario y te avisaremos cuando tu cuenta esté lista",
+                user: req.user
+            });
+        } else if (req.query.creationError === 'true') {
             res.render('login', {
                 title: 'Iniciar sesión',
                 error: req.flash("error"),

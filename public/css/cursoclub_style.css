@@ -66,7 +66,7 @@
 }
 .cc-slider-text {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 0;
     width: 100%;
     letter-spacing: -1px;
@@ -90,7 +90,7 @@
     background: rgba(0,0,0,0.7);
 }
 .cc-nav {
-    background-color: #00053f;
+    background-color: #000000;
     height: 87px;
 }
 .cc-nav-element {
@@ -103,7 +103,7 @@ a.cc-nav-element {
     margin-top: 12px;
 }
 a.cc-nav-element:hover  {
-    background-color: #000577;
+    background-color: #46C01F;
 }
 .cc-course-info-img {
     width: 50%;
@@ -115,8 +115,32 @@ a.cc-nav-element:hover  {
     max-height: 100%;
     overflow-y: auto;
 }
+.cc-corporate-orange-text {
+    color: #ff7b0f;
+}
+.cc-corporate-orange {
+     background-color: #ff7b0f;
+ }
+a.cc-corporate-orange:hover {
+    background-color: #c5630e;
+}
 .cc-corporate-green-text {
     color: #46C01F;
+}
+.cc-corporate-green {
+    background-color: #46C01F;
+}
+a.cc-corporate-green:hover {
+    background-color: #3f9c1d;
+}
+.cc-corporate-purple-text {
+    color: #8014ba;
+}
+.cc-corporate-purple {
+    background-color: #8014ba;
+}
+a.cc-corporate-purple:hover {
+    background-color: #581084;
 }
 .cc-corporate-blue-text {
     color: #00053f;
@@ -133,4 +157,63 @@ a.cc-nav-element:hover  {
 }
 .cc-input-star {
     cursor: pointer;
+}
+.cc-font-title {
+    font-family: 'Acme', 'Roboto', sans-serif;
+}
+.cc-instruction-img {
+    width: 150px;
+}
+.cc-category-img {
+    width: 75%;
+}
+.cc-welcome-button {
+    height: auto;
+    min-height: 20px;
+    line-height: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 10px;
+}
+.cc-welcome-space {
+    position: relative;
+}
+.cc-welcome-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.cc-message-date {
+    font-size: 11px;
+    color: rgba(112,125,125,0.76);
+}
+.cc-messages-area {
+    height: 400px;
+    overflow: auto;
+}
+.cc-message-card {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.cc-welcome-sections-border {
+    border-style: dotted;
+}
+.cc-corporate-green-background {
+    background-color: #6be544;
+}
+.cc-corporate-orange-background {
+    background-color: #ff943d;
+}
+.cc-corporate-purple-background {
+    background-color: #ae71ce;
+}
+.cc-category-text {
+    font-size: 20px;
+}
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+strong { 
+    font-weight: bold; 
 }

@@ -69,11 +69,10 @@ exports.create_teacher_get = function (req, res, next) {
 exports.create_teacher_post = function (req, res, next) {
     //res.send('Crear profesor');
     let hash = bcrypt.hashSync(req.body.document);
-    let groupDoes = Boolean(req.body.groupDoes);
     let courses = [];
     let courseWithPrice = {};
     let coursesId = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
-    for (let i=0; i < coursesId.length; i++){
+    for (let i=0; i < coursesId.length; i++) {
         courseWithPrice = {
             course: coursesId[i],
             pricePerHour: req.body['price'+coursesId[i]]
@@ -135,8 +134,6 @@ exports.create_teacher_post = function (req, res, next) {
                         if (!results.teacher && results.student){
                             results.teacher = teacher.id;
                             results.save();
-                        } else {
-
                         }
                     }
                 });
@@ -145,6 +142,129 @@ exports.create_teacher_post = function (req, res, next) {
         if (err) { return next(err) }
         emailer.welcome_teacher_email(user.email, user.activation_route, teacher.firstName, user.username);
         res.redirect(teacher.url);
+    });
+};
+
+// Create a teacher GET
+exports.registration_teacher_get = function (req, res, next) {
+    //res.send('Crear profesor');
+    Course.find({ })
+        .exec(function (err, list_courses) {
+            if (err) { return next(err) }
+            res.render('teacher_registration', { title: 'Registro de instructor', courses_list: list_courses, user: req.user, teacher: null });
+        });
+};
+
+// Create a teacher POST
+exports.registration_teacher_post = function (req, res, next) {
+    //res.send('Crear profesor');
+    let hash = bcrypt.hashSync(req.body.new_password);
+    if (req.query.stage) {
+        let stage = req.query.stage;
+    } else {
+        let stage = 'professional';
+    }
+    let coursesId = (typeof req.body.courses === 'undefined') ? [] : req.body.courses.toString().split(",");
+    let teacher = new Teacher(
+        {
+            firstName: req.body.firstname,
+            lastName: req.body.lastname,
+            document: req.body.document,
+            birthday: req.body.birthday,
+            city: req.body.city,
+            phone: req.body.phone,
+            workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
+            description: req.body.description,
+            request: req.body.extra
+        }
+    );
+    let user = new User(
+        {
+            email: req.body.email,
+            username: req.body.email,
+            password: hash
+        }
+    );
+    // First, update all courses' teachers list adding teacher's ID and then save the new created teacher
+    async.series({
+        find_courses: function (callback) {
+            Course.find({ _id: { $in: coursesId }}, callback);
+        }
+    }, function (err, results) {
+        if (err) { return next(err) }
+        res.render('teacher_registration', { title: 'Registro de instructor', courses_list: results.find_courses, user: user, teacher: teacher });
+    });
+};
+
+// Create a teacher POST
+exports.registration_complete_teacher_post = function (req, res, next) {
+    //res.send('Crear profesor');
+    let teacherPlain = JSON.parse(req.body.teacher);
+    let userPlain = JSON.parse(req.body.user);
+    let coursesId = JSON.parse(req.body.courses);
+    let teacher = new Teacher(
+        {
+            firstName: teacherPlain.firstName,
+            lastName: teacherPlain.lastName,
+            document: teacherPlain.document,
+            birthday: teacherPlain.birthday,
+            city: teacherPlain.city,
+            phone: teacherPlain.phone,
+            workingArea: (typeof teacherPlain.workingArea === 'undefined') ? [] : teacherPlain.workingArea.toString().split(','),
+            description: teacherPlain.description,
+            request: teacherPlain.request,
+            member: {
+                isMember: false
+            }
+        }
+    );
+    let user = new User(
+        {
+            role : constants.teacher_role,
+            email: userPlain.email,
+            username: userPlain.email,
+            password: userPlain.password,
+            owner: teacher.fullName,
+            teacher: teacher.id,
+            active : {
+                isActive : false,
+                token : teacher.id
+            }
+        }
+    );
+    let courses = [];
+    let courseWithPrice = {};
+    for (let i=0; i < coursesId.length; i++) {
+        courseWithPrice = {
+            course: coursesId[i]._id,
+            pricePerHour: req.body['course_price'+coursesId[i]._id]
+        };
+        courses.push(courseWithPrice);
+    }
+    teacher.courses = courses;
+    async.series({
+        teacher_save: function (callback) {
+            teacher.save(callback);
+        },
+        user_save: function (callback) {
+            User.findOne({ 'email': user.email }, callback)
+                .exec(function (err, results) {
+                    if (err) {
+                        return res.send(err)
+                    }
+                    if (!results) {
+                        user.save();
+                    } else {
+                        if (!results.teacher && results.student) {
+                            results.teacher = teacher.id;
+                            results.save();
+                        }
+                    }
+                });
+        }
+    }, function (err, results) {
+        if (err) { return next(err) }
+        res.redirect('/login?teacherSignup=true');
     });
 };
 
@@ -207,7 +327,8 @@ exports.update_teacher_get = function (req, res, next) {
             }
         }, function (err, results) {
             if (err) { return next(err) }
-            let birthdayString = moment(results.first.birthday).utc().format('YYYY-MM-DD');
+            let premiumSinceString = moment(results.first.member.premiumSince).utc().format('YYYY-MM-DD');
+            let premiumUntilString = moment(results.first.member.premiumUntil).utc().format('YYYY-MM-DD');
             let teacher_courses_list = [];
             let teacher_courses_list_pricePerHour = [];
             for (let i=0; i<results.first.courses.length; i++){
@@ -221,7 +342,8 @@ exports.update_teacher_get = function (req, res, next) {
                     teacher_courses_list: teacher_courses_list,
                     teacher_courses_list_pricePerHour: teacher_courses_list_pricePerHour,
                     courses_list: results.second,
-                    birthdayString: birthdayString,
+                    premiumSinceString: premiumSinceString,
+                    premiumUntilString: premiumUntilString,
                     user: req.user
                 })
         }
@@ -231,35 +353,15 @@ exports.update_teacher_get = function (req, res, next) {
 // Update a teacher POST
 exports.update_teacher_post = function (req, res, next) {
     //res.send('Actualizar profesor ' + req.params.id);
-    /*let teacher = new Teacher(
-        {   _id: req.params.id,
-            firstName: req.body.firstname,
-            lastName: req.body.lastname,
-            document: req.body.document,
-            birthday: req.body.birthday,
-            description: req.body.description,
-            address: req.body.address,
-            phone: req.body.phone,
-            courses: (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(","),
-            schedule: (typeof req.body.schedule==='undefined') ? [] : req.body.schedule.toString().split(",")
-        }
-    );*/
-    /*let courses = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
-    // Different update for User
-    let prices = '';
-    for (let i = 0; i < courses.length; i++){
-        //console.log('Precios seleccionados: '+req.body['price'+teacher.courses[i]]);
-        text = '<'+courses[i]+':'+req.body['price'+courses[i]]+'>';
-        prices = prices.concat('/', text);
-    }*/
     let courses = [];
     let courseWithPrice = {};
-    let groupDoes = Boolean(req.body.groupDoes);
+    let isMember = Boolean(req.body.isMember);
+    let isPremium = Boolean(req.body.isPremium);
     let coursesId = (typeof req.body.course==='undefined') ? [] : req.body.course.toString().split(",");
     for (let i=0; i < coursesId.length; i++){
         courseWithPrice = {
             course: coursesId[i],
-            pricePerHour: req.body['price'+coursesId[i]]
+            pricePerHour: req.body['course_price'+coursesId[i]]
         };
         courses.push(courseWithPrice);
     }
@@ -271,9 +373,7 @@ exports.update_teacher_post = function (req, res, next) {
                     for (let i=0; i<result.length; i++){
                         let index = result[i].teachers.indexOf(req.params.id);
                         result[i].teachers.splice(index, 1);
-                        result[i].save(function (err) {
-                            if (err) { return res.send(err) }
-                        });
+                        result[i].save();
                     }
                 });
         },
@@ -283,38 +383,58 @@ exports.update_teacher_post = function (req, res, next) {
                     if (err){return res.send(err)}
                     for (let i=0; i<result.length; i++){
                         result[i].teachers.push(req.params.id);
-                        result[i].save(function (err) {
-                            if (err) { return res.send(err) }
-                        })
+                        result[i].save();
                     }
                 });
         },
-        /*user_owner_update: function (callback) {
-            User.findOneAndUpdate({ 'teacher': req.params.id }, {
-                $set: {
-                    owner: teacher.fullName
-                }
-            }, callback)
-        },
         teacher_update: function (callback) {
-            Teacher.findByIdAndUpdate(req.params.id, teacher, callback);
-        },*/
-        teacher_update: function (callback) {
-            Teacher.findOneAndUpdate({_id: req.params.id }, {
+            Teacher.findById(req.params.id, callback)
+                .exec(function (err, result) {
+                    if (err) {
+                        return res.send(err)
+                    }
+                    result.firstName = req.body.firstname;
+                    result.lastName = req.body.lastname;
+                    result.document = req.body.document;
+                    result.description = req.body.description;
+                    result.city = req.body.city;
+                    result.phone = req.body.phone;
+                    result.workingArea = (typeof req.body.workingArea === 'undefined') ? [] : req.body.workingArea.toString().split(',');
+                    result.courses = courses;
+                    if (req.user.role === constants.admin_role) {
+                        result.member = {
+                            isMember: isMember,
+                            isPremium: isPremium,
+                            premiumSince: req.body.premiumSince,
+                            premiumUntil: req.body.premiumUntil
+                        };
+                    }
+                    result.updatedAt = new Date();
+                    result.save(function (err) {
+                        if (err) { return res.send(err) }
+                        User.findOne({'teacher': req.params.id }, function (err, doc) {
+                            if (err) { return res.send(err) }
+                            doc.owner = result.fullName;
+                            doc.updatedAt = new Date();
+                            doc.save();
+                        })
+                    });
+                });
+            /*Teacher.findOneAndUpdate({_id: req.params.id }, {
                 $set: {
                     firstName: req.body.firstname,
                     lastName: req.body.lastname,
                     document: req.body.document,
-                    birthday: req.body.birthday,
                     description: req.body.description,
-                    address: req.body.address,
+                    city: req.body.city,
                     phone: req.body.phone,
                     workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
                     courses: courses,
-                    groupLesson: {
-                        does: groupDoes,
-                        maxStudents: req.body.maxStudents,
-                        discountPerStudent: req.body.discountPerStudent
+                    member: {
+                        isMember: isMember,
+                        isPremium: isPremium,
+                        premiumSince: req.body.premiumSince,
+                        premiumUntil: req.body.premiumUntil
                     },
                     updatedAt: new Date()
                 }
@@ -327,11 +447,11 @@ exports.update_teacher_post = function (req, res, next) {
                 }, {new:true}, function (err, doc) {
                     res.redirect('/home');
                 }, callback);
-            }, callback);
+            }, callback); */
         }
     }, function (err, results) {
         if (err) { return next(err) }
-
+        res.redirect('/home');
     })
 };
 

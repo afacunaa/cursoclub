@@ -14,7 +14,7 @@ exports.usageTrack_list = function (req, res, next) {
                 .sort('-createdAt')
                 .exec(function (err, list_usageTrack) {
                     if (err) {
-                        return next(err)
+                        return next(err);
                     }
                     res.render('usageTrack_list', {
                         title: 'Registro de navegación de usuarios',

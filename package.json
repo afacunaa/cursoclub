@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "@google-cloud/storage": "1.2.1",
     "async": "latest",
     "basic-auth-connect": "latest",
     "bcrypt-nodejs": "0.0.3",
@@ -33,6 +34,7 @@
     "nodemailer": "^2.4.1",
     "nodemailer-smtp-transport": "^2.5.0",
     "nodemon": "latest",
+    "npm": "^6.4.0",
     "numeral": "latest",
     "passport": "latest",
     "passport-facebook": "^2.1.1",
@@ -41,7 +43,6 @@
     "request": "latest",
     "serve-favicon": "~2.3.0",
     "simple-encryptor": "latest",
-    "underscore": "latest",
-    "@google-cloud/storage": "1.2.1"
+    "underscore": "latest"
   }
 }
