@@ -32,6 +32,7 @@ module.exports = {
     "lesson_paid":'Pendiente',
     "lesson_done":'Realizada',
     "upload_directory":"./public/uploads/",
+    "upload_directory_reference":"/uploads/",
     "google_bucket_name": "cursoclub-uploads",
     "project_id": "curso-club-web",
     "path_to_auth_keyfile": "/home/andres/Documentos/Repositorio local/cursoclub/cursoclub_auth.json"

@@ -9,29 +9,44 @@ let Schema = mongoose.Schema;
 let teacherSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    document: { type: String, required: true },
-    score: { type: Number, min: 0, max: 5 },
-    schedule: [ { type: Number, min: 0, max: 111 } ],
-    description: String,
-    member: {
-        isMember: Boolean,
-        isPremium: Boolean,
-        premiumSince: Date,
-        premiumUntil: Date
-    },
-    request: String,
-
-    workingArea: [String],
+    phone: { type: String, minlength: 7, maxlength: 10 },
+    mobile: { type: String, minlength: 7, maxlength: 15 },
     birthday: { type: Date },
     city: { type: String },
-    phone: { type: String, minlength: 7, maxlength: 10 },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
+    address: String,
+    document: { type: String, required: true },
     courses : [ {
         _id: false,
         course: { type: Schema.Types.ObjectId, ref: 'Course' },
         pricePerHour: Number
     } ],
+    wantedCourses: String,
+    knowledgeType: [String],
+    attachment: [String],
+    experienceSummary: String,
+    kindOfClients: String,
+    moreAbout: String,
+    socialNetwork: {
+        facebook: String,
+        linkedin: String,
+        twitter: String,
+        blog: String,
+        website: String
+    },
+    like: String,
+    howDidKnow: String,
+    description: String,
+    workingArea: [String],
+    score: { type: Number, min: 0, max: 5 },
+    schedule: [ { type: Number, min: 0, max: 111 } ],
+    member: {
+        isMember: Boolean,
+        isPremium: Boolean,
+        premiumSince: { type: Date, default: Date.now },
+        premiumUntil: { type: Date, default: Date.now }
+    },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
     lessons : [ { type: Schema.Types.ObjectId, ref: 'Lesson' } ]
 });
 

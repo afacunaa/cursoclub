@@ -11,6 +11,7 @@ let emailer = require('../../lib/email');
 let async = require('async');
 let bcrypt = require('bcrypt-nodejs');
 let moment = require('moment');
+let uploader = require('../../lib/upload');
 
 // Display all teachers GET
 exports.teacher_list = function (req, res, next) {
@@ -37,6 +38,9 @@ exports.teacher_detail = function (req, res, next) {
                 },
                 second: function (callback) {
                     User.findOne({teacher: req.params.id}).exec(callback);
+                },
+                third: function (callback) {
+                    Lesson.find( { teacher: req.params.id}, { student: req.user.id }, callback);
                 }
             }, function (err, results) {
                 if (err) {
@@ -46,6 +50,7 @@ exports.teacher_detail = function (req, res, next) {
                     title: 'Detalle de profesor',
                     teacher: results.first,
                     teacher_user: results.second,
+                    lessons_taken: results.third,
                     user: req.user
                 });
             }
@@ -151,49 +156,100 @@ exports.registration_teacher_get = function (req, res, next) {
     Course.find({ })
         .exec(function (err, list_courses) {
             if (err) { return next(err) }
-            res.render('teacher_registration', { title: 'Registro de instructor', courses_list: list_courses, user: req.user, teacher: null });
+            res.render('teacher_registration',
+                { title: 'Registro de instructor',
+                    courses_list: list_courses,
+                    user: req.user,
+                    error: req.flash("error"),
+                    success: req.flash("success"),
+                });
         });
 };
 
 // Create a teacher POST
 exports.registration_teacher_post = function (req, res, next) {
     //res.send('Crear profesor');
-    let hash = bcrypt.hashSync(req.body.new_password);
-    if (req.query.stage) {
-        let stage = req.query.stage;
-    } else {
-        let stage = 'professional';
-    }
-    let coursesId = (typeof req.body.courses === 'undefined') ? [] : req.body.courses.toString().split(",");
-    let teacher = new Teacher(
-        {
-            firstName: req.body.firstname,
-            lastName: req.body.lastname,
-            document: req.body.document,
-            birthday: req.body.birthday,
-            city: req.body.city,
-            phone: req.body.phone,
-            workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
-            description: req.body.description,
-            request: req.body.extra
-        }
-    );
-    let user = new User(
-        {
-            email: req.body.email,
-            username: req.body.email,
-            password: hash
-        }
-    );
-    // First, update all courses' teachers list adding teacher's ID and then save the new created teacher
-    async.series({
-        find_courses: function (callback) {
-            Course.find({ _id: { $in: coursesId }}, callback);
-        }
-    }, function (err, results) {
-        if (err) { return next(err) }
-        res.render('teacher_registration', { title: 'Registro de instructor', courses_list: results.find_courses, user: user, teacher: teacher });
-    });
+    User.findOne( { 'email': req.body.email })
+        .exec(function (err, result) {
+            if (err) { return next(err) }
+            if (result) {
+                req.flash('error', 'Ya hay un usuario registrado con esa dirección de correo electrónico');
+            } else {
+                let hash = bcrypt.hashSync(req.body.new_password);
+                let coursesRaw = (typeof req.body.courses === 'undefined') ? [] : req.body.courses.toString().split(",");
+                let coursesId = [];
+                for (let i=0; i<coursesRaw.length; i++){
+                    let id = coursesRaw[i].substring(0, coursesRaw[i].indexOf(':'));
+                    let priceSelector = 'price' + id;
+                    let price = req.body[priceSelector];
+                    coursesId.push(
+                        {
+                            course: id,
+                            pricePerHour: price
+                        });
+                }
+                let teacher = new Teacher(
+                    {
+                        firstName: req.body.firstname,
+                        lastName: req.body.lastname,
+                        phone: req.body.phone,
+                        mobile: req.body.mobile,
+                        birthday: req.body.birthday,
+                        city: req.body.city,
+                        address: req.body.address,
+                        document: req.body.document,
+                        wantedCourses: req.body.wantedCourse,
+                        knowledgeType: (typeof req.body.knowledgeType==='undefined') ? [] : req.body.knowledgeType.toString().split(','),
+                        experienceSummary: req.body.experience,
+                        kindOfClients: req.body.clients,
+                        moreAbout: req.body.about,
+                        socialNetwork:
+                            {
+                                facebook: req.body.facebook,
+                                linkedin: req.body.linkedin,
+                                twitter: req.body.twitter,
+                                blog: req.body.blog,
+                                website: req.body.website
+                            },
+                        like: req.body.like,
+                        howDidKnow: req.body.howKnew,
+                        description: '',
+                        courses: coursesId,
+                        member: {
+                            isMember: false,
+                            isPremium: false
+                        },
+                    }
+                );
+                let user = new User(
+                    {
+                        role : constants.teacher_role,
+                        email: req.body.email,
+                        username: req.body.email,
+                        password: hash,
+                        owner: teacher.shortName,
+                        teacher: teacher.id,
+                        active : {
+                            isActive : false,
+                            token : teacher.id
+                        },
+                        subscription: Boolean(req.body.subscription)
+                    }
+                );
+                teacher.save(function (err) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    req.customQuery = teacher.id;
+                    if (uploader.uploadFile(req, 'Teacher')) {
+
+                    }
+                });
+                user.save();
+                req.flash('success', 'Registro exitoso');
+            }
+            res.redirect('/teacher/signup');
+        });
 };
 
 // Create a teacher POST
@@ -344,6 +400,8 @@ exports.update_teacher_get = function (req, res, next) {
                     courses_list: results.second,
                     premiumSinceString: premiumSinceString,
                     premiumUntilString: premiumUntilString,
+                    error: req.flash("error"),
+                    success: req.flash("success"),
                     user: req.user
                 })
         }
@@ -451,7 +509,8 @@ exports.update_teacher_post = function (req, res, next) {
         }
     }, function (err, results) {
         if (err) { return next(err) }
-        res.redirect('/home');
+        req.flash('success', 'Cambios hechos correctamente');
+        res.redirect('/teacher/' + req.params.id + '/update');
     })
 };
 

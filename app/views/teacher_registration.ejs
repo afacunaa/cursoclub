@@ -2,16 +2,59 @@
 
 <main>
     <div class="container">
-        <h4 class="cc-corporate-green-text">Formulario de pre-registro para instructores</h4>
-        <p>Cuando completes este formulario, debes esperar a ser aprobado por Curso Club para poder ingresar, y aparecer en nuestra plataforma</p>
+        <div class="row">
+            <div class="card yellow lighten-2">
+                <div class="card-content">
+                    <h5>
+                        <i class="material-icons">warning</i> Si estas interesado en utilizar Instructorio,
+                        <a class="blue-text" href="/signup">haz clic aquí</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <p class="flow-text">¿Ya estás registrado? <a href="/login">Ingresa acá</a></p>
+        <div class="divider"></div>
+        <h4 class="i-corporate-green-text">Formulario de pre-registro para instructores</h4>
+        <p>Cuando completes este formulario, debes esperar a ser aprobado por Instructorio para poder ingresar, y aparecer en nuestra plataforma</p>
         <br>
-        <form method="post" action="">
+        <% if (error.length > 0) { %>
+        <div class="row">
+            <div class="card red darken-1">
+                <div class="card-content white-text">
+                    <p><i class="material-icons">report_problem</i> <%- error %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% if (success.length > 0) { %>
+        <div class="row">
+            <div class="card green darken-1">
+                <div class="card-content white-text">
+                    <p class="flow-text">
+                        <i class="material-icons">done</i> ¡Gracias por registrarte en Instructorio!
+                    </p>
+                    <br>
+                    <p>
+                        Gracias por tu registro y por tu tiempo. Ahora revisaremos la información que nos compartiste
+                        y muy pronto te enviaremos una respuesta.
+                        <br>
+                        <br>
+                        Si deseas puedes volver a la <a href="/">página de inicio</a>.
+                        <br>
+                        <br>
+                        O leer algún artículo de tu interés en <a href="/blogs">nuestro blog</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <form id="registrationForm" method="post" action="" enctype="multipart/form-data">
             <div id="personalForm">
                 <div class="card grey lighten-2">
                     <div class="card-content">
                         <p class="flow-text">
                             <i class="material-icons blue-text">new_releases</i> ¡Gracias por demostrar tu interés en
-                            Curso Club!
+                            Instructorio!
                         </p>
                         <p>
                             Queremos que tengas la posibilidad de compartir tus conocimientos y que logres ingresos extra con ello.
@@ -23,51 +66,66 @@
                         </p>
                     </div>
                 </div>
-                <h5 class="cc-corporate-purple-text">Datos personales</h5>
+                <h5 class="i-corporate-purple-text">Datos personales</h5>
                 <div class="row">
                     <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
                         <input type="text" name="firstname" id="firstname" required>
                         <label for="firstname">Nombre</label>
                     </div>
                     <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
                         <input type="text" name="lastname" id="lastname" required>
                         <label for="lastname">Apellido</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">local_phone</i>
                         <input type="text" name="phone" id="phone" required>
                         <label for="phone">Teléfono fijo</label>
                     </div>
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">phone_android</i>
                         <input type="text" name="mobile" id="mobile" required>
                         <label for="mobile">Celular</label>
                     </div>
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">event</i>
                         <input type="date" name="birthday" id="birthday" class="datepicker" required>
                         <label for="birthday">Fecha de nacimiento</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col l6 m6 s12">
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">location_city</i>
+                        <input type="text" name="city" id="city">
+                        <label for="city">Ciudad</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">home</i>
                         <input type="text" name="address" id="address">
                         <label for="address">Dirección</label>
                     </div>
-                    <div class="input-field col s12 m6 l6">
-                        <input type="text" name="workingArea" id="workingArea" required>
-                        <label for="workingArea">Cédula</label>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">assignment_ind</i>
+                        <input type="text" name="document" id="document" required>
+                        <label for="document">Cédula</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">email</i>
                         <input class="validate" type="email" name="email" id="email" required>
                         <label for="email">Correo electrónico</label>
                     </div>
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">lock</i>
                         <input class="validate" minlength="6" type="password" name="new_password" id="new_password" required>
                         <label for="new_password">Contraseña</label>
                     </div>
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">lock</i>
                         <input class="validate" minlength="6" type="password" name="password_confirmation" id="password_confirmation" required>
                         <label for="password_confirmation">Confirmar contraseña</label>
                         <span id="message"></span>
@@ -75,83 +133,87 @@
                 </div>
                 <div class="row" align="center">
                     <div class="input-field col l12 m12 s12">
-                        <a class="btn green" onclick="showProfessionalForm()">Continuar</a>
+                        <a class="btn green" onclick="showProfessionalForm(true)">Continuar</a>
                     </div>
                 </div>
             </div>
             <div id="professionalForm" style="display: none">
-                <h5 class="cc-corporate-purple-text">Información profesional</h5>
+                <h5 class="i-corporate-purple-text">Información profesional</h5>
                 <div class="row">
-                    <div class="input-field col l6 m6 s6">
-                        <select multiple id="courses" name="courses">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">list</i>
+                        <select multiple id="courses" name="courses" onchange="courseSelected()">
                             <option value="" disabled selected>Selecciona al menos un curso</option>
                             <% for (var i = 0; i < courses_list.length; i++ ) { %>
-                            <option value="<%= courses_list[i].id %>"><%= courses_list[i].name %></option>
+                            <option value="<%= courses_list[i].id %>:<%= courses_list[i].name %>"><%= courses_list[i].name %></option>
                             <% } %>
                         </select>
                         <label for="courses">Selecciona las clases que vas a impartir</label>
                     </div>
                 </div>
+                <div id="prices-area">
+                </div>
                 <div class="row">
-                    <div class="input-field col l6 m6 s12">
-                        <input type="text" name="firstname" id="firstname" required>
-                        <label for="firstname">¿En qué sectores de la ciudad prefieres impartir las clases?</label>
-                    </div>
-                    <div class="input-field col l6 m6 s12">
-                        <input type="text" name="lastname" id="lastname" required>
-                        <label for="lastname">¿Cuál es el valor promedio por hora de clase?</label>
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">note_add</i>
+                        <textarea id="wantedCourse" name="wantedCourse" class="materialize-textarea" data-length="300"></textarea>
+                        <label for="wantedCourse">¿El área de tu interés no está en el listado? ¡Cuéntanos qué es!</label>
                     </div>
                 </div>
                 <div class="row">
                     <p>Tus conocimientos en esta(s) área(s) son:</p>
                     <div class="col l6 m6 s12">
                         <p>
-                            <input name="knowledgeType" type="radio" id="knowledgeType1" onclick="knowledgeTypeSelected('professional')" />
+                            <input name="knowledgeType" type="checkbox" id="knowledgeType1" value="Profesional" />
                             <label for="knowledgeType1">Profesionales</label>
                         </p>
                         <p>
-                            <input name="knowledgeType" type="radio" id="knowledgeType2" onclick="knowledgeTypeSelected('experience')" />
+                            <input name="knowledgeType" type="checkbox" id="knowledgeType2" value="Empírico" />
                             <label for="knowledgeType2">Empíricos</label>
                         </p>
                     </div>
                     <div class="col l6 m6 s12">
-                        <p id="file-message"></p>
-                        <div class="input-field file-field" id="file-inputField" style="display: none">
+                        <p>Si son profesionales, adjunta tu hoja de vida o algún otro documento que certifique tu experiencia en esta(s) área(s).</p>
+                        <div class="input-field file-field" id="file-inputField">
                             <div class="btn indigo">
-                                <span>Elegir archivo</span>
-                                <input type="file" name="attached" id="attached-input">
+                                <span>Elegir archivo(s)</span>
+                                <input type="file" name="teacherFiles" id="teacherFiles" multiple>
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path" id="file-name" type="text" placeholder="Archivo con tamaño no mayor a 6 mb">
+                                <i class="material-icons prefix">file_upload</i>
+                                <input class="file-path" id="file-name" type="text" placeholder="Máximo 3 archivos de hasta 6 mb cada uno">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">description</i>
                         <textarea id="experience" name="experience" class="materialize-textarea" data-length="300"></textarea>
                         <label for="experience">Cuéntanos sobre tu experiencia</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">group</i>
                         <textarea id="clients" name="clients" class="materialize-textarea" data-length="300"></textarea>
                         <label for="clients">¿Con qué tipo de clientes has trabajado? (Ej: niños, adultos, etc)</label>
                     </div>
                 </div>
                 <div class="row" align="center">
                     <div class="input-field col l12 m12 s12">
-                        <a class="btn red lighten-2" onclick="showPersonalForm()">Regresar</a>
-                        <a class="btn green" onclick="showLastStepForm()">Continuar</a>
+                        <a class="btn red lighten-2" onclick="showPersonalForm(false)">Regresar</a>
+                        <a class="btn green" onclick="showLastStepForm(true)">Continuar</a>
                     </div>
                 </div>
             </div>
             <div id="lastStepForm" style="display: none">
-                <h5 class="cc-corporate-purple-text">Información adicional</h5>
+                <h5 class="i-corporate-purple-text">Información adicional</h5>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
-                        <textarea id="clients" name="clients" class="materialize-textarea" data-length="300"></textarea>
-                        <label for="clients">Cuéntanos un poco más sobre ti (fortalezas, aptitudes, características).</label>
+                        <i class="material-icons prefix">person</i>
+                        <textarea id="about" name="about" class="materialize-textarea" data-length="300"></textarea>
+                        <label for="about">Cuéntanos un poco más sobre ti (fortalezas, aptitudes, características).</label>
                     </div>
                 </div>
                 <div class="row">
@@ -165,8 +227,8 @@
                     </div>
                     <div class="input-field col l2 m2 s6">
                         <i class="material-icons prefix">photo_camera</i>
-                        <input type="text" name="instagram" id="instagram" required>
-                        <label for="instagram">Instagram</label>
+                        <input type="text" name="linkedin" id="linkedin" required>
+                        <label for="linkedin">Linkedin</label>
                     </div>
                     <div class="input-field col l2 m2 s6">
                         <i class="material-icons prefix">sms</i>
@@ -190,8 +252,16 @@
                 </div>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">person</i>
                         <textarea id="like" name="like" class="materialize-textarea" data-length="300"></textarea>
                         <label for="like">¿Qué es lo que más te gusta del trabajo que haces?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">visibility</i>
+                        <textarea id="howKnew" name="howKnew" class="materialize-textarea" data-length="300"></textarea>
+                        <label for="howKnew">¿Cómo te enteraste de nosotros?</label>
                     </div>
                 </div>
                 <div class="row" align="center">
@@ -203,13 +273,13 @@
                 <div class="row" align="center">
                     <div class="input-field col l12 m12 s12">
                         <input name="terms" id="terms" type="checkbox" value="true" required>
-                        <label for="terms">Acepto los <a href="/" target="_blank">términos y condiciones</a></label>
+                        <label for="terms">Acepto los <a href="/terminos?target=instructor" target="_blank">términos y condiciones</a></label>
                     </div>
                 </div>
                 <div class="row" align="center">
                     <div class="input-field col l12 m12 s12">
-                        <a class="btn red lighten-2" onclick="showProfessionalForm()">Regresar</a>
-                        <a class="btn green" onclick="alert('Registro hecho')">Finalizar registro</a>
+                        <a class="btn red lighten-2" onclick="showProfessionalForm(false)">Regresar</a>
+                        <a class="btn green" onclick="submitForm()"><i class="material-icons right">send</i>Finalizar registro</a>
                     </div>
                 </div>
             </div>

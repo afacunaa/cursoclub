@@ -8,7 +8,7 @@ let Schema = mongoose.Schema;
 
 let billSchema = new Schema({
     state: String,
-    total: { type: Number, required: true },
+    total: { type: Number },
     student : { type: Schema.Types.ObjectId, ref: 'Student' },
     teacher : { type: Schema.Types.ObjectId, ref: 'Teacher' },
     payment : { type: Schema.Types.ObjectId, ref: 'Payment' },

@@ -26,8 +26,6 @@
                             <span class="title"><%= classifiedGroupedLessons["groupAccepted"][i].lessons[0].course.name %></span>
                             <p>
                                 <%= classifiedGroupedLessons["groupAccepted"][i].lessons.length %> clases solicitadas
-                                <br>
-                                $ <%= classifiedGroupedLessons["groupAccepted"][i].bill.total %>
                             </p>
                             <% if(user.role === 3) { %>
                             <p>
@@ -83,8 +81,6 @@
                             <span class="title"><%= classifiedGroupedLessons["groupPending"][i].lessons[0].course.name %></span>
                             <p>
                                 <%= classifiedGroupedLessons["groupPending"][i].lessons.length %> clases solicitadas
-                                <br>
-                                $ <%= classifiedGroupedLessons["groupPending"][i].bill.total %>
                             </p>
                             <% if(user.role === 3) { %>
                             <p>
@@ -148,8 +144,6 @@
                             <span class="title"><%= classifiedGroupedLessons["groupCanceled"][i].lessons[0].course.name %></span>
                             <p>
                                 <%= classifiedGroupedLessons["groupCanceled"][i].lessons.length %> clases solicitadas
-                                <br>
-                                $ <%= classifiedGroupedLessons["groupCanceled"][i].bill.total %>
                             </p>
                             <% if(user.role === 3) { %>
                             <p>

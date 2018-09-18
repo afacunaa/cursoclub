@@ -115,8 +115,18 @@ exports.update_user_post = function (req, res, next) {
 
 //Update user's picture POST
 exports.update_user_picture_post = function (req, res, next) {
-    uploader.uploadFile(req, 'User');
-    res.redirect('/home');
+    if (uploader.uploadFile(req, 'User')) {
+        req.flash('success', 'Imagen cargada exitosamente');
+    } else {
+        req.flash('error', 'Ocurrió un error cargando la imagen. Intenta nuevamente');
+    }
+    if (req.user.student && !req.user.teacher) {
+        res.redirect('/student/update');
+    } else if (!req.user.student && req.user.teacher) {
+        res.redirect('/teacher/' + req.user.teacher + '/update');
+    } else {
+        res.redirect('/home');
+    }
 };
 
 //Recover password GET
@@ -146,6 +156,7 @@ exports.recovery_user_post = function (req, res, next) {
                         result.save();
                     }
                 }
+                req.flash('success', 'Tu contraseña ha sido actualizada correctamente. Ingresa haciendo uso de ella');
                 res.redirect('/login');
             })
     } else {

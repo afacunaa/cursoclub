@@ -2,14 +2,30 @@
 
 <main>
     <div class="container">
-        <h4 class="cc-corporate-blue-text">Editar perfil</h4>
+        <h4 class="i-corporate-blue-text">Editar perfil</h4>
+        <% if (error.length > 0) { %>
+        <div class="row">
+            <div class="card red darken-1">
+                <div class="card-content white-text">
+                    <p><i class="material-icons">report_problem</i> <%- error %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% if (success.length > 0) { %>
+        <div class="row">
+            <div class="card green darken-1">
+                <div class="card-content white-text">
+                    <p><i class="material-icons">done</i> <%- success %></p>
+                </div>
+            </div>
+        </div>
+        <% } %>
         <div class="row">
             <div class="col l4 m4 s4" align="center">
-                <% if (user.picture) { %>
-                <img class="responsive-img" src="<%= user.picture %>">
-                <% } else { %>
-                <img class="responsive-img" src="/img/silueta.png">
-                <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
+                <img class="responsive-img" src="<%= user.picture_or_not %>">
+                <% if (!user.picture) { %>
+                <p>Actualiza tu foto para que tus instructores puedan saber algo más sobre ti</p>
                 <% } %>
                 <div>
                     <a href="#modal_upload_picture" class="btn">Cambiar imagen</a>
@@ -54,12 +70,7 @@
                 <div class="row">
                     <div class="col l6 m6 s6">
                         <h6>Imagen actual</h6>
-                        <% if (user.picture) { %>
-                        <img class="responsive-img cc-edit-user-picture-modal" src="<%= user.picture %>">
-                        <% } else { %>
-                        <img class="responsive-img cc-edit-user-picture-modal" src="/img/silueta.png">
-                        <p>Actualiza tu foto para que tus alumnos puedan saber algo más sobre ti</p>
-                        <% } %>
+                        <img class="responsive-img i-edit-user-picture-modal" src="<%= user.picture_or_not %>">
                     </div>
                     <div class="col l6 m6 s6">
                         <h6>Nueva imagen</h6>
@@ -67,11 +78,11 @@
                         <div id="new-image-info"></div>
                     </div>
                 </div>
-                <input type="hidden" name="userId" value="<%= user.id %>">
+                <input type="hidden" name="fileId" value="<%= user.id %>">
                 <div class="input-field file-field">
                     <div class="btn indigo">
                         <span>Elegir archivo</span>
-                        <input type="file" name="picture" id="picture-input">
+                        <input type="file" name="userPicutre" id="picture-input">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path" id="file-name" type="text" placeholder="Imágen con tamaño no mayor a 6 mb">
@@ -79,7 +90,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="submit-upload" class="btn cc-corporate-blue" type="submit" disabled>Subir imagen</button>
+                <button id="submit-upload" class="btn i-corporate-blue" type="submit" disabled>Subir imagen</button>
                 <a href="#!" class="modal-action modal-close btn-flat">Cancelar</a>
             </div>
         </form>

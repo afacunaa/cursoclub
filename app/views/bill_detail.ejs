@@ -3,7 +3,7 @@
 <main>
     <div class="container">
         <div class="row">
-            <h4 class="header cc-corporate-blue-text"><%= list_lessons[0].course.name %></h4>
+            <h4 class="header i-corporate-blue-text"><%= list_lessons[0].course.name %></h4>
             <div class="col s3">
                 <img class="responsive-img" src="<%= list_lessons[0].course.picture %>">
             </div>
@@ -39,7 +39,6 @@
                                 <% } else { %>
                                 <h5>Se pagaron <%= list_lessons.length %> clases:</h5>
                                 <% } %>
-                                <h5>$ <%= bill.total %></h5>
                             </div>
                             <% if (user.role === 2 && bill.state === 'Pendiente por aprobación') { %>
                             <form action="/bill/<%= bill.id %>/stateUpdate" method="post">
@@ -66,11 +65,11 @@
                                 <div class="col s8">
                                     <div class="row">
                                         <p class="flow-text">
-                                            <i id="star1" class="medium material-icons cc-input-star" onclick="checkStar(1)">star_border</i>
-                                            <i id="star2" class="medium material-icons cc-input-star" onclick="checkStar(2)">star_border</i>
-                                            <i id="star3" class="medium material-icons cc-input-star" onclick="checkStar(3)">star_border</i>
-                                            <i id="star4" class="medium material-icons cc-input-star" onclick="checkStar(4)">star_border</i>
-                                            <i id="star5" class="medium material-icons cc-input-star" onclick="checkStar(5)">star_border</i>
+                                            <i id="star1" class="medium material-icons i-input-star" onclick="checkStar(1)">star_border</i>
+                                            <i id="star2" class="medium material-icons i-input-star" onclick="checkStar(2)">star_border</i>
+                                            <i id="star3" class="medium material-icons i-input-star" onclick="checkStar(3)">star_border</i>
+                                            <i id="star4" class="medium material-icons i-input-star" onclick="checkStar(4)">star_border</i>
+                                            <i id="star5" class="medium material-icons i-input-star" onclick="checkStar(5)">star_border</i>
                                             <input id="score" name="score" type="hidden" value="0">
                                         </p>
                                     </div>

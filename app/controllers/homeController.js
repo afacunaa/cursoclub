@@ -18,13 +18,30 @@ exports.index = function (req, res) {
         environment = 'n';
     }
     if (!environment) {
-        res.render('welcome', {
-            title: 'Curso Club',
-            user: req.user,
-            environment: environment
-        })
+        BlogEntry.find({})
+            .sort('-createdAt')
+            .exec(function (err, list_blogEntry) {
+                if (err) {
+                    return next(err)
+                }
+                res.render('welcome', {
+                    title: 'Instructorio',
+                    user: req.user,
+                    environment: environment,
+                    blogEntry_list: list_blogEntry,
+                });
+            });
     } else {
         async.parallel({
+            users: function (callback) {
+                User.find({ 'teacher': { $ne : null} }, callback)
+                    .populate( {
+                        path: 'teacher',
+                        populate: {
+                            path: 'courses.course'
+                        }
+                    } );
+            },
             findBlog: function (callback) {
                 BlogEntry.find({}, callback)
                     .sort('-createdAt')
@@ -41,9 +58,10 @@ exports.index = function (req, res) {
         }, function (err, results) {
             if (err) { return res.send(err) }
             res.render('index', {
-                title: 'Curso Club',
+                title: 'Instructorio',
                 lastBlogEntry: results.findBlog[0],
                 courses_list: results.findCourses,
+                users_list: results.users,
                 user: req.user,
                 environment: environment
             })
@@ -53,6 +71,12 @@ exports.index = function (req, res) {
 
 exports.home = function(req, res) {
 	if (req.isAuthenticated()) {
+        let environment;
+        if(req.query.env === 'v') {
+            environment = 'v'
+        } else {
+            environment = 'n';
+        }
 		if (req.user.role === constants.student_role) {
 		    async.parallel({
                 find_student: function (callback) {
@@ -79,7 +103,7 @@ exports.home = function(req, res) {
             }, function (err, results) {
                 if (err) { return res.send(err) }
                 res.render('home.ejs', {
-                    title: 'Curso Club',
+                    title: 'Instructorio',
                     error: req.flash("error"),
                     success: req.flash("success"),
                     person: results.find_student,
@@ -87,7 +111,8 @@ exports.home = function(req, res) {
                     paid: results.paid_lessons,
                     rejected: results.rejected_lessons,
                     users_list: results.users,
-                    user: req.user
+                    user: req.user,
+                    environment: environment
                 });
             });
 		} else if (req.user.role === constants.teacher_role) {
@@ -107,7 +132,7 @@ exports.home = function(req, res) {
             }, function (err, results) {
                 if (err) { return res.send(err) }
                 res.render('home.ejs', {
-                    title: 'Curso Club',
+                    title: 'Instructorio',
                     error: req.flash("error"),
                     success: req.flash("success"),
                     person: results.find_teacher,
@@ -119,7 +144,7 @@ exports.home = function(req, res) {
             });
 		} else {
             res.render('home.ejs', {
-                title: 'Curso Club',
+                title: 'Instructorio',
                 error: req.flash("error"),
                 success: req.flash("success"),
                 user: req.user
@@ -138,46 +163,39 @@ exports.logout = function (req, res) {
 };
 
 exports.login = function(req, res) {
+
 	if (req.isAuthenticated()) {
-		console.log('Usuario de sesion iniciada');
 		res.redirect('/home');
 	} else {
-        console.log('Usuario no en sesion');
-        if (req.query.signup === 'true') {
-            res.render('login', {
-                title: 'Iniciar sesión',
-                error: req.flash("error"),
-                success: "Tu cuenta fue creada con éxito. En los proximos minutos debes recibir un " +
-					"correo electrónico con tu información de ingreso y un enlace para activar tu cuenta",
-                user: req.user
-            });
-		} else if (req.query.teacherSignup === 'true') {
-            res.render('login', {
-                title: 'Iniciar sesión',
-                error: req.flash("error"),
-                success: "Tu registro ha sido exitoso. Revisaremos tu formulario y te avisaremos cuando tu cuenta esté lista",
-                user: req.user
-            });
-        } else if (req.query.creationError === 'true') {
-            res.render('login', {
-                title: 'Iniciar sesión',
-                error: req.flash("error"),
-                success: "El correo electrónico ya está en uso en esa modalidad",
-                user: req.user
-            });
-        } else {
-            res.render('login', {
-                title: 'Iniciar sesión',
-                error: req.flash("error"),
-                success: req.flash("success"),
-                user: req.user
-            });
-        }
-	}
+        res.render('login', {
+            title: 'Iniciar sesión',
+            error: req.flash("error"),
+            success: req.flash("success"),
+            user: req.user
+        });
+    }
+};
+
+exports.signup = function(req, res) {
+    if (req.isAuthenticated()) {
+        res.redirect('/home');
+    } else {
+        res.render('signup', {
+            title: 'Registrarse',
+            error: req.flash("error"),
+            success: req.flash("success"),
+            user: req.user
+        });
+    }
 };
 
 exports.contactus_get = function (req, res) {
     res.render('contact', { title: 'Contáctanos', sent: false, user: req.user })
+};
+
+exports.terms_get = function (req, res) {
+    let target = req.query.target;
+    res.render('terms_and_conditions', { title: 'Términos y condiciones', user: req.user, target: target })
 };
 
 exports.contactus_post = function (req, res) {

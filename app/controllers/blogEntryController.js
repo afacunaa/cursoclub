@@ -10,6 +10,7 @@ exports.blogEntry_list = function (req, res, next) {
     //res.send('Lista de transaccions');
     BlogEntry.find({})
         .sort('-createdAt')
+        .limit(2)
         .exec(function (err, list_blogEntry) {
             if (err) {
                 return next(err)

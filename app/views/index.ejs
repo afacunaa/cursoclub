@@ -4,63 +4,63 @@
 
     <%- include env_buttons.ejs %>
 
-    <%- include carousel.ejs %>
+    <div class="i-image-with-text">
+        <% if (environment !== 'v') { %>
+        <img src="/img/CC<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
+        <div class="i-welcome-content">
+            <div class="row" align="center">
+                <h3><strong>INSTRUCTORIO</strong></h3>
+            </div>
+            <div class="row" align="center">
+                <h4>
+                    ¿Estás buscando clases a domicilio? <strong>Instructorio</strong> tiene justo lo que necesitas.
+                    <br>
+                    <br>
+                    En <strong>Instructorio</strong> encontrarás instructores expertos en diferentes
+                    áreas para que reserves tu clase con quien más te guste.
+                    <br>
+                    <br>
+                    Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
+                </h4>
+            </div>
+        </div>
+        <% } else { %>
+        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
+        <div class="i-welcome-content">
+            <div class="row" align="center">
+                <h3><strong>BIENVENIDO</strong></h3>
+            </div>
+            <div class="row" align="center">
+                <h4>
+                    Encuentra aquí diversos cursos virtuales* para que aprendas sobre lo que más te gusta sin moverte de donde estás.
+                </h4>
+            </div>
+        </div>
+        <div class="container">
+            <p class="black-text">
+                * Los cursos presentados aquí corresponden a recomendaciones. Instructorio no es el propietario de dichos cursos,
+                únicamente los promocionamos y damos a conocer. Para más información consulta nuestros
+                <a href="/terminos" target="_blank">Términos y Condiciones.</a>
+            </p>
+        </div>
 
-    <br>
-    <br>
+        <% } %>
+    </div>
     <% if (environment !== 'v') { %>
-    <div class="row">
-        <div class="col l6 m6 s12">
+    <div class="row flex">
+        <div class="col l6 m6 s12 i-corporate-green-background">
             <%- include instructions.ejs %>
         </div>
-        <div class="col l6 m6 s12">
+        <div class="col l6 m6 s12 i-corporate-orange-background">
             <%- include category_list.ejs %>
         </div>
     </div>
-
-
-
-
-    <br>
-    <div class="container">
-        <h4 class="header center cc-corporate-green-text cc-font-title">Aprende más sobre Curso Club</h4>
-        <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/HWp5ljXyIN4" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
+    <%- include teacher_cards.ejs %>
     <% } %>
     <% if (environment === 'v') { %>
     <br>
     <div class="row" align="center">
-        <h4 class="cc-corporate-purple-text cc-font-title">Lista de cursos virtuales</h4>
-        <% for (var i=0; i<courses_list.length; i++) { %>
-            <% if (i % 3 === 0) { %>
-        <div class="row">
-            <% } %>
-            <div class="col l4 m6 s12">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <a href="<%= courses_list[i].url %>"><img src="<%= courses_list[i].picture %>"></a>
-                <% if (user && user.role === 1) { %>
-                        <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= courses_list[i].short_url %>/update"><i class="material-icons">mode_edit</i></a>
-                <% } %>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title"><%= courses_list[i].name %></span>
-                        <p><%= courses_list[i].description %></p>
-                    </div>
-                    <div class="card-action">
-                        <a class="green-text" href="<%= courses_list[i].url %>">Detalles</a>
-                <% if (courses_list[i].category === 'Virtual') { %>
-                        <a class="blue-text" href="<%= courses_list[i].externalLink %>">Ir al sitio del curso</a>
-                <% } %>
-                    </div>
-                </div>
-            </div>
-            <%if (i % 3 === 2 || i === courses_list.length - 1) { %>
-        </div>
-            <% } %>
-        <% } %>
+        <%- include virtual_courses_cards.ejs %>
     </div>
     <% } %>
 </main>

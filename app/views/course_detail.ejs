@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="center-align">
-                <h4 class="cc-corporate-orange-text cc-font-title"><%= course.name %></h4>
-                <img class="responsive-img cc-course-info-img" src="<%= course.picture %>">
+                <h4 class="i-corporate-orange-text i-font-title"><%= course.name %></h4>
+                <img class="responsive-img i-course-info-img" src="<%= course.picture %>">
                 <p class="flow-text"><%= course.description %></p>
                 <% if (course.requirement) { %>
                 <h6>El curso requiere: <%= course.requirement %></h6>
@@ -27,15 +27,15 @@
                                     <div class="row">
                                         <div class="col l2">
                                             <% if (teacher_user[i].picture) { %>
-                                            <img src="<%= teacher_user[i].picture %>" class="responsive-img cc-teacher-picture-list">
+                                            <img src="<%= teacher_user[i].picture %>" class="responsive-img i-teacher-picture-list">
                                             <% } else { %>
-                                            <img class="responsive-img cc-teacher-picture-list" src="/img/silueta.png">
+                                            <img class="responsive-img i-teacher-picture-list" src="/img/silueta.png">
                                             <% } %>
                                         </div>
                                         <div class="col l10">
                                             <h5><%= course.teachers[i].shortName %></h5>
                                             <% for (var j=0; j<Math.floor(course.teachers[i].score); j++) { %>
-                                            <i class="small material-icons amber-text cc-score-stars">grade</i>
+                                            <i class="small material-icons amber-text i-score-stars">grade</i>
                                             <% } %>
                                             <br>
                                             <% if(course.teachers[i].groupLesson.does) { %>

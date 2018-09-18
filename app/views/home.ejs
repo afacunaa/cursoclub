@@ -37,18 +37,18 @@
             <% } %>
         </div>
         <% } %>
-        <h4 class="cc-corporate-blue-text">Portal de instructor</h4>
+        <h4 class="i-corporate-blue-text">Portal de instructor</h4>
         <div class="row">
             <div class="col l5 m5 s12">
                 <% if (user.picture) { %>
                 <img class="responsive-img hide-on-small-only" src="<%= user.picture %>">
-                <img class="responsive-img hide-on-med-and-up cc-home-img" src="<%= user.picture %>">
+                <img class="responsive-img hide-on-med-and-up i-home-img" src="<%= user.picture %>">
                 <% } else { %>
                 <img class="responsive-img" src="/img/silueta.png">
                 <p>Actualiza tu foto para que los usuarios puedan saber algo más sobre ti</p>
                 <% } %>
                 <% if (person.description) { %>
-                <blockquote class="cc-keep-line-breaks"><%= person.description %></blockquote>
+                <blockquote class="i-keep-line-breaks"><%= person.description %></blockquote>
                 <% } else { %>
                 <div class="card yellow lighten-2">
                     <div class="card-content">
@@ -62,7 +62,7 @@
                 <p class="flow-text"><i class="material-icons">email</i> <%= user.email %></p>
                 <p class="flow-text"><i class="material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></p>
                 <p class="flow-text"><i class="material-icons">call</i> <%= person.phone %></p>
-                <h6 class="cc-score-stars amber-text">
+                <h6 class="i-score-stars amber-text">
                     <% for (var i=0; i<Math.floor(person.score); i++) { %>
                     <i class="small material-icons">grade</i>
                     <% } %>
@@ -107,6 +107,7 @@
     </div>
     <% } else if (user.role == 3) { %>
     <div class="container">
+        <%- include env_buttons.ejs %>
         <% if (accepted > 0) { %>
         <div class="chip blue">
             <% if (accepted === 1) { %>
@@ -136,59 +137,17 @@
         <% } %>
     </div>
 
-    <%- include instructions.ejs %>
-    <%- include category_list.ejs %>
-
-
-        <h4 class="header center cc-corporate-purple-text cc-font-title">Instructores registrados</h4>
-        <div class="row">
-            <% for (var i=0; i<users_list.length; i++) { %>
-            <div class="col l4 m4 s12">
-                <div class="card hoverable">
-                    <div class="row">
-                        <div class="col l3 m3 s3">
-                            <% if (users_list[i].picture) { %>
-                            <img src="<%= users_list[i].picture %>" class="responsive-img" style="max-width: 100px;">
-                            <% } else { %>
-                            <img class="responsive-img" src="/img/silueta.png" style="max-width: 100px;">
-                            <% } %>
-                        </div>
-                        <div class="col l9 m9 s9">
-                            <span class="card-title"><%= users_list[i].teacher.shortName %></span>
-                            <p>
-                                <% for (var k=0; k<users_list[i].teacher.courses.length; k++) { %>
-                                <%= users_list[i].teacher.courses[k].course.name %>
-                                    <% if (k < users_list[i].teacher.courses.length - 1 ) { %>
-                                ,
-                                    <% } %>
-                                <% } %>
-                                <br>
-                                <strong><%= users_list[i].teacher.city %></strong>
-                            </p>
-                            <% if (users_list[i].teacher.score) { %>
-                            <h6 class="cc-score-stars amber-text">
-                                <% for (var j=0; j<Math.floor(users_list[i].teacher.score); j++) { %>
-                                <i class="tiny material-icons">grade</i>
-                                <% } %>
-                                <%= parseFloat(users_list[i].teacher.score).toFixed(2) %>
-                            </h6>
-                            <% } else { %>
-                            <h6 class="grey-text">No hay calificación</h6>
-                            <% } %>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="row" align="justify">
-                            <p><%= users_list[i].teacher.description.substr(0, 150) %>...</p>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a class="green-text" href="<%= users_list[i].teacher.url %>">Más información</a>
-                    </div>
-                </div>
-            </div>
-            <% } %>
+    <div class="row flex">
+        <div class="col l6 m6 s12 i-corporate-green-background">
+            <%- include instructions.ejs %>
         </div>
+        <div class="col l6 m6 s12 i-corporate-orange-background">
+            <%- include category_list.ejs %>
+        </div>
+    </div>
+    <div class="row">
+        <%- include teacher_cards.ejs %>
+    </div>
 
     <% } %>
 </main>

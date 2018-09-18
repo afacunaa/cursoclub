@@ -97,7 +97,7 @@ function selectCell(id, dayOfWeek, hour, stringWeek) {
         selectedDatesArray.splice(index, 1);
     }
     $('#selectedDates').val(selectedDatesArray);
-    setTotal();
+    //setTotal();
 }
 
 function findDateIndex(date) {

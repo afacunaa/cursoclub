@@ -10,7 +10,7 @@ let blogEntrySchema = new Schema({
     title: { type: String, required: true},
     idTitle: String,
     body: { type: String, required: true },
-    image: String,
+    images: [String],
     author: String,
     keywords: [String],
     createdAt: { type: Date, default: Date.now },

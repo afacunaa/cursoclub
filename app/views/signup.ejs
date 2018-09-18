@@ -1,118 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include header.ejs %>
 
-    <head>
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login Form Template</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/form-elements.css">
-        <link rel="stylesheet" href="/css/style.css">
-
-    </head>
-
-    <body>
-
-        <!-- Top content -->
-        <div class="top-content">
-        	
-            <div class="inner-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>Bootstrap</strong> Login Form</h1>
-                            <div class="description">
-                            	<p>
-	                            	This is a free responsive login form made with Bootstrap. 
-	                            	Download it on <a href="http://azmind.com"><strong>AZMIND</strong></a>, customize and use it as you like!
-                            	</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 form-box">
-                        	<div class="form-top">
-                        		<div class="form-top-left">
-                        			<h3>Signup to our site</h3>
-                            		<p>Enter your username , password to sign up on:</p>
-                        		</div>
-                        		<div class="form-top-right">
-                        			<i class="fa fa-key"></i>
-                        		</div>
-                            </div>
-                            <div class="form-bottom">
-                                
-                                      <% if (error.length > 0) { %>
-		<div class="alert alert-danger"><%- error %></div>
-		<% } %>
-		
-		 <% if (success.length > 0) { %>
-		<div class="alert alert-success"><%- success %></div>
-		<% } %>
-		
-                                
-			
-                        <form role="form" action="/signup" role="form" method="post" method="post" class="login-form">
-                                                
-                                                
-                  <div class="form-group">
-	            <label for="username"  class="sr-only">Name</label>
-	            <input type="text" name="username" id="username" class="form-control form-username"  required  placeholder="Name"/>
-	           
-	        </div>
-   
-   
-   		  <div class="form-group" >
-				<label for="email"  class="sr-only">Email</label>
-				 <input type="email" name="email" id="email" class="form-control  form-username"  required placeholder="Email" />
-				
-			</div>
-   
-			<div class="form-group" >
-				<label for="password"  class="sr-only">Password</label> 
-				<input type="password" name="password" id="password" class="form-control  form-username" ng-model="user.password" required  placeholder="Password"/>
-			    
-			</div>
-			
-			
-			                        <button type="submit" class="btn">Sign in!</button>
-			                    </form>
-		                    </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 social-login">
-                        	<h3>...or login with:</h3>
-                        	<div class="social-login-buttons">
-	                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
-	                        		<i class="fa fa-facebook"></i> Facebook
-	                        	</a>
-	                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
-	                        		<i class="fa fa-twitter"></i> Twitter
-	                        	</a>
-	                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-	                        		<i class="fa fa-google-plus"></i> Google Plus
-	                        	</a>
-                        	</div>
-                        </div>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="card yellow lighten-2">
+                    <div class="card-content">
+                        <h5>
+                            <i class="material-icons">warning</i> Si estas interesado en ser un instructor de Instructorio,
+                            <a class="blue-text" href="/teacher/signup">haz clic aquí</a>
+                        </h5>
                     </div>
                 </div>
             </div>
-            
+            <p class="flow-text">¿Ya estás registrado? <a href="/login">Ingresa acá</a></p>
+            <div class="divider"></div>
+            <h4 class="i-corporate-orange-text">Formulario de registro para usuarios</h4>
+            <% if (error.length > 0) { %>
+            <div class="row">
+                <div class="card red darken-1">
+                    <div class="card-content white-text">
+                        <p><i class="material-icons">report_problem</i> <%- error %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <% if (success.length > 0) { %>
+            <div class="row">
+                <div class="card green darken-1">
+                    <div class="card-content white-text">
+                        <p><i class="material-icons">done</i> <%- success %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <form method="post" action="student/create">
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input type="text" name="firstname" id="firstname" required>
+                        <label for="firstname">Nombre</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input type="text" name="lastname" id="lastname" required>
+                        <label for="lastname">Apellido</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">local_phone</i>
+                        <input type="text" name="phone" id="phone" required>
+                        <label for="phone">Teléfono</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">location_on</i>
+                        <input type="text" name="address" id="address" required>
+                        <label for="address">Dirección</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 m6 s6">
+                        <i class="material-icons prefix">assignment_ind</i>
+                        <input type="text" name="document" id="document" required>
+                        <label for="document">Cédula</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">event</i>
+                        <input class="datepicker" type="date" name="birthday" id="birthday" required>
+                        <label for="birthday">Fecha de nacimiento</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">email</i>
+                        <input class="validate" type="email" name="email" id="email" required>
+                        <label for="email">Correo electrónico</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input class="validate" minlength="6" type="password" name="new_password" id="new_password" required>
+                        <label for="new_password">Contraseña</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input class="validate" minlength="6" type="password" name="password_confirmation" id="password_confirmation" required>
+                        <label for="password_confirmation">Confirmar contraseña</label>
+                        <span id="message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">note_add</i>
+                        <textarea id="like" name="like" class="materialize-textarea" data-length="300"></textarea>
+                        <label for="like">¿Cuáles son las clases que te gustaría tomar?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                        <i class="material-icons prefix">visibility</i>
+                        <textarea id="howKnew" name="howKnew" class="materialize-textarea" data-length="300"></textarea>
+                        <label for="howKnew">¿Cómo te enteraste de Instructorio?</label>
+                    </div>
+                </div>
+                <div class="row" align="center">
+                    <div class="input-field col l12 m12 s12">
+                        <input name="subscription" id="subscription_switch" type="checkbox" value="true" checked>
+                        <label for="subscription_switch">Recibir notificaciones por correo electrónico</label>
+                    </div>
+                    <div class="input-field col l12 m12 s12">
+                        <input name="conditions" id="conditions_switch" type="checkbox" value="true" required>
+                        <label for="conditions_switch">Acepto <a href="/terminos" target="_blank">términos y condiciones</a></label>
+                    </div>
+                </div>
+                <div class="row" align="center">
+                    <div class="input-field col l12 m12 s12">
+                        <button class="btn green" type="submit">Registrarse</button>
+                    </div>
+                </div>
+            </form>
         </div>
+    </div>
+</main>
 
-
-        <!-- Javascript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="/js/scripts.js"></script>
-
-    </body>
-
-</html>
+<%- include footer.ejs %>

@@ -3,7 +3,6 @@ let express = require('express');
 let app = express();
 let multer = require('multer');
 let mime = require('mime');
-let constants = require('constants');
 let constant = require('./config/constants');
 
 
@@ -22,18 +21,29 @@ let now = new Date();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-/*let storage = multer.diskStorage({
+let multerConfig = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, constant.upload_directory )
     },
     filename: function (req, file, cb) {
-        cb(null, req.body.userId + '.' + mime.getExtension(file.mimetype))
+        let date = new Date();
+        let dateString = date.getFullYear().toString() + ('0' + (date.getMonth() + 1).toString()).slice(-2) + ('0' +
+            date.getDate().toString()).slice(-2) + ('0' + date.getHours().toString()).slice(-2) +
+            ('0' + date.getMinutes()).slice(-2) + ('0' + date.getSeconds().toString()).slice(-2);
+        cb(null, dateString + '_' + file.originalname + '.' + mime.getExtension(file.mimetype))
     }
 });
-let upload = multer( {storage: storage, limits: { fileSize: 6000000 }} );
+let uploader = multer( {storage: multerConfig, limits: { fileSize: 6000000 }} );
 
-app.use(upload.single('picture'));*/
+let fields = [
+    { name: 'userPicutre', maxCount: 1 },
+    { name: 'coursePicutre', maxCount: 1 },
+    { name: 'blogGallery', maxCount: 3 },
+    { name: 'teacherFiles', maxCount: 3 }
+];
 
+app.use(uploader.fields(fields));
+/*
 let upload = multer( {
     storage: multer.memoryStorage(),
     limits: {
@@ -41,7 +51,7 @@ let upload = multer( {
     }
 } );
 
-app.use(upload.single('picture'));
+app.use(upload.single('picture'));*/
 
 /***************Mongodb configuratrion********************/
 let mongoose = require('mongoose');

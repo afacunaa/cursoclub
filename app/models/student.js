@@ -12,6 +12,9 @@ let studentSchema = new Schema({
     address: String,
     birthday: { type: Date },
     phone: { type: String, minlength: 7, maxlength: 10 },
+    document: String,
+    like: String,
+    howDidKnow: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     lessons : [{ type: Schema.Types.ObjectId, ref: 'Lesson' }]
@@ -19,6 +22,10 @@ let studentSchema = new Schema({
 
 studentSchema.virtual('fullName').get(function () {
     return this.firstName + ' ' + this.lastName;
+});
+
+studentSchema.virtual('shortName').get(function () {
+    return this.firstName + ' ' + this.lastName[0] + '.';
 });
 
 studentSchema.virtual('url').get(function () {

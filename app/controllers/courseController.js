@@ -165,6 +165,7 @@ exports.update_course_post = function (req, res, next) {
                 description: req.body.description,
                 requirement: req.body.requirement,
                 keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(','),
+                externalLink: req.body.externalLink,
                 updatedAt: new Date() } },
         { new: true }, function(err, doc) {
         res.redirect(doc.url);
@@ -174,5 +175,5 @@ exports.update_course_post = function (req, res, next) {
 //Update course's picture POST
 exports.update_course_picture_post = function (req, res, next) {
     uploader.uploadFile(req, 'Course');
-    res.redirect('/curso/' + req.params.idName);
+    res.redirect('/cursos');
 };

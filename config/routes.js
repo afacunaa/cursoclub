@@ -42,9 +42,11 @@ module.exports = function (app, passport) {
 
 router.get('/', homeController.index);
 router.get('/login', homeController.login);
+router.get('/signup', homeController.signup);
 router.get('/home', homeController.home);//home
 router.get('/contactenos', homeController.contactus_get);
 router.get('/nosotros', homeController.aboutus_get);
+router.get('/terminos', homeController.terms_get);
 router.post('/contactenos', homeController.contactus_post);
 router.get('/logout', homeController.logout);
 router.post('/login', passport.authenticate('local-login', {

@@ -182,7 +182,6 @@ exports.create_lesson_post = function (req, res, next) {
     let bill = new Bill(
         {
             state: constants.billPendingState,
-            total: req.body.totalInput,
             student: req.user.student,
             teacher: req.query.teacherId
         }
@@ -211,7 +210,7 @@ exports.create_lesson_post = function (req, res, next) {
         }
     );
     async.parallel({
-        update_teacher: function (callback) {
+        /*update_teacher: function (callback) {
             Teacher.findById( lessons[0].teacher, callback)
                 .exec(function (err, result) {
                     if (err){ return res.send(err) }
@@ -223,7 +222,7 @@ exports.create_lesson_post = function (req, res, next) {
                     })
                 });
         },
-        update_student: function (callback) {
+        /*update_student: function (callback) {
             Student.findById( lessons[0].student, callback)
                 .exec(function (err, result) {
                     if (err){return res.send(err)}
@@ -234,7 +233,7 @@ exports.create_lesson_post = function (req, res, next) {
                         if (err) { return res.send(err) }
                     })
                 });
-        },
+        },*/
         save_transaction: function (callback) {
             transaction.save(callback);
         },

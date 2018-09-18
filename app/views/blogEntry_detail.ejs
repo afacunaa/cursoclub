@@ -2,18 +2,20 @@
 
 <main>
     <div class="container">
-        <div class="cc-image-with-text">
-            <img class="responsive-img cc-blog-image" src="<%= blogEntry.image %>">
-            <div class="cc-blog-title">
-                <h3><%= blogEntry.title %></h3>
-                <p>Por: <%= blogEntry.author %></p>
-                <p><%= blogEntry.nice_created %></p>
+        <div class="row">
+            <div class="i-image-with-text">
+                <img class="responsive-img i-blog-image" src="<%= blogEntry.images[0] %>">
+                <div class="i-blog-title">
+                    <h3><%= blogEntry.title %></h3>
+                    <p>Por: <%= blogEntry.author %></p>
+                    <p><%= blogEntry.nice_created %></p>
+                </div>
             </div>
         </div>
         <br>
-        <p class="cc-keep-line-breaks"><%= blogEntry.body %></p>
+        <p class="i-keep-line-breaks"><%= blogEntry.body %></p>
         <br>
-        <p class="cc-blog-keywords">Palabras clave: <%=blogEntry.keywords%></p>
+        <p class="i-blog-keywords">Palabras clave: <%=blogEntry.keywords%></p>
         <br>
         <div id="comentarios" class="divider"></div>
         <br>
@@ -40,7 +42,7 @@
                 <img src="/img/silueta.png" class="circle" >
                 <% } %>
                 <span class="title"><%= blogEntry.comments[i].user.owner %></span>
-                <p class="cc-blog-comment-date"><%= blogEntry.niceCommentPostDate(blogEntry.comments[i].postDate) %></p>
+                <p class="i-blog-comment-date"><%= blogEntry.niceCommentPostDate(blogEntry.comments[i].postDate) %></p>
                 <p><%= blogEntry.comments[i].post %></p>
             </li>
                 <% } %>

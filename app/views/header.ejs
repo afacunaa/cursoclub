@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/materialize.css" type="text/css">
-    <link rel="stylesheet" href="/css/cursoclub_style.css" type="text/css">
+    <link rel="stylesheet" href="/css/instructorio_style.css" type="text/css">
     <link rel="icon" type="image/png" href="/img/favicon.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -16,17 +16,17 @@
 <body>
 <header>
     <div class="navbar-fixed">
-        <nav class="cc-nav">
+        <nav class="i-nav">
             <div class="nav-wrapper">
                 <% if (user){ %>
-                <a id="logo-container" href="/home" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/cc_logo_small.png" class="responsive-img"></a>
+                <a id="logo-container" href="/home" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/logo1_small.png" class="responsive-img"></a>
                 <% } else { %>
-                <a id="logo-container" href="/" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/cc_logo_small.png" class="responsive-img"></a>
+                <a id="logo-container" href="/" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/logo1_small.png" class="responsive-img"></a>
                 <% } %>
                 <ul id="nav-full" class="right hide-on-med-and-down">
                     <li>
                         <form method="get" action="/cursos">
-                            <div class="input-field cc-nav-element">
+                            <div class="input-field i-nav-element">
                                 <input id="search" name="name" type="search" placeholder="Buscar cursos">
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                 <i class="material-icons">close</i>
@@ -34,17 +34,17 @@
                         </form>
                     </li>
                     <li>
-                        <a href="/blogs" class="cc-nav-element">Blog</a>
+                        <a href="/blogs" class="i-nav-element">Blog</a>
                     </li>
                     <li>
-                        <a href="/contactenos" class="cc-nav-element">Contáctanos</a>
+                        <a href="/contactenos" class="i-nav-element">Contáctanos</a>
                     </li>
                     <li>
-                        <a href="/nosotros" class="cc-nav-element">Nosotros</a>
+                        <a href="/nosotros" class="i-nav-element">Nosotros</a>
                     </li>
                     <% if (user){ %>
                     <li>
-                        <a class="dropdown-button cc-nav-element" href="#!" data-activates="dropdown1"><%= user.owner %><i class="material-icons right">arrow_drop_down</i></a>
+                        <a class="dropdown-button i-nav-element" href="#!" data-activates="dropdown1"><%= user.owner %><i class="material-icons right">arrow_drop_down</i></a>
                         <!-- Dropdown Structure for navigation -->
                         <ul id="dropdown1" class="dropdown-content">
                             <% if (user && user.role == 1) { %>
@@ -76,7 +76,7 @@
                         </ul>
                     </li>
                     <% } else { %>
-                    <li><a href="#modal1" class="cc-nav-element"><strong>INGRESAR</strong></a></li>
+                    <li><a href="#modal1" class="i-nav-element"><strong>INGRESAR</strong></a></li>
                     <% } %>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
@@ -92,11 +92,7 @@
                     <img src="/img/background.png">
                 </div>
                 <% if (user) { %>
-                    <% if (user.picture) { %>
-                <img class="circle" src="<%= user.picture %>">
-                    <% } else { %>
-                <img class="circle" src="/img/silueta.png">
-                    <% } %>
+                <img class="circle" src="<%= user.picture_or_not %>">
                 <h5 class="black-text"><%= user.owner %></h5>
                 <h6 class="black-text"><%= user.email %></h6>
                 <% } %>
@@ -147,22 +143,27 @@
     <!-- Modal Structure for loggin in -->
     <div id="modal1" class="modal">
         <div class="modal-content">
-            <h4 class="cc-corporate-green-text">Iniciar sesión</h4>
+            <h4 class="i-corporate-green-text">Iniciar sesión</h4>
             <div class="row">
                 <div class="col l6">
                     <form action="/login" method="post">
                         <div class="input-field">
+                            <i class="material-icons prefix">account_circle</i>
                             <input type="text" name="username" id="username" class="validate" required>
                             <label for="username">Nombre de usuario</label>
                         </div>
                         <div class="input-field">
+                            <i class="material-icons prefix">lock</i>
                             <input type="password" name="password" id="password" class="validate" minlength="6" required>
                             <label for="password">Contraseña</label>
                         </div>
                         <div>
                             <a href="/user/recovery">¿Olvidaste tu contraseña?</a>
                         </div>
-                        <button class="waves-effect waves-light btn green" type="submit" value="Entrar">Entrar</button>
+                        <br>
+                        <div align="center">
+                            <button class="waves-effect waves-light btn green" type="submit" value="Entrar">Entrar</button>
+                        </div>
                     </form>
                 </div>
                 <div class="col l6">
@@ -176,7 +177,7 @@
             </div>
             <br>
             <div class="row">
-                <p>Si aún no tienes una cuenta, y no quieres usar Facebook, <a href="/login#signup">regístrate con tu correo</a></p>
+                <p>Si aún no tienes una cuenta, y no quieres usar Facebook, <a href="/signup">regístrate con tu correo</a></p>
                 <p>Si estás interesado en ser un <strong>instructor</strong>, <a href="/teacher/signup">diligencia el formulario de pre-registro</a></p>
             </div>
         </div>
