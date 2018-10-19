@@ -22,6 +22,11 @@ exports.activate_user_get = function (req, res, next) {
                         if (err) {
                             return next(err)
                         }
+                        if (result.teacher) {
+                            emailer.teacherFirstSteps(result.email, result.owner);
+                        } else if (result.student) {
+                            //emailer.userFirstSteps();
+                        }
                         res.render('user_activation', {
                             title: 'Activación de usuario',
                             success: true,
@@ -33,7 +38,7 @@ exports.activate_user_get = function (req, res, next) {
                     res.render('user_activation', {
                         title: 'Activación de usuario',
                         success: false,
-                        message: 'Tu cuenta NO pudo ser activada, asegúrate que el enlace utilizado fuera el que se te entregó por correo',
+                        message: 'Tu cuenta NO pudo ser activada, asegúrate que el enlace utilizado es el que se te entregó por correo',
                         user: req.user
                     })
                 }

@@ -38,7 +38,9 @@
                     <%= conversation_list[i].getNiceDate(conversation_list[i].message[conversation_list[i].message.length -1].createdAt) %>
                 </p>
                 <p>
-                        <% if ((user.id === conversation_list[i].user1.user.id && conversation_list[i].user1.unread) || (user.id === conversation_list[i].user2.user.id && conversation_list[i].user2.unread)) { %>
+                        <% if ((user.id === conversation_list[i].user1.user.id && conversation_list[i].user1.unread) ||
+                                (user.id === conversation_list[i].user2.user.id && conversation_list[i].user2.unread)) { %>
+                        <i class="tiny material-icons red-text">message</i>
                     <strong>
                         <% } %>
                         <%= conversation_list[i].message[conversation_list[i].message.length -1].text.substr(0, 100) %>

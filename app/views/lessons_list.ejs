@@ -2,10 +2,13 @@
 
 <main>
     <div class="container">
+        <h4 class="center">
+            <strong>LISTA DE CLASES</strong>
+        </h4>
         <ul class="collapsible" data-collapsible="expandable">
             <li>
                 <div class="collapsible-header">
-                    <h4 class="header blue-text">
+                    <h4 class="header green-text">
                         Clases aceptadas <i class="material-icons right">expand_more</i>
                         <span class="badge"><%= classifiedGroupedLessons["groupAccepted"].length %></span>
                     </h4>
@@ -25,7 +28,7 @@
                             <img src="<%= classifiedGroupedLessons["groupAccepted"][i].lessons[0].course.picture %>" class="circle">
                             <span class="title"><%= classifiedGroupedLessons["groupAccepted"][i].lessons[0].course.name %></span>
                             <p>
-                                <%= classifiedGroupedLessons["groupAccepted"][i].lessons.length %> clases solicitadas
+                                <%= classifiedGroupedLessons["groupAccepted"][i].lessons.length %> clases aceptadas
                             </p>
                             <% if(user.role === 3) { %>
                             <p>
@@ -168,6 +171,9 @@
                             <% if (user.role === 3) { %>
                             <form action="/bill/<%= classifiedGroupedLessons["groupCanceled"][i].bill.id %>/update" method="get">
                                 <div>
+                                    <input type="hidden" name="teacherId" id="teacherId" value="<%= classifiedGroupedLessons["groupCanceled"][i].bill.teacher %>">
+                                    <input type="hidden" name="courseId" id="courseId" value="<%= classifiedGroupedLessons["groupCanceled"][i].lessons[0].course.id %>">
+                                    <input type="hidden" name="offset" value="0">
                                     <button class="btn blue tooltipped" type="submit" data-position="right" data-delay="20" data-tooltip="Reprogramar las clases"><i class="material-icons left">edit</i>Reprogramar</button>
                                 </div>
                             </form>
@@ -202,45 +208,42 @@
                 <div class="collapsible-body">
                     <% if(classifiedGroupedLessons["groupDone"].length < 1) { %>
                     <p>No hay ninguna clase en tu historial</p>
+                    <% } else { %>
+                    <table class="bordered highlight">
+                        <tr>
+                            <th>Nombre del curso</th>
+                            <th>Fecha de la clase</th>
+                            <% if(user.role === 3) { %>
+                            <th>Instructor</th>
+                            <% } else { %>
+                            <th>Usuario</th>
+                            <% } %>
+                        </tr>
+                        <% for (var i=0; i<classifiedGroupedLessons["groupDone"].length; i++) { %>
+                        <tr>
+                            <td>
+                                <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.url %>">
+                                <%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.name %></a>
+                            </td>
+                            <td>Entre <%= classifiedGroupedLessons["groupDone"][i].lessons[0].nice_date_short %> y
+                                <%= classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1].nice_date_short %></td>
+                            <% if(user.role === 3) { %>
+                            <td>
+                                <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.url %>">
+                                    <%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.fullName %>
+                                </a>
+                            </td>
+                            <% } else { %>
+                            <td>
+                                <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.url %>">
+                                    <%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.fullName %>
+                                </a>
+                            </td>
+                            <% } %>
+                        </tr>
+                        <% } %>
+                    </table>
                     <% } %>
-                    <ul class="collection">
-                        <li class="collection-item avatar">
-                            <table class="bordered highlight">
-                                <tr>
-                                    <th>Nombre del curso</th>
-                                    <th>Fecha de la clase</th>
-                                    <% if(user.role === 3) { %>
-                                    <th>Instructor</th>
-                                    <% } else { %>
-                                    <th>Usuario</th>
-                                    <% } %>
-                                </tr>
-                                <% for (var i=0; i<classifiedGroupedLessons["groupDone"].length; i++) { %>
-                                <tr>
-                                    <td>
-                                        <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.url %>">
-                                        <%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.name %></a>
-                                    </td>
-                                    <td>Entre <%= classifiedGroupedLessons["groupDone"][i].lessons[0].nice_date_short %> y
-                                        <%= classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1].nice_date_short %></td>
-                                    <% if(user.role === 3) { %>
-                                    <td>
-                                        <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.url %>">
-                                            <%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.fullName %>
-                                        </a>
-                                    </td>
-                                    <% } else { %>
-                                    <td>
-                                        <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.url %>">
-                                            <%= classifiedGroupedLessons["groupDone"][i].lessons[0].student.fullName %>
-                                        </a>
-                                    </td>
-                                    <% } %>
-                                </tr>
-                                <% } %>
-                            </table>
-                        </li>
-                    </ul>
                 </div>
             </li>
         </ul>

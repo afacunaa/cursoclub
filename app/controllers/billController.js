@@ -90,7 +90,7 @@ exports.update_bill_get = function (req, res, next) {
                 }, callback);
             },
             find_user_picture: function (callback) {
-                User.find({'teacher': req.query.teacherId}, callback);
+                User.findOne({ teacher: req.query.teacherId }, callback);
             }
         }, function (err, results) {
             if (err) {

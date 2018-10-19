@@ -13,9 +13,13 @@
             </div>
         </div>
         <br>
-        <p class="i-keep-line-breaks"><%= blogEntry.body %></p>
+        <p class="i-keep-line-breaks"><%- blogEntry.body %></p>
         <br>
         <p class="i-blog-keywords">Palabras clave: <%=blogEntry.keywords%></p>
+        <br>
+        <% if (user && user.role === 1) { %>
+        <a class="btn waves-effect waves-light red" href="<%= blogEntry.url %>/update"><i class="material-icons left">mode_edit</i>Editar</a>
+        <% } %>
         <br>
         <div id="comentarios" class="divider"></div>
         <br>

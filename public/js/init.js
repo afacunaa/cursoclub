@@ -23,10 +23,33 @@ $(document).ready(function(){
     $('.tooltipped').tooltip({delay: 50});
 });
 $(function () {
+    let today = new Date();
     $('.datepicker').pickadate({
-        format:'yyyy-mm-dd',
+        format:'dd/mm/yyyy',
+        formatSubmit: 'yyyy-mm-dd',
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 80, // Creates a dropdown of 15 years to control year
+        selectYears: 100,
+        min: new Date(today.getFullYear() - 100, today.getMonth(), today.getDate()),
+        max: new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()),
+        monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        today: 'Hoy',
+        clear: 'Cancelar',
+        close: false,
+        closeOnSelect: true,
+        onSet: function (ele) {
+            if(ele.select){
+                this.close();
+            }
+        }
+    });
+    $('.datepickerFull').pickadate({
+        format:'dd/mm/yyyy',
+        formatSubmit: 'yyyy-mm-dd',
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 10,
         monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
         weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],

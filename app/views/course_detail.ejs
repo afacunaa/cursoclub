@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="center-align">
-                <h4 class="i-corporate-orange-text i-font-title"><%= course.name %></h4>
+                <h4><strong><%= course.name.toUpperCase() %></strong></h4>
                 <img class="responsive-img i-course-info-img" src="<%= course.picture %>">
                 <p class="flow-text"><%= course.description %></p>
                 <% if (course.requirement) { %>
@@ -12,79 +12,34 @@
                 <%} else { %>
                 <h6>Este curso no tiene requisitos</h6>
                 <% } %>
-                <br>
-                <div class="divider"></div>
-                <br>
-                <% if (user) { %>
-                    <% if (user.role === 3) { %>
-                <div class="row left-align">
-                    <div class="col l12 m12 s12">
-                        <% if (course.teachers.length) { %>
-                        <ul class="collapsible" data-collapsible="accordion">
-                            <% for (var i=0; i<course.teachers.length; i++) { %>
-                            <li>
-                                <div class="collapsible-header">
-                                    <div class="row">
-                                        <div class="col l2">
-                                            <% if (teacher_user[i].picture) { %>
-                                            <img src="<%= teacher_user[i].picture %>" class="responsive-img i-teacher-picture-list">
-                                            <% } else { %>
-                                            <img class="responsive-img i-teacher-picture-list" src="/img/silueta.png">
-                                            <% } %>
-                                        </div>
-                                        <div class="col l10">
-                                            <h5><%= course.teachers[i].shortName %></h5>
-                                            <% for (var j=0; j<Math.floor(course.teachers[i].score); j++) { %>
-                                            <i class="small material-icons amber-text i-score-stars">grade</i>
-                                            <% } %>
-                                            <br>
-                                            <% if(course.teachers[i].groupLesson.does) { %>
-                                            <p><i class="small material-icons">group</i> Da clases grupales a máximo <%= course.teachers[i].groupLesson.maxStudents %> personas</p>
-                                            <% } else { %>
-                                            <p><i class="small material-icons">person</i> No da clases grupales%></p>
-                                            <% } %>
-                                            <p><i class="small material-icons">location_on</i> Clases en: <%= course.teachers[i].workingAreaAsLine %><i class="material-icons right">expand_more</i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapsible-body">
-                                    <% if (course.teachers[i].description) { %>
-                                    <p><%= course.teachers[i].description %></p>
-                                    <% } else { %>
-                                    <p><%= course.teachers[i].fullName %> no ha completado su perfil.</p>
-                                    <% } %>
-                                    <p>Precio por hora de clase: <strong>$<%= course.teachers[i].getPriceOfCourse(course.id) %></strong></p>
-                                    <a href="<%= course.teachers[i].url %>">Más información</a>
-                                    <br>
-                                    <form action="/lesson/create" method="get" class="center-align">
-                                        <input type="hidden" name="teacherId" id="teacherId" value="<%= course.teachers[i].id %>">
-                                        <input type="hidden" name="courseId" id="courseId" value="<%= course.id %>">
-                                        <input type="hidden" name="offset" value="0">
-                                        <button class="btn" type="submit">Reservar una clase</button>
-                                    </form>
-                                </div>
-                            </li>
-                            <% } %>
-                        </ul>
-                        <% } else { %>
-                        <p>No hay profesores registrados para este curso</p>
-                        <% } %>
-                    </div>
-                </div>
-                <% } else if (user.role === 2) { %>
-                <h3 class="blue-text">Tu perfil aparece en esta sección</h3>
-                <% } else { %>
-                <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
-                <% } } else { %>
-                <% if (course.category === 'Virtual') { %>
-                <h5>Este curso es virtual</h5>
-                <a href="<%= course.externalLink %>">Ir al sitio del curso</a>
-                <% } %>
-                <p>Inicia sesión para ver detalles de los profesores</p>
-                <% } %>
             </div>
         </div>
     </div>
+    <br>
+    <div class="divider"></div>
+    <br>
+    <% if (user) { %>
+        <% if (user.role === 3) { %>
+        <%- include teacher_cards.ejs %>
+        <% } else if (user.role === 2) { %>
+    <div class="container">
+        <div class="row">
+            <h4>
+                Tu perfil aparece en esta sección.
+                <br>
+                Con la cuenta de instructor no puedes solicitar clases.
+            </h4>
+        </div>
+    </div>
+        <% } else { %>
+    <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
+    <% } } else { %>
+        <p>Inicia sesión para ver detalles de los profesores</p>
+    <% } %>
+    <% if (course.category === 'Virtual') { %>
+    <h5>Este curso es virtual</h5>
+    <a href="<%= course.externalLink %>" target="_blank">Ir al sitio del curso</a>
+    <% } %>
 </main>
 
 <%- include footer.ejs %>

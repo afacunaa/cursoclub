@@ -10,7 +10,7 @@ let async = require('async');
 exports.conversation_list = function (req, res, next) {
     //res.send('Lista de transaccions');
     if (req.isAuthenticated()) {
-        if(req.user.role !== 1) {
+        if(req.user.role !== constants.admin_role) {
             Conversation.find({$or: [{'user1.user': req.user.id}, {'user2.user': req.user.id}]})
                 .sort('-lastActive')
                 .populate('user1.user user2.user')

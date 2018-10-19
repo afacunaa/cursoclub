@@ -19,17 +19,16 @@
         <nav class="i-nav">
             <div class="nav-wrapper">
                 <% if (user){ %>
-                <a id="logo-container" href="/home" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/logo1_small.png" class="responsive-img"></a>
+                <a id="logo-container" href="/home" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/logo_small.png" class="responsive-img"></a>
                 <% } else { %>
-                <a id="logo-container" href="/" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/logo1_small.png" class="responsive-img"></a>
+                <a id="logo-container" href="/" class="brand-logo"><img id="main-logo" name="main-logo" src="/img/logo_small.png" class="responsive-img"></a>
                 <% } %>
                 <ul id="nav-full" class="right hide-on-med-and-down">
                     <li>
                         <form method="get" action="/cursos">
                             <div class="input-field i-nav-element">
-                                <input id="search" name="name" type="search" placeholder="Buscar cursos">
+                                <input id="search" name="search" placeholder="Buscar cursos" required>
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
                             </div>
                         </form>
                     </li>
@@ -55,6 +54,7 @@
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
                             <li><a href="/curso/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
                             <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de usuarios</a></li>
+                            <li><a href="/correos"><i class="material-icons">chat</i>Lista de correos</a></li>
                             <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Lista de mensajes</a></li>
                             <li class="divider"></li>
                             <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
@@ -68,7 +68,12 @@
                             <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
                             <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
                             <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
-                            <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Mensajes</a></li>
+                            <li>
+                                <a href="/mensajes">
+                                    <i class="material-icons">mail_outline</i>Mensajes
+                                </a>
+
+                            </li>
                             <% } %>
                             <li class="divider"></li>
                             <li><a href="/blogs"><i class="material-icons">library_books</i>Blog</a></li>
@@ -115,6 +120,8 @@
         <li><a href="/cursos"><i class="material-icons">view_carousel</i>Lista de cursos</a></li>
         <li><a href="/curso/create"><i class="material-icons">note_add</i>Añadir un curso</a></li>
         <li><a href="/students"><i class="material-icons">recent_actors</i>Lista de usuarios</a></li>
+        <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Lista de mensajes</a></li>
+        <li><a href="/correos"><i class="material-icons">chat</i>Lista de correos</a></li>
         <li class="divider"></li>
         <li><a href="/user/update"><i class="material-icons">lock_outline</i>Cambiar contraseña</a></li>
             <% } else if (user.role == 2) { %>
@@ -122,10 +129,12 @@
         <li><a href="/teacher/<%= user.teacher %>/scheduleUpdate"><i class="material-icons">today</i>Editar horario</a></li>
         <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
         <li><a href="/cursos"><i class="material-icons">view_carousel</i>Mis cursos</a></li>
+        <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Lista de mensajes</a></li>
             <% } else if (user.role == 3) { %>
         <li><a href="/student/update"><i class="material-icons">settings</i>Editar perfil</a></li>
         <li><a href="/lessons"><i class="material-icons">class</i>Mis clases</a></li>
         <li><a href="/cursos"><i class="material-icons">view_carousel</i>Cursos</a></li>
+        <li><a href="/mensajes"><i class="material-icons">mail_outline</i>Lista de mensajes</a></li>
             <% } %>
         <% } %>
         <li class="divider"></li>

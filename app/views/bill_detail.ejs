@@ -37,7 +37,7 @@
                                 <% } else if (bill.state == 'Clases rechazadas') { %>
                                 <h5>Se han rechazado <%= list_lessons.length %> clases:</h5>
                                 <% } else { %>
-                                <h5>Se pagaron <%= list_lessons.length %> clases:</h5>
+                                <h5>Se aceptaron <%= list_lessons.length %> clases:</h5>
                                 <% } %>
                             </div>
                             <% if (user.role === 2 && bill.state === 'Pendiente por aprobación') { %>
@@ -60,7 +60,7 @@
                                 </div>
                             </form>
                             <% } %>
-                            <% if (user.role === 3 && bill.state === 'Pagado' && list_lessons[list_lessons.length-1].date < new Date()) { %>
+                            <% if (user.role === 3 && bill.state === 'Aceptado' && list_lessons[list_lessons.length-1].date < new Date()) { %>
                             <form action="/bill/<%= bill.id %>/stateUpdate" method="post">
                                 <div class="col s8">
                                     <div class="row">

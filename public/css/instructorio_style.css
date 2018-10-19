@@ -106,7 +106,7 @@ a.i-nav-element:hover  {
     background-color: #46C01F;
 }
 .i-course-info-img {
-    width: 50%;
+    width: 30%;
 }
 .i-home-img {
     width: 50%;
@@ -245,4 +245,7 @@ strong {
 }
 .i-no-margin {
     margin: 0;
+}
+.i-blog-editor-button {
+    cursor: pointer;
 }

@@ -1,0 +1,31 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <h4><strong>CREAR UN CORREO</strong></h4>
+        <br>
+        <form method="post" action="" name="main" id="main">
+            <div class="input-field">
+                <input type="text" name="name" id="name" required>
+                <label for="name">Nombre</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="idName" id="idName" required>
+                <label for="idName">Identificador</label>
+            </div>
+            <div class="input-field">
+                <textarea class="materialize-textarea" name="body" id="body" required></textarea>
+                <label for="body">Contenido</label>
+            </div>
+            <div class="input-field">
+                <input type="text" name="periodicity" id="periodicity" required>
+                <label for="periodicity">Periodicidad</label>
+            </div>
+            <div align="center">
+                <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Guardar</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<%- include footer.ejs %>

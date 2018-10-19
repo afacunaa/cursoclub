@@ -3,6 +3,7 @@ let billController = require('../app/controllers/billController');
 let blogEntryController = require('../app/controllers/blogEntryController');
 let courseController = require('../app/controllers/courseController');
 let conversationController = require('../app/controllers/conversationController');
+let emailMessageController = require('../app/controllers/emailMessageController');
 let homeController = require('../app/controllers/homeController');
 let lessonController = require('../app/controllers/lessonController');
 let paymentController = require('../app/controllers/paymentController');
@@ -48,6 +49,7 @@ router.get('/contactenos', homeController.contactus_get);
 router.get('/nosotros', homeController.aboutus_get);
 router.get('/terminos', homeController.terms_get);
 router.post('/contactenos', homeController.contactus_post);
+router.get('/ayuda', homeController.help_get);
 router.get('/logout', homeController.logout);
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: '/login', // redirect to the secure profile section
@@ -195,9 +197,6 @@ router.get('/teacher/signup', teacherController.registration_teacher_get);
 
 // POST teacher creation second part
 router.post('/teacher/signup', teacherController.registration_teacher_post);
-
-// POST teacher creation complete
-router.post('/teacher/complete-signup', teacherController.registration_complete_teacher_post);
 
 // GET teacher update
 router.get('/teacher/:id/update', teacherController.update_teacher_get);
@@ -353,6 +352,30 @@ router.get('/mensaje/detalle/:id', conversationController.conversation_detail);
 
 // POST Conversation detail
 router.post('/mensaje/detalle/:id', conversationController.conversation_detail_new_message);
+
+
+/* EmailMessage routes */
+
+// GET EmailMessage create
+router.get('/correo/create', emailMessageController.emailMessage_create_get);
+
+// POST EmailMessage create
+router.post('/correo/create', emailMessageController.emailMessage_create_post);
+
+// GET EmailMessage update
+router.get('/correo/update/:id', emailMessageController.emailMessage_update_get);
+
+// POST EmailMessage update
+router.post('/correo/update/:id', emailMessageController.emailMessage_update_post);
+
+// POST EmailMessage send
+router.post('/correo/enviar/:id', emailMessageController.emailMessage_send_post);
+
+// GET EmailMessage list
+router.get('/correos', emailMessageController.emailMessage_list);
+
+// GET EmailMessage detail new
+router.get('/correo/:id', emailMessageController.emailMessage_detail_get);
 
 
 module.exports = router;

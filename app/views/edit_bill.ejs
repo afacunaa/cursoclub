@@ -3,7 +3,7 @@
 <main>
     <div class="container">
         <div class="center-align">
-            <h3>Reprogramación de clases</h3>
+            <h4><strong>REPROGRAMACIÓN DE CLASES</strong></h4>
             <div class="row">
                 <div class="col s6">
                     <h4><%= list_lessons[0].course.name %></h4>
@@ -11,12 +11,8 @@
                     <h6><%= list_lessons[0].course.description %></h6>
                 </div>
                 <div class="col s6">
-                    <h4><%= bill.teacher.fullName %></h4>
-                    <% if (teacher_user.picture) { %>
-                    <img src="<%= teacher_user.picture %>" class="responsive-img i-pictures-lesson-booking">
-                    <% } else { %>
-                    <img class="responsive-img i-pictures-lesson-booking" src="/img/silueta.png">
-                    <% } %>
+                    <h4><%= bill.teacher.shortName %></h4>
+                    <img src="<%= teacher_user.picture_or_not %>" class="responsive-img i-pictures-lesson-booking">
                     <h6>Precio por hora de clase: $<span id="pricePerHour"><%= bill.teacher.getPriceOfCourse(list_lessons[0].course.id)%></span></h6>
                 </div>
             </div>

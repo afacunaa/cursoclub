@@ -1,0 +1,34 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <h4><strong>LISTA DE CORREOS</strong></h4>
+        <a href="/correo/create" class="btn red">Crear correo</a>
+    <% if (emailMessage_list.length === 0) { %>
+        <p class="flow-text">No hay ningun correo</p>
+    <% } else { %>
+        <table class="bordered highlight">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Periodicidad</th>
+                    <th>Creado</th>
+                    <th>Modificado</th>
+                </tr>
+            </thead>
+            <tbody>
+        <% for (var i=0; i<emailMessage_list.length; i++) { %>
+                <tr>
+                    <th><a href="<%= emailMessage_list[i].url %>"><%= emailMessage_list[i].name %></a></th>
+                    <th><%= emailMessage_list[i].periodicity %></th>
+                    <th><%= emailMessage_list[i].nice_created %></th>
+                    <th><%= emailMessage_list[i].nice_updated %></th>
+                </tr>
+        <% } %>
+    <% } %>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<%- include footer.ejs %>

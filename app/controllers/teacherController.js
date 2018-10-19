@@ -107,7 +107,7 @@ exports.create_teacher_post = function (req, res, next) {
             username: req.body.email,
             password: hash,
             active: { isActive: false, token: teacher.id },
-            owner: teacher.fullName,
+            owner: teacher.shortName,
             teacher: teacher.id }
     );
     // First, update all courses' teachers list adding teacher's ID and then save the new created teacher
@@ -202,6 +202,7 @@ exports.registration_teacher_post = function (req, res, next) {
                         knowledgeType: (typeof req.body.knowledgeType==='undefined') ? [] : req.body.knowledgeType.toString().split(','),
                         experienceSummary: req.body.experience,
                         kindOfClients: req.body.clients,
+                        workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
                         moreAbout: req.body.about,
                         socialNetwork:
                             {
@@ -213,7 +214,7 @@ exports.registration_teacher_post = function (req, res, next) {
                             },
                         like: req.body.like,
                         howDidKnow: req.body.howKnew,
-                        description: '',
+                        description: req.body.experience,
                         courses: coursesId,
                         member: {
                             isMember: false,
@@ -247,81 +248,10 @@ exports.registration_teacher_post = function (req, res, next) {
                 });
                 user.save();
                 req.flash('success', 'Registro exitoso');
+                emailer.welcome_teacher_email(user.email, user.activation_route, teacher.shortName, user.username)
             }
             res.redirect('/teacher/signup');
         });
-};
-
-// Create a teacher POST
-exports.registration_complete_teacher_post = function (req, res, next) {
-    //res.send('Crear profesor');
-    let teacherPlain = JSON.parse(req.body.teacher);
-    let userPlain = JSON.parse(req.body.user);
-    let coursesId = JSON.parse(req.body.courses);
-    let teacher = new Teacher(
-        {
-            firstName: teacherPlain.firstName,
-            lastName: teacherPlain.lastName,
-            document: teacherPlain.document,
-            birthday: teacherPlain.birthday,
-            city: teacherPlain.city,
-            phone: teacherPlain.phone,
-            workingArea: (typeof teacherPlain.workingArea === 'undefined') ? [] : teacherPlain.workingArea.toString().split(','),
-            description: teacherPlain.description,
-            request: teacherPlain.request,
-            member: {
-                isMember: false
-            }
-        }
-    );
-    let user = new User(
-        {
-            role : constants.teacher_role,
-            email: userPlain.email,
-            username: userPlain.email,
-            password: userPlain.password,
-            owner: teacher.fullName,
-            teacher: teacher.id,
-            active : {
-                isActive : false,
-                token : teacher.id
-            }
-        }
-    );
-    let courses = [];
-    let courseWithPrice = {};
-    for (let i=0; i < coursesId.length; i++) {
-        courseWithPrice = {
-            course: coursesId[i]._id,
-            pricePerHour: req.body['course_price'+coursesId[i]._id]
-        };
-        courses.push(courseWithPrice);
-    }
-    teacher.courses = courses;
-    async.series({
-        teacher_save: function (callback) {
-            teacher.save(callback);
-        },
-        user_save: function (callback) {
-            User.findOne({ 'email': user.email }, callback)
-                .exec(function (err, results) {
-                    if (err) {
-                        return res.send(err)
-                    }
-                    if (!results) {
-                        user.save();
-                    } else {
-                        if (!results.teacher && results.student) {
-                            results.teacher = teacher.id;
-                            results.save();
-                        }
-                    }
-                });
-        }
-    }, function (err, results) {
-        if (err) { return next(err) }
-        res.redirect('/login?teacherSignup=true');
-    });
 };
 
 // Delete a teacher GET
@@ -472,7 +402,7 @@ exports.update_teacher_post = function (req, res, next) {
                         if (err) { return res.send(err) }
                         User.findOne({'teacher': req.params.id }, function (err, doc) {
                             if (err) { return res.send(err) }
-                            doc.owner = result.fullName;
+                            doc.owner = result.shortName;
                             doc.updatedAt = new Date();
                             doc.save();
                         })

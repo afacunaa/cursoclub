@@ -7,12 +7,10 @@
         <div class="row">
             <div class="col l2 m2 12">
                 <% if(teacher_user.picture) { %>
-                <img class="responsive-img hide-on-small-only" src="<%= teacher_user.picture %>">
-                <img class="responsive-img hide-on-med-and-up" style="max-width: 100px" src="<%= teacher_user.picture %>">
+                <img class="responsive-img hide-on-small-only" src="<%= teacher_user.picture_or_not %>">
+                <img class="responsive-img hide-on-med-and-up" style="max-width: 100px" src="<%= teacher_user.picture_or_not %>">
                 <% } else { %>
-                <img class="responsive-img hide-on-small-only" src="/img/silueta.png">
-                <img class="responsive-img hide-on-med-and-up" style="max-width: 100px" src="/img/silueta.png">
-                <p><%= teacher.firstName %> no ha subido una imagen</p>
+                <p><%= teacher.shortName %> no ha subido una imagen</p>
                 <% } %>
             </div>
             <div class="col l8 m8 s12">
@@ -59,9 +57,9 @@
         <br>
         <div class="row">
         <% if(teacher.courses.length > 1) { %>
-        <h5><%= teacher.firstName %> es instructor de <%= teacher.courses.length %> cursos </h5>
+        <h5><%= teacher.shortName %> es instructor de <%= teacher.courses.length %> cursos </h5>
         <% } else { %>
-        <h5><%= teacher.firstName %> es instructor de <%= teacher.courses.length %> curso </h5>
+        <h5><%= teacher.shortName %> es instructor de <%= teacher.courses.length %> curso </h5>
         <% } %>
         <ul class="collection">
             <% for (var i=0; i<teacher.courses.length; i++) { %>
@@ -70,26 +68,20 @@
                 <span class="title"><a href="<%= teacher.courses[i].course.url %>"><%= teacher.courses[i].course.name %></a></span>
                 <p>Precio promedio por hora de clase: $<%= teacher.courses[i].pricePerHour %></p>
                 <br>
+                <% if (user.role === 3) { %>
                 <form action="/lesson/create" method="get">
                     <input type="hidden" name="teacherId" id="teacherId" value="<%= teacher.id %>">
                     <input type="hidden" name="courseId" id="courseId" value="<%= teacher.courses[i].course.id %>">
                     <input type="hidden" name="offset" value="0">
                     <button class="btn indigo" type="submit">Solicitar clase</button>
                 </form>
+                <% } %>
             </li>
             <% } %>
         </ul>
         <% } %>
         </div>
         <% if (user.role == 1) { %>
-            <% if (!teacher.member.isMember) { %>
-        <div class="row">
-            <h4 class="red-text"><i class="material-icons">warning</i> Instructor no activo</h4>
-                <% if (teacher.request) { %>
-            <p>Solicita ofrecer clases de: "<%= teacher.request %>"</p>
-                <% } %>
-        </div>
-            <% } %>
         <div class="row">
             <div class="col l6 m6 s12">
                 <a class="btn" href="/teacher/<%= teacher.id %>/update">Editar información</a>
@@ -100,8 +92,116 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <h4><strong>INFORMACIÓN DE REGISTRO</strong></h4>
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Nombre:</strong> <%= teacher.firstName %></p>
+            </div>
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Apellido:</strong> <%= teacher.lastName %></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l4 m4 s12">
+                <p class="flow-text"><strong>Teléfono:</strong> <%= teacher.phone %></p>
+            </div>
+            <div class="col l4 m4 s12">
+                <p class="flow-text"><strong>Celular:</strong> <%= teacher.mobile %></p>
+            </div>
+            <div class="col l4 m4 s12">
+                <p class="flow-text"><strong>Correo electrónico:</strong> <%= teacher_user.email %></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Fecha de nacimiento:</strong> <%= teacher.nice_birthday %></p>
+            </div>
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Ciudad:</strong> <%= teacher.city %></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Dirección:</strong> <%= teacher.address %></p>
+            </div>
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Número de cédula:</strong> <%= teacher.document %></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Cursos:</strong></p>
+                <ul>
+                <% for (var i=0; i<teacher.courses.length; i++) { %>
+                    <li><p class="flow-text"><%= teacher.courses[i].course.name %>: $<%= teacher.courses[i].pricePerHour %></p></li>
+                <% } %>
+                </ul>
+            </div>
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Cursos deseados no registrados:</strong> <%= teacher.wantedCourses %></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Tipo de conocimiento:</strong></p>
+                <ul>
+                <% for (var i=0; i<teacher.knowledgeType.length; i++) { %>
+                    <li><p class="flow-text"><%= teacher.knowledgeType[i] %></p></li>
+                <% } %>
+                </ul>
+            </div>
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Archivos adjuntos:</strong></p>
+                <% if (teacher.attachment.length > 0) { %>
+                <ul>
+                    <% for (var i=0; i<teacher.knowledgeType.length; i++) { %>
+                    <li><a href="<%= teacher.attachment[i] %>" download><p class="flow-text"><%= teacher.attachment[i] %></p></a></li>
+                    <% } %>
+                </ul>
+                <% } else { %>
+                    <p class="flow-text">No se adjuntó ningún archivo</p>
+                <% } %>
+            </div>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>Resúmen de la experiencia:</strong> <%= teacher.experienceSummary %></p>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>Clientes pasados:</strong> <%= teacher.kindOfClients %></p>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>Más sobre sí:</strong> <%= teacher.moreAbout %></p>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>Le gusta de su trabajo:</strong> <%= teacher.like %></p>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>¿Cómo supo de Instructorio?:</strong> <%= teacher.howDidKnow %></p>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>Área de trabajo:</strong> <%= teacher.workingAreaAsLine %></p>
+        </div>
+        <div class="row">
+            <p class="flow-text"><strong>Redes sociales:</strong></p>
+            <ul>
+                <li><p class="flow-text">Facebook: <%= teacher.socialNetwork.facebook %></p></li>
+                <li><p class="flow-text">LinkedIn: <%= teacher.socialNetwork.linkedin %></p></li>
+                <li><p class="flow-text">Twitter: <%= teacher.socialNetwork.twitter %></p></li>
+                <li><p class="flow-text">Blog: <%= teacher.socialNetwork.blog %></p></li>
+                <li><p class="flow-text">Página web: <%= teacher.socialNetwork.website %></p></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Fecha de registro:</strong> <%= teacher.nice_created %></p>
+            </div>
+            <div class="col l6 m6 s12">
+                <p class="flow-text"><strong>Fecha de última modificación:</strong> <%= teacher.nice_updated %></p>
+            </div>
+        </div>
         <% } %>
-
     </div>
 </main>
 

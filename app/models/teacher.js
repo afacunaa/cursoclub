@@ -52,8 +52,9 @@ let teacherSchema = new Schema({
 
 teacherSchema.methods.getPriceOfCourse = function (courseId) {
     for (let i=0; i<this.courses.length; i++) {
-        if (this.courses[i].course.toString() === courseId.toString())
+        if (this.courses[i].course.toString() === courseId.toString()) {
             return this.courses[i].pricePerHour;
+        }
     }
 };
 

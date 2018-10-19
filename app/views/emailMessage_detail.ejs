@@ -1,0 +1,39 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <h5><a href="/correos">Volver al listado de correos</a></h5>
+        </div>
+        <div class="row">
+            <h3><%= emailMessage.name %></h3>
+            <a href="/correo/update/<%= emailMessage.id %>" class="btn orange">Editar</a>
+            <p class="flow-text"><strong>Identificador:</strong> <%= emailMessage.idName %></p>
+            <p class="flow-text"><strong>Periodicidad:</strong> <%= emailMessage.periodicity %></p>
+            <p class="flow-text"><strong>Creado:</strong> <%= emailMessage.nice_created %></p>
+            <p class="flow-text"><strong>Última modificación:</strong> <%= emailMessage.nice_updated %></p>
+        </div>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <%- emailMessage.body %>
+        <br>
+        <div class="divider"></div>
+        <br>
+        <h4><strong>ENVIAR CORREOS</strong></h4>
+        <form>
+            <ul>
+                <% for (var i=0; i<usersList.length; i++) { %>
+                <li><p>
+                        <input type="checkbox" id="receivers<%= usersList[i].id %>" name="receivers" />
+                        <label for="receivers<%= usersList[i].id %>"><%= roleNames[usersList[i].role] %>: <%= usersList[i].owner %> (<%= usersList[i].email %>)</label>
+                    </p>
+                    <p class="flow-text"></p></li>
+                <% } %>
+            </ul>
+            <button class="waves-effect waves-light btn indigo" type="submit" value="Aceptar">Enviar correos</button>
+        </form>
+    </div>
+</main>
+
+<%- include footer.ejs %>

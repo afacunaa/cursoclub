@@ -47,7 +47,7 @@
                             <label for="lastname">Apellido</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
-                            <input type="text" name="document" id="document" value="<%= teacher.document %>" required/>
+                            <input type="text" name="document" id="document" value="<%= teacher.document %>" disabled/>
                             <label for="document">Cédula de ciudadanía</label>
                         </div>
                         <div class="input-field col l6 m6 s12">
@@ -105,11 +105,11 @@
                         </div>
                     </div>
                     <div class="input-field col l3 m3 s6">
-                        <input class="datepicker" type="date" name="premiumSince" id="premiumSince" value="<%= premiumSinceString %>" required>
+                        <input class="datepickerFull" type="date" name="premiumSince" id="premiumSince" value="<%= premiumSinceString %>" required>
                         <label for="premiumSince">Inicio membresía</label>
                     </div>
                     <div class="input-field col l3 m3 s6">
-                        <input class="datepicker" type="date" name="premiumUntil" id="premiumUntil" value="<%= premiumUntilString %>" required>
+                        <input class="datepickerFull" type="date" name="premiumUntil" id="premiumUntil" value="<%= premiumUntilString %>" required>
                         <label for="premiumUntil">Fin membresía</label>
                     </div>
                 </div>

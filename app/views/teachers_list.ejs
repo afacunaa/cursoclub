@@ -27,8 +27,8 @@
                 <th><%= teachers_list[i].document %></th>
                 <th><%= teachers_list[i].city %></th>
                 <th><%= teachers_list[i].nice_created %></th>
-                <th><%= teachers_list[i].member.isMember %></th>
-                <th><%= teachers_list[i].member.isPremium %></th>
+                <th><%= teachers_list[i].member.isMember ? 'Sí' : 'No' %></th>
+                <th><%= teachers_list[i].member.isPremium ? 'Sí' : 'No' %></th>
             </tr>
             <% } %>
         <% } %>

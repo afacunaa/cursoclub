@@ -7,11 +7,7 @@
             <div class="card i-border-card hoverable">
                 <div class="row">
                     <div class="col l3 m3 s3">
-                        <% if (users_list[i].picture) { %>
-                        <img src="<%= users_list[i].picture %>" class="responsive-img" style="max-width: 100px;">
-                        <% } else { %>
-                        <img class="responsive-img" src="/img/silueta.png" style="max-width: 100px;">
-                        <% } %>
+                        <img src="<%= users_list[i].picture_or_not %>" class="responsive-img" style="max-width: 100px;">
                     </div>
                     <div class="col l9 m9 s9">
                         <span class="card-title"><%= users_list[i].teacher.shortName %></span>

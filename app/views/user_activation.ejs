@@ -2,13 +2,14 @@
 
 <main>
     <div class="container">
-        <h1>Activación de la cuenta</h1>
+        <h4>Activación de la cuenta</h4>
         <% if (success) { %>
-        <h3 class="green-text">Felicitaciones</h3>
-        <h4><%= message %></h4>
+        <p class="flow-text green-text">Felicitaciones</p>
+        <p class="flow-text"><%= message %></p>
+        <a href="/login"><p class="flow-text">Ingresa ahora</p></a>
         <% } else { %>
-        <h3 class="red-text">Oh no!</h3>
-        <h4><%= message %></h4>
+        <p class="flow-text red-text">Oh no!</p>
+        <p class="flow-text"><%= message %></p>
         <% } %>
     </div>
 </main>

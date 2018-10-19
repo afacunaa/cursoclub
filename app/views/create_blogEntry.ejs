@@ -2,30 +2,57 @@
 
 <main>
     <div class="container">
+        <h4><strong>NUEVO REGISTRO DEL BLOG</strong></h4>
         <form method="post" action="" name="main" id="main">
             <div class="input-field">
+                <i class="material-icons prefix">bookmark_border</i>
                 <input type="text" name="title" id="title" required>
                 <label for="title">Título</label>
             </div>
             <div class="input-field">
+                <i class="material-icons prefix">card_membership</i>
                 <input type="text" name="idTitle" id="idTitle" required>
                 <label for="idTitle">Título identificación</label>
             </div>
             <div class="input-field">
+                <i class="material-icons prefix">assignment_ind</i>
+                <input type="text" name="author" id="author" required>
+                <label for="author">Autor</label>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">description</i>
+                <input type="text" name="keywords" id="keywords">
+                <label for="keywords">Palabras clave</label>
+            </div>
+            <div class="row grey lighten-2" align="center">
+                <i id="bold" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Negrita" onclick="toggleSelection(this)">format_bold</i>
+                <i id="italic" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Cursiva" onclick="toggleSelection(this)">format_italic</i>
+                <i id="underline" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Subrayado" onclick="toggleSelection(this)">format_underlined</i>
+                <i id="alignLeft" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Alinear a la izquierda" onclick="toggleSelection(this)">format_align_left</i>
+                <i id="alignCenter" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Centrar" onclick="toggleSelection(this)">format_align_center</i>
+                <i id="alignRight" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Alinear a la derecha" onclick="toggleSelection(this)">format_align_right</i>
+                <i id="alignJustify" class="material-icons small tooltipped i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Justificar" onclick="toggleSelection(this)">format_align_justify</i>
+                <i id="textColor" class="material-icons small tooltipped red-text i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Color de texto">format_color_text</i>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">edit</i>
                 <textarea class="materialize-textarea" name="body" id="body" required></textarea>
                 <label for="body">Contenido</label>
             </div>
             <div class="input-field">
-                <input type="text" name="author" id="author" required>
-                <label for="description">Autor</label>
+                <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Guardar</button>
             </div>
-            <div class="input-field">
-                <input type="text" name="keywords" id="keywords">
-                <label for="keywords">Palabras clave</label>
-            </div>
-            <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Guardar</button>
         </form>
     </div>
 </main>
+<script type="text/javascript" src="/js/blogEditor.js"></script>
 
 <%- include footer.ejs %>

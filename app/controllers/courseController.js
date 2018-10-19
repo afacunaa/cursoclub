@@ -3,6 +3,7 @@
  */
 
 let Course = require('../models/course');
+let Teacher = require('../models/teacher');
 let User = require('../models/user');
 let UsageTrack = require('../models/usageTrack');
 let uploader = require('../../lib/upload');
@@ -18,7 +19,6 @@ exports.course_list = function (req, res, next) {
         name = name.replace(/[oó]/g, '[oó]');
         name = name.replace(/[uúü]/g, '[uúü]');
         Course.find({ keywords: new RegExp(name, 'i') })
-            .populate('teachers')
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
                 let user;
@@ -45,7 +45,6 @@ exports.course_list = function (req, res, next) {
             param = [req.query.category];
         }
         Course.find({ category: { $in: param } })
-            .populate('teachers')
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
                 let user;
@@ -66,14 +65,21 @@ exports.course_list = function (req, res, next) {
             });
     } else {
         if (req.user && req.user.role === 2) {
-            Course.find({ 'teachers': req.user.teacher })
-                .exec(function (err, list_courses) {
-                    if (err) { return next(err) }
-                    res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.category, user: req.user });
-                });
+            Teacher.findById(req.user.teacher).exec(function (err, result) {
+                if (err) { return next(err) }
+                let coursesId = [];
+                for (let i=0; i<result.courses.length; i++) {
+                    coursesId.push(result.courses[i].course);
+                }
+                Course.find({ _id: { $in: coursesId } })
+                    .exec(function (err, list_courses) {
+                        if (err) { return next(err) }
+                        console.log(list_courses);
+                        res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.category, user: req.user });
+                    });
+            });
         } else {
             Course.find({})
-                .populate('teachers')
                 .exec(function (err, list_courses) {
                     if (err) {
                         return next(err)
@@ -92,21 +98,35 @@ exports.course_list = function (req, res, next) {
 // Display the details of a course GET
 exports.course_detail = function (req, res, next) {
     //res.send('Detalle de curso ' + req.params.id);
-    Course.findOne({ idName: req.params.idName })
-        .populate('teachers')
-        .exec(function (err, course) {
-            let usersId = [];
-            for (let i=0; i<course.teachers.length; i++) {
-                usersId.push(course.teachers[i].id);
+    Course.findOne({ idName: req.params.idName }).exec(function (err, course) {
+        if (err) { return res.send(err) }
+        Teacher.find({ 'courses.course': course.id, 'member.isMember': true })
+            .populate('courses.course')
+            .exec(function (err, teachers) {
+            if (err) { return res.send(err) }
+            let teachersId = [];
+            let teacherMap = {};
+            for (let i=0; i<teachers.length; i++) {
+                teachersId.push(teachers[i].id);
+                teacherMap[teachers[i].id] = teachers[i];
             }
-            User.find({ 'teacher': { $in: usersId } })
-                .exec(function (err, user_result) {
-                if (err){
-                    return next(err);
+            User.find({ teacher: { $in: teachersId }, 'active.isActive': true }).exec(function (err, users) {
+                if (err) { return res.send(err) }
+                let users_list = [];
+                for (let i=0; i<users.length; i++) {
+                    users[i].teacher = teacherMap[users[i].teacher];
+                    users_list.push(users[i]);
                 }
-                res.render('course_detail', { title: 'Detalle de curso', course: course, teacher_user: user_result, user: req.user });
-            });
-        });
+                res.render('course_detail',
+                    {
+                        title: 'Detalle de curso',
+                        course: course,
+                        users_list: users_list,
+                        user: req.user
+                    });
+            })
+        })
+    });
 };
 
 // Create a course GET

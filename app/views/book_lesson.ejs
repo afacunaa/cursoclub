@@ -12,12 +12,8 @@
                 </div>
                 <div class="col s6">
                     <h4><%= teacher.shortName %></h4>
-                    <% if (teacher_user.picture) { %>
-                    <img src="<%= teacher_user.picture %>" class="responsive-img i-pictures-lesson-booking">
-                    <% } else { %>
-                    <img class="responsive-img i-pictures-lesson-booking" src="/img/silueta.png">
-                    <% } %>
-                    <h6>Precio por hora de clase: $<span id="pricePerHour"><%= teacher.getPriceOfCourse(course.id)%></span></h6>
+                    <img src="<%= teacher_user.picture_or_not %>" class="responsive-img i-pictures-lesson-booking">
+                    <h6>Precio promedio por hora de clase: $<span id="pricePerHour"><%= teacher.getPriceOfCourse(course.id) %></span></h6>
                 </div>
             </div>
             <br>
@@ -96,7 +92,7 @@
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn lime" value="Reservar clase">Reservar</button>
+                <button type="submit" class="btn lime" value="Reservar clase">Solicitar</button>
             </form>
             <% } else { %>
             <p class="flow-text">Lo sentimos. <%= teacher.firstName %> aún no ha actualizado su horario de disponibilidad</p>

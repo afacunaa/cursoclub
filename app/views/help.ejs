@@ -1,0 +1,89 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <h4><strong>SECCIÓN DE AYUDA</strong></h4>
+            <div class="col l6 m6 s12">
+                <a href="#" onclick="$('#instructorHelp').show(); $('#userHelp').hide();" class="btn i-corporate-orange">Soy instructor</a>
+            </div>
+            <div class="col l6 m6 s12">
+                <a href="#" onclick="$('#instructorHelp').hide(); $('#userHelp').show();" class="btn i-corporate-green">Soy usuario</a>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" id="instructorHelp" style="display:none">
+            <ul class="collapsible popout" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">account_box</i>¿Cómo cambio mi imagen de perfil?</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>- En el menú encontrarás la opción "Editar perfil".</li>
+                            <li>- Haz clic en el botón "Cambiar imagen". Se abrirá una pequeña ventana.</li>
+                            <li>- Haz clic en el botón "Escoger archvo". Selecciona de tu equipo la fotografía que quieras utilizar.</li>
+                            <li>- Si cumple con los requisitos, el botón "Subir imagen" se habilitará. ¡Haz clic en él y eso es todo!</li>
+                        </ul>
+                        <br>
+                        <img src="img/teacher_set_picture.gif" class="responsive-img" style="max-width: 50%">
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">today</i>¿Cómo actualizo mi horario de disponibilidad?</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>- En el menú encontrarás la opción "Editar horario".</li>
+                            <li>- Marca o desmarca las casillas correspondientes a las horas y los días de la semana en que desees que
+                                los usuarios soliciten las clases.</li>
+                            <li>- Haz clic en el botón "Actualizar horario".</li>
+                            <li>- Puedes actualizar este horario cada vez que lo necesites. Los usuarios podrán solicitar
+                                clases segun tu horario <strong>hasta un mes adelante</strong> del día en que estén haciendo
+                                la solicitud.</li>
+                        </ul>
+                        <br>
+                        <img src="img/teacher_set_schedule.gif" class="responsive-img" style="max-width: 50%">
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">new_releases</i>¿Qué debo hacer cuando recibo una solicitud de una clase?</div>
+                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                </li>
+            </ul>
+        </div>
+        <div class="row" id="userHelp" style="display: none">
+            <ul class="collapsible popout" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">account_box</i>¿Cómo cambio mi imagen de perfil?</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>- En el menú encontrarás la opción "Editar perfil".</li>
+                            <li>- Haz clic en el botón "Cambiar imagen". Se abrirá una pequeña ventana.</li>
+                            <li>- Haz clic en el botón "Escoger archvo". Selecciona de tu equipo la fotografía que quieras utilizar.</li>
+                            <li>- Si cumple con los requisitos, el botón "Subir imagen" se habilitará. ¡Haz clic en él y eso es todo!</li>
+                        </ul>
+                        <br>
+                        <img src="img/teacher_set_picture.gif" class="responsive-img" style="max-width: 50%">
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">event_available</i>¿Cómo solicito una clase con un instructor?</div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>- Busca el curso que te interese a través del buscador. O también puedes buscar por categoría.</li>
+                            <li>- En el detalle de cada curso encontrarás el listado de instructores que ofrecen esa clase.</li>
+                            <li>- Puedes ver el perfil público de cada uno de ellos. Selecciona a quien más te llame la atención.</li>
+                            <li>- En las clases que él ofrece haz clic en el botón "Solicitar clase".</li>
+                            <li>- En el horario disponible marca las horas de cada día en que quieras tomar una clase.</li>
+                            <li>- Confirma la dirección para tomar la clase.</li>
+                            <li>- Haz clic en "Solicitar".</li>
+                            <li>- Espera respuesta del instructor.</li>
+                        </ul>
+                        <br>
+                        <img src="img/teacher_set_picture.gif" class="responsive-img" style="max-width: 50%">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<%- include footer.ejs %>

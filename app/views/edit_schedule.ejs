@@ -2,6 +2,9 @@
 
 <main>
     <div class="container">
+        <h4><strong>ACTUALIZAR HORARIO DE DISPONIBILIDAD</strong></h4>
+        <p class="flow-text">Marca las casillas correspondientes al día de la semana y la hora del día en que estás
+            dispuesto a dictar clases. Los usuarios solo podrán solicitar clases en los momentos marcados.</p>
         <form action="/teacher/<%=user.teacher%>/scheduleUpdate" method="post">
             <table class="bordered highlight">
                 <% var hour = 7 %>
@@ -24,7 +27,7 @@
                         <% } else { %>
                     <td><input type="checkbox" id="d<%= i + (hoursADay * j) %>" name="schedule" value="<%= i + (hoursADay * j) %>">
                         <% } %>
-                        <label for="d<%= i + (hoursADay * j) %>"><%= i + (hoursADay * j) %></label>
+                        <label for="d<%= i + (hoursADay * j) %>"></label>
                     </td>
                     <% } %>
                 </tr>
@@ -32,7 +35,9 @@
                 <% } %>
             </table>
             <br>
-            <input type="submit" class="btn" value="Actualizar horario">
+            <div align="center">
+                <button type="submit" class="btn">Actualizar horario</button>
+            </div>
         </form>
     </div>
 </main>

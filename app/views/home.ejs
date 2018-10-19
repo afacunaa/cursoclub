@@ -6,38 +6,93 @@
     <div class="container">
         <h4>Portal de administración</h4>
         <ul class="collection">
-            <li class="collection-item"><h5><a href="/transactions"><i class="material-icons">history</i> Lista de operaciones</a></h5></li>
-            <li class="collection-item"><h5><a href="/usageTrack"><i class="material-icons">flag</i> Registro de utilización</a></h5></li>
-            <li class="collection-item"><h5><a href="/teachers"><i class="material-icons">recent_actors</i> Lista de instructores</a></h5></li>
-            <li class="collection-item"><h5><a href="/teacher/create"><i class="material-icons">person_pin</i> Añadir a un instructor</a></h5></li>
-            <li class="collection-item"><h5><a href="/cursos"><i class="material-icons">view_carousel</i> Lista de cursos</a></h5></li>
-            <li class="collection-item"><h5><a href="/curso/create"><i class="material-icons">note_add</i> Añadir un curso</a></h5></li>
-            <li class="collection-item"><h5><a href="/students"><i class="material-icons">recent_actors</i> Lista de usuarios</a></h5></li>
-            <li class="collection-item"><h5><a href="/blogs"><i class="material-icons">library_books</i> Blog</a></h5></li>
-            <li class="collection-item"><h5><a href="/mensajes"><i class="material-icons">mail_outline</i> Lista de mensajes</a></h5></li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/transactions"><i class="material-icons">history</i> Lista de operaciones</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/usageTrack"><i class="material-icons">flag</i> Registro de utilización</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/teachers"><i class="material-icons">recent_actors</i> Lista de instructores</a>
+                </h5></li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/teacher/create"><i class="material-icons">person_pin</i> Añadir a un instructor</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/cursos"><i class="material-icons">view_carousel</i> Lista de cursos</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/curso/create"><i class="material-icons">note_add</i> Añadir un curso</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/students"><i class="material-icons">recent_actors</i> Lista de usuarios</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/blogs"><i class="material-icons">library_books</i> Blog</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/correos"><i class="material-icons">chat</i> Correos</a>
+                </h5>
+            </li>
+            <li class="collection-item">
+                <h5>
+                    <a href="/mensajes"><i class="material-icons">mail_outline</i> Lista de mensajes</a>
+                </h5>
+            </li>
         </ul>
     </div>
     <% } else if (user.role == 2) { %>
     <div class="container">
         <% if (booked > 0) { %>
         <div class="chip orange">
-            <% if (booked === 1) { %>
-            <%= booked %> clase solicitada
-            <% } else { %>
-            <%= booked %> clases solicitadas
-            <% } %>
+            <a href="/lessons" class="black-text">
+                <% if (booked === 1) { %>
+                <%= booked %> clase solicitada
+                <% } else { %>
+                <%= booked %> clases solicitadas
+                <% } %>
+            </a>
         </div>
         <% } %>
-        <% if (paid > 0) { %>
+        <% if (accepted > 0) { %>
         <div class="chip green">
-            <% if (paid === 1) { %>
-            <%= paid %> clase pendiente
-            <% } else { %>
-            <%= paid %> clases pendientes
-            <% } %>
+            <a href="/lessons" class="black-text">
+                <% if (accepted === 1) { %>
+                <%= accepted %> clase aceptada
+                <% } else { %>
+                <%= accepted %> clases aceptadas
+                <% } %>
+            </a>
         </div>
         <% } %>
-        <h4 class="i-corporate-blue-text">Portal de instructor</h4>
+        <% if (unread.length > 0){ %>
+        <div class="chip grey">
+            <a href="/mensajes" class="black-text">
+                <% if (unread.length === 1) { %>
+                    <i class="tiny material-icons red-text">message</i> <%= unread.length %> conversación sin leer
+                <% } else { %>
+                        <i class="tiny material-icons red-text">message</i> <%= unread.length %> conversaciones sin leer
+                <% } %>
+            </a>
+        </div>
+        <% } %>
+            <h4><strong>PORTAL DE INSTRUCTOR</strong></h4>
         <div class="row">
             <div class="col l5 m5 s12">
                 <% if (user.picture) { %>
@@ -62,12 +117,14 @@
                 <p class="flow-text"><i class="material-icons">email</i> <%= user.email %></p>
                 <p class="flow-text"><i class="material-icons">perm_contact_calendar</i> <%= person.nice_birthday %></p>
                 <p class="flow-text"><i class="material-icons">call</i> <%= person.phone %></p>
+                <% if (person.score) { %>
                 <h6 class="i-score-stars amber-text">
                     <% for (var i=0; i<Math.floor(person.score); i++) { %>
                     <i class="small material-icons">grade</i>
                     <% } %>
                     <%= parseFloat(person.score).toFixed(2) %>
                 </h6>
+                <% } %>
                 <p class="flow-text"><i class="small material-icons">location_on</i> Clases en: </p>
                 <div>
                     <ul>
@@ -109,34 +166,39 @@
     <div class="container">
         <%- include env_buttons.ejs %>
         <% if (accepted > 0) { %>
-        <div class="chip blue">
-            <% if (accepted === 1) { %>
-            <%= accepted %> clase aceptada
-            <% } else { %>
-            <%= accepted %> clases aceptadas
-            <% } %>
-        </div>
-        <% } %>
-        <% if (paid > 0) { %>
         <div class="chip green">
-            <% if (paid === 1) { %>
-            <%= paid %> clase pendiente
-            <% } else { %>
-            <%= paid %> clases pendientes
-            <% } %>
+            <a href="/lessons" class="black-text">
+                <% if (accepted === 1) { %>
+                <%= accepted %> clase aceptada
+                <% } else { %>
+                <%= accepted %> clases aceptadas
+                <% } %>
+            </a>
         </div>
         <% } %>
         <% if (rejected > 0) { %>
         <div class="chip red">
-            <% if (rejected === 1) { %>
-            <%= rejected %> clase rechazada
-            <% } else { %>
-            <%= rejected %> clases rechazadas
-            <% } %>
+            <a href="/lessons" class="black-text">
+                <% if (rejected === 1) { %>
+                <%= rejected %> clase rechazada
+                <% } else { %>
+                <%= rejected %> clases rechazadas
+                <% } %>
+            </a>
         </div>
         <% } %>
+        <% if (unread.length > 0){ %>
+            <div class="chip grey">
+                <a href="/mensajes" class="black-text">
+                    <% if (unread.length === 1) { %>
+                        <i class="tiny material-icons red-text">message</i>  <%= unread.length %> conversación sin leer
+                    <% } else { %>
+                        <i class="tiny material-icons red-text">message</i> <%= unread.length %> conversaciones sin leer
+                    <% } %>
+                </a>
+            </div>
+        <% } %>
     </div>
-
     <div class="row flex">
         <div class="col l6 m6 s12 i-corporate-green-background">
             <%- include instructions.ejs %>

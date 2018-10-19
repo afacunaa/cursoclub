@@ -4,6 +4,7 @@ let BlogEntry = require('../models/blogEntry');
 let Teacher = require('../models/teacher');
 let Student = require('../models/student');
 let Course = require('../models/course');
+let Conversation = require('../models/conversation');
 let constants = require('../../config/constants');
 let emailer = require('../../lib/email');
 let async = require('async');
@@ -34,7 +35,7 @@ exports.index = function (req, res) {
     } else {
         async.parallel({
             users: function (callback) {
-                User.find({ 'teacher': { $ne : null} }, callback)
+                User.find({ 'teacher': { $ne : null}, 'active.isActive': true }, callback)
                     .populate( {
                         path: 'teacher',
                         populate: {
@@ -92,13 +93,16 @@ exports.home = function(req, res) {
                     Lesson.count({ 'state': constants.lesson_rejected}, callback);
                 },
                 users: function (callback) {
-                    User.find({ 'teacher': { $ne : null} }, callback)
+                    User.find({ 'teacher': { $ne : null}, 'active.isActive': true }, callback)
                         .populate( {
                             path: 'teacher',
                             populate: {
                                 path: 'courses.course'
                             }
                         } );
+                },
+                unread_messages: function (callback) {
+                    Conversation.find({$or: [{'user1.user': req.user.id, 'user1.unread': true}, {'user2.user': req.user.id, 'user2.unread': true}]} , callback)
                 }
             }, function (err, results) {
                 if (err) { return res.send(err) }
@@ -112,8 +116,10 @@ exports.home = function(req, res) {
                     rejected: results.rejected_lessons,
                     users_list: results.users,
                     user: req.user,
+                    unread: results.unread_messages,
                     environment: environment
                 });
+
             });
 		} else if (req.user.role === constants.teacher_role) {
             async.parallel({
@@ -126,8 +132,14 @@ exports.home = function(req, res) {
                 booked_lessons: function (callback) {
                     Lesson.count({ 'state': constants.lesson_booked }, callback);
                 },
-                paid_lessons: function (callback) {
-                    Lesson.count({ 'state': constants.lesson_paid }, callback);
+                accepted_lessons: function (callback) {
+                    Lesson.count({ 'state': constants.lesson_accepted }, callback);
+                },
+                unread_messages: function (callback) {
+                    Conversation.find({$or: [
+                        {'user1.user': req.user.id, 'user1.unread': true},
+                        {'user2.user': req.user.id, 'user2.unread': true}
+                        ]} , callback)
                 }
             }, function (err, results) {
                 if (err) { return res.send(err) }
@@ -138,7 +150,8 @@ exports.home = function(req, res) {
                     person: results.find_teacher,
                     courses: results.find_courses,
                     booked: results.booked_lessons,
-                    paid: results.paid_lessons,
+                    accepted: results.accepted_lessons,
+                    unread: results.unread_messages,
                     user: req.user
                 });
             });
@@ -205,4 +218,8 @@ exports.contactus_post = function (req, res) {
 
 exports.aboutus_get = function (req, res) {
     res.render('aboutus', { title: 'Acerca de nosotros', user: req.user })
+};
+
+exports.help_get = function (req, res) {
+    res.render('help', { title: 'Sección de ayuda', user: req.user })
 };
