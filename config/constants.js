@@ -21,8 +21,8 @@ module.exports = {
     "billPaidState":"Pagado",
     "billDoneState":"Finalizado",
     'facebookAuth': {
-        'clientID': '179051199293941', // your App ID
-        'clientSecret': '5dab981c87e0969a7920b8c9527fd475', // your App Secret
+        'clientID': '2102190150095128', // your App ID
+        'clientSecret': '90b3363b06ed737037f4c7a55ab4525a', // your App Secret
         'callbackURL': '/auth/facebook/callback'
     },
     "lesson_booked":'Solicitada',

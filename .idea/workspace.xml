@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c8a01e0-1894-4997-9dcc-2534de5d0369" name="Default" comment="Calificación de instructores con estrellas">
-      <change afterPath="$PROJECT_DIR$/app/views/school_cards.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/billController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/billController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/blogEntryController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/blogEntryController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/conversationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/conversationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/homeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/teacherController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teacherController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bill_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bill_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/course_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/course_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/create_blogEntry.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_blogEntry.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_bill.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_bill.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_blogEntry.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_blogEntry.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_student.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_student.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_teacher.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_teacher.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/env_buttons.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/env_buttons.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/signup.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/signup.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/student_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/student_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/teacher_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teacher_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/welcome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/welcome.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/instructorio_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/instructorio_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/blogEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/blogEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/20180913000826_zagrebcroacia.jpg.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/20180913232635_JustificanteMP-201811100089186.pdf.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/20180913234122_1032460687.jpg.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/20180914001528_P1050075.JPG.jpeg" beforeDir="false" />
-    </list>
+    <list default="true" id="0c8a01e0-1894-4997-9dcc-2534de5d0369" name="Default" comment="Calificación de instructores con estrellas" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -47,7 +15,7 @@
     <session id="-330784800">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="5" />
@@ -101,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/create_blogEntry.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+            <state relative-caret-position="391">
+              <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -480,7 +448,7 @@
       <workItem from="1539913920890" duration="7299000" />
       <workItem from="1541283394132" duration="22562000" />
       <workItem from="1541446214923" duration="1991000" />
-      <workItem from="1541477563025" duration="1020000" />
+      <workItem from="1541477563025" duration="1343000" />
     </task>
     <task id="LOCAL-00001" summary="Video and domain added">
       <created>1500749357030</created>
@@ -514,11 +482,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="665395000" />
+    <option name="totallyTimeSpent" value="665718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15716097" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -526,7 +493,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975" visible="true" weight="0.25572005" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975" weight="0.25572005" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -892,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/create_blogEntry.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+        <state relative-caret-position="391">
+          <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
         </state>
       </provider>
     </entry>
