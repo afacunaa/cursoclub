@@ -90,3 +90,19 @@ function insertTag(textField, tag) {
         textField.val(textField.val() + tag);
     }
 }
+
+function insertLink() {
+    let textField = $('#body');
+    let word = $('#word').val();
+    let url = $('#link').val();
+    let link = '<a href="' + url + '" target="_blank">' + word + '</a>';
+    if (textField.prop('selectionStart') || textField.prop('selectionStart') === '0') {
+        let startPos = textField.prop('selectionStart');
+        let endPos = textField.prop('selectionEnd');
+        textField.val(textField.val().substring(0, startPos)
+            + link
+            + textField.val().substring(endPos, textField.val().length))
+    } else {
+        textField.val(textField.val() + link);
+    }
+}

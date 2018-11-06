@@ -15,12 +15,13 @@
                 <% } else { %>
                 <h4 class="green-text"><%= bill.state %></h4>
                 <% } %>
-                <h5><strong>Instructor: </strong><a href="<%= bill.teacher.url %>"><%= bill.teacher.fullName %></a></h5>
-                <h5><strong>Usuario: </strong><a href="<%= bill.student.url %>"><%= bill.student.fullName %></a></h5>
-                <% if (list_lessons[0].message) { %>
-                <h5><i class="material-icons">message</i> <strong>Mensaje sobre la clase:</strong> <%= list_lessons[0].message %></h5>
+                <% if (user.teacher) { %>
+                <h5><strong>Instructor: </strong><%= bill.teacher.shortName %></h5>
+                <h5><strong>Usuario: </strong><a href="<%= bill.student.url %>"><%= bill.student.shortName %></a></h5>
                 <% } else { %>
-                <h5><i class="material-icons">message</i> No hay ningún mensaje adicional.</h5>
+                <h5><strong>Instructor: </strong><a href="<%= bill.teacher.url %>"><%= bill.teacher.shortName %></a></h5>
+                <p class="i-corporate-orange-text"><i class="material-icons">mail_outline</i>Ingresa a su perfil para enviarle un mensaje.</p>
+                <h5><strong>Usuario: </strong><%= bill.student.shortName %></h5>
                 <% } %>
             </div>
         </div>
@@ -80,6 +81,11 @@
                             </form>
                             <% } %>
                         </div>
+                        <% if (list_lessons[0].message) { %>
+                            <h5><i class="material-icons">message</i> <strong>Mensaje sobre la clase:</strong> <%= list_lessons[0].message %></h5>
+                        <% } else { %>
+                            <h5><i class="material-icons">message</i> No hay ningún mensaje sobre la clase.</h5>
+                        <% } %>
                     </li>
                     <% for (var i=0; i<list_lessons.length; i++) { %>
                     <li class="collection-item">

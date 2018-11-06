@@ -5,57 +5,84 @@
     <% if (user.role == 1) { %>
     <div class="container">
         <h4>Portal de administración</h4>
-        <ul class="collection">
-            <li class="collection-item">
-                <h5>
-                    <a href="/transactions"><i class="material-icons">history</i> Lista de operaciones</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/usageTrack"><i class="material-icons">flag</i> Registro de utilización</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/teachers"><i class="material-icons">recent_actors</i> Lista de instructores</a>
-                </h5></li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/teacher/create"><i class="material-icons">person_pin</i> Añadir a un instructor</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/cursos"><i class="material-icons">view_carousel</i> Lista de cursos</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/curso/create"><i class="material-icons">note_add</i> Añadir un curso</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/students"><i class="material-icons">recent_actors</i> Lista de usuarios</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/blogs"><i class="material-icons">library_books</i> Blog</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/correos"><i class="material-icons">chat</i> Correos</a>
-                </h5>
-            </li>
-            <li class="collection-item">
-                <h5>
-                    <a href="/mensajes"><i class="material-icons">mail_outline</i> Lista de mensajes</a>
-                </h5>
-            </li>
-        </ul>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card-panel teal lighten-3">
+                    <div class="white-text">
+                        <h4 class="white-text">ADMINISTRACION</h4>
+                        <div>
+                            <a href="/transactions" class="btn green darken-3">
+                                <i class="material-icons left">history</i> Lista de operaciones
+                            </a>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="/usageTrack" class="btn green darken-3">
+                                <i class="material-icons left">flag</i> Registro de utilización
+                            </a>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="/blogs" class="btn green darken-3">
+                                <i class="material-icons left">library_books</i> Blog
+                            </a>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="/correos" class="btn green darken-3">
+                                <i class="material-icons left">mail_outline</i> Correos
+                            </a>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="/mensajes" class="btn green darken-3">
+                                <i class="material-icons left">chat</i> Lista de mensajes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card-panel indigo lighten-3">
+                    <div class="white-text">
+                        <h4 class="white-text">CURSOS</h4>
+                        <div>
+                            <a href="/cursos" class="btn blue">
+                                <i class="material-icons left">view_carousel</i> Lista de cursos
+                            </a>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="/curso/create" class="btn blue">
+                                <i class="material-icons left">note_add</i> Añadir un curso
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card-panel amber lighten-2">
+                    <div class="white-text">
+                        <h4 class="white-text">INSTRUCTORES</h4>
+                        <a href="/teachers" class="btn deep-orange">
+                            <i class="material-icons left">recent_actors</i> Lista de instructores
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card-panel red lighten-3">
+                    <div class="white-text">
+                        <h4 class="white-text">USUARIOS</h4>
+                        <a href="/students" class="btn red accent-4">
+                            <i class="material-icons left">recent_actors</i> Lista de usuarios
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <% } else if (user.role == 2) { %>
     <div class="container">

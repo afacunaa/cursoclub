@@ -93,26 +93,39 @@ exports.delete_blogEntry_post = function (req, res, next) {
 // Update a blogEntry GET
 exports.update_blogEntry_get = function (req, res, next) {
     //res.send('Actualizar blog' + req.params.id);
-    BlogEntry.findOne({ idName: req.params.idName }).exec(function (err, result) {
-        if (err) { return next(err) }
-        res.render('edit_blogEntry', {title: 'Editar entrada del blog', blogEntry: result, user: req.user })
-    });
+    if (req.isAuthenticated) {
+        BlogEntry.findOne({idName: req.params.idName}).exec(function (err, result) {
+            if (err) {
+                return next(err)
+            }
+            res.render('edit_blogEntry', {title: 'Editar entrada del blog', blogEntry: result, user: req.user})
+        });
+    } else {
+        res.redirect('/login');
+    }
 };
 
 // Update a blogEntry POST
 exports.update_blogEntry_post = function (req, res, next) {
     //res.send('Actualizar blog ' + req.params.idTitle);
-    BlogEntry.findOneAndUpdate({ idTitle: req.params.idTitle }, {
-            $set:
-                {
-                    title: req.body.title,
-                    idTitle: req.body.idTitle,
-                    body: req.body.body,
-                    author: req.body.author,
-                    keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(','),
-                    updatedAt: new Date() } },
-        { new: true }, function(err, doc) {
-            res.redirect(doc.url);
+    let selectedIndex = Number(req.body.mainImage);
+    BlogEntry.findOne({ idTitle: req.params.idTitle })
+        .exec(function (err, result) {
+            let images = result.images.slice();
+            result.title = req.body.title;
+            result.idTitle = req.body.idTitle;
+            result.body = req.body.body;
+            result.author = req.body.author;
+            result.keywords = (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(',');
+            result.updatedAt = new Date();
+            if (selectedIndex !== 0) {
+                let temp = images[0];
+                images[0] = images[selectedIndex];
+                images[selectedIndex] = temp;
+                result.images = images;
+            }
+            result.save();
+            res.redirect(result.url);
         });
 };
 

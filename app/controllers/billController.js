@@ -143,39 +143,28 @@ exports.update_bill_post = function (req, res, next) {
         update_bill: function (callback) {
             Bill.findByIdAndUpdate(req.params.id, { $set: { 'state': constants.billPendingState, updatedAt: new Date(), total: req.body.totalInput } }, { new: true }, callback);
         },
-        update_lessons: function (callback) {
-            Lesson.find({ 'bill': req.params.id }, callback)
+        remove_lessons: function (callback) {
+            Lesson.deleteMany({ 'bill': req.params.id }, callback)
                 .exec(
                     function (err, results) {
                         if (err) {
                             return res.send(err);
                         }
-                        for (let i=0; i<results.length; i++) {
-                            results[i].date = lessonDates[i];
-                            results[i].state = constants.lesson_booked;
-                            results[i].message = req.body.lesson_message;
-                            results[i].numberOfStudents = req.body.numberOfStudents;
-                            results[i].address = req.body.address;
-                            results[i].updatedAt = new Date();
-                            results[i].save();
-                        }
-                        if (lessonDates.length > results.length) {
-                            for (let i=results.length; i < lessonDates.length; i++) {
-                                let lesson = new Lesson(
-                                    {
-                                        date: lessonDates[i],
-                                        state: constants.lesson_booked,
-                                        address: req.body.address,
-                                        numberOfStudents: req.body.numberOfStudents,
-                                        student: req.user.student,
-                                        message: req.body.lesson_message,
-                                        teacher: req.body.teacherId,
-                                        course: req.body.courseId,
-                                        bill: req.params.id
-                                    }
-                                );
-                                lesson.save();
-                            }
+                        for (let i=0; i<lessonDates.length; i++) {
+                            let lesson = new Lesson(
+                                {
+                                    date: lessonDates[i],
+                                    state: constants.lesson_booked,
+                                    address: req.body.address,
+                                    numberOfStudents: req.body.numberOfStudents,
+                                    student: req.user.student,
+                                    message: req.body.lesson_message,
+                                    teacher: req.body.teacherId,
+                                    course: req.body.courseId,
+                                    bill: req.params.id
+                                }
+                            );
+                            lesson.save();
                         }
                     }
                 );

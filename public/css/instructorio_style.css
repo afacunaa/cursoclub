@@ -249,3 +249,6 @@ strong {
 .i-blog-editor-button {
     cursor: pointer;
 }
+.i-blog-image-edition {
+    width: 200px;
+}

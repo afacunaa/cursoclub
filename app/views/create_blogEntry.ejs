@@ -41,6 +41,8 @@
                    data-position="bottom" data-delay="20" data-tooltip="Justificar" onclick="toggleSelection(this)">format_align_justify</i>
                 <i id="textColor" class="material-icons small tooltipped red-text i-blog-editor-button black-text"
                    data-position="bottom" data-delay="20" data-tooltip="Color de texto">format_color_text</i>
+                <i id="link" class="material-icons small tooltipped red-text i-blog-editor-button black-text"
+                   data-position="bottom" data-delay="20" data-tooltip="Insertar enlace" onclick="$('#insert-link').modal('open');">insert_link</i>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">edit</i>
@@ -51,6 +53,25 @@
                 <button class="waves-effect waves-light btn blue" type="submit" value="Aceptar">Guardar</button>
             </div>
         </form>
+        <div class="modal" id="insert-link">
+            <div class="modal-content">
+                <h4>Insertar enlace</h4>
+                <div class="input-field">
+                    <i class="material-icons prefix">description</i>
+                    <input type="text" name="word" id="word">
+                    <label for="word">Texto</label>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">link</i>
+                    <input type="text" name="link" id="link">
+                    <label for="link">Dirección enlace</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close btn-flat" onclick="insertLink()">Insertar</a>
+                <a href="#!" class="modal-action modal-close btn-flat">Cerrar</a>
+            </div>
+        </div>
     </div>
 </main>
 <script type="text/javascript" src="/js/blogEditor.js"></script>

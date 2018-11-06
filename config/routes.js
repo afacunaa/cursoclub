@@ -186,12 +186,6 @@ router.get('/student/:id', studentController.student_detail);
 
 /* Teacher routes */
 
-// GET teacher creation
-router.get('/teacher/create', teacherController.create_teacher_get);
-
-// POST teacher creation
-router.post('/teacher/create', teacherController.create_teacher_post);
-
 // GET teacher registration
 router.get('/teacher/signup', teacherController.registration_teacher_get);
 

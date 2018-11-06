@@ -1,0 +1,35 @@
+<h4><strong>LISTA DE INSTITUTOS</strong></h4>
+<% if (courses_list.length > 0) { %>
+    <% for (var i=0; i<courses_list.length; i++) { %>
+        <% if (i % 3 === 0) { %>
+        <div class="row">
+            <% } %>
+            <div class="col l4 m6 s12">
+                <div class="card i-border-card hoverable">
+                    <div class="card-image">
+                        <a href="<%= courses_list[i].url %>"><img src="<%= courses_list[i].picture %>"></a>
+                        <% if (user && user.role === 1) { %>
+                            <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= courses_list[i].short_url %>/update"><i class="material-icons">mode_edit</i></a>
+                        <% } %>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title"><%= courses_list[i].name %></span>
+                        <p><%= courses_list[i].description %></p>
+                    </div>
+                    <div class="card-action">
+                        <a class="green-text" href="<%= courses_list[i].url %>">Detalles</a>
+                        <% if (courses_list[i].category === 'Virtual') { %>
+                            <a class="blue-text" href="<%= courses_list[i].externalLink %>" target="_blank">Ir al sitio del curso</a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <%if (i % 3 === 2 || i === courses_list.length - 1) { %>
+        </div>
+        <% } %>
+    <% } %>
+<% } else { %>
+    <div class="container">
+        <p class="flow-text">Lo sentimos, no hay ningun instituto registrado.</p>
+    </div>
+<% } %>

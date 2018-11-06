@@ -6,11 +6,10 @@
         <h4 class="center"><strong>DETALLE DEL INSTRUCTOR</strong></h4>
         <div class="row">
             <div class="col l2 m2 12">
-                <% if(teacher_user.picture) { %>
                 <img class="responsive-img hide-on-small-only" src="<%= teacher_user.picture_or_not %>">
                 <img class="responsive-img hide-on-med-and-up" style="max-width: 100px" src="<%= teacher_user.picture_or_not %>">
-                <% } else { %>
-                <p><%= teacher.shortName %> no ha subido una imagen</p>
+                <% if(!teacher_user.picture) { %>
+                <p class="red-text"><%= teacher.shortName %> no ha subido una imagen</p>
                 <% } %>
             </div>
             <div class="col l8 m8 s12">

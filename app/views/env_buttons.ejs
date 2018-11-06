@@ -1,18 +1,18 @@
 <br>
 <div class="row">
     <div class="col l6 m6 s6" align="center">
-        <% if (environment === 'v') { %>
+        <% if (environment === 'v' || environment === 'i') { %>
             <% if (user) { %>
         <a class="waves-effect btn-large i-corporate-purple waves-light" href="/home">A domicilio</a>
             <% } else { %>
         <a class="waves-effect btn-large i-corporate-purple waves-light" href="/?env=n">A domicilio</a>
         <% } } else { %>
-        <a class="waves-effect btn-large black waves-light disabled" href="/?env=n">A domicilio</a>
+        <a class="waves-effect btn-large waves-light disabled" href="/?env=n">A domicilio</a>
         <% } %>
     </div>
     <div class="col l6 m6 s6" align="center">
         <% if (environment === 'v') { %>
-        <a class="waves-effect btn-large black waves-light disabled" href="/?env=v">Virtuales</a>
+        <a class="waves-effect btn-large waves-light disabled" href="/?env=v">Virtuales</a>
         <% } else { %>
         <a class="waves-effect btn-large i-corporate-green waves-light" href="/?env=v">Virtuales</a>
         <% } %>

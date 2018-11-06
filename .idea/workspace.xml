@@ -2,70 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c8a01e0-1894-4997-9dcc-2534de5d0369" name="Default" comment="Calificación de instructores con estrellas">
-      <change afterPath="$PROJECT_DIR$/app/controllers/emailMessageController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/emailMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/create_emailMessage.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/edit_emailMessage.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/emailMessage_detail.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/emailMessage_list.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/help.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/blogEditor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/school_cards.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/billController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/billController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/blogEntryController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/blogEntryController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/conversationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/conversationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/courseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/courseController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/homeController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/teacherController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teacherController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/teacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/teacher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/aboutus.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/aboutus.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/bill_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bill_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/blogEntry_cards.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/blogEntry_cards.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/blogEntry_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/blogEntry_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/book_lesson.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/book_lesson.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/conversation_list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/conversation_list.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/course_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/course_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses_list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses_list.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/create_blogEntry.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_blogEntry.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/edit_bill.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_bill.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/edit_blogEntry.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_blogEntry.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_lesson.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_lesson.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_schedule.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_schedule.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/edit_student.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_student.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/edit_teacher.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_teacher.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/footer.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/env_buttons.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/env_buttons.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/header.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/home.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/lessons_list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/lessons_list.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/recover_password.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recover_password.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/signup.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/signup.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/teacher_cards.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teacher_cards.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/student_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/student_detail.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/teacher_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teacher_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/teacher_registration.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teacher_registration.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/teachers_list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/teachers_list.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/user_activation.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_activation.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/welcome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/welcome.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/upload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/instructorio_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/instructorio_style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/Instrucciones1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/Instrucciones2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/Instrucciones3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/Instrucciones4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cc_logo_black.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cc_logo_old.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cc_logo_old_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cursoclub_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cursoclub_logo_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cursoclub_logo_small2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/favicon2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo1_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo2_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo3_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/blogEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/blogEditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/20180913000826_zagrebcroacia.jpg.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/20180913232635_JustificanteMP-201811100089186.pdf.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/20180913234122_1032460687.jpg.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/20180914001528_P1050075.JPG.jpeg" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -80,40 +47,40 @@
     <session id="-330784800">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.6" value="4" />
-          <entry key="project.open.time.7" value="3" />
-          <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.open.time.7" value="5" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="3" />
-          <entry key="ejs" value="79" />
-          <entry key="js" value="60" />
+          <entry key="css" value="8" />
+          <entry key="ejs" value="115" />
+          <entry key="js" value="88" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="3" />
-          <entry key="EJS" value="79" />
-          <entry key="JavaScript" value="60" />
+          <entry key="CSS" value="8" />
+          <entry key="EJS" value="115" />
+          <entry key="JavaScript" value="88" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="39" />
-          <entry key="ejs" value="6413" />
-          <entry key="js" value="5049" />
+          <entry key="css" value="89" />
+          <entry key="ejs" value="8541" />
+          <entry key="js" value="6328" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="39" />
-          <entry key="EJS" value="6413" />
-          <entry key="JavaScript" value="5049" />
+          <entry key="CSS" value="89" />
+          <entry key="EJS" value="8541" />
+          <entry key="JavaScript" value="6328" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -123,55 +90,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/create_blogEntry.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/edit_blogEntry.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="63" column="91" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/emailMessageController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/email.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="128">
+              <caret line="97" column="22" lean-forward="true" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/emailMessage_detail.ejs">
+        <entry file="file://$PROJECT_DIR$/app/views/create_blogEntry.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="28" column="122" lean-forward="true" selection-start-line="28" selection-start-column="122" selection-end-line="28" selection-end-column="122" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/blogEditor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="1241">
+              <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -187,10 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>transactions_list</find>
-      <find>user</find>
-      <find>update</find>
-      <find>session</find>
       <find>score</find>
       <find>ingresa</find>
       <find>class=&quot;flow-text&quot;</find>
@@ -217,6 +144,10 @@
       <find>teac</find>
       <find>worki</find>
       <find>rechazar</find>
+      <find>or</find>
+      <find>$or</find>
+      <find>size</find>
+      <find>club</find>
     </findStrings>
     <replaceStrings>
       <replace>black-text</replace>
@@ -243,57 +174,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/env_buttons.ejs" />
-        <option value="$PROJECT_DIR$/app/views/login.ejs" />
-        <option value="$PROJECT_DIR$/public/js/booking.js" />
-        <option value="$PROJECT_DIR$/app/views/welcome.ejs" />
-        <option value="$PROJECT_DIR$/app/views/bill_detail.ejs" />
-        <option value="$PROJECT_DIR$/app/views/edit_lesson.ejs" />
-        <option value="$PROJECT_DIR$/app/models/teacher.js" />
-        <option value="$PROJECT_DIR$/app/views/edit_bill.ejs" />
-        <option value="$PROJECT_DIR$/app/controllers/billController.js" />
-        <option value="$PROJECT_DIR$/app/views/lessons_list.ejs" />
-        <option value="$PROJECT_DIR$/app/views/teacher_cards.ejs" />
-        <option value="$PROJECT_DIR$/app/controllers/courseController.js" />
-        <option value="$PROJECT_DIR$/app/views/course_detail.ejs" />
         <option value="$PROJECT_DIR$/public/js/init.js" />
         <option value="$PROJECT_DIR$/app/views/teachers_list.ejs" />
         <option value="$PROJECT_DIR$/lib/upload.js" />
-        <option value="$PROJECT_DIR$/app/views/teacher_detail.ejs" />
         <option value="$PROJECT_DIR$/app/views/teacher_registration.ejs" />
         <option value="$PROJECT_DIR$/app/views/conversation_list.ejs" />
-        <option value="$PROJECT_DIR$/app/views/signup.ejs" />
         <option value="$PROJECT_DIR$/app/views/recover_password.ejs" />
         <option value="$PROJECT_DIR$/app/views/aboutus.ejs" />
         <option value="$PROJECT_DIR$/app/views/courses_list.ejs" />
-        <option value="$PROJECT_DIR$/app/controllers/conversationController.js" />
-        <option value="$PROJECT_DIR$/app/views/home.ejs" />
-        <option value="$PROJECT_DIR$/app/views/header.ejs" />
         <option value="$PROJECT_DIR$/app/views/emailMessage_list.ejs" />
-        <option value="$PROJECT_DIR$/app/controllers/teacherController.js" />
         <option value="$PROJECT_DIR$/config/constants.js" />
         <option value="$PROJECT_DIR$/app/models/emailMessage.js" />
         <option value="$PROJECT_DIR$/app/views/create_emailMessage.ejs" />
         <option value="$PROJECT_DIR$/app/controllers/userController.js" />
         <option value="$PROJECT_DIR$/app/views/edit_schedule.ejs" />
         <option value="$PROJECT_DIR$/app/views/user_activation.ejs" />
-        <option value="$PROJECT_DIR$/app/views/edit_teacher.ejs" />
         <option value="$PROJECT_DIR$/app/views/edit_emailMessage.ejs" />
-        <option value="$PROJECT_DIR$/app/controllers/homeController.js" />
         <option value="$PROJECT_DIR$/app/views/footer.ejs" />
         <option value="$PROJECT_DIR$/app/views/book_lesson.ejs" />
         <option value="$PROJECT_DIR$/app/views/help.ejs" />
-        <option value="$PROJECT_DIR$/public/css/instructorio_style.css" />
-        <option value="$PROJECT_DIR$/app/views/create_blogEntry.ejs" />
         <option value="$PROJECT_DIR$/app/views/blogEntry_cards.ejs" />
-        <option value="$PROJECT_DIR$/public/js/blogEditor.js" />
         <option value="$PROJECT_DIR$/app/views/blogEntry_detail.ejs" />
-        <option value="$PROJECT_DIR$/app/views/edit_blogEntry.ejs" />
         <option value="$PROJECT_DIR$/app/views/sendEmailMessages.ejs" />
-        <option value="$PROJECT_DIR$/lib/email.js" />
-        <option value="$PROJECT_DIR$/config/routes.js" />
         <option value="$PROJECT_DIR$/app/controllers/emailMessageController.js" />
         <option value="$PROJECT_DIR$/app/views/emailMessage_detail.ejs" />
+        <option value="$PROJECT_DIR$/app/views/edit_bill.ejs" />
+        <option value="$PROJECT_DIR$/app/views/teacher_detail.ejs" />
+        <option value="$PROJECT_DIR$/app/controllers/conversationController.js" />
+        <option value="$PROJECT_DIR$/app/controllers/billController.js" />
+        <option value="$PROJECT_DIR$/app/views/bill_detail.ejs" />
+        <option value="$PROJECT_DIR$/app/views/student_detail.ejs" />
+        <option value="$PROJECT_DIR$/app/models/teacher.js" />
+        <option value="$PROJECT_DIR$/app/views/signup.ejs" />
+        <option value="$PROJECT_DIR$/app/views/home.ejs" />
+        <option value="$PROJECT_DIR$/lib/email.js" />
+        <option value="$PROJECT_DIR$/app/views/header.ejs" />
+        <option value="$PROJECT_DIR$/app/views/edit_student.ejs" />
+        <option value="$PROJECT_DIR$/app/controllers/teacherController.js" />
+        <option value="$PROJECT_DIR$/app/views/course_detail.ejs" />
+        <option value="$PROJECT_DIR$/public/js/blogEditor.js" />
+        <option value="$PROJECT_DIR$/public/css/instructorio_style.css" />
+        <option value="$PROJECT_DIR$/config/routes.js" />
+        <option value="$PROJECT_DIR$/app/controllers/blogEntryController.js" />
+        <option value="$PROJECT_DIR$/app/controllers/homeController.js" />
+        <option value="$PROJECT_DIR$/app/views/school_cards.ejs" />
+        <option value="$PROJECT_DIR$/app/views/index.ejs" />
+        <option value="$PROJECT_DIR$/app/views/login.ejs" />
+        <option value="$PROJECT_DIR$/app/views/welcome.ejs" />
+        <option value="$PROJECT_DIR$/app/views/env_buttons.ejs" />
+        <option value="$PROJECT_DIR$/app/views/edit_teacher.ejs" />
+        <option value="$PROJECT_DIR$/app/views/edit_blogEntry.ejs" />
+        <option value="$PROJECT_DIR$/app/views/create_blogEntry.ejs" />
       </list>
     </option>
   </component>
@@ -346,6 +277,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -395,13 +327,18 @@
               <item name="cursoclub" type="b2602c69:ProjectViewProjectNode" />
               <item name="cursoclub" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cursoclub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cursoclub" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -540,7 +477,10 @@
       <workItem from="1539141624550" duration="4403000" />
       <workItem from="1539224802373" duration="4592000" />
       <workItem from="1539826594494" duration="6682000" />
-      <workItem from="1539913920890" duration="6659000" />
+      <workItem from="1539913920890" duration="7299000" />
+      <workItem from="1541283394132" duration="22562000" />
+      <workItem from="1541446214923" duration="1991000" />
+      <workItem from="1541477563025" duration="1020000" />
     </task>
     <task id="LOCAL-00001" summary="Video and domain added">
       <created>1500749357030</created>
@@ -574,26 +514,26 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="639182000" />
+    <option name="totallyTimeSpent" value="665395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15716097" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15716097" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4975" visible="true" weight="0.25572005" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975" visible="true" weight="0.25572005" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5025" side_tool="true" weight="0.25684485" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32974428" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3293944" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32839838" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -624,168 +564,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Calificación de instructores con estrellas" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/course.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/course_detail.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/teacher_cards.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="15" lean-forward="true" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/registrationForm.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/teacher_registration.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="135" column="79" selection-start-line="135" selection-start-column="79" selection-end-line="135" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/teacher_detail.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="68" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/conversation_list.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="42" column="71" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/recover_password.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="70" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/blogEntry.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/conversationController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="49" column="69" selection-start-line="49" selection-start-column="69" selection-end-line="49" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/teachers_list.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="27" column="53" lean-forward="true" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/emailMessage_list.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/blogEntryController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="75" column="18" lean-forward="true" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/teacher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1341">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/emailMessage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit_emailMessage.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/aboutus.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/homeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="223" column="69" lean-forward="true" selection-start-line="223" selection-start-column="69" selection-end-line="223" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit_schedule.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="106" selection-start-line="6" selection-start-column="106" selection-end-line="6" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/create_emailMessage.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -793,24 +571,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit_teacher.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="49" column="117" selection-start-line="49" selection-start-column="117" selection-end-line="49" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/footer.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="109" selection-start-line="23" selection-start-column="109" selection-end-line="23" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" column="97" selection-start-line="128" selection-start-column="92" selection-end-line="128" selection-end-column="97" />
         </state>
       </provider>
     </entry>
@@ -838,51 +602,9 @@
     <entry file="file://$PROJECT_DIR$/app/views/create_course.ejs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/courses_list.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/book_lesson.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="102" selection-start-line="102" selection-end-line="102" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/booking.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1122" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/instructorio_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4233">
-          <caret line="249" column="19" selection-start-line="249" selection-start-column="19" selection-end-line="249" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/signup.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/create_blogEntry.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/blogEditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/blogEntry_cards.ejs">
@@ -899,73 +621,279 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/blogEntry_detail.ejs">
+    <entry file="file://$PROJECT_DIR$/app/views/sendEmailMessages.ejs" />
+    <entry file="file://$PROJECT_DIR$/app/views/emailMessage_detail.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        <state relative-caret-position="170">
+          <caret line="10" column="65" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/materialize.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit_bill.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/courseController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="73" column="56" lean-forward="true" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/billController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="141" column="4" selection-start-line="141" selection-start-column="4" selection-end-line="141" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="371" column="27" selection-start-line="371" selection-start-column="21" selection-end-line="371" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/sendEmailMessages.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/email.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/teacherController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="55" column="13" lean-forward="true" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit_blogEntry.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="63" column="91" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="91" />
+        <state relative-caret-position="184">
+          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/emailMessageController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="466">
           <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/emailMessage_detail.ejs">
+    <entry file="file://$PROJECT_DIR$/app/controllers/lessonController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="235" column="12" lean-forward="true" selection-start-line="235" selection-start-column="12" selection-end-line="235" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/bill_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="121" lean-forward="true" selection-start-line="21" selection-start-column="121" selection-end-line="21" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/billController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/conversationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="94" column="39" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/book_lesson.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/student_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="111" selection-start-line="16" selection-start-column="111" selection-end-line="16" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/teachers_list.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/teacher_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2176">
+          <caret line="18" column="68" lean-forward="true" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/teacher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1256">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/student.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/header.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="51" column="125" selection-start-line="51" selection-start-column="125" selection-end-line="51" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/email.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/studentController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="103" column="47" lean-forward="true" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/teacherController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-666">
+          <caret line="27" column="55" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/signup.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses_list.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit_student.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/instructorio_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="252" column="13" selection-start-line="252" selection-start-column="13" selection-end-line="252" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="201" selection-start-line="201" selection-end-line="201" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-178">
+          <caret line="186" column="20" selection-start-line="186" selection-start-column="20" selection-end-line="186" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/blogEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="97" column="52" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/blogEntry.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/blogEntryController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="127" column="37" lean-forward="true" selection-start-line="127" selection-start-column="37" selection-end-line="127" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/blogEntry_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="47" lean-forward="true" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/virtual_courses_cards.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="50" lean-forward="true" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/school_cards.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="65" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/homeController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/course_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/login.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="28" column="122" lean-forward="true" selection-start-line="28" selection-start-column="122" selection-end-line="28" selection-end-column="122" />
+          <caret line="68" column="110" selection-start-line="68" selection-start-column="110" selection-end-line="68" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/welcome.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="73" column="57" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit_teacher.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1734">
+          <caret line="117" column="88" selection-start-line="117" selection-start-column="88" selection-end-line="117" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/env_buttons.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit_blogEntry.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="97" column="22" lean-forward="true" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/create_blogEntry.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
         </state>
       </provider>
     </entry>

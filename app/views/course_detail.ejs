@@ -4,13 +4,27 @@
     <div class="container">
         <div class="row">
             <div class="center-align">
-                <h4><strong><%= course.name.toUpperCase() %></strong></h4>
+                <h4><strong><%= course.name.toUpperCase() %></strong>
+                    <% if (course.category === 'Virtual') { %>
+                        (Virtual)
+                    <% } %>
+                </h4>
                 <img class="responsive-img i-course-info-img" src="<%= course.picture %>">
+                <% if (course.category === 'Virtual') { %>
+                <h5 class="red-text"><i class="material-icons">warning</i> Este curso es virtual</h5>
+                <% } %>
                 <p class="flow-text"><%= course.description %></p>
                 <% if (course.requirement) { %>
-                <h6>El curso requiere: <%= course.requirement %></h6>
+                <div class="card amber">
+                    <p class="flow-text"><i class="material-icons">warning</i> El curso requiere: <%= course.requirement %></p>
+                </div>
                 <%} else { %>
-                <h6>Este curso no tiene requisitos</h6>
+                <p>Este curso no tiene requisitos</p>
+                <% } %>
+                <% if (course.category === 'Virtual') { %>
+                <a href="<%= course.externalLink %>" class="btn-large blue" target="_blank">
+                    <i class="material-icons right">send</i>Ir al sitio del curso
+                </a>
                 <% } %>
             </div>
         </div>
@@ -19,7 +33,7 @@
     <div class="divider"></div>
     <br>
     <% if (user) { %>
-        <% if (user.role === 3) { %>
+        <% if (user.role === 3 && course.category !== 'Virtual') { %>
         <%- include teacher_cards.ejs %>
         <% } else if (user.role === 2) { %>
     <div class="container">
@@ -31,14 +45,10 @@
             </h4>
         </div>
     </div>
-        <% } else { %>
+        <% } else if (user.role === 1) { %>
     <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
     <% } } else { %>
         <p>Inicia sesión para ver detalles de los profesores</p>
-    <% } %>
-    <% if (course.category === 'Virtual') { %>
-    <h5>Este curso es virtual</h5>
-    <a href="<%= course.externalLink %>" target="_blank">Ir al sitio del curso</a>
     <% } %>
 </main>
 

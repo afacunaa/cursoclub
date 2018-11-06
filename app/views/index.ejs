@@ -5,7 +5,7 @@
     <%- include env_buttons.ejs %>
 
     <div class="i-image-with-text">
-        <% if (environment !== 'v') { %>
+        <% if (environment !== 'v' && environment !== 'i') { %>
         <img src="/img/CC<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
         <div class="i-welcome-content">
             <div class="row" align="center">
@@ -21,6 +21,18 @@
                     <br>
                     <br>
                     Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
+                </h4>
+            </div>
+        </div>
+        <% } else if (environment === 'i') { %>
+        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
+        <div class="i-welcome-content">
+            <div class="row" align="center">
+                <h3><strong>BIENVENIDO</strong></h3>
+            </div>
+            <div class="row" align="center">
+                <h4>
+                    Encuentra aquí institutos asociados que ofrecen sus cursos para que aprendas sobre lo que más te gusta.
                 </h4>
             </div>
         </div>
@@ -46,7 +58,7 @@
 
         <% } %>
     </div>
-    <% if (environment !== 'v') { %>
+    <% if (environment !== 'v' && environment !== 'i') { %>
     <div class="row flex">
         <div class="col l6 m6 s12 i-corporate-green-background">
             <%- include instructions.ejs %>
@@ -62,6 +74,12 @@
     <div class="row" align="center">
         <%- include virtual_courses_cards.ejs %>
     </div>
+    <% } %>
+    <% if (environment === 'i') { %>
+        <br>
+        <div class="row" align="center">
+            <%- include school_cards.ejs %>
+        </div>
     <% } %>
 </main>
 

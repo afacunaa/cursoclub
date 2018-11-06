@@ -15,6 +15,8 @@ exports.index = function (req, res) {
     let environment;
     if(req.query.env === 'v') {
         environment = 'v'
+    } else if (req.query.env === 'i') {
+        environment = 'i';
     } else if (req.query.env === 'n') {
         environment = 'n';
     }
@@ -75,6 +77,8 @@ exports.home = function(req, res) {
         let environment;
         if(req.query.env === 'v') {
             environment = 'v'
+        } else if (req.query.env === 'i') {
+            environment = 'i';
         } else {
             environment = 'n';
         }

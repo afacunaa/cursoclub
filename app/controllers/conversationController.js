@@ -3,6 +3,7 @@
  */
 
 let Conversation = require('../models/conversation');
+let User = require('../models/user');
 let constants = require('../../config/constants');
 let async = require('async');
 
@@ -101,7 +102,7 @@ exports.conversation_new = function (req, res, next) {
                             },
                             user2: {
                                 user: req.params.id,
-                                unread: true
+                                unread: false
                             },
                             message: []
                         });
