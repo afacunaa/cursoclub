@@ -2,22 +2,23 @@
 
 <main>
     <div class="i-welcome-space" align="center">
-        <img src="/img/welcome<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img" style="width: 100%">
+        <img src="/img/welcome<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-med-and-down" style="width: 100%">
+        <img src="/img/welcome<%= Math.floor((Math.random() * 3) + 1) %>.png" class="hide-on-large-only">
         <div class="i-welcome-content">
             <div class="row">
-                <h2><strong>INSTRUCTORIO</strong></h2>
+                <h3><strong>INSTRUCTORIO</strong></h3>
                 <h4>¿Qué estás buscando?</h4>
             </div>
             <div class="row">
                 <div class="col l6 m6 s12">
-                    <a class="btn-large i-corporate-purple i-welcome-button" href="/?env=n">Clases particualres a domicilio</a>
+                    <a class="btn i-corporate-purple i-welcome-button" href="/?env=n">Clases particualres a domicilio</a>
                 </div>
                 <div class="col l6 m6 s12">
-                    <a class="btn-large i-corporate-green i-welcome-button" href="/?env=v">Cursos virtuales</a>
+                    <a class="btn i-corporate-green i-welcome-button" href="/?env=v">Cursos virtuales</a>
                 </div>
             </div>
             <div class="row">
-                <a class="btn-large i-corporate-orange i-welcome-button" href="/teacher/signup">Soy instructor y quiero dar clases a domicilio</a>
+                <a class="btn i-corporate-orange i-welcome-button" href="/teacher/signup">Soy instructor y quiero dar clases a domicilio</a>
             </div>
         </div>
     </div>

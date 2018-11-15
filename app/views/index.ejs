@@ -6,13 +6,14 @@
 
     <div class="i-image-with-text">
         <% if (environment !== 'v' && environment !== 'i') { %>
-        <img src="/img/CC<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
+        <img src="/img/CC<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-med-and-down i-image-with-text" style="width: 100%">
+        <img src="/img/CC<%= Math.floor((Math.random() * 3) + 1) %>.png" class="hide-on-large-only i-image-with-text">
         <div class="i-welcome-content">
             <div class="row" align="center">
                 <h3><strong>INSTRUCTORIO</strong></h3>
             </div>
             <div class="row" align="center">
-                <h4>
+                <p class="flow-text">
                     ¿Estás buscando clases a domicilio? <strong>Instructorio</strong> tiene justo lo que necesitas.
                     <br>
                     <br>
@@ -21,31 +22,33 @@
                     <br>
                     <br>
                     Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
-                </h4>
+                </p>
             </div>
         </div>
         <% } else if (environment === 'i') { %>
-        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
+        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-med-and-down i-image-with-text" style="width: 100%">
+        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="hide-on-large-only i-image-with-text" style="width: 100%">
         <div class="i-welcome-content">
             <div class="row" align="center">
                 <h3><strong>BIENVENIDO</strong></h3>
             </div>
             <div class="row" align="center">
-                <h4>
+                <p class="flow-text">
                     Encuentra aquí institutos asociados que ofrecen sus cursos para que aprendas sobre lo que más te gusta.
-                </h4>
+                </p>
             </div>
         </div>
         <% } else { %>
-        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-small-only i-image-with-text" style="width: 100%">
+        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="responsive-img hide-on-med-and-down i-image-with-text" style="width: 100%">
+        <img src="/img/CCV<%= Math.floor((Math.random() * 3) + 1) %>.png" class="hide-on-large-only i-image-with-text">
         <div class="i-welcome-content">
             <div class="row" align="center">
                 <h3><strong>BIENVENIDO</strong></h3>
             </div>
             <div class="row" align="center">
-                <h4>
+                <p class="flow-text">
                     Encuentra aquí diversos cursos virtuales* para que aprendas sobre lo que más te gusta sin moverte de donde estás.
-                </h4>
+                </p>
             </div>
         </div>
         <div class="container">

@@ -19,9 +19,9 @@ module.exports = {
     "billPaidState":"Pagado",
     "billDoneState":"Finalizado",
     'facebookAuth': {
-        'clientID': '2102190150095128', // your App ID
-        'clientSecret': '90b3363b06ed737037f4c7a55ab4525a', // your App Secret
-        'callbackURL': '/auth/facebook/callback'
+        'clientID': '298131614376040', // your App ID
+        'clientSecret': '81f9b6dfbbfca7f70dba5ee89e0c6cbe', // your App Secret
+        'callbackURL': 'https://instructorio.co/auth/facebook/callback'
     },
     "lesson_booked":'Solicitada',
     "lesson_accepted":'Aceptada',
