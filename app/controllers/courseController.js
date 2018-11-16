@@ -11,14 +11,8 @@ let uploader = require('../../lib/upload');
 // Display all courses GET
 exports.course_list = function (req, res, next) {
     //res.send('Lista de cursos');
-    if (req.query.name !== undefined) {
-        let name = req.query.name;
-        name = name.replace(/[aá]/g, '[aá]');
-        name = name.replace(/[eé]/g, '[eé]');
-        name = name.replace(/[ií]/g, '[ií]');
-        name = name.replace(/[oó]/g, '[oó]');
-        name = name.replace(/[uúü]/g, '[uúü]');
-        Course.find({ keywords: new RegExp(name, 'i') })
+    if (req.query.search !== undefined) {
+        Course.find({ keywords: req.query.search })
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
                 let user;
