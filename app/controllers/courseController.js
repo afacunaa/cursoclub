@@ -25,7 +25,7 @@ exports.course_list = function (req, res, next) {
                     {
                         ipAddress: req.ip,
                         user: user,
-                        detail: 'Búsqueda: ' + req.query.name
+                        detail: 'Búsqueda: ' + req.query.search
                     }
                 );
                 usageTrack.save();

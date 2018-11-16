@@ -101,15 +101,15 @@ function courseSelected() {
     let pricesArea = $('#prices-area');
     pricesArea.text('');
     let selectedCoursesRaw = $('#courses').val();
-    let elementsToAppend = '';
+    let elementsToAppend = selectedCoursesRaw.length > 0 ? '<p>Escribe un precio promedio por hora de clase para las clases seleccionadas:</p>' : '';
     for (let i=0; i<selectedCoursesRaw.length; i++) {
         elementsToAppend += '<div class="row">\n' +
             '\t<div class="input-field col l6 m6 s12">\n' +
             //'\t\t<i class="material-icons prefix">attach_money</i>\n' +
             '\t\t<input type="text" name="price' + selectedCoursesRaw[i].substring(0, selectedCoursesRaw[i].indexOf(':'))
             +'" id="price' + selectedCoursesRaw[i].substring(0, selectedCoursesRaw[i].indexOf(':')) + '" >\n' +
-            '\t\t<label for="price">¿Cuál es el valor promedio por hora de clase de ' +
-            selectedCoursesRaw[i].substring(selectedCoursesRaw[i].indexOf(':') + 1) + '?</label>\n' +
+            '\t\t<label for="price"> ' + selectedCoursesRaw[i].substring(selectedCoursesRaw[i].indexOf(':') + 1) +
+            '</label>\n' +
             '\t</div>\n' +
             '</div>'
     }
