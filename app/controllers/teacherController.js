@@ -79,6 +79,7 @@ exports.registration_teacher_post = function (req, res, next) {
             if (err) { return next(err) }
             if (result) {
                 req.flash('error', 'Ya hay un usuario registrado con esa dirección de correo electrónico');
+                res.redirect('/teacher/signup');
             } else {
                 let hash = bcrypt.hashSync(req.body.new_password);
                 let coursesRaw = (typeof req.body.courses === 'undefined') ? [] : req.body.courses.toString().split(",");
@@ -142,20 +143,24 @@ exports.registration_teacher_post = function (req, res, next) {
                         subscription: Boolean(req.body.subscription)
                     }
                 );
-                teacher.save(function (err) {
+                async.parallel({
+                    teacher: function (callback) {
+                        teacher.save(callback);
+                        req.customQuery = teacher.id;
+                        uploader.uploadFile(req, 'Teacher');
+                    },
+                    user: function (callback) {
+                        user.save(callback)
+                    }
+                }, function (err, results) {
                     if (err) {
-                        res.send(err);
+                        return res.send(err);
                     }
-                    req.customQuery = teacher.id;
-                    if (uploader.uploadFile(req, 'Teacher')) {
-
-                    }
+                    req.flash('success', 'Registro exitoso');
+                    emailer.welcome_teacher_email(user.email, user.activation_route, teacher.shortName, user.username);
+                    res.redirect('/teacher/signup');
                 });
-                user.save();
-                req.flash('success', 'Registro exitoso');
-                emailer.welcome_teacher_email(user.email, user.activation_route, teacher.shortName, user.username)
             }
-            res.redirect('/teacher/signup');
         });
 };
 

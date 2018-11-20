@@ -104,7 +104,7 @@ exports.create_student_post = function (req, res, next) {
                         emailer.welcome_student_email(user.email, user.activation_route, student.firstName, user.username);
                         req.flash('success', 'Tu cuenta fue creada con éxito. En los proximos minutos debes recibir un correo ' +
                             'electrónico con tu información de ingreso y un enlace para activar tu cuenta. Revisa tu bandeja de entrada.');
-                        res.redirect('/signup')
+                        res.redirect('/signup');
                     });
                 }
             }

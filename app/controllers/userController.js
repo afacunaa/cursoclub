@@ -30,7 +30,7 @@ exports.activate_user_get = function (req, res, next) {
                         res.render('user_activation', {
                             title: 'Activación de usuario',
                             success: true,
-                            message: 'Tu cuenta ha sido activada existosamente, ya puedes ingresar a Curso Club',
+                            message: 'Tu cuenta ha sido activada existosamente, ya puedes ingresar a Instructorio',
                             user: req.user
                         })
                     });
