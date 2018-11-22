@@ -100,7 +100,7 @@ exports.registration_teacher_post = function (req, res, next) {
                         lastName: req.body.lastname,
                         phone: req.body.phone,
                         mobile: req.body.mobile,
-                        birthday: req.body.birthday,
+                        birthday: new Date(req.body.birthday),
                         city: req.body.city,
                         address: req.body.address,
                         document: req.body.document,

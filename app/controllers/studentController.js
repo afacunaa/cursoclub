@@ -73,7 +73,7 @@ exports.create_student_post = function (req, res, next) {
                             lastName: req.body.lastname,
                             address: req.body.address,
                             phone: req.body.phone,
-                            birthday: req.body.birthday,
+                            birthday: new Date(req.body.birthday),
                             document: req.body.document,
                             like: req.body.like,
                             howDidKnow: req.body.howKnew

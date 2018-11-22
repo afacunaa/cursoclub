@@ -25,7 +25,7 @@ $(document).ready(function(){
 $(function () {
     let today = new Date();
     $('.datepicker').pickadate({
-        format:'dd/mm/yyyy',
+        format:'yyyy-mm-dd',
         formatSubmit: 'yyyy-mm-dd',
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 100,
