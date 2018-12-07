@@ -94,7 +94,7 @@ exports.delete_blogEntry_post = function (req, res, next) {
 exports.update_blogEntry_get = function (req, res, next) {
     //res.send('Actualizar blog' + req.params.id);
     if (req.isAuthenticated) {
-        BlogEntry.findOne({idName: req.params.idName}).exec(function (err, result) {
+        BlogEntry.findOne({idTitle: req.params.idTitle}).exec(function (err, result) {
             if (err) {
                 return next(err)
             }

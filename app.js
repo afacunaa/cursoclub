@@ -30,7 +30,7 @@ let multerConfig = multer.diskStorage({
         let dateString = date.getFullYear().toString() + ('0' + (date.getMonth() + 1).toString()).slice(-2) + ('0' +
             date.getDate().toString()).slice(-2) + ('0' + date.getHours().toString()).slice(-2) +
             ('0' + date.getMinutes()).slice(-2) + ('0' + date.getSeconds().toString()).slice(-2);
-        cb(null, dateString + '_' + file.originalname + '.' + mime.getExtension(file.mimetype))
+        cb(null, dateString + '_' + file.originalname.replace(/ /g, '_').replace(/[áéíóúüÁÉÍÓÚÜ]/g, '') + '.' + mime.getExtension(file.mimetype))
     }
 });
 let uploader = multer( {storage: multerConfig, limits: { fileSize: 6000000 }} );
