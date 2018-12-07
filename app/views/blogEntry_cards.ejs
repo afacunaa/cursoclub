@@ -1,12 +1,12 @@
 <% if (blogEntry_list.length > 0 ) { %>
     <% for (var i=0; i<blogEntry_list.length; i++) { %>
-        <% if (i%3==0) { %>
+        <% if (i % 3 === 0) { %>
 <div class="row">
         <% } %>
     <div class="col l4 m4 s12">
         <div class="card i-border-card hoverable">
             <div class="card-image">
-                <a href="<%= blogEntry_list[i].url %>"><img src="<%= blogEntry_list[i].images[0] %>">
+                <a href="<%= blogEntry_list[i].url %>"><img class="responsive-img" src="<%= blogEntry_list[i].images[0] %>">
                     <span class="card-title"><%= blogEntry_list[i].title %></span></a>
         <% if (user && user.role === 1) { %>
                 <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= blogEntry_list[i].url %>/update"><i class="material-icons">mode_edit</i></a>
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-        <% if (i%3==0) { %>
+        <% if (i % 3 === 2 || i === blogEntry_list.length - 1) { %>
 </div>
         <% } %>
     <% } %>
