@@ -31,7 +31,7 @@ exports.blogEntry_detail_get = function (req, res, next) {
             if (err){
                 return next(err);
             }
-            res.render('blogEntry_detail', { title: blogEntry_result.title + ' - Blog de Curso Club', blogEntry: blogEntry_result, user: req.user });
+            res.render('blogEntry_detail', { title: blogEntry_result.title + ' - Blog de Instructorio', blogEntry: blogEntry_result, user: req.user });
         });
 };
 

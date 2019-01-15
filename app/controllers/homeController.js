@@ -23,6 +23,7 @@ exports.index = function (req, res) {
     if (!environment) {
         BlogEntry.find({})
             .sort('-createdAt')
+            .limit(6)
             .exec(function (err, list_blogEntry) {
                 if (err) {
                     return next(err)
