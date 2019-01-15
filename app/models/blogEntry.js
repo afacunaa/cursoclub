@@ -34,4 +34,8 @@ blogEntrySchema.methods.niceCommentPostDate = function(date) {
     return moment(date).locale('es').format('dddd, MMMM D, YYYY, h:mm:ss A');
 };
 
+blogEntrySchema.virtual('plain_body').get(function () {
+    return this.body.replace(/ *<[^>]*> */g, " ");
+});
+
 module.exports = mongoose.model( 'BlogEntry', blogEntrySchema );

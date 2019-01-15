@@ -13,7 +13,7 @@
         <% } %>
             </div>
             <div class="card-content" align="justify">
-                <p><%- blogEntry_list[i].body.substr(0, 220) %> ...</p>
+                <p><%= blogEntry_list[i].plain_body.substr(0, 220) %> ...</p>
             </div>
             <div class="card-action">
                 <a class="blue-text" href="<%= blogEntry_list[i].url %>">Leer más</a>
