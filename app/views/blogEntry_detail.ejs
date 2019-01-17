@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="i-image-with-text">
-                <img class="responsive-img i-blog-image" src="<%= blogEntry.images[0] %>">
+                <img class="responsive-img i-blog-image" src="<%= blogEntry.images[0] ? blogEntry.images[0] : '/img/default_blog.png'  %>">
                 <div class="i-blog-title">
                     <h3><%= blogEntry.title %></h3>
                     <p>Por: <%= blogEntry.author %></p>

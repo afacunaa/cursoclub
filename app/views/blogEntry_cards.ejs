@@ -6,7 +6,7 @@
     <div class="col l4 m4 s12">
         <div class="card i-border-card hoverable">
             <div class="card-image">
-                <a href="<%= blogEntry_list[i].url %>"><img class="responsive-img" src="<%= blogEntry_list[i].images[0] %>">
+                <a href="<%= blogEntry_list[i].url %>"><img class="responsive-img" src="<%= blogEntry_list[i].images[0] ? blogEntry_list[i].images[0] : '/img/default_blog.png' %>">
                     <span class="card-title"><%= blogEntry_list[i].title %></span></a>
         <% if (user && user.role === 1) { %>
                 <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href="<%= blogEntry_list[i].url %>/update"><i class="material-icons">mode_edit</i></a>
