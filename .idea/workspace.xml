@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8a01e0-1894-4997-9dcc-2534de5d0369" name="Default" comment="Cambio de cliente de correo electrónico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/blogEntry_cards.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/blogEntry_cards.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/welcome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/welcome.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/aboutus.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/aboutus.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/footer.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,21 +19,21 @@
     <session id="-330784800">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="31" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.4" value="4" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="7" />
+          <entry key="project.open.time.6" value="8" />
           <entry key="project.open.time.7" value="6" />
           <entry key="project.open.time.8" value="8" />
-          <entry key="project.opened" value="30" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="11" />
-          <entry key="ejs" value="141" />
+          <entry key="ejs" value="143" />
           <entry key="js" value="137" />
           <entry key="json" value="2" />
           <entry key="png" value="1" />
@@ -42,7 +42,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="11" />
-          <entry key="EJS" value="141" />
+          <entry key="EJS" value="143" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="137" />
@@ -51,7 +51,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="109" />
-          <entry key="ejs" value="8768" />
+          <entry key="ejs" value="8771" />
           <entry key="js" value="7107" />
           <entry key="json" value="12" />
           <entry key="txt" value="45" />
@@ -60,7 +60,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="109" />
-          <entry key="EJS" value="8768" />
+          <entry key="EJS" value="8771" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="12" />
           <entry key="JavaScript" value="7106" />
@@ -72,21 +72,21 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/blogEntry_cards.ejs">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/footer.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="174" selection-start-line="8" selection-start-column="174" selection-end-line="8" selection-end-column="174" />
+            <state relative-caret-position="85">
+              <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/blogEntry_detail.ejs">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/aboutus.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="47" lean-forward="true" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+            <state relative-caret-position="187">
+              <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -158,14 +158,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/emailMessage.js" />
         <option value="$PROJECT_DIR$/app/views/create_emailMessage.ejs" />
         <option value="$PROJECT_DIR$/app/views/edit_schedule.ejs" />
         <option value="$PROJECT_DIR$/app/views/user_activation.ejs" />
         <option value="$PROJECT_DIR$/app/views/edit_emailMessage.ejs" />
         <option value="$PROJECT_DIR$/app/views/book_lesson.ejs" />
         <option value="$PROJECT_DIR$/app/views/help.ejs" />
-        <option value="$PROJECT_DIR$/app/views/blogEntry_detail.ejs" />
         <option value="$PROJECT_DIR$/app/views/sendEmailMessages.ejs" />
         <option value="$PROJECT_DIR$/app/controllers/emailMessageController.js" />
         <option value="$PROJECT_DIR$/app/views/emailMessage_detail.ejs" />
@@ -203,12 +201,14 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/app/models/blogEntry.js" />
         <option value="$PROJECT_DIR$/app/controllers/homeController.js" />
-        <option value="$PROJECT_DIR$/app/views/footer.ejs" />
         <option value="$PROJECT_DIR$/app/controllers/blogEntryController.js" />
         <option value="$PROJECT_DIR$/app/views/welcome.ejs" />
         <option value="$PROJECT_DIR$/app/views/header.ejs" />
         <option value="$PROJECT_DIR$/public/css/instructorio_style.css" />
         <option value="$PROJECT_DIR$/app/views/blogEntry_cards.ejs" />
+        <option value="$PROJECT_DIR$/app/views/blogEntry_detail.ejs" />
+        <option value="$PROJECT_DIR$/app/views/aboutus.ejs" />
+        <option value="$PROJECT_DIR$/app/views/footer.ejs" />
       </list>
     </option>
   </component>
@@ -261,7 +261,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -329,6 +328,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,7 +487,8 @@
       <workItem from="1547513130758" duration="6800000" />
       <workItem from="1547521097294" duration="39000" />
       <workItem from="1547525515718" duration="400000" />
-      <workItem from="1547701478554" duration="365000" />
+      <workItem from="1547701478554" duration="641000" />
+      <workItem from="1548737945808" duration="169000" />
     </task>
     <task id="LOCAL-00001" summary="Video and domain added">
       <created>1500749357030</created>
@@ -521,11 +522,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="704397000" />
+    <option name="totallyTimeSpent" value="704842000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15858799" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -533,7 +533,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975" visible="true" weight="0.2548807" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975" weight="0.2548807" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -840,9 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/aboutus.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/blogEntryController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-296">
@@ -854,13 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/footer.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -895,17 +885,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/blogEntry_cards.ejs">
+    <entry file="file://$PROJECT_DIR$/app/views/blogEntry_detail.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="174" selection-start-line="8" selection-start-column="174" selection-end-line="8" selection-end-column="174" />
+        <state relative-caret-position="204">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/blogEntry_detail.ejs">
+    <entry file="file://$PROJECT_DIR$/app/views/blogEntry_cards.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="47" lean-forward="true" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        <state relative-caret-position="136">
+          <caret line="8" column="119" selection-start-line="8" selection-start-column="119" selection-end-line="8" selection-end-column="176" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/aboutus.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/footer.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
         </state>
       </provider>
     </entry>
