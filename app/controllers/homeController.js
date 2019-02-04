@@ -30,6 +30,7 @@ exports.index = function (req, res) {
                 }
                 res.render('welcome', {
                     title: 'Instructorio',
+                    metaDescription: "",
                     user: req.user,
                     environment: environment,
                     blogEntry_list: list_blogEntry,
@@ -63,6 +64,7 @@ exports.index = function (req, res) {
             if (err) { return res.send(err) }
             res.render('index', {
                 title: 'Instructorio',
+                metaDescription: "",
                 lastBlogEntry: results.findBlog[0],
                 courses_list: results.findCourses,
                 users_list: results.users,
@@ -113,6 +115,7 @@ exports.home = function(req, res) {
                 if (err) { return res.send(err) }
                 res.render('home.ejs', {
                     title: 'Instructorio',
+                    metaDescription: "",
                     error: req.flash("error"),
                     success: req.flash("success"),
                     person: results.find_student,
@@ -150,6 +153,7 @@ exports.home = function(req, res) {
                 if (err) { return res.send(err) }
                 res.render('home.ejs', {
                     title: 'Instructorio',
+                    metaDescription: "",
                     error: req.flash("error"),
                     success: req.flash("success"),
                     person: results.find_teacher,
@@ -163,6 +167,7 @@ exports.home = function(req, res) {
 		} else {
             res.render('home.ejs', {
                 title: 'Instructorio',
+                metaDescription: "",
                 error: req.flash("error"),
                 success: req.flash("success"),
                 user: req.user
@@ -180,6 +185,16 @@ exports.logout = function (req, res) {
     res.redirect('/');
 };
 
+exports.landing = function(req, res) {
+    res.render('landing', {
+        title: 'Instructorio',
+        metaDescription: "",
+        error: req.flash("error"),
+        success: req.flash("success"),
+        user: req.user
+        });
+};
+
 exports.login = function(req, res) {
 
 	if (req.isAuthenticated()) {
@@ -187,6 +202,7 @@ exports.login = function(req, res) {
 	} else {
         res.render('login', {
             title: 'Iniciar sesión',
+            metaDescription: "",
             error: req.flash("error"),
             success: req.flash("success"),
             user: req.user
@@ -200,6 +216,7 @@ exports.signup = function(req, res) {
     } else {
         res.render('signup', {
             title: 'Registrarse',
+            metaDescription: "",
             error: req.flash("error"),
             success: req.flash("success"),
             user: req.user
@@ -208,23 +225,23 @@ exports.signup = function(req, res) {
 };
 
 exports.contactus_get = function (req, res) {
-    res.render('contact', { title: 'Contáctanos', sent: false, user: req.user })
+    res.render('contact', { title: 'Contáctanos', metaDescription: "", sent: false, user: req.user })
 };
 
 exports.terms_get = function (req, res) {
     let target = req.query.target;
-    res.render('terms_and_conditions', { title: 'Términos y condiciones', user: req.user, target: target })
+    res.render('terms_and_conditions', { title: 'Términos y condiciones', metaDescription: "", user: req.user, target: target })
 };
 
 exports.contactus_post = function (req, res) {
     emailer.contactus(req.body.firstname, req.body.email, req.body.message);
-    res.render('contact', { title: 'Contáctanos', sent: true, user: req.user })
+    res.render('contact', { title: 'Contáctanos', metaDescription: "", sent: true, user: req.user })
 };
 
 exports.aboutus_get = function (req, res) {
-    res.render('aboutus', { title: 'Acerca de nosotros', user: req.user })
+    res.render('aboutus', { title: 'Sobre nosotros', metaDescription: "", user: req.user })
 };
 
 exports.help_get = function (req, res) {
-    res.render('help', { title: 'Sección de ayuda', user: req.user })
+    res.render('help', { title: 'Sección de ayuda', metaDescription: "", user: req.user })
 };

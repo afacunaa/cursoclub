@@ -15,7 +15,8 @@ exports.blogEntry_list = function (req, res, next) {
                 return next(err)
             }
             res.render('blogEntry_list', {
-                title: 'Blog de CursoClub',
+                title: 'Blog de Instructorio',
+                metaDescription: "",
                 blogEntry_list: list_blogEntry,
                 user: req.user
             });
@@ -31,7 +32,13 @@ exports.blogEntry_detail_get = function (req, res, next) {
             if (err){
                 return next(err);
             }
-            res.render('blogEntry_detail', { title: blogEntry_result.title + ' - Blog de Instructorio', blogEntry: blogEntry_result, user: req.user });
+            res.render('blogEntry_detail',
+                {
+                    title: blogEntry_result.title + ' - Blog de Instructorio',
+                    metaDescription: blogEntry_result.metaDescription,
+                    blogEntry: blogEntry_result,
+                    user: req.user
+                });
         });
 };
 
@@ -56,7 +63,7 @@ exports.blogEntry_detail_post = function (req, res, next) {
 // Create a blogEntry GET
 exports.create_blogEntry_get = function (req, res, next) {
     //res.send('Crear transaccion');
-    res.render('create_blogEntry', { title: 'Crear entrada del Blog', user: req.user });
+    res.render('create_blogEntry', { title: 'Crear entrada del Blog', metaDescription: "", user: req.user });
 };
 
 // Create a blogEntry POST
@@ -97,7 +104,7 @@ exports.update_blogEntry_get = function (req, res, next) {
             if (err) {
                 return next(err)
             }
-            res.render('edit_blogEntry', {title: 'Editar entrada del blog', blogEntry: result, user: req.user})
+            res.render('edit_blogEntry', {title: 'Editar entrada del blog', metaDescription: "", blogEntry: result, user: req.user})
         });
     } else {
         res.redirect('/login');
@@ -114,6 +121,7 @@ exports.update_blogEntry_post = function (req, res, next) {
             result.title = req.body.title;
             result.idTitle = req.body.idTitle;
             result.body = req.body.body;
+            result.metaDescription = req.body.metaDescription;
             result.author = req.body.author;
             result.keywords = (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(',');
             result.updatedAt = new Date();

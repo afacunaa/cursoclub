@@ -19,7 +19,7 @@ exports.teacher_list = function (req, res, next) {
     Teacher.find({ })
         .exec(function (err, list_teacher) {
             if (err) { return next(err) }
-            res.render('teachers_list', { title: 'Listado de profesores', teachers_list: list_teacher, user: req.user })
+            res.render('teachers_list', { title: 'Listado de profesores', metaDescription: "", teachers_list: list_teacher, user: req.user })
         });
 };
 
@@ -43,6 +43,7 @@ exports.teacher_detail = function (req, res, next) {
                 }
                 res.render('teacher_detail', {
                     title: 'Detalle de profesor',
+                    metaDescription: "",
                     teacher: results.first,
                     teacher_user: results.second,
                     lessons_taken: results.third,
@@ -63,6 +64,7 @@ exports.registration_teacher_get = function (req, res, next) {
             if (err) { return next(err) }
             res.render('teacher_registration',
                 { title: 'Registro de instructor',
+                    metaDescription: "",
                     courses_list: list_courses,
                     user: req.user,
                     error: req.flash("error"),
@@ -176,7 +178,7 @@ exports.delete_teacher_get = function (req, res, next) {
             }
         }, function (err, results) {
             if (err) { return next(err) }
-            res.render('delete_teacher', { title: 'Eliminar profesor', teacher: results.first, teacher_courses: results.second, user: req.user })
+            res.render('delete_teacher', { title: 'Eliminar profesor', metaDescription: "", teacher: results.first, teacher_courses: results.second, user: req.user })
         }
     );
 };
@@ -234,6 +236,7 @@ exports.update_teacher_get = function (req, res, next) {
             res.render('edit_teacher',
                 {
                     title: 'Editar profesor',
+                    metaDescription: "",
                     teacher: results.first,
                     teacher_courses_list: teacher_courses_list,
                     teacher_courses_list_pricePerHour: teacher_courses_list_pricePerHour,
@@ -357,7 +360,7 @@ exports.update_teacher_schedule_get = function (req, res, next) {
     let hoursADay = constants.hoursADay;
     Teacher.findById( req.user.teacher )
         .exec(function (err, result) {
-            res.render('edit_schedule', { title: 'Editar mi horario', teacher: result, hoursADay: hoursADay, user: req.user });
+            res.render('edit_schedule', { title: 'Editar mi horario', metaDescription: "", teacher: result, hoursADay: hoursADay, user: req.user });
         });
 };
 

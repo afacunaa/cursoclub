@@ -29,6 +29,7 @@ exports.activate_user_get = function (req, res, next) {
                         }
                         res.render('user_activation', {
                             title: 'Activación de usuario',
+                            metaDescription: "",
                             success: true,
                             message: 'Tu cuenta ha sido activada existosamente, ya puedes ingresar a Instructorio',
                             user: req.user
@@ -37,6 +38,7 @@ exports.activate_user_get = function (req, res, next) {
                 } else {
                     res.render('user_activation', {
                         title: 'Activación de usuario',
+                        metaDescription: "",
                         success: false,
                         message: 'Tu cuenta NO pudo ser activada, asegúrate que el enlace utilizado es el que se te entregó por correo',
                         user: req.user
@@ -45,6 +47,7 @@ exports.activate_user_get = function (req, res, next) {
             } else {
                 res.render('user_activation', {
                     title: 'Activación de usuario',
+                    metaDescription: "",
                     success: false,
                     message: 'Esta cuenta ya fue activada, este enlace ya no es valido',
                     user: req.user
@@ -53,6 +56,7 @@ exports.activate_user_get = function (req, res, next) {
         } else {
             res.render('user_activation', {
                 title: 'Activación de usuario',
+                metaDescription: "",
                 success: false,
                 message: 'El enlace que estás usando no es valido',
                 user: req.user
@@ -95,14 +99,14 @@ exports.update_user_post = function (req, res, next) {
                     updatedAt: new Date()
                 }
             }, {new: true}, function (err, doc) {
-                res.render('edit_user', {title: 'Editar usuario', user: doc, message: 'success' })
+                res.render('edit_user', {title: 'Editar usuario', metaDescription: "", user: doc, message: 'success' })
             })
         } else {
             User.findById(req.user.id).exec(function (err, result) {
                 if (err) {
                     return res.send(err)
                 }
-                res.render('edit_user', {title: 'Editar usuario', user: result, message: 'failure' })
+                res.render('edit_user', {title: 'Editar usuario', metaDescription: "", user: result, message: 'failure' })
             })
         }
     } else {
@@ -113,7 +117,7 @@ exports.update_user_post = function (req, res, next) {
                 updatedAt: new Date()
             }
         }, {new: true}, function (err, doc) {
-            res.render('edit_user', {title: 'Editar usuario', user: doc, message: 'email' })
+            res.render('edit_user', {title: 'Editar usuario', metaDescription: "", user: doc, message: 'email' })
         });
     }
 };
@@ -139,6 +143,7 @@ exports.recovery_user_get = function (req, res, next) {
     //let continueProcess = req.query.continueProcess ? req.query.continueProcess : undefined;
     res.render('recover_password', {
         title: 'Recuperar contraseña',
+        metaDescription: "",
         user: req.user,
         continueProcess: req.query.continueProcess,
         done: req.query.done

@@ -132,6 +132,7 @@ exports.update_student_get = function (req, res, next) {
                     {
                         title: 'Editar mi perfil',
                         student: result,
+                        metaDescription: "",
                         birthdayString: birthdayString,
                         user: req.user,
                         error: req.flash("error"),

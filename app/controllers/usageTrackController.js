@@ -18,6 +18,7 @@ exports.usageTrack_list = function (req, res, next) {
                     }
                     res.render('usageTrack_list', {
                         title: 'Registro de navegación de usuarios',
+                        metaDescription: "",
                         usageTrack_list: list_usageTrack,
                         user: req.user
                     });

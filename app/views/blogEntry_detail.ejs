@@ -13,9 +13,7 @@
             </div>
         </div>
         <br>
-        <p><%- blogEntry.body %></p>
-        <br>
-        <p class="i-blog-keywords">Palabras clave: <%=blogEntry.keywords%></p>
+        <p class="i-blog-text"><%- blogEntry.body %></p>
         <br>
         <% if (user && user.role === 1) { %>
         <a class="btn waves-effect waves-light red" href="<%= blogEntry.url %>/update"><i class="material-icons left">mode_edit</i>Editar</a>

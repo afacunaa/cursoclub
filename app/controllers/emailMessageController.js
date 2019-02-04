@@ -18,6 +18,7 @@ exports.emailMessage_list = function (req, res, next) {
                     }
                     res.render('emailMessage_list', {
                         title: 'Lista de correos',
+                        metaDescription: "",
                         emailMessage_list: list_emailMessage,
                         user: req.user
                     });
@@ -55,6 +56,7 @@ exports.emailMessage_detail_get = function (req, res, next) {
                         emailMessage: results.findMessage,
                         usersList: results.findAllUsers,
                         roleNames: roleNames,
+                        metaDescription: "",
                         user: req.user
                     });
                 }
@@ -71,7 +73,7 @@ exports.emailMessage_detail_get = function (req, res, next) {
 exports.emailMessage_create_get = function (req, res, next) {
     if (req.isAuthenticated()) {
         if (req.user.role === constants.admin_role) {
-            res.render('create_emailMessage', {title: 'Crear correo', user: req.user});
+            res.render('create_emailMessage', {title: 'Crear correo', metaDescription: "", user: req.user});
         } else {
             res.redirect('/home');
         }
@@ -114,7 +116,7 @@ exports.emailMessage_update_get = function (req, res, next) {
                 if (err) {
                     return next(err)
                 }
-                res.render('edit_emailMessage', {title: 'Editar Correo', emailMessage: result, user: req.user})
+                res.render('edit_emailMessage', {title: 'Editar Correo', metaDescription: "", emailMessage: result, user: req.user})
             });
         } else {
             res.redirect('/home');

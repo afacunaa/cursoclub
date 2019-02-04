@@ -22,6 +22,7 @@ exports.conversation_list = function (req, res, next) {
                     res.render('conversation_list', {
                         title: 'Lista de mensajes',
                         conversation_list: conversation_list,
+                        metaDescription: "",
                         user: req.user
                     });
                 });
@@ -35,6 +36,7 @@ exports.conversation_list = function (req, res, next) {
                     }
                     res.render('conversation_list', {
                         title: 'Lista de mensajes',
+                        metaDescription: "",
                         conversation_list: conversation_list,
                         user: req.user
                     });
@@ -71,6 +73,7 @@ exports.conversation_detail = function (req, res, next) {
                     result.save();
                 res.render('conversation_detail', {
                     title: 'Conversación',
+                    metaDescription: "",
                     ownUser: ownUser,
                     otherUser: otherUser,
                     conversation: result,

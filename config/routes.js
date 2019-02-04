@@ -44,6 +44,7 @@ module.exports = function (app, passport) {
 router.get('/', homeController.index);
 router.get('/login', homeController.login);
 router.get('/signup', homeController.signup);
+router.get('/registro', homeController.landing);
 router.get('/home', homeController.home);//home
 router.get('/contactenos', homeController.contactus_get);
 router.get('/nosotros', homeController.aboutus_get);
@@ -289,7 +290,7 @@ router.get('/blog/:idTitle/delete', blogEntryController.delete_blogEntry_get);
 router.post('/blog/:idTitle/delete', blogEntryController.delete_blogEntry_post);
 
 // GET BlogEntry list
-router.get('/blogs', blogEntryController.blogEntry_list);
+router.get('/blog', blogEntryController.blogEntry_list);
 
 // GET BlogEntry detail
 router.get('/blog/:idTitle', blogEntryController.blogEntry_detail_get);

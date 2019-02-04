@@ -13,6 +13,7 @@ let blogEntrySchema = new Schema({
     images: [String],
     author: String,
     keywords: [String],
+    metaDescription: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     comments: [{ user: { type: Schema.Types.ObjectId, ref: 'User' }, post: String, postDate: { type: Date, default: Date.now } }]

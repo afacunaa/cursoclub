@@ -17,7 +17,7 @@ exports.transaction_list = function (req, res, next) {
         } )
         .exec(function (err, list_transactions) {
             if (err) { return next(err) }
-            res.render('transactions_list', { title: 'Listado de operaciones', transactions_list: list_transactions, user: req.user })
+            res.render('transactions_list', { title: 'Listado de operaciones', metaDescription: "", transactions_list: list_transactions, user: req.user })
         });
 };
 

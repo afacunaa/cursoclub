@@ -76,6 +76,7 @@ exports.lesson_list = function (req, res, next) {
                                 }
                                 res.render('lessons_list', {
                                     title: 'Listado de clases',
+                                    metaDescription: "",
                                     classifiedGroupedLessons: classifiedGroupedLessons,
                                     user: req.user
                                 });
@@ -83,6 +84,7 @@ exports.lesson_list = function (req, res, next) {
                     } else {
                         res.render('lessons_list', {
                             title: 'Listado de clases',
+                            metaDescription: "",
                             classifiedGroupedLessons: classifiedGroupedLessons,
                             user: req.user
                         });
@@ -93,7 +95,7 @@ exports.lesson_list = function (req, res, next) {
                 .populate('teacher student course')
                 .exec(function (err, list_lessons) {
                     if (err) { return next(err) }
-                    res.render('lessons_list', { title: 'Listado de clases', lessons_list: list_lessons, user: req.user })
+                    res.render('lessons_list', { title: 'Listado de clases', metaDescription: "", lessons_list: list_lessons, user: req.user })
                 });
         }
     } catch (err) { res.redirect('/login')}
@@ -105,7 +107,7 @@ exports.lesson_detail = function (req, res, next) {
     Lesson.findById( req.params.id )
         .populate('teacher student course')
         .exec(function (err, result) {
-            res.render('lesson_detail', { title: 'Detalle de la clase', lesson: result, user: req.user });
+            res.render('lesson_detail', { title: 'Detalle de la clase', metaDescription: "", lesson: result, user: req.user });
         });
 };
 
@@ -164,6 +166,7 @@ exports.create_lesson_get = function (req, res, next) {
                     displacement: displacement,
                     firstHour: firstHour,
                     hoursADay: hoursADay,
+                    metaDescription: "",
                     user: req.user }); //res.render('teacher_detail', { title: 'Detalle de profesor', teacher: results.first, teacher_user: results.second, user: req.user });
         }
     );
@@ -300,7 +303,16 @@ exports.update_lesson_get = function (req, res, next) {
                 let hour = moment(results.first.date).hour();
                 notAvailable.push((day*12)+hour-8);
             }
-            res.render('edit_lesson', { title: 'Reprogramar clase', lesson: results.first, notAvailable: notAvailable, week: week, monthNames: monthNames, displacement: displacement, user: req.user }); //res.render('teacher_detail', { title: 'Detalle de profesor', teacher: results.first, teacher_user: results.second, user: req.user });
+            res.render('edit_lesson', {
+                title: 'Reprogramar clase',
+                metaDescription: "",
+                lesson: results.first,
+                notAvailable: notAvailable,
+                week: week,
+                monthNames: monthNames,
+                displacement: displacement,
+                user: req.user
+            }); //res.render('teacher_detail', { title: 'Detalle de profesor', teacher: results.first, teacher_user: results.second, user: req.user });
         }
     );
 };

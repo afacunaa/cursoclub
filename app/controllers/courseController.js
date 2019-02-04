@@ -12,7 +12,7 @@ let uploader = require('../../lib/upload');
 exports.course_list = function (req, res, next) {
     //res.send('Lista de cursos');
     if (req.query.search !== undefined) {
-        Course.find({ keywords: req.query.search })
+        Course.find({ keywords: { $regex: req.query.search, $options: "i" } })
             .exec(function (err, list_courses) {
                 if (err) { return next(err) }
                 let user;
