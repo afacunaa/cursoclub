@@ -29,7 +29,13 @@ exports.course_list = function (req, res, next) {
                     }
                 );
                 usageTrack.save();
-                res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.name, user: req.user });
+                res.render('courses_list', {
+                    title: 'Listado de cursos',
+                    metaDescription: "",
+                    courses_list: list_courses,
+                    query: req.query.name,
+                    user: req.user
+                });
             });
     } else if (req.query.category !== undefined) {
         let param;
@@ -55,7 +61,12 @@ exports.course_list = function (req, res, next) {
                     }
                 );
                 usageTrack.save();
-                res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.category, user: req.user });
+                res.render('courses_list', {
+                    title: 'Listado de cursos',
+                    metaDescription: "",
+                    courses_list: list_courses,
+                    query: req.query.category,
+                    user: req.user });
             });
     } else {
         if (req.user && req.user.role === 2) {
@@ -69,7 +80,12 @@ exports.course_list = function (req, res, next) {
                     .exec(function (err, list_courses) {
                         if (err) { return next(err) }
                         console.log(list_courses);
-                        res.render('courses_list', { title: 'Listado de cursos', courses_list: list_courses, query: req.query.category, user: req.user });
+                        res.render('courses_list', {
+                            title: 'Listado de cursos',
+                            metaDescription: "",
+                            courses_list: list_courses,
+                            query: req.query.category,
+                            user: req.user });
                     });
             });
         } else {
@@ -80,6 +96,7 @@ exports.course_list = function (req, res, next) {
                     }
                     res.render('courses_list', {
                         title: 'Listado de cursos',
+                        metaDescription: "",
                         courses_list: list_courses,
                         query: req.query.name,
                         user: req.user
@@ -114,6 +131,7 @@ exports.course_detail = function (req, res, next) {
                 res.render('course_detail',
                     {
                         title: 'Detalle de curso',
+                        metaDescription: "",
                         course: course,
                         users_list: users_list,
                         user: req.user
@@ -126,7 +144,7 @@ exports.course_detail = function (req, res, next) {
 // Create a course GET
 exports.create_course_get = function (req, res, next) {
     //res.send('Crear curso');
-    res.render('create_course', {title: 'Crear curso', user: req.user});
+    res.render('create_course', {title: 'Crear curso', metaDescription: "", user: req.user});
 
 };
 
@@ -163,7 +181,7 @@ exports.update_course_get = function (req, res, next) {
     //res.send('Actualizar curso ' + req.params.id);
     Course.findOne({ idName: req.params.idName }).exec(function (err, result) {
         if (err) { return next(err) }
-        res.render('edit_course', {title: 'Editar curso', course: result, user: req.user })
+        res.render('edit_course', {title: 'Editar curso', metaDescription: "", course: result, user: req.user })
     });
 };
 

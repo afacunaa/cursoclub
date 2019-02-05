@@ -255,3 +255,7 @@ strong {
 .i-blog-text {
     font-size: 20px;
 }
+.i-landing-background {
+    background: url('../img/I2.png') no-repeat;
+    background-size: cover;
+}

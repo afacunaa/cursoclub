@@ -97,10 +97,10 @@ console.log('The magic happens on port ' + port);
 
 //catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    res.status(404).render('404', {title: "Página no encontrada", user: req.user});
+    res.status(404).render('404', {title: "Página no encontrada", metaDescription: "", user: req.user});
 });
 
 app.use(function (req, res, next) {
-    res.status(500).render('404', {title: "Algo salió mal", user: req.user});
+    res.status(500).render('404', {title: "Algo salió mal", metaDescription: "", user: req.user});
 });
 exports = module.exports = app;

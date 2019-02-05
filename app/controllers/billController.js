@@ -29,7 +29,7 @@ exports.bill_detail = function (req, res, next) {
                 .populate('course')
                 .exec(function (err, list_lessons) {
                     if (err) { return next(err) }
-                    res.render('bill_detail', { title: 'Listado de clases en esta solicitud', bill: result, list_lessons: list_lessons, user: req.user })
+                    res.render('bill_detail', { title: 'Listado de clases en esta solicitud', metaDescription: "", bill: result, list_lessons: list_lessons, user: req.user })
                 });
         });
 };
@@ -123,6 +123,7 @@ exports.update_bill_get = function (req, res, next) {
                     displacement: displacement,
                     firstHour: firstHour,
                     hoursADay: hoursADay,
+                    metaDescription: "",
                     user: req.user
                 });
         });
