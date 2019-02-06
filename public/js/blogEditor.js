@@ -95,6 +95,7 @@ function insertLink() {
     let textField = $('#body');
     let word = $('#word').val();
     let url = $('#link').val();
+    alert(url);
     let link = '<a href="' + url + '" target="_blank">' + word + '</a>';
     if (textField.prop('selectionStart') || textField.prop('selectionStart') === '0') {
         let startPos = textField.prop('selectionStart');
