@@ -16,7 +16,7 @@ exports.student_list = function (req, res, next) {
     Student.find({ })
         .exec(function (err, list_students) {
             if (err) { return next(err) }
-            res.render('students_list', { title: 'Listado de estudiantes', students_list: list_students, user: req.user })
+            res.render('students_list', { title: 'Listado de estudiantes', metaDescription: "", students_list: list_students, user: req.user })
         });
 };
 
@@ -37,6 +37,7 @@ exports.student_detail = function (req, res, next) {
                 }
                 res.render('student_detail', {
                     title: 'Detalle de estudiante',
+                    metaDescription: "",
                     student: results.first,
                     student_user: results.second,
                     user: req.user
@@ -51,7 +52,7 @@ exports.student_detail = function (req, res, next) {
 // Create a student GET
 exports.create_student_get = function (req, res, next) {
     //res.send('Crear estudiante');
-    res.render('create_student', { title: 'Registrar estudiante', session: req.session });
+    res.render('create_student', { title: 'Registrar estudiante', metaDescription: "", session: req.session });
 };
 
 // Create a student POST

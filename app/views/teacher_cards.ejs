@@ -1,53 +1,57 @@
 <h4 class="header center"><strong>INSTRUCTORES REGISTRADOS</strong></h4>
+<% if (users_list.length > 0) { %>
+    <% for (var i=0; i<users_list.length; i++) { %>
+        <% if (i % 3 === 0) { %>
 <div class="row">
-    <% if (users_list.length > 0) { %>
-        <% for (var i=0; i<users_list.length; i++) { %>
-            <% if (users_list[i].teacher.member.isMember) { %>
-        <div class="col l4 m4 s12">
-            <div class="card i-border-card hoverable">
-                <div class="row">
-                    <div class="col l3 m3 s3">
-                        <img src="<%= users_list[i].picture_or_not %>" class="responsive-img" style="max-width: 100px;">
-                    </div>
-                    <div class="col l9 m9 s9">
-                        <span class="card-title"><%= users_list[i].teacher.shortName %></span>
-                        <p>
-                            <% for (var k=0; k<users_list[i].teacher.courses.length; k++) { %>
-                            <%= users_list[i].teacher.courses[k].course.name %>
-                            <% if (k < users_list[i].teacher.courses.length - 1 ) { %>
-                            ,
-                            <% } %>
-                            <% } %>
-                            <br>
-                            <strong><%= users_list[i].teacher.city %></strong>
-                        </p>
-                        <% if (users_list[i].teacher.score) { %>
-                        <h6 class="i-score-stars amber-text">
-                            <% for (var j=0; j<Math.floor(users_list[i].teacher.score); j++) { %>
-                            <i class="tiny material-icons">grade</i>
-                            <% } %>
-                            <%= parseFloat(users_list[i].teacher.score).toFixed(2) %>
-                        </h6>
-                        <% } else { %>
-                        <h6 class="grey-text">No hay calificación</h6>
+        <% } %>
+        <% if (users_list[i].teacher.member.isMember) { %>
+    <div class="col l4 m4 s12">
+        <div class="card i-border-card hoverable">
+            <div class="row">
+                <div class="col l3 m3 s3">
+                    <img src="<%= users_list[i].picture_or_not %>" class="responsive-img" style="max-width: 100px;">
+                </div>
+                <div class="col l9 m9 s9">
+                    <span class="card-title"><%= users_list[i].teacher.shortName %></span>
+                    <p>
+                        <% for (var k=0; k<users_list[i].teacher.courses.length; k++) { %>
+                        <%= users_list[i].teacher.courses[k].course.name %>
+                        <% if (k < users_list[i].teacher.courses.length - 1 ) { %>
+                        ,
                         <% } %>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="row" align="justify">
-                        <p><%= users_list[i].teacher.description.substr(0, 150) %>...</p>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <a class="green-text" href="<%= users_list[i].teacher.url %>">Más información</a>
+                        <% } %>
+                        <br>
+                        <strong><%= users_list[i].teacher.city %></strong>
+                    </p>
+                    <% if (users_list[i].teacher.score) { %>
+                    <h6 class="i-score-stars amber-text">
+                        <% for (var j=0; j<Math.floor(users_list[i].teacher.score); j++) { %>
+                        <i class="tiny material-icons">grade</i>
+                        <% } %>
+                        <%= parseFloat(users_list[i].teacher.score).toFixed(2) %>
+                    </h6>
+                    <% } else { %>
+                    <h6 class="grey-text">No hay calificación</h6>
+                    <% } %>
                 </div>
             </div>
+            <div class="card-content">
+                <div class="row" align="justify">
+                    <p><%= users_list[i].teacher.description.substr(0, 150) %>...</p>
+                </div>
+            </div>
+            <div class="card-action">
+                <a class="green-text" href="<%= users_list[i].teacher.url %>">Más información</a>
+            </div>
         </div>
-            <% } %>
-        <% } %>
-    <% } else { %>
-    <div class="container">
-        <p class="flow-text">Lo sentimos, no hay ningun instructor registrado.</p>
     </div>
-    <% } %>
+        <% } %>
+        <% if (i % 3 === 2 || i === users_list.length - 1) { %>
 </div>
+        <% } %>
+    <% } %>
+<% } else { %>
+<div class="container">
+    <p class="flow-text">Lo sentimos, no hay ningun instructor registrado.</p>
+</div>
+<% } %>
