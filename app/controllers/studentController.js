@@ -93,7 +93,7 @@ exports.create_student_post = function (req, res, next) {
                             student: student.id
                         }
                     );
-                    async.parallel({
+                    async.series({
                         student_save: function (callback) {
                             student.save(callback);
                         },

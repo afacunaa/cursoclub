@@ -31,7 +31,10 @@ courseSchema.virtual('image').get(function () {
 });
 
 courseSchema.virtual('url').get(function () {
-    return '/curso/' + this.category +'/' + this.idName;
+    let categorySafe = this.category.toLowerCase().replace(" ", "-");
+    categorySafe = categorySafe.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+        .replace("ú", "u").replace("ü", "u");
+    return '/curso/' + categorySafe +'/' + this.idName;
 });
 
 courseSchema.virtual('short_url').get(function () {

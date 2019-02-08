@@ -12,6 +12,8 @@ let async = require('async');
 let bcrypt = require('bcrypt-nodejs');
 let moment = require('moment');
 let uploader = require('../../lib/upload');
+let fs = require('fs');
+let log_file = fs.createWriteStream(__dirname + '/instructorio.log', {flags : 'w'});
 
 // Display all teachers GET
 exports.teacher_list = function (req, res, next) {
@@ -145,7 +147,9 @@ exports.registration_teacher_post = function (req, res, next) {
                         subscription: Boolean(req.body.subscription)
                     }
                 );
-                async.parallel({
+                log_file.write(new Date() + "\n" + teacher);
+                log_file.write(user + "\n----------------------------------------------------------\n");
+                async.series({
                     teacher: function (callback) {
                         teacher.save(callback);
                         req.customQuery = teacher.id;
