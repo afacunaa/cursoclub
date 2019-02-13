@@ -13,7 +13,7 @@ let bcrypt = require('bcrypt-nodejs');
 let moment = require('moment');
 let uploader = require('../../lib/upload');
 let fs = require('fs');
-let log_file = fs.createWriteStream(__dirname + '/instructorio.log', {flags : 'w'});
+let log_file = fs.createWriteStream(__dirname + '/instructorio.log', {flags : 'a'});
 
 // Display all teachers GET
 exports.teacher_list = function (req, res, next) {

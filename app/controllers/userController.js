@@ -77,7 +77,7 @@ exports.update_user_get = function (req, res, next) {
                 if (err) {
                     return next(err)
                 }
-                res.render('edit_user', {title: 'Editar usuario', user: req.user, message: undefined})
+                res.render('edit_user', {title: 'Editar usuario', metaDescription: "", user: req.user, message: undefined})
             }
         );
     } else {

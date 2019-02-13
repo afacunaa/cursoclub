@@ -6,6 +6,7 @@ let EmailMessage = require('../models/emailMessage');
 let User = require('../models/user');
 let constants = require('../../config/constants');
 let async = require('async');
+let emailer = require('../../lib/email');
 
 // Display all EmailMessage GET
 exports.emailMessage_list = function (req, res, next) {
@@ -57,6 +58,8 @@ exports.emailMessage_detail_get = function (req, res, next) {
                         usersList: results.findAllUsers,
                         roleNames: roleNames,
                         metaDescription: "",
+                        error: req.flash("error"),
+                        success: req.flash("success"),
                         user: req.user
                     });
                 }
@@ -154,18 +157,18 @@ exports.emailMessage_update_post = function (req, res, next) {
 exports.emailMessage_send_post = function (req, res, next) {
     if (req.isAuthenticated()) {
         if (req.user.role === constants.admin_role) {
-            EmailMessage.findById({ _id: req.params.id }, {
-                $set:
-                    {
-                        name: req.body.name,
-                        idName: req.body.idName,
-                        body: req.body.body,
-                        periodicity: req.body.periodicity,
-                        updatedAt: new Date()
+            let receivers = (typeof req.body.receivers==='undefined') ? [] : req.body.receivers.toString().split(',');
+            User.find({ _id : { $in: receivers} })
+                .populate('teacher student')
+                .exec(function (err, users) {
+                    if (err) {
+                        req.flash('error', 'Error al enviar correo');
+                        next(err);
                     }
-            }, {new: true}, function (err, doc) {
-                res.redirect(doc.url);
-            });
+                    req.flash('success', 'Correo enviado');
+                    emailer.sendEmail(req.query.email, users);
+                    res.redirect('back');
+                })
         } else {
             res.redirect('/home');
         }

@@ -5,6 +5,24 @@
         <div class="row">
             <h5><a href="/correos">Volver al listado de correos</a></h5>
         </div>
+        <% if (error.length > 0) { %>
+            <div class="row">
+                <div class="card red darken-1">
+                    <div class="card-content white-text">
+                        <p><i class="material-icons">report_problem</i> <%- error %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <% if (success.length > 0) { %>
+            <div class="row">
+                <div class="card green darken-1">
+                    <div class="card-content white-text">
+                        <p><i class="material-icons">done</i> <%- success %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
         <div class="row">
             <h3><%= emailMessage.name %></h3>
             <a href="/correo/update/<%= emailMessage.id %>" class="btn orange">Editar</a>
@@ -21,11 +39,11 @@
         <div class="divider"></div>
         <br>
         <h4><strong>ENVIAR CORREOS</strong></h4>
-        <form>
+        <form action="/correo/enviar?email=<%= emailMessage.idName %>" method="post">
             <ul>
                 <% for (var i=0; i<usersList.length; i++) { %>
                 <li><p>
-                        <input type="checkbox" id="receivers<%= usersList[i].id %>" name="receivers" />
+                        <input type="checkbox" id="receivers<%= usersList[i].id %>" name="receivers" value="<%= usersList[i].id %>" />
                         <label for="receivers<%= usersList[i].id %>"><%= roleNames[usersList[i].role] %>: <%= usersList[i].owner %> (<%= usersList[i].email %>)</label>
                     </p>
                     <p class="flow-text"></p></li>

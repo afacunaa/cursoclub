@@ -364,7 +364,7 @@ router.get('/correo/update/:id', emailMessageController.emailMessage_update_get)
 router.post('/correo/update/:id', emailMessageController.emailMessage_update_post);
 
 // POST EmailMessage send
-router.post('/correo/enviar/:id', emailMessageController.emailMessage_send_post);
+router.post('/correo/enviar', emailMessageController.emailMessage_send_post);
 
 // GET EmailMessage list
 router.get('/correos', emailMessageController.emailMessage_list);

@@ -46,7 +46,9 @@
         </div>
     </div>
         <% } else if (user.role === 1) { %>
-    <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
+    <div align="center">
+        <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
+    </div>
     <% } } else { %>
         <p>Inicia sesión para ver detalles de los profesores</p>
     <% } %>
