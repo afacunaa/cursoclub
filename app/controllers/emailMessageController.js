@@ -41,7 +41,7 @@ exports.emailMessage_detail_get = function (req, res, next) {
                     EmailMessage.findById(req.params.id, callback)
                 },
                 findAllUsers: function (callback) {
-                    User.find({'active.isActive': true}, callback);
+                    User.find(callback);
                 }
             }, function (err, results) {
                 if (err) {
