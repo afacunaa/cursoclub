@@ -13,7 +13,9 @@
             </div>
         </div>
         <br>
-        <p class="i-blog-text"><%- blogEntry.body %></p>
+        <div class="i-blog-text">
+            <%- blogEntry.body %>
+        </div>
         <br>
         <% if (user && user.role === 1) { %>
         <a class="btn waves-effect waves-light red" href="<%= blogEntry.url %>/update"><i class="material-icons left">mode_edit</i>Editar</a>
