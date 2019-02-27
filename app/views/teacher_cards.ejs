@@ -1,10 +1,10 @@
 <h4 class="header center"><strong>INSTRUCTORES REGISTRADOS</strong></h4>
 <% if (users_list.length > 0) { %>
     <% for (var i=0; i<users_list.length; i++) { %>
-        <% if (i % 3 === 0) { %>
-<div class="row">
-        <% } %>
         <% if (users_list[i].teacher.member.isMember) { %>
+            <% if (i % 3 === 0) { %>
+<div class="row">
+            <% } %>
     <div class="col l4 m4 s12">
         <div class="card i-border-card hoverable">
             <div class="row">
@@ -45,9 +45,9 @@
             </div>
         </div>
     </div>
-        <% } %>
-        <% if (i % 3 === 2 || i === users_list.length - 1) { %>
+            <% if (i % 3 === 2 || i === users_list.length - 1) { %>
 </div>
+            <% } %>
         <% } %>
     <% } %>
 <% } else { %>

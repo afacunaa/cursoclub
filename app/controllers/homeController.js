@@ -62,12 +62,18 @@ exports.index = function (req, res) {
             }
         }, function (err, results) {
             if (err) { return res.send(err) }
+            let resultsUsers = [];
+            for (let i=0; i<results.users.length; i++) {
+                if (results.users[i].teacher.member.isMember) {
+                    resultsUsers.push(results.users[i]);
+                }
+            }
             res.render('index', {
                 title: 'Instructorio',
                 metaDescription: "",
                 lastBlogEntry: results.findBlog[0],
                 courses_list: results.findCourses,
-                users_list: results.users,
+                users_list: resultsUsers,
                 user: req.user,
                 environment: environment
             })
@@ -113,6 +119,12 @@ exports.home = function(req, res) {
                 }
             }, function (err, results) {
                 if (err) { return res.send(err) }
+                let resultsUsers = [];
+                for (let i=0; i<results.users.length; i++) {
+                    if (results.users[i].teacher.member.isMember) {
+                        resultsUsers.push(results.users[i]);
+                    }
+                }
                 res.render('home.ejs', {
                     title: 'Instructorio',
                     metaDescription: "",
@@ -122,7 +134,7 @@ exports.home = function(req, res) {
                     accepted: results.accepted_lessons,
                     paid: results.paid_lessons,
                     rejected: results.rejected_lessons,
-                    users_list: results.users,
+                    users_list: resultsUsers,
                     user: req.user,
                     unread: results.unread_messages,
                     environment: environment
