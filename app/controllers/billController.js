@@ -180,6 +180,7 @@ exports.update_bill_post = function (req, res, next) {
         }
     }, function (err, results) {
         if (err) { return res.send(err) }
+        emailer.notificate_change_lesson_state(results.update_bill, req.body.state);
         res.redirect(results.update_bill.url);
         }
     );
@@ -263,7 +264,7 @@ exports.update_bill_state_post = function (req, res, next) {
                     );
                     transaction.save(function (err) {
                         if (err) { return next(err) }
-                        //emailer.notificate_change_class_state(doc, '1');
+                        emailer.notificate_change_lesson_state(doc, req.body.state);
                         res.redirect(doc.url);
                     });
                 }

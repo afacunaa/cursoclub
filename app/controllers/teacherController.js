@@ -324,34 +324,6 @@ exports.update_teacher_post = function (req, res, next) {
                         })
                     });
                 });
-            /*Teacher.findOneAndUpdate({_id: req.params.id }, {
-                $set: {
-                    firstName: req.body.firstname,
-                    lastName: req.body.lastname,
-                    document: req.body.document,
-                    description: req.body.description,
-                    city: req.body.city,
-                    phone: req.body.phone,
-                    workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
-                    courses: courses,
-                    member: {
-                        isMember: isMember,
-                        isPremium: isPremium,
-                        premiumSince: req.body.premiumSince,
-                        premiumUntil: req.body.premiumUntil
-                    },
-                    updatedAt: new Date()
-                }
-            }, {new: true}, function (err, doc) {
-                User.findOneAndUpdate({'teacher': req.params.id }, {
-                    $set: {
-                        owner: doc.fullName,
-                        updatedAt: new Date()
-                    }
-                }, {new:true}, function (err, doc) {
-                    res.redirect('/home');
-                }, callback);
-            }, callback); */
         }
     }, function (err, results) {
         if (err) { return next(err) }
@@ -362,9 +334,17 @@ exports.update_teacher_post = function (req, res, next) {
 
 exports.update_teacher_schedule_get = function (req, res, next) {
     let hoursADay = constants.hoursADay;
+    let firstHour = constants.firstHour;
     Teacher.findById( req.user.teacher )
         .exec(function (err, result) {
-            res.render('edit_schedule', { title: 'Editar mi horario', metaDescription: "", teacher: result, hoursADay: hoursADay, user: req.user });
+            res.render('edit_schedule', {
+                title: 'Editar mi horario',
+                metaDescription: "",
+                teacher: result,
+                hoursADay: hoursADay,
+                firstHour: firstHour,
+                user: req.user
+            });
         });
 };
 
@@ -378,15 +358,5 @@ exports.update_teacher_schedule_post = function (req, res, next) {
     Teacher.findOneAndUpdate({ _id: req.user.teacher }, { $set: { schedule: schedule } }, { new: true }, function(err, doc) {
 
     });
-    /*async.series({
-        find_teacher: function (callback) {
-            Teacher.findById(user.teacher, callback)
-                .exec(function (err, result) {
-                    if (err){ return res.send(err) }
-                    result.schedule = schedule;
-                    result
-                })
-        }
-    });*/
     res.redirect('/home');
 };

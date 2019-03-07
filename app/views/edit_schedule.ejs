@@ -7,7 +7,7 @@
             dispuesto a dictar clases. Los usuarios solo podrán solicitar clases en los momentos marcados.</p>
         <form action="/teacher/<%=user.teacher%>/scheduleUpdate" method="post">
             <table class="bordered highlight">
-                <% var hour = 7 %>
+                <% var hour = firstHour %>
                 <tr>
                     <th><p>Hora</p></th>
                     <th>Lunes</th>

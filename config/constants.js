@@ -11,7 +11,7 @@ module.exports = {
     "teacher_role": 2,
     "student_role": 3,
     "hoursADay":16,
-    "firstHour":6,
+    "firstHour":7,
     "weeksAhead":4,
     "billPendingState":"Pendiente por aprobación",
     "billCanceledState":"Clases rechazadas",

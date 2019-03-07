@@ -213,30 +213,6 @@ exports.create_lesson_post = function (req, res, next) {
         }
     );
     async.parallel({
-        /*update_teacher: function (callback) {
-            Teacher.findById( lessons[0].teacher, callback)
-                .exec(function (err, result) {
-                    if (err){ return res.send(err) }
-                    for (let i=0; i<lessons.length; i++){
-                        result.lessons.push(lessons[i].id);
-                    }
-                    result.save(function (err) {
-                        if (err) { return res.send(err) }
-                    })
-                });
-        },
-        /*update_student: function (callback) {
-            Student.findById( lessons[0].student, callback)
-                .exec(function (err, result) {
-                    if (err){return res.send(err)}
-                    for (let i=0; i<lessons.length; i++) {
-                        result.lessons.push(lessons[i].id);
-                    }
-                    result.save(function (err) {
-                        if (err) { return res.send(err) }
-                    })
-                });
-        },*/
         save_transaction: function (callback) {
             transaction.save(callback);
         },
@@ -252,7 +228,7 @@ exports.create_lesson_post = function (req, res, next) {
         }
     }, function (err, results) {
         if (err) { return next(err) }
-        //emailer.notificate_new_class(lesson);
+        emailer.notificate_new_lesson(lessons);
         res.redirect(bill.url);
     });
 };
