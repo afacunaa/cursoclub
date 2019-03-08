@@ -3,9 +3,8 @@
  */
 
 let Conversation = require('../models/conversation');
-let User = require('../models/user');
 let constants = require('../../config/constants');
-let async = require('async');
+let emailer = require('../../lib/email');
 
 // Display all conversation GET
 exports.conversation_list = function (req, res, next) {
@@ -137,6 +136,7 @@ exports.conversation_detail_new_message = function (req, res, next) {
                     result.user1.unread = true;
                 }
                 result.save();
+                emailer.new_message_received(result);
                 res.redirect(result.url);
             }
         });

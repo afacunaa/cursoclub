@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8a01e0-1894-4997-9dcc-2534de5d0369" name="Default" comment="Cambio de cliente de correo electrónico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/billController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/billController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/lessonController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/lessonController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/teacherController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/teacherController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_schedule.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_schedule.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/conversationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/conversationController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/email.js" afterDir="false" />
     </list>
@@ -24,7 +20,7 @@
     <session id="-330784800">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="48" />
+          <entry key="project.closed" value="49" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="5" />
           <entry key="project.open.time.12" value="1" />
@@ -33,14 +29,15 @@
           <entry key="project.open.time.6" value="14" />
           <entry key="project.open.time.7" value="10" />
           <entry key="project.open.time.8" value="9" />
-          <entry key="project.opened" value="49" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="14" />
-          <entry key="ejs" value="197" />
-          <entry key="js" value="214" />
+          <entry key="ejs" value="199" />
+          <entry key="js" value="219" />
           <entry key="json" value="4" />
           <entry key="log" value="14" />
           <entry key="png" value="1" />
@@ -49,10 +46,10 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="14" />
-          <entry key="EJS" value="197" />
+          <entry key="EJS" value="199" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="4" />
-          <entry key="JavaScript" value="214" />
+          <entry key="JavaScript" value="219" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -60,7 +57,7 @@
         <counts>
           <entry key="css" value="205" />
           <entry key="ejs" value="10272" />
-          <entry key="js" value="9222" />
+          <entry key="js" value="9899" />
           <entry key="json" value="12" />
           <entry key="txt" value="45" />
         </counts>
@@ -71,7 +68,7 @@
           <entry key="EJS" value="10272" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="12" />
-          <entry key="JavaScript" value="9221" />
+          <entry key="JavaScript" value="9898" />
           <entry key="PLAIN_TEXT" value="45" />
         </counts>
       </usages-collector>
@@ -82,46 +79,64 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/edit_schedule.ejs">
+        <entry file="file://$PROJECT_DIR$/app/views/book_lesson.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+            <state relative-caret-position="476">
+              <caret line="28" column="90" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/lessonController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="115" column="30" lean-forward="true" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/booking.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="67" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="67" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/constants.js">
+        <entry file="file://$PROJECT_DIR$/lib/email.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+            <state relative-caret-position="350">
+              <caret line="298" column="8" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/book_lesson.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="50" column="43" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/billController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="123" column="20" selection-start-line="123" selection-start-column="20" selection-end-line="123" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/teacherController.js">
+        <entry file="file://$PROJECT_DIR$/app/controllers/conversationController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="333">
-              <caret line="344" column="37" selection-start-line="344" selection-start-column="37" selection-end-line="344" selection-end-column="37" />
+              <caret line="133" column="47" lean-forward="true" selection-start-line="133" selection-start-column="47" selection-end-line="133" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/conversation_detail.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="52" column="83" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/database.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="200" selection-start-line="2" selection-start-column="200" selection-end-line="2" selection-end-column="200" />
             </state>
           </provider>
         </entry>
@@ -209,7 +224,6 @@
         <option value="$PROJECT_DIR$/app/views/footer.ejs" />
         <option value="$PROJECT_DIR$/app/models/blogEntry.js" />
         <option value="$PROJECT_DIR$/app/controllers/blogEntryController.js" />
-        <option value="$PROJECT_DIR$/app/controllers/conversationController.js" />
         <option value="$PROJECT_DIR$/app/controllers/transactionController.js" />
         <option value="$PROJECT_DIR$/app/controllers/usageTrackController.js" />
         <option value="$PROJECT_DIR$/app.js" />
@@ -238,12 +252,13 @@
         <option value="$PROJECT_DIR$/app/views/teacher_cards.ejs" />
         <option value="$PROJECT_DIR$/app/controllers/homeController.js" />
         <option value="$PROJECT_DIR$/app/controllers/lessonController.js" />
-        <option value="$PROJECT_DIR$/lib/email.js" />
         <option value="$PROJECT_DIR$/app/controllers/billController.js" />
         <option value="$PROJECT_DIR$/app/controllers/teacherController.js" />
         <option value="$PROJECT_DIR$/app/views/edit_schedule.ejs" />
         <option value="$PROJECT_DIR$/config/constants.js" />
         <option value="$PROJECT_DIR$/config/database.js" />
+        <option value="$PROJECT_DIR$/app/controllers/conversationController.js" />
+        <option value="$PROJECT_DIR$/lib/email.js" />
       </list>
     </option>
   </component>
@@ -295,7 +310,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -357,6 +371,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -535,7 +550,8 @@
       <workItem from="1550630889920" duration="689000" />
       <workItem from="1551055374052" duration="1429000" />
       <workItem from="1551232528229" duration="3279000" />
-      <workItem from="1551916914717" duration="11262000" />
+      <workItem from="1551916914717" duration="13610000" />
+      <workItem from="1552012836896" duration="4583000" />
     </task>
     <task id="LOCAL-00001" summary="Video and domain added">
       <created>1500749357030</created>
@@ -569,19 +585,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="769831000" />
+    <option name="totallyTimeSpent" value="776762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15858799" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15858799" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4975" visible="true" weight="0.2548807" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4975" visible="true" weight="0.2548807" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -620,20 +636,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Cambio de cliente de correo electrónico" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/aboutus.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="86" selection-start-line="12" selection-start-column="20" selection-end-line="15" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/blogEntry.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/blogEntry_list.ejs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -655,13 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="79" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/conversationController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-500">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -879,13 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/lessonController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="230" column="47" lean-forward="true" selection-start-line="230" selection-start-column="47" selection-end-line="230" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/lesson.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -893,13 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="208" column="29" selection-start-line="208" selection-start-column="23" selection-end-line="208" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/email.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="222" column="33" selection-start-line="222" selection-start-column="33" selection-end-line="222" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -914,6 +895,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit_schedule.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -933,29 +928,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/book_lesson.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="50" column="43" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="43" />
+        <state relative-caret-position="476">
+          <caret line="28" column="90" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="90" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit_schedule.ejs">
+    <entry file="file://$PROJECT_DIR$/public/js/booking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        <state relative-caret-position="340">
+          <caret line="20" column="67" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="137" selection-start-line="2" selection-start-column="137" selection-end-line="2" selection-end-column="137" />
+          <caret line="2" column="200" selection-start-line="2" selection-start-column="200" selection-end-line="2" selection-end-column="200" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/constants.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/lessonController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        <state relative-caret-position="272">
+          <caret line="115" column="30" lean-forward="true" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/conversation_detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="52" column="83" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/conversationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="133" column="47" lean-forward="true" selection-start-line="133" selection-start-column="47" selection-end-line="133" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/email.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="298" column="8" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
         </state>
       </provider>
     </entry>
