@@ -37,10 +37,10 @@
                         <div class="btn purple disabled" id="previousWeek" onclick="switchWeek(-1, <%= JSON.stringify(week) %>)"><i class="small material-icons">skip_previous</i></div>
                     </div>
                     <div class="col s4">
-                        <h6>Lunes <span id="monday-date"><%= week[0].getDate() %></span> de <span id="monday-month"><%= monthNames[week[0].getMonth()] %></span>
-                            de <span id="monday-year"><%= week[0].getFullYear() %></span>
-                            al Domingo <span id="sunday-date"><%= week[6].getDate() %></span> de <span id="sunday-month"><%= monthNames[week[6].getMonth()] %></span>
-                            de <span id="sunday-year"><%= week[6].getFullYear() %></span></h6>
+                        <h6>Lunes <span id="monday-date"><%= week[0].getUTCDate() %></span> de <span id="monday-month"><%= monthNames[week[0].getUTCMonth()] %></span>
+                            de <span id="monday-year"><%= week[0].getUTCFullYear() %></span>
+                            al Domingo <span id="sunday-date"><%= week[6].getUTCDate() %></span> de <span id="sunday-month"><%= monthNames[week[0].getUTCMonth()] %></span>
+                            de <span id="sunday-year"><%= week[6].getUTCFullYear() %></span></h6>
                     </div>
                     <div class="col s4">
                         <div class="btn purple" id="nextWeek" onclick="switchWeek(1, <%= JSON.stringify(week) %>)" ><i class="small material-icons">skip_next</i></div>
@@ -51,13 +51,13 @@
                     <% var hour = firstHour %>
                     <tr>
                         <th><p>Hora</p></th>
-                        <th>Lunes <span id="monday-header"><%= week[0].getDate() %></span></th>
-                        <th>Martes <span id="tuesday-header"><%= week[1].getDate() %></span></th>
-                        <th>Miércoles <span id="wednesday-header"><%= week[2].getDate() %></span></th>
-                        <th>Jueves <span id="thursday-header"><%= week[3].getDate() %></span></th>
-                        <th>Viernes <span id="friday-header"><%= week[4].getDate() %></span></th>
-                        <th>Sábado <span id="saturday-header"><%= week[5].getDate() %></span></th>
-                        <th>Domingo <span id="sunday-header"><%= week[6].getDate() %></span></th>
+                        <th>Lunes <span id="monday-header"><%= week[0].getUTCDate() %></span></th>
+                        <th>Martes <span id="tuesday-header"><%= week[1].getUTCDate() %></span></th>
+                        <th>Miércoles <span id="wednesday-header"><%= week[2].getUTCDate() %></span></th>
+                        <th>Jueves <span id="thursday-header"><%= week[3].getUTCDate() %></span></th>
+                        <th>Viernes <span id="friday-header"><%= week[4].getUTCDate() %></span></th>
+                        <th>Sábado <span id="saturday-header"><%= week[5].getUTCDate() %></span></th>
+                        <th>Domingo <span id="sunday-header"><%= week[6].getUTCDate() %></span></th>
                     </tr>
                     <% for (var i=0; i<hoursADay; i++) { %>
                     <tr>
@@ -65,9 +65,19 @@
                         <% for (var j=0; j<7; j++) { /*7 days of week*/ %>
                         <% if (teacher.schedule.indexOf(i + (hoursADay * j)) > -1) { %>
                             <% if (notAvailable.indexOf(displacement + '' + Number(i + (hoursADay * j))) > -1 || week[j] < new Date()) { %>
-                        <td><div class="btn red darken-4" id="d<%= i + (hoursADay * j) %>" onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>', '<%= hour %>', <%= JSON.stringify(week) %>)"><i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_busy</i></div>
+                        <td>
+                            <div class="btn red darken-4" id="d<%= i + (hoursADay * j) %>"
+                                 onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>',
+                                         '<%= hour %>', <%= JSON.stringify(week) %>)">
+                                <i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_busy</i>
+                            </div>
                             <% } else { %>
-                        <td><div class="btn white" id="d<%= i + (hoursADay * j) %>" onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>', '<%= hour %>', <%= JSON.stringify(week) %>)"><i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_available</i></div>
+                        <td>
+                            <div class="btn white" id="d<%= i + (hoursADay * j) %>"
+                                 onclick="selectCell('d<%= i + (hoursADay * j) %>', '<%= j %>',
+                                         '<%= hour %>', <%= JSON.stringify(week) %>)">
+                                <i id="i<%= i + (hoursADay * j) %>" class="material-icons">event_available</i>
+                            </div>
                             <% } } else { %>
                         <td><div class="btn disabled" id="d<%= i + (hoursADay * j) %>"><i class="material-icons">clear</i></div>
                             <% } %>

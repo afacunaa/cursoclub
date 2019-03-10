@@ -92,7 +92,7 @@
                         <div>
                             <ul>
                                 <li><h6><i class="material-icons">location_on</i> <strong>Ubicación:</strong> <%= list_lessons[i].address %></h6></li>
-                                <li><h6><i class="material-icons">date_range</i> <strong>Fecha:</strong> <%= list_lessons[i].nice_date %></h6></li>
+                                <li><h6><i class="material-icons">date_range</i> <strong>Fecha:</strong> <%= list_lessons[i].getNiceDate(list_lessons[i].date, 420 * 60 * 1000) %></h6></li>
                             </ul>
                         </div>
                     </li>

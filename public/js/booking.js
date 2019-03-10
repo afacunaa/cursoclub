@@ -26,19 +26,19 @@ function switchWeek(direction, stringWeek) {
 
 function updateView(week) {
     let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    $('#monday-date').text(week[0].getDate());
-    $('#monday-month').text(monthNames[week[0].getMonth()]);
-    $('#monday-year').text(week[0].getFullYear());
-    $('#sunday-date').text(week[6].getDate());
-    $('#sunday-month').text(monthNames[week[6].getMonth()]);
-    $('#sunday-year').text(week[6].getFullYear());
-    $('#monday-header').text(week[0].getDate());
-    $('#tuesday-header').text(week[1].getDate());
-    $('#wednesday-header').text(week[2].getDate());
-    $('#thursday-header').text(week[3].getDate());
-    $('#friday-header').text(week[4].getDate());
-    $('#saturday-header').text(week[5].getDate());
-    $('#sunday-header').text(week[6].getDate());
+    $('#monday-date').text(week[0].getUTCDate());
+    $('#monday-month').text(monthNames[week[0].getUTCMonth()]);
+    $('#monday-year').text(week[0].getUTCFullYear());
+    $('#sunday-date').text(week[6].getUTCDate());
+    $('#sunday-month').text(monthNames[week[6].getUTCMonth()]);
+    $('#sunday-year').text(week[6].getUTCFullYear());
+    $('#monday-header').text(week[0].getUTCDate());
+    $('#tuesday-header').text(week[1].getUTCDate());
+    $('#wednesday-header').text(week[2].getUTCDate());
+    $('#thursday-header').text(week[3].getUTCDate());
+    $('#friday-header').text(week[4].getUTCDate());
+    $('#saturday-header').text(week[5].getUTCDate());
+    $('#sunday-header').text(week[6].getUTCDate());
     let schedule = JSON.parse("["+$('#schedule').val()+"]");
     let notAvailable = $('#notAvailable').val().split(',');
     let mustChange = $('#mustChange').val().split(',');
@@ -68,9 +68,7 @@ function updateView(week) {
 }
 
 function addDays(date, days) {
-    let result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
+    return new Date(date.getTime() + (days * 24 * 60 * 60 * 1000) + (date.getTimezoneOffset() * 60 * 1000));
 }
 
 function selectCell(id, dayOfWeek, hour, stringWeek) {

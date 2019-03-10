@@ -122,11 +122,11 @@ exports.create_lesson_get = function (req, res, next) {
     let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     let displacement = 0;
     let today = new Date();
-    let notToday = new Date(moment(today).add(weeksAhead, 'w')); //new Date(today.setDate(today.getDay() + ( 7 * displacement ) ));
+    let lastWeekDay = new Date(moment(today).add(weeksAhead, 'w')); //new Date(today.setDate(today.getDay() + ( 7 * displacement ) ));
     let firstDay = new Date(moment(today).startOf('isoWeek'));
-    let lastDay = new Date(moment(notToday).endOf('isoWeek'));
+    let lastDay = new Date(moment(lastWeekDay).endOf('isoWeek'));
     for (let i = 0; i < 7; i++) {
-        week[i] = new Date(moment(firstDay).add(i, 'd')); // Obtains the Date of the monday of the current week
+        week[i] = new Date(moment(firstDay).add(i, 'd') - (firstDay.getTimezoneOffset() * 60 * 1000)); // Obtains the Date of the monday of the current week
     }
     async.parallel({
             first: function (callback) {
@@ -178,7 +178,8 @@ exports.create_lesson_post = function (req, res, next) {
     let lessonDates = [];
     let lessonDatesString = req.body.selectedDates.split(',');
     for (let i=0; i<lessonDatesString.length; i++) {
-        lessonDates.push(new Date(lessonDatesString[i]));
+        let temp = new Date(lessonDatesString[i]);
+        lessonDates.push(new Date(temp.getTime() - (temp.getTimezoneOffset() * 60 * 1000)));
     }
     let lessons = [];
     let lesson;

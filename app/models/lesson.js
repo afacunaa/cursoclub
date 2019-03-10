@@ -27,12 +27,20 @@ lessonSchema.virtual('url').get(function () {
 });
 
 lessonSchema.virtual('nice_date').get(function () {
-    return moment(this.date).locale('es').format('dddd, D MMMM, YYYY, h:mm:ss A');
+    return moment(this.date).locale('es').format('dddd D [de] MMMM [de] YYYY, h:mm:ss A');
 });
+
+lessonSchema.methods.getNiceDate = function (date, offset) {
+    return moment(new Date(date.getTime() - offset)).locale('es').format('DD/MM/YYYY, h:mm:ss A');
+};
 
 lessonSchema.virtual('nice_date_short').get(function () {
     return moment(this.date).locale('es').format('DD/MM/YYYY, h:mm:ss A');
 });
+
+lessonSchema.methods.getNiceShortDate = function (date, offset) {
+    return moment(date).locale('es').format('DD/MM/YYYY, h:mm:ss A');
+};
 
 lessonSchema.virtual('nice_created').get(function () {
     return moment(this.createdAt).locale('es').format('dddd, D MMMM, YYYY, h:mm:ss A');
