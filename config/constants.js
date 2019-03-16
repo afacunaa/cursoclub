@@ -7,6 +7,7 @@ module.exports = {
     'email_smtp_port': 587,
     "smtp_from_email": "notificaciones@instructorio.co",
     "smtp_from_name": "Instructorio",
+    "hidden_trace_mail": "seguimiento@instructorio.co",
     "admin_role": 1,
     "teacher_role": 2,
     "student_role": 3,
