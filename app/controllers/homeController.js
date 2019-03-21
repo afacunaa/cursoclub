@@ -45,7 +45,7 @@ exports.index = function (req, res) {
                         populate: {
                             path: 'courses.course'
                         }
-                    } );
+                    } ).sort('-picture');
             },
             findBlog: function (callback) {
                 BlogEntry.find({}, callback)
@@ -214,7 +214,8 @@ exports.login = function(req, res) {
 	} else {
         res.render('login', {
             title: 'Iniciar sesión',
-            metaDescription: "",
+            metaDescription: "Inicia sesión para utilizar los servicios de Instructorio. Si aún no tienes cuenta, " +
+                "regístrate gratis",
             error: req.flash("error"),
             success: req.flash("success"),
             user: req.user
@@ -228,7 +229,8 @@ exports.signup = function(req, res) {
     } else {
         res.render('signup', {
             title: 'Registrarse',
-            metaDescription: "",
+            metaDescription: "Registrate en Instructorio y comienza a buscar Instructores de todos esos temas que " +
+                "siempre quisiste aprender, reforzar o practicar",
             error: req.flash("error"),
             success: req.flash("success"),
             user: req.user
@@ -237,7 +239,8 @@ exports.signup = function(req, res) {
 };
 
 exports.contactus_get = function (req, res) {
-    res.render('contact', { title: 'Contáctanos', metaDescription: "", sent: false, user: req.user })
+    res.render('contact', { title: 'Contáctanos', metaDescription: "Si tienes alguna duda, sugerencia o nos deseas " +
+            "enviar un mensaje, siéntete libre de hacerlo", sent: false, user: req.user })
 };
 
 exports.terms_get = function (req, res) {

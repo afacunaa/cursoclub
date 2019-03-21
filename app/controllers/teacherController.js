@@ -66,7 +66,8 @@ exports.registration_teacher_get = function (req, res, next) {
             if (err) { return next(err) }
             res.render('teacher_registration',
                 { title: 'Registro de instructor',
-                    metaDescription: "",
+                    metaDescription: "Registrate gratis y ofrece cursos particulares de aquellos temas en que tienes " +
+                        "conocimiento o experiencia. Comparte tu conocimiento y recibe ingresos extra",
                     courses_list: list_courses,
                     user: req.user,
                     error: req.flash("error"),

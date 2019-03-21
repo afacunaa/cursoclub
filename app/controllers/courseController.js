@@ -31,7 +31,8 @@ exports.course_list = function (req, res, next) {
                 usageTrack.save();
                 res.render('courses_list', {
                     title: 'Listado de cursos',
-                    metaDescription: "",
+                    metaDescription: "Explora todos los cursos de Instructorio. En ellos encontrarás a nuestros " +
+                        "instructores registrados y podrás contactarlos para solicitar clases particulares",
                     courses_list: list_courses,
                     query: req.query.name,
                     user: req.user
@@ -63,7 +64,8 @@ exports.course_list = function (req, res, next) {
                 usageTrack.save();
                 res.render('courses_list', {
                     title: 'Listado de cursos',
-                    metaDescription: "",
+                    metaDescription: "Explora todos los cursos de Instructorio. En ellos encontrarás a nuestros" +
+                        "instructores registrados y podrás contactarlos para solicitar clases particulares",
                     courses_list: list_courses,
                     query: req.query.category,
                     user: req.user });
@@ -82,7 +84,8 @@ exports.course_list = function (req, res, next) {
                         console.log(list_courses);
                         res.render('courses_list', {
                             title: 'Listado de cursos',
-                            metaDescription: "",
+                            metaDescription: "Explora todos los cursos de Instructorio. En ellos encontrarás a nuestros " +
+                                "instructores registrados y podrás contactarlos para solicitar clases particulares",
                             courses_list: list_courses,
                             query: req.query.category,
                             user: req.user });
@@ -96,7 +99,8 @@ exports.course_list = function (req, res, next) {
                     }
                     res.render('courses_list', {
                         title: 'Listado de cursos',
-                        metaDescription: "",
+                        metaDescription: "Explora todos los cursos de Instructorio. En ellos encontrarás a nuestros " +
+                            "instructores registrados y podrás contactarlos para solicitar clases particulares",
                         courses_list: list_courses,
                         query: req.query.name,
                         user: req.user
@@ -121,7 +125,9 @@ exports.course_detail = function (req, res, next) {
                 teachersId.push(teachers[i].id);
                 teacherMap[teachers[i].id] = teachers[i];
             }
-            User.find({ teacher: { $in: teachersId }, 'active.isActive': true }).exec(function (err, users) {
+            User.find({ teacher: { $in: teachersId }, 'active.isActive': true })
+                .sort('-picture')
+                .exec(function (err, users) {
                 if (err) { return res.send(err) }
                 let users_list = [];
                 for (let i=0; i<users.length; i++) {
@@ -130,8 +136,8 @@ exports.course_detail = function (req, res, next) {
                 }
                 res.render('course_detail',
                     {
-                        title: 'Detalle de curso',
-                        metaDescription: "",
+                        title: course.name + ' - Detalle de curso',
+                        metaDescription: course.category + ' - ' + course.description,
                         course: course,
                         users_list: users_list,
                         user: req.user

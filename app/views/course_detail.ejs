@@ -33,9 +33,9 @@
     <div class="divider"></div>
     <br>
     <% if (user) { %>
-        <% if (user.role === 3 && course.category !== 'Virtual') { %>
+    <% if (user.role === 3 && course.category !== 'Virtual') { %>
         <%- include teacher_cards.ejs %>
-        <% } else if (user.role === 2) { %>
+    <% } else if (user.role === 2) { %>
     <div class="container">
         <div class="row">
             <h4>
@@ -45,12 +45,12 @@
             </h4>
         </div>
     </div>
-        <% } else if (user.role === 1) { %>
+    <% } else if (user.role === 1) { %>
     <div align="center">
         <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
     </div>
     <% } } else { %>
-        <p>Inicia sesión para ver detalles de los profesores</p>
+        <%- include teacher_cards.ejs %>
     <% } %>
 </main>
 

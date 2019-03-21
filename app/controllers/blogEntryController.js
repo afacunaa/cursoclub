@@ -16,7 +16,8 @@ exports.blogEntry_list = function (req, res, next) {
             }
             res.render('blogEntry_list', {
                 title: 'Blog de Instructorio',
-                metaDescription: "",
+                metaDescription: "En el blog de Instructorio encuentras interesantes artículos relacionados con el " +
+                    "aprendizaje, la enseñanza y el crecimiento personal",
                 blogEntry_list: list_blogEntry,
                 user: req.user
             });
