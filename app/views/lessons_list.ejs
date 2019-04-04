@@ -46,9 +46,12 @@
                             </p>
                             <% } %>
                             <p>
-                                Entre <strong><%= classifiedGroupedLessons["groupAccepted"][i].lessons[0].nice_date %></strong> y
+                                Entre <strong><%= classifiedGroupedLessons["groupAccepted"][i].lessons[0].getNiceDate(
+                                    classifiedGroupedLessons["groupAccepted"][i].lessons[0].date, 540 * 60 * 1000) %></strong> y
                                 <strong><%= classifiedGroupedLessons["groupAccepted"][i]
-                                            .lessons[classifiedGroupedLessons["groupAccepted"][i].lessons.length-1].nice_date %></strong>
+                                            .lessons[classifiedGroupedLessons["groupAccepted"][i].lessons.length-1].getNiceDate(
+                                            classifiedGroupedLessons["groupAccepted"][i].lessons[classifiedGroupedLessons["groupAccepted"][i]
+                                                    .lessons.length-1].date, 540 * 60 * 1000) %></strong>
                             </p>
                             <a href="<%= classifiedGroupedLessons["groupAccepted"][i].bill.url %>" class="secondary-content btn tooltipped hide-on-small-only" data-position="bottom" data-delay="20" data-tooltip="Ver detalles de las clases">
                                 <i class="material-icons left">class</i>Detalles
@@ -101,9 +104,11 @@
                             </p>
                             <% } %>
                             <p>
-                                Entre <strong><%= classifiedGroupedLessons["groupPending"][i].lessons[0].nice_date %></strong> y
+                                Entre <strong><%= classifiedGroupedLessons["groupPending"][i].lessons[0].getNiceDate(
+                                            classifiedGroupedLessons["groupPending"][i].lessons[0].date, 540 * 60 * 1000) %></strong> y
                                 <strong><%= classifiedGroupedLessons["groupPending"][i]
-                                            .lessons[classifiedGroupedLessons["groupPending"][i].lessons.length-1].nice_date %></strong>
+                                            .lessons[classifiedGroupedLessons["groupPending"][i].lessons.length-1].getNiceDate(classifiedGroupedLessons["groupPending"][i]
+                                            .lessons[classifiedGroupedLessons["groupPending"][i].lessons.length-1].date, 540 * 60 * 1000) %></strong>
                             </p>
                             <% if (user.role === 2) { %>
                             <form action="/bill/<%= classifiedGroupedLessons["groupPending"][i].bill.id %>/stateUpdate" method="post">
@@ -164,9 +169,11 @@
                             </p>
                             <% } %>
                             <p>
-                                Entre <strong><%= classifiedGroupedLessons["groupCanceled"][i].lessons[0].nice_date %></strong> y
+                                Entre <strong><%= classifiedGroupedLessons["groupCanceled"][i].lessons[0].getNiceDate(
+                                    classifiedGroupedLessons["groupCanceled"][i].lessons[0].date, 540 * 60 * 1000) %></strong> y
                                 <strong><%= classifiedGroupedLessons["groupCanceled"][i]
-                                            .lessons[classifiedGroupedLessons["groupCanceled"][i].lessons.length-1].nice_date %></strong>
+                                            .lessons[classifiedGroupedLessons["groupCanceled"][i].lessons.length-1].getNiceDate(classifiedGroupedLessons["groupCanceled"][i]
+                                            .lessons[classifiedGroupedLessons["groupCanceled"][i].lessons.length-1].date, 540 * 60 * 1000) %></strong>
                             </p>
                             <% if (user.role === 3) { %>
                             <form action="/bill/<%= classifiedGroupedLessons["groupCanceled"][i].bill.id %>/update" method="get">
@@ -225,8 +232,10 @@
                                 <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.url %>">
                                 <%= classifiedGroupedLessons["groupDone"][i].lessons[0].course.name %></a>
                             </td>
-                            <td>Entre <%= classifiedGroupedLessons["groupDone"][i].lessons[0].nice_date_short %> y
-                                <%= classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1].nice_date_short %></td>
+                            <td>Entre <%= classifiedGroupedLessons["groupDone"][i].lessons[0].getNiceDate(
+                                classifiedGroupedLessons["groupDone"][i].lessons[0].date, 540 * 60 * 1000) %> y
+                                <%= classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1]
+                                        .getNiceDate(classifiedGroupedLessons["groupDone"][i].lessons[classifiedGroupedLessons["groupDone"][i].lessons.length-1].date, 540 * 60 * 1000) %></td>
                             <% if(user.role === 3) { %>
                             <td>
                                 <a href="<%= classifiedGroupedLessons["groupDone"][i].lessons[0].teacher.url %>">
