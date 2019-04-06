@@ -97,13 +97,13 @@ exports.home = function(req, res) {
                     Student.findById(req.user.student, callback);
                 },
                 accepted_lessons: function (callback) {
-                    Lesson.count({ 'state': constants.lesson_accepted }, callback);
+                    Lesson.count({ 'state': constants.lesson_accepted, 'student': req.user.student }, callback);
                 },
                 paid_lessons: function (callback) {
-                    Lesson.count({ 'state': constants.lesson_paid }, callback);
+                    Lesson.count({ 'state': constants.lesson_paid, 'student': req.user.student }, callback);
                 },
                 rejected_lessons: function (callback) {
-                    Lesson.count({ 'state': constants.lesson_rejected}, callback);
+                    Lesson.count({ 'state': constants.lesson_rejected, 'student': req.user.student }, callback);
                 },
                 users: function (callback) {
                     User.find({ 'teacher': { $ne : null}, 'active.isActive': true }, callback)
@@ -150,10 +150,10 @@ exports.home = function(req, res) {
                     Course.find({ 'teachers': req.user.teacher }, callback);
                 },
                 booked_lessons: function (callback) {
-                    Lesson.count({ 'state': constants.lesson_booked }, callback);
+                    Lesson.count({ 'state': constants.lesson_booked, 'teacher': req.user.teacher }, callback);
                 },
                 accepted_lessons: function (callback) {
-                    Lesson.count({ 'state': constants.lesson_accepted }, callback);
+                    Lesson.count({ 'state': constants.lesson_accepted, 'teacher': req.user.teacher }, callback);
                 },
                 unread_messages: function (callback) {
                     Conversation.find({$or: [

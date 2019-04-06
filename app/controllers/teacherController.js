@@ -34,10 +34,10 @@ exports.teacher_detail = function (req, res, next) {
                     Teacher.findById(req.params.id, callback).populate('courses.course');
                 },
                 second: function (callback) {
-                    User.findOne({teacher: req.params.id}).exec(callback);
+                    User.findOne({ teacher: req.params.id }).exec(callback);
                 },
                 third: function (callback) {
-                    Lesson.find( { teacher: req.params.id}, { student: req.user.id }, callback);
+                    Lesson.find( { teacher: req.params.id, student: req.user.id }, callback);
                 }
             }, function (err, results) {
                 if (err) {
