@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c8a01e0-1894-4997-9dcc-2534de5d0369" name="Default" comment="Cambio de cliente de correo electrónico">
-      <change beforePath="$PROJECT_DIR$/app/views/course_detail.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/course_detail.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/create_course.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/create_course.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/edit_course.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/edit_course.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/env_buttons.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/env_buttons.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/welcome.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/welcome.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -60,7 +55,7 @@
         <counts>
           <entry key="css" value="205" />
           <entry key="ejs" value="11135" />
-          <entry key="js" value="12479" />
+          <entry key="js" value="12489" />
           <entry key="json" value="12" />
           <entry key="txt" value="45" />
         </counts>
@@ -71,7 +66,7 @@
           <entry key="EJS" value="11135" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="12" />
-          <entry key="JavaScript" value="12478" />
+          <entry key="JavaScript" value="12488" />
           <entry key="PLAIN_TEXT" value="45" />
         </counts>
       </usages-collector>
@@ -108,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/welcome.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
@@ -135,11 +130,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/database.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="200" selection-start-line="2" selection-start-column="200" selection-end-line="2" selection-end-column="200" />
+              <caret line="2" column="203" selection-start-line="2" selection-start-column="203" selection-end-line="2" selection-end-column="203" />
             </state>
           </provider>
         </entry>
@@ -256,12 +251,12 @@
         <option value="$PROJECT_DIR$/app/views/lessons_list.ejs" />
         <option value="$PROJECT_DIR$/app/controllers/homeController.js" />
         <option value="$PROJECT_DIR$/app/controllers/teacherController.js" />
-        <option value="$PROJECT_DIR$/config/database.js" />
         <option value="$PROJECT_DIR$/app/views/create_course.ejs" />
         <option value="$PROJECT_DIR$/app/views/edit_course.ejs" />
         <option value="$PROJECT_DIR$/app/views/course_detail.ejs" />
         <option value="$PROJECT_DIR$/app/views/env_buttons.ejs" />
         <option value="$PROJECT_DIR$/app/views/welcome.ejs" />
+        <option value="$PROJECT_DIR$/config/database.js" />
       </list>
     </option>
   </component>
@@ -564,7 +559,7 @@
       <workItem from="1554075534987" duration="991000" />
       <workItem from="1554353489893" duration="1925000" />
       <workItem from="1554579133370" duration="1480000" />
-      <workItem from="1555380616423" duration="8410000" />
+      <workItem from="1555380616423" duration="8776000" />
     </task>
     <task id="LOCAL-00001" summary="Video and domain added">
       <created>1500749357030</created>
@@ -598,7 +593,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="825068000" />
+    <option name="totallyTimeSpent" value="825434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -938,13 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="200" selection-start-line="2" selection-start-column="200" selection-end-line="2" selection-end-column="200" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/teacher_registration.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -991,6 +979,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="203" selection-start-line="2" selection-start-column="203" selection-end-line="2" selection-end-column="203" />
         </state>
       </provider>
     </entry>
