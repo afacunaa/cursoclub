@@ -55,7 +55,7 @@
                 </select>
             </div>
             <div class="input-field">
-                <input type="text" name="description" id="description" required value="<%= course.description %>">
+                <textarea id="description" name="description" class="materialize-textarea"><%= course.description %></textarea>
                 <label for="description">Descripción</label>
             </div>
             <div class="input-field">
@@ -67,7 +67,7 @@
                 <label for="keywords">Palabras clave</label>
             </div>
             <div class="input-field">
-                <input type="text" name="externalLink" id="keywords">
+                <input type="text" name="externalLink" id="externalLink" value="<%= course.externalLink %>">
                 <label for="externalLink">Enlace externo</label>
             </div>
             <div align="center">

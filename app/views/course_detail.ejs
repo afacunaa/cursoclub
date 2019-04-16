@@ -2,32 +2,47 @@
 
 <main>
     <div class="container">
-        <div class="row">
-            <div class="center-align">
-                <h4><strong><%= course.name.toUpperCase() %></strong>
-                    <% if (course.category === 'Virtual') { %>
-                        (Virtual)
-                    <% } %>
-                </h4>
-                <img class="responsive-img i-course-info-img" src="<%= course.picture %>">
+        <div class="row" align="center">
+            <h4><strong><%= course.name.toUpperCase() %></strong>
                 <% if (course.category === 'Virtual') { %>
-                <h5 class="red-text"><i class="material-icons">warning</i> Este curso es virtual</h5>
+                    <span class="red-text">(Virtual)</span>
                 <% } %>
-                <p class="flow-text"><%= course.description %></p>
-                <% if (course.requirement) { %>
-                <div class="card amber">
-                    <p class="flow-text"><i class="material-icons">warning</i> El curso requiere: <%= course.requirement %></p>
-                </div>
-                <%} else { %>
-                <p>Este curso no tiene requisitos</p>
-                <% } %>
-                <% if (course.category === 'Virtual') { %>
-                <a href="<%= course.externalLink %>" class="btn-large blue" target="_blank">
-                    <i class="material-icons right">send</i>Ir al sitio del curso
-                </a>
-                <% } %>
-            </div>
+            </h4>
         </div>
+        <div class="row">
+            <% if (course.category === 'Virtual') { %>
+            <div class="valign-wrapper">
+                <div class="col l6 m6 s12">
+                    <a href="<%= course.externalLink %>" target="_blank">
+                        <img class="responsive-img" src="<%= course.picture %>">
+                    </a>
+                </div>
+            <% } else { %>
+            <img class="responsive-img i-course-info-img" src="<%= course.picture %>">
+            <% } %>
+            <% if (course.category === 'Virtual') { %>
+                <div class="col l6 m6 s12">
+                    <p class="flow-text i-keep-line-breaks"><%= course.description %></p>
+                </div>
+            </div>
+            <% } else { %>
+            <p class="flow-text i-keep-line-breaks"><%= course.description %></p>
+                <% if (course.requirement) { %>
+                    <div class="card amber">
+                        <p class="flow-text"><i class="material-icons">warning</i> El curso requiere: <%= course.requirement %></p>
+                    </div>
+                <%} else { %>
+                    <p>Este curso no tiene requisitos</p>
+                <% } %>
+            <% } %>
+        </div>
+        <% if (course.category === 'Virtual') { %>
+        <div align="center">
+            <a href="<%= course.externalLink %>" class="btn-large blue" target="_blank">
+                <i class="material-icons right">send</i>Ir al sitio del curso
+            </a>
+        </div>
+        <% } %>
     </div>
     <br>
     <div class="divider"></div>
@@ -50,7 +65,9 @@
         <a class="btn" href="<%= course.short_url %>/update">Modificar</a>
     </div>
     <% } } else { %>
+        <% if (course.category !== 'Virtual') { %>
         <%- include teacher_cards.ejs %>
+        <% } %>
     <% } %>
 </main>
 
