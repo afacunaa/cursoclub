@@ -45,6 +45,9 @@ router.get('/', homeController.index);
 router.get('/login', homeController.login);
 router.get('/signup', homeController.signup);
 router.get('/registro', homeController.landing);
+router.post('/registro', homeController.landing_post);
+router.get('/registro-curso-virtual', homeController.landing_virtual);
+router.post('/registro-curso-virtual', homeController.landing_virtual_post);
 router.get('/home', homeController.home);//home
 router.get('/contactenos', homeController.contactus_get);
 router.get('/nosotros', homeController.aboutus_get);

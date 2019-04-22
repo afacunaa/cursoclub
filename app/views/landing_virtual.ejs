@@ -7,8 +7,8 @@
         </div>
         <div class="row" align="center">
             <p class="flow-text">¡Empieza hoy a enseñar o aprender lo que más te gusta!
-            <br><br>
-                ¡Si deseas recibir ofertas y contenidos exclusivos, cuéntanos un poco sobre ti!</p>
+                <br><br>
+                Gracias por tu interés en este Curso Virtual, si deseas enterarte de próximos lanzamientos, ¡déjanos tus datos!</p>
             <br><br>
         </div>
         <% if (error.length > 0) { %>
@@ -31,25 +31,8 @@
         <% } %>
         <div class="row">
             <div class="card-panel col s12 m8 l8 offset-m2 offset-l2 hoverable">
-                <p class="flow-text center-align"><strong>¿QUE TE INTERESA/NECESITAS?</strong></p>
-                <form action="/registro" method="post">
-                    <p class="center-align">
-                        <input type="checkbox" id="option1" name="options" value="Dar clases" />
-                        <label class="black-text" for="option1">DAR CLASES PARTICULARES</label>
-                    </p>
-                    <p class="center-align">
-                        <input type="checkbox" id="option2" name="options" value="Tomar clases" />
-                        <label class="black-text" for="option2">TOMAR CLASES PARTICULARES</label>
-                    </p>
-                    <p class="center-align">
-                        <input type="checkbox" id="option3" name="options" value="Cursos virtuales" />
-                        <label class="black-text" for="option3">TOMAR CURSOS VIRTUALES</label>
-                    </p>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">edit</i>
-                        <textarea id="interest" name="interest" class="materialize-textarea"></textarea>
-                        <label for="interest">¿CUALES SON LOS TEMAS DE TU INTERÉS? (opcional)</label>
-                    </div>
+                <br>
+                <form action="/registro-curso-virtual" method="post">
                     <div class="input-field col l6 m6 s12">
                         <i class="material-icons prefix">account_circle</i>
                         <input type="text" name="firstname" id="firstname" required>
@@ -67,7 +50,7 @@
                     </div>
                 </form>
                 <br>
-                <p>No quiero recibir ofertas exclusivas, <a href="/">continuar al sitio web</a></p>
+                <p>No quiero enterarme de los nuevos cursos, <a href="/?env=v">continuar al sitio web</a></p>
                 <p>Conoce nuestros <a href="/terminos">términos y condiciones</a></p>
             </div>
         </div>

@@ -11,19 +11,18 @@
         </div>
         <div class="row">
             <% if (course.category === 'Virtual') { %>
-            <div class="valign-wrapper">
-                <div class="col l6 m6 s12">
-                    <a href="<%= course.externalLink %>" target="_blank">
-                        <img class="responsive-img" src="<%= course.picture %>">
-                    </a>
-                </div>
+            <div class="col l6 m12 s12">
+                <br><br>
+                <a href="<%= course.externalLink %>" target="_blank">
+                    <img class="responsive-img" src="<%= course.picture %>">
+                </a>
+            </div>
             <% } else { %>
             <img class="responsive-img i-course-info-img" src="<%= course.picture %>">
             <% } %>
             <% if (course.category === 'Virtual') { %>
-                <div class="col l6 m6 s12">
-                    <p class="flow-text i-keep-line-breaks"><%= course.description %></p>
-                </div>
+            <div class="col l6 m12 s12">
+                <p class="flow-text i-keep-line-breaks"><%= course.description %></p>
             </div>
             <% } else { %>
             <p class="flow-text i-keep-line-breaks"><%= course.description %></p>

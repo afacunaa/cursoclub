@@ -207,6 +207,40 @@ exports.landing = function(req, res) {
         });
 };
 
+exports.landing_post = function(req, res) {
+    let info = {
+        name: req.body.firstname,
+        email: req.body.email,
+        interest: req.body.interest,
+        options: (typeof req.body.options === 'undefined') ? [] : req.body.options.toString().split(",")
+    };
+    emailer.landing_message(info);
+    req.flash('success', 'Suscripción realizada exitosamente');
+    res.redirect('/registro');
+};
+
+exports.landing_virtual = function(req, res) {
+    res.render('landing_virtual', {
+        title: 'Instructorio',
+        metaDescription: "",
+        error: req.flash("error"),
+        success: req.flash("success"),
+        user: req.user
+    });
+};
+
+exports.landing_virtual_post = function(req, res) {
+    let info = {
+        name: req.body.firstname,
+        email: req.body.email,
+        interest: req.body.interest,
+        options: (typeof req.body.options === 'undefined') ? [] : req.body.options.toString().split(",")
+    };
+    emailer.landing_message(info);
+    req.flash('success', 'Suscripción realizada exitosamente');
+    res.redirect('/registro-curso-virtual');
+};
+
 exports.login = function(req, res) {
 
 	if (req.isAuthenticated()) {
