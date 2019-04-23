@@ -256,6 +256,10 @@ strong {
     font-size: 20px;
 }
 .i-landing-background {
-    background: url('../img/I2.png') no-repeat;
+    background: url('../img/I1.png') no-repeat;
+    background-size: cover;
+}
+.i-landing-virtual-background {
+    background: url('../img/IV2.png') no-repeat;
     background-size: cover;
 }

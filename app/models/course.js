@@ -8,7 +8,7 @@ let Schema = mongoose.Schema;
 
 let courseSchema = new Schema({
     name: { type: String, required: true },
-    category: { type: String, enum: ['Académico', 'Tiempo libre', 'Entrenamiento físico', 'Virutal'] },
+    category: { type: String, enum: ['Académico', 'Tiempo libre', 'Entrenamiento físico', 'Virtual'] },
     description: String,
     requirement: String,
     picture: String,

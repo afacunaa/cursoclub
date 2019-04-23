@@ -56,16 +56,18 @@
                         <% } %>
                     </div>
                     <div class="card-content">
-                        <span class="card-title"><%= courses_list[i].name %></span>
+                        <a class="black-text" href="<%= courses_list[i].url %>"><span class="card-title"><%= courses_list[i].name %></span></a>
                         <% if (courses_list[i].category === 'Virtual') { %>
                         <h6 class="red-text"><i class="material-icons">warning</i> Este curso es virtual</h6>
                         <% } %>
+                        <% if (courses_list[i].category !== 'Virtual') { %>
                         <p><%= courses_list[i].description %></p>
+                        <% } %>
                     </div>
                     <div class="card-action">
                         <a class="green-text" href="<%= courses_list[i].url %>">Detalles</a>
                         <% if (courses_list[i].category === 'Virtual') { %>
-                        <a class="blue-text" href="<%= courses_list[i].externalLink %>">Ir al sitio del curso</a>
+                        <a class="blue-text" href="<%= courses_list[i].externalLink %>" target="_blank">Ir al sitio del curso</a>
                         <% } %>
                     </div>
                 </div>

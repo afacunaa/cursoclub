@@ -164,6 +164,7 @@ exports.create_course_post = function (req, res, next) {
             description: req.body.description,
             requirement: req.body.requirement,
             keywords: (typeof req.body.keywords==='undefined') ? [] : req.body.keywords.toString().split(','),
+            externalLink: req.body.externalLink
         }
     );
     course.save(function (err) {
