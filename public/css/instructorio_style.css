@@ -263,3 +263,9 @@ strong {
     background: url('../img/IV2.png') no-repeat;
     background-size: cover;
 }
+.i-wide-button {
+    width: 100%;
+}
+.i-whatsapp-green {
+    background-color: #075e54;
+}

@@ -1,0 +1,42 @@
+<%- include header.ejs %>
+
+<main>
+    <div class="container">
+        <p class="flow-text">¿Ya estás registrado? <a href="/login">Ingresa acá</a></p>
+        <div class="divider"></div>
+        <h4 class="i-corporate-green-text">Formulario de registro para instructores</h4>
+        <br>
+        <% if (error.length > 0) { %>
+            <div class="row">
+                <div class="card red darken-1">
+                    <div class="card-content white-text">
+                        <p><i class="material-icons">report_problem</i> <%- error %></p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <% if (success.length > 0) { %>
+            <div class="row">
+                <div class="card green darken-1">
+                    <div class="card-content white-text">
+                        <p class="flow-text">
+                            <i class="material-icons">done</i> ¡Gracias por registrarte en Instructorio!
+                        </p>
+                        <br>
+                        <p>
+                            Gracias por tu registro y por tu tiempo.
+                            <br>
+                            <br>
+                            Si deseas puedes volver a la <a href="/">página de inicio</a>.
+                            <br>
+                            <br>
+                            O leer algún artículo de tu interés en <a href="/blogs">nuestro blog</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
+
+<%- include footer.ejs %>

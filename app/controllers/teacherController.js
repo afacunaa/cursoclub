@@ -28,34 +28,30 @@ exports.teacher_list = function (req, res, next) {
 // Display the details of a teacher GET
 exports.teacher_detail = function (req, res, next) {
     //res.send('Detalle de profesor ' + req.params.id);
-    if (req.isAuthenticated()) {
-        async.parallel({
-                first: function (callback) {
-                    Teacher.findById(req.params.id, callback).populate('courses.course');
-                },
-                second: function (callback) {
-                    User.findOne({ teacher: req.params.id }).exec(callback);
-                },
-                third: function (callback) {
-                    Lesson.find( { teacher: req.params.id, student: req.user.id }, callback);
-                }
-            }, function (err, results) {
-                if (err) {
-                    return next(err)
-                }
-                res.render('teacher_detail', {
-                    title: 'Detalle de profesor',
-                    metaDescription: "",
-                    teacher: results.first,
-                    teacher_user: results.second,
-                    lessons_taken: results.third,
-                    user: req.user
-                });
+    async.parallel({
+            first: function (callback) {
+                Teacher.findById(req.params.id, callback).populate('courses.course');
+            },
+            second: function (callback) {
+                User.findOne({ teacher: req.params.id }).exec(callback);
+            },
+            third: function (callback) {
+                Lesson.find( { teacher: req.params.id }, callback);
             }
-        );
-    } else {
-        res.redirect('/login')
-    }
+        }, function (err, results) {
+            if (err) {
+                return next(err)
+            }
+            res.render('teacher_detail', {
+                title: 'Detalle de profesor',
+                metaDescription: "",
+                teacher: results.first,
+                teacher_user: results.second,
+                lessons_taken: results.third,
+                user: req.user
+            });
+        }
+    );
 };
 
 // Create a teacher GET
@@ -87,9 +83,9 @@ exports.registration_teacher_post = function (req, res, next) {
                 res.redirect('/teacher/signup');
             } else {
                 let hash = bcrypt.hashSync(req.body.new_password);
-                let coursesRaw = (typeof req.body.courses === 'undefined') ? [] : req.body.courses.toString().split(",");
+                let coursesRaw = (typeof req.body.coursesAuto === 'undefined') ? [] : req.body.coursesAuto.toString().split(",");
                 let coursesId = [];
-                for (let i=0; i<coursesRaw.length; i++){
+                /*for (let i=0; i<coursesRaw.length; i++){
                     let id = coursesRaw[i].substring(0, coursesRaw[i].indexOf(':'));
                     let priceSelector = 'price' + id;
                     let price = req.body[priceSelector];
@@ -98,22 +94,26 @@ exports.registration_teacher_post = function (req, res, next) {
                             course: id,
                             pricePerHour: price
                         });
-                }
+                }*/
                 let teacher = new Teacher(
                     {
                         firstName: req.body.firstname,
                         lastName: req.body.lastname,
                         phone: req.body.phone,
                         mobile: req.body.mobile,
+                        whatsapp: Boolean(req.body.whatsapp),
                         birthday: new Date(req.body.birthday),
-                        city: req.body.city,
+                        city: (typeof req.body.city==='undefined') ? [] : req.body.city.toString().split(','),
                         address: req.body.address,
                         document: req.body.document,
                         wantedCourses: req.body.wantedCourse,
+                        offeredCourses: coursesRaw,
+                        price: req.body.price,
                         knowledgeType: (typeof req.body.knowledgeType==='undefined') ? [] : req.body.knowledgeType.toString().split(','),
                         experienceSummary: req.body.experience,
-                        kindOfClients: req.body.clients,
+                        kindOfClients: (typeof req.body.public==='undefined') ? [] : req.body.public.toString().split(','),
                         workingArea: (typeof req.body.workingArea==='undefined') ? [] : req.body.workingArea.toString().split(','),
+                        time: (typeof req.body.time==='undefined') ? [] : req.body.time.toString().split(','),
                         moreAbout: req.body.about,
                         socialNetwork:
                             {
@@ -360,4 +360,61 @@ exports.update_teacher_schedule_post = function (req, res, next) {
 
     });
     res.redirect('/home');
+};
+
+exports.serve_teacher_detail_get = function (req, res, next) {
+    async.series({
+        find_teacher: function (callback) {
+            Teacher.findById(req.params.id, callback).populate('courses.course')
+        },
+        find_user: function (callback) {
+            User.findOne({'teacher': req.params.id}, callback);
+        },
+        update_teacher: function (callback) {
+            Teacher.findOneAndUpdate({ _id: req.params.id }, { $push: { profileViews: new Date() } }, { new: true }, callback);
+        }
+    }, function (err, results) {
+        if (err) { return next(err) }
+        if (results.find_teacher) {
+            let coursesHtmlLine = '';
+            let price;
+            let priceHtmlLine = '';
+            if (results.find_teacher.courses.length > 0) {
+                for (let i=0; i<results.find_teacher.courses.length; i++){
+                    coursesHtmlLine += '<div class="chip">' + results.find_teacher.courses[i].course.name + '</div>';
+                    price = results.find_teacher.courses[i].pricePerHour;
+                }
+                if (price) {
+                    priceHtmlLine = '<h4><i class="small material-icons">attach_money</i> ' + price + '</h4>';
+                }
+            } else {
+                for (let i=0; i<results.find_teacher.offeredCourses.length; i++){
+                    coursesHtmlLine += '<div class="chip">' + results.find_teacher.offeredCourses[i] + '</div>';
+                    //price = results.find_teacher.courses[i].pricePerHour;
+                }
+                if (price) {
+                    priceHtmlLine = '<h4><i class="small material-icons">attach_money</i> ' + price + '</h4>';
+                }
+            }
+            let dataHTML = '<div class="row">' +
+                '<div class="col l3 m3 s12" align="center">' +
+                '<img src="' + results.find_user.picture_or_not + '" class="responsive-img circle">' +
+                '</div><div class="col l9 m9 s12">' +
+                '<h3>' + results.find_teacher.shortName + '</h3>' +
+                '<h4><i class="small material-icons">location_on</i> '+ results.find_teacher.city + '</h4>' +
+                '<h4><i class="small material-icons">phone_android</i> ' + results.find_teacher.mobile + '</h4>' +
+                priceHtmlLine + coursesHtmlLine + '<br>' +
+                '<a class="btn i-whatsapp-green" href="' + results.find_teacher.whatsapp_link + '" target="_blank"><i class="material-icons left">' +
+                '<img src="/img/whatsapp.png" class="i-socialicon">' +
+                '</i>Contactar por Whatsapp</a>' +
+                '</div></div><div class="row">' +
+                '<blockquote><p class="flow-text">' + results.find_teacher.description + '</p></blockquote>' +
+                '</div>';
+
+            res.send(dataHTML);
+        } else {
+            let dataHTML = '<h2>Error: Instructor no encontrado</h2>';
+            res.send(dataHTML);
+        }
+    });
 };

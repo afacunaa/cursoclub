@@ -12,7 +12,7 @@ let async = require('async');
 
 exports.index = function (req, res) {
     //console.log("Visitante: "+req.ip);
-    let environment;
+    let environment, requestedCity;
     if(req.query.env === 'v') {
         environment = 'v'
     } else if (req.query.env === 'i') {
@@ -20,6 +20,20 @@ exports.index = function (req, res) {
     } else if (req.query.env === 'n') {
         environment = 'n';
     }
+    requestedCity = req.query.city;
+    /*if (requestedCity) {
+        if (requestedCity === 'bogota') {
+            requestedCity = 'Bogotá';
+        } else if (requestedCity === 'medellin') {
+            requestedCity = 'Medellín';
+        } else if (requestedCity === 'cali') {
+            requestedCity = 'Cali';
+        } else if (requestedCity === 'bucaramanga') {
+            requestedCity = 'Bucaramanga';
+        }
+    } else {
+        requestedCity = 'Bogotá'
+    }*/
     if (!environment) {
         BlogEntry.find({})
             .sort('-createdAt')
@@ -65,7 +79,18 @@ exports.index = function (req, res) {
             let resultsUsers = [];
             for (let i=0; i<results.users.length; i++) {
                 if (results.users[i].teacher.member.isMember) {
-                    resultsUsers.push(results.users[i]);
+                    if (Array.isArray(results.users[i].teacher.city)) {
+                        //console.log('Es arreglo'+results.users[i].teacher.city);
+                        if (results.users[i].teacher.city.includes(requestedCity)) {
+                            resultsUsers.push(results.users[i]);
+                        }
+                    } else {
+                        if (requestedCity === 'otros' &&
+                            !(['bogota', 'medellin', 'cali', 'bucaramanga'].includes(results.users[i].teacher.city))/*(['bogota', 'medellin', 'cali', 'bucaramanga'].some(r=> results.users[i].teacher.city.includes(r)))*/) {
+                            //console.log('Entró aca');
+                            resultsUsers.push(results.users[i]);
+                        }
+                    }
                 }
             }
             res.render('index', {
@@ -75,6 +100,7 @@ exports.index = function (req, res) {
                 courses_list: results.findCourses,
                 users_list: resultsUsers,
                 user: req.user,
+                city: requestedCity,
                 environment: environment
             })
         });
@@ -212,6 +238,7 @@ exports.landing_post = function(req, res) {
         name: req.body.firstname,
         email: req.body.email,
         interest: req.body.interest,
+        emailType: '¿Qué te interesa/Necesitas?',
         options: (typeof req.body.options === 'undefined') ? [] : req.body.options.toString().split(",")
     };
     emailer.landing_message(info);
@@ -234,6 +261,7 @@ exports.landing_virtual_post = function(req, res) {
         name: req.body.firstname,
         email: req.body.email,
         interest: req.body.interest,
+        emailType: 'Cursos virtuales',
         options: (typeof req.body.options === 'undefined') ? [] : req.body.options.toString().split(",")
     };
     emailer.landing_message(info);

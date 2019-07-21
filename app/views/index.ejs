@@ -19,9 +19,6 @@
                     <br>
                     En <strong>Instructorio</strong> encontrarás instructores expertos en diferentes
                     áreas para que reserves tu clase con quien más te guste.
-                    <br>
-                    <br>
-                    Explora nuestras tres categorías: <strong>Académico, Tiempo libre y Entrenamiento físico.</strong>
                 </p>
             </div>
         </div>
@@ -62,14 +59,6 @@
         <% } %>
     </div>
     <% if (environment !== 'v' && environment !== 'i') { %>
-    <div class="row flex">
-        <div class="col l6 m6 s12 i-corporate-green-background">
-            <%- include instructions.ejs %>
-        </div>
-        <div class="col l6 m6 s12 i-corporate-orange-background">
-            <%- include category_list.ejs %>
-        </div>
-    </div>
     <%- include teacher_cards.ejs %>
     <% } %>
     <% if (environment === 'v') { %>

@@ -67,20 +67,20 @@
                 <span class="title"><a href="<%= teacher.courses[i].course.url %>"><%= teacher.courses[i].course.name %></a></span>
                 <p>Precio promedio por hora de clase: $<%= teacher.courses[i].pricePerHour %></p>
                 <br>
-                <% if (user.role === 3) { %>
                 <form action="/lesson/create" method="get">
                     <input type="hidden" name="teacherId" id="teacherId" value="<%= teacher.id %>">
                     <input type="hidden" name="courseId" id="courseId" value="<%= teacher.courses[i].course.id %>">
                     <input type="hidden" name="offset" value="0">
+                    <% if (user) { %>
                     <button class="btn indigo" type="submit">Solicitar clase</button>
+                    <% } %>
                 </form>
-                <% } %>
             </li>
             <% } %>
         </ul>
         <% } %>
         </div>
-        <% if (user.role == 1) { %>
+        <% if (user && user.role == 1) { %>
         <div class="row">
             <div class="col l6 m6 s12">
                 <a class="btn" href="/teacher/<%= teacher.id %>/update">Editar información</a>

@@ -34,5 +34,13 @@ module.exports = {
     "upload_directory_reference":"/uploads/",
     "google_bucket_name": "cursoclub-uploads",
     "project_id": "curso-club-web",
-    "path_to_auth_keyfile": "/home/andres/Documentos/Repositorio local/cursoclub/cursoclub_auth.json"
+    "path_to_auth_keyfile": "/home/andres/Documentos/Repositorio local/cursoclub/cursoclub_auth.json",
+    "cities": {
+        "bogota":"Bogotá",
+        "medellin":"Medellín",
+        "cali":"Cali",
+        "bucaramanga":"Bucaramanga",
+        "otros":"Otras ciudades",
+        "distancia":"A distancia/remoto"
+    }
 };

@@ -101,7 +101,7 @@ router.post('/curso/:idName/delete', courseController.delete_course_post);
 router.get('/cursos', courseController.course_list);
 
 // GET course detail
-router.get('/curso/:category/:idName', courseController.course_detail);
+router.get('/cursos_serve_list', courseController.serve_courses_list);
 
 
 /* Lesson routes */
@@ -220,6 +220,9 @@ router.get('/teachers', teacherController.teacher_list);
 // GET teacher detail
 router.get('/teacher/:id', teacherController.teacher_detail);
 
+// GET teacher detail
+router.get('/teacher_serve_detail/:id', teacherController.serve_teacher_detail_get);
+
 
 /* User routes */
 
@@ -240,6 +243,8 @@ router.post('/user/:id/uploadPicture', userController.update_user_picture_post);
 
 // GET activate user
 router.get('/user/:id/activate/:token', userController.activate_user_get);
+
+router.get('/user_serve_exists/:email', userController.validate_user_get);
 
 
 /* Transaction routes */

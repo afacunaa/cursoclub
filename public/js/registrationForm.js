@@ -1,3 +1,9 @@
+let selectedCourses = [];
+
+$(document).ready(function(){
+    setCoursesList();
+});
+
 function showPersonalForm() {
     $('#personalForm').fadeIn();
     $('#professionalForm').hide();
@@ -8,11 +14,8 @@ function showProfessionalForm(validate) {
     if (validate) {
         let firstnameDone = $('#firstname').val().length > 0;
         let lastnameDone = $('#lastname').val().length > 0;
-        let phoneDone = $('#phone').val().length > 0;
         let mobileDone = $('#mobile').val().length > 0;
         let birthdayDone = $('#birthday').val().length > 0;
-        let cityDone = $('#city').val().length > 0;
-        let addressDone = $('#address').val().length > 0;
         let documentDone = $('#document').val().length > 0;
         let emailDone = $('#email').val().length > 0;
         let newPassword = $('#new_password').val();
@@ -20,8 +23,8 @@ function showProfessionalForm(validate) {
         let passwordConfirmation = $('#password_confirmation').val();
         let password_confirmationDone = passwordConfirmation.length > 0;
         let passwordMatch = newPassword === passwordConfirmation;
-        if (firstnameDone && lastnameDone && phoneDone && mobileDone && birthdayDone && addressDone && documentDone
-            && cityDone && emailDone && new_passwordDone && password_confirmationDone) {
+        if (firstnameDone && lastnameDone && mobileDone && birthdayDone && documentDone
+            && emailDone && new_passwordDone && password_confirmationDone) {
             if (passwordMatch) {
                 if (newPassword.length > 5) {
                     $('#personalForm').hide();
@@ -98,7 +101,7 @@ function showLastStepForm(validate) {
 }
 
 function courseSelected() {
-    let pricesArea = $('#prices-area');
+    /*let pricesArea = $('#prices-area');
     pricesArea.text('');
     let selectedCoursesRaw = $('#courses').val();
     let elementsToAppend = selectedCoursesRaw.length > 0 ? '<p>Escribe un precio promedio por hora de clase para las clases seleccionadas:</p>' : '';
@@ -113,7 +116,24 @@ function courseSelected() {
             '\t</div>\n' +
             '</div>'
     }
-    pricesArea.append(elementsToAppend);
+    pricesArea.append(elementsToAppend);*/
+}
+
+function checkAvailable() {
+    let email = $('#email');
+    let url = '/user_serve_exists/' + email.val();
+    if (email.val() && email.val().indexOf('@') > -1) {
+        $.ajax({
+            url: url, success: function (result) {
+                if (result) {
+                    email.addClass('invalid');
+                    $('#emailLabel').attr('data-error', 'El correo ya se encuentra registrado');
+                }
+            }
+        });
+    } else {
+        $('#emailLabel').attr('data-error', '');
+    }
 }
 
 function submitForm() {
@@ -122,6 +142,8 @@ function submitForm() {
             $('#blog').val().length > 0 || $('#website').val().length > 0) {
             if ($('#terms').is(':checked')) {
                 //Submit form
+                //validateChips();
+                $('#coursesAuto').val(selectedCourses);
                 $('#registrationForm').submit();
             } else {
                 Materialize.toast('Debes aceptar los términos y condiciones', 3000);
@@ -133,3 +155,45 @@ function submitForm() {
         Materialize.toast('¡Completa todos los campos!', 3000);
     }
 }
+
+function setCoursesList() {
+    let url = '/cursos_serve_list';
+    $.ajax({url: url, success: function (result) {
+            $('input.autocomplete').autocomplete({
+                data: result,
+                onAutocomplete: function (val) {
+                    validate(val);
+                }
+            });
+        }
+    });
+}
+
+function validate(value) {
+    let valueInput = $('#coursesAuto');
+    if (!value) {
+        value = valueInput.val();
+    }
+    valueInput.val('');
+    if (value) {
+        if (selectedCourses.indexOf(value) < 0) {
+            $('#coursesHelp').html('<p>Estos son los cursos que has seleccionado:</p>');
+            selectedCourses.push(value);
+            let chip = '<div class="chip i-corporate-green black-text">' + value +
+                '<i class="close material-icons" onclick="removeChip(\'' + value + '\')">close</i></div>';
+            $('#chipArea').append(chip);
+            valueInput.focus();
+            Materialize.toast('¡Curso añadido!', 1500);
+        }
+    }
+}
+
+function removeChip(value) {
+    let index = selectedCourses.indexOf(value);
+    selectedCourses.splice(index, 1);
+    if (selectedCourses.length < 1) {
+        $('#coursesHelp').html('');
+    }
+}
+
+

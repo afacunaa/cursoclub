@@ -216,3 +216,18 @@ exports.update_course_picture_post = function (req, res, next) {
     uploader.uploadFile(req, 'Course');
     res.redirect('/cursos');
 };
+
+exports.serve_courses_list = function (req, res, next) {
+    let coursesList = {};
+    Course.find({'category': {$ne: 'Virtual'}}).sort('name').exec(
+        function (err, result) {
+            if (err) {
+                return next(err);
+            }
+            for (let i=0; i<result.length; i++) {
+                coursesList[result[i].name] = null;
+            }
+            res.send(coursesList);
+        }
+    )
+};

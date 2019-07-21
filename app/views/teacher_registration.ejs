@@ -2,52 +2,51 @@
 
 <main>
     <div class="container">
-        <div class="row">
-            <div class="card yellow lighten-4">
-                <div class="card-content">
-                    <p class="flow-text">
-                        Si estas buscando un instructor,
-                        <a class="blue-text" href="/signup">haz clic aquí</a>
-                    </p>
-                </div>
-            </div>
-        </div>
         <p class="flow-text">¿Ya estás registrado? <a href="/login">Ingresa acá</a></p>
         <div class="divider"></div>
-        <h4 class="i-corporate-green-text">Formulario de pre-registro para instructores</h4>
-        <p>Cuando completes este formulario, debes esperar a ser aprobado por Instructorio para poder ingresar, y aparecer en nuestra plataforma</p>
+        <h4 class="i-corporate-green-text">Formulario de registro para instructores</h4>
         <br>
         <% if (error.length > 0) { %>
-        <div class="row">
-            <div class="card red darken-1">
-                <div class="card-content white-text">
-                    <p><i class="material-icons">report_problem</i> <%- error %></p>
+            <div class="row">
+                <div class="card red darken-1">
+                    <div class="card-content white-text">
+                        <p><i class="material-icons">report_problem</i> <%- error %></p>
+                    </div>
                 </div>
             </div>
-        </div>
         <% } %>
         <% if (success.length > 0) { %>
-        <div class="row">
-            <div class="card green darken-1">
-                <div class="card-content white-text">
-                    <p class="flow-text">
-                        <i class="material-icons">done</i> ¡Gracias por registrarte en Instructorio!
-                    </p>
-                    <br>
-                    <p>
-                        Gracias por tu registro y por tu tiempo. Ahora revisaremos la información que nos compartiste
-                        y muy pronto te enviaremos una respuesta.
-                        <br>
-                        <br>
-                        Si deseas puedes volver a la <a href="/">página de inicio</a>.
-                        <br>
-                        <br>
-                        O leer algún artículo de tu interés en <a href="/blogs">nuestro blog</a>.
-                    </p>
+            <div class="row">
+                <div class="card green darken-1">
+                    <div class="card-content white-text">
+                        <p class="flow-text center-align">
+                            <i class="material-icons">done</i> ¡Gracias por tu registro en Instructorio!
+                        </p>
+                    </div>
                 </div>
+                <h5>Recuerda que son solo <span style="color: #929292;"><del>COP 20.000</del></span> <strong>COP 10.000</strong> que pagarás UNA SOLA VEZ para que tu anuncio sea visible.</h5>
+                <p class="flow-text">Por último, puedes hacer el pago de tu anuncio a través de las siguientes opciones:
+                    <ul>
+                        <li><strong>• Transferencia NEQUI al celular:</strong> 3212388837</li>
+                        <br>
+                        <li>• Pago por <a href="http://bit.ly/pagos-anuncio-instructorio" target="_blank">PSE</a> a través
+                            de <a href="http://bit.ly/pagos-anuncio-instructorio" target="_blank">este enlace</a>.
+                            En “Cuenta a Recargar” utiliza el mismo número de celular: 3212388837, luego elige tu banco y
+                            paga como normalmente lo haces con PSE.</li>
+                        <br>
+                        <li><strong>• Transferencia bancaria: Cuenta:</strong> Ahorros – Bancolombia. Número de Cuenta: 69112195475.</li>
+                        <br>
+                        <li><strong>• Consignación a cuenta bancaria: Cuenta: Ahorros – Bancolombia. Número de Cuenta:</strong>
+                            69112195475, a nombre de Lina Paola Rondón.</li>
+                        <br>
+                        <li><strong>• Giro Efecty o Envía:</strong> a nombre de Lina Paola Rondón, con CC 1015451422.
+                            (En este caso, recuerda que debes cubrir los cobros de comisión del envío del dinero).</li>
+                    </ul>
+                </p>
+                <p class="flow-text">Una vez realizado este proceso, con cualquiera de los medios de pago, envíanos un
+                    comprobante a Whatsapp: +57 3212388837.</p>
             </div>
-        </div>
-        <% } %>
+        <% } else { %>
         <form id="registrationForm" method="post" action="" enctype="multipart/form-data">
             <div id="personalForm">
                 <div class="card grey lighten-2">
@@ -59,8 +58,7 @@
                         <p>
                             Queremos que tengas la posibilidad de compartir tus conocimientos y que logres ingresos extra con ello.
                             <br>
-                            Sin comisiones, trámites bancarios ni membresías. Tú eres el dueño de tus ingresos, tiempo y
-                            conocimientos.
+                            Tú eres el dueño de tus ingresos, tiempo y conocimientos.
                             <br>
                             Regístrate y formemos una comunidad dispuesta a aprender de manera justa y segura para todos.
                         </p>
@@ -68,44 +66,15 @@
                 </div>
                 <h5 class="i-corporate-purple-text">Datos personales</h5>
                 <div class="row">
-                    <div class="input-field col l6 m6 s12">
+                    <div class="input-field col l4 m4 s12">
                         <i class="material-icons prefix">account_circle</i>
                         <input type="text" name="firstname" id="firstname" required>
                         <label for="firstname">Nombre</label>
                     </div>
-                    <div class="input-field col l6 m6 s12">
+                    <div class="input-field col l4 m4 s12">
                         <i class="material-icons prefix">account_circle</i>
                         <input type="text" name="lastname" id="lastname" required>
                         <label for="lastname">Apellido</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col l4 m4 s12">
-                        <i class="material-icons prefix">local_phone</i>
-                        <input type="text" name="phone" id="phone" required>
-                        <label for="phone">Teléfono fijo</label>
-                    </div>
-                    <div class="input-field col l4 m4 s12">
-                        <i class="material-icons prefix">phone_android</i>
-                        <input type="text" name="mobile" id="mobile" required>
-                        <label for="mobile">Celular</label>
-                    </div>
-                    <div class="input-field col l4 m4 s12">
-                        <i class="material-icons prefix">event</i>
-                        <input type="date" name="birthday" id="birthday" class="datepicker" required>
-                        <label for="birthday">Fecha de nacimiento</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col l4 m4 s12">
-                        <i class="material-icons prefix">location_city</i>
-                        <input type="text" name="city" id="city">
-                        <label for="city">Ciudad</label>
-                    </div>
-                    <div class="input-field col l4 m4 s12">
-                        <i class="material-icons prefix">home</i>
-                        <input type="text" name="address" id="address">
-                        <label for="address">Dirección</label>
                     </div>
                     <div class="input-field col l4 m4 s12">
                         <i class="material-icons prefix">assignment_ind</i>
@@ -115,9 +84,29 @@
                 </div>
                 <div class="row">
                     <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">phone_android</i>
+                        <input type="text" name="mobile" id="mobile" required>
+                        <label for="mobile">Celular</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <input name="whatsapp" id="whatsapp" type="checkbox" value="true" checked>
+                        <label for="whatsapp">Quiero que mis alumnos me puedan contactar por Whatsapp</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">event</i>
+                        <input type="date" name="birthday" id="birthday" class="datepicker" required>
+                        <label for="birthday">Fecha de nacimiento</label>
+                    </div>
+                </div>
+                <div class="divider">
+
+                </div>
+                <h6 class="i-corporate-purple-text">Datos de ingreso</h6>
+                <div class="row">
+                    <div class="input-field col l4 m4 s12">
                         <i class="material-icons prefix">email</i>
-                        <input class="validate" type="email" name="email" id="email" required>
-                        <label for="email">Correo electrónico</label>
+                        <input class="validate" type="email" name="email" id="email" required onblur="checkAvailable()">
+                        <label id="emailLabel" for="email">Correo electrónico</label>
                     </div>
                     <div class="input-field col l4 m4 s12">
                         <i class="material-icons prefix">lock</i>
@@ -140,37 +129,80 @@
             <div id="professionalForm" style="display: none">
                 <h5 class="i-corporate-purple-text">Información profesional</h5>
                 <div class="row">
+                    <div id="chipArea"><span id="coursesHelp"></span><br></div>
                     <div class="input-field col l6 m6 s12">
                         <i class="material-icons prefix">list</i>
-                        <select multiple id="courses" name="courses" onchange="courseSelected()">
-                            <option value="" disabled selected>Selecciona al menos un curso</option>
-                            <% for (var i = 0; i < courses_list.length; i++ ) { %>
-                            <option value="<%= courses_list[i].id %>:<%= courses_list[i].name %>"><%= courses_list[i].name %></option>
-                            <% } %>
+                        <input type="text" name="coursesAuto" id="coursesAuto" class="autocomplete" onblur="validate()">
+                        <label for="coursesAuto">Escribe las clases que deseas impartir</label>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <i class="material-icons prefix">attach_money</i>
+                        <select id="price" name="price">
+                            <option value="" disabled selected>Escoger</option>
+                            <option value="-10">Menos de $10.000</option>
+                            <option value="10-20">$10.000 a $20.000</option>
+                            <option value="20-30">$20.000 a $30.000</option>
+                            <option value="30-40">$30.000 a $40.000</option>
+                            <option value="40-50">$40.000 a $50.000</option>
+                            <option value="50+">Más de $50.000</option>
                         </select>
-                        <label for="courses">Selecciona las clases que vas a impartir</label>
+                        <label for="price">Precio promedio por hora de clase</label>
                     </div>
                 </div>
-                <div id="prices-area">
+                <div class="row">
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">group</i>
+                        <select multiple id="public" name="public">
+                            <option value="" disabled selected>Escoge uno o varios</option>
+                            <option value="ninos">Niños</option>
+                            <option value="adolescentes">Adolescentes</option>
+                            <option value="adultos">Adultos</option>
+                            <option value="discapacitados">Personas en condición de discapacidad</option>
+                        </select>
+                        <label for="public">¿Con qué clase de clientes has trabajado?</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">location_city</i>
+                        <select multiple id="city" name="city">
+                            <option value="" disabled selected>Escoge una o más</option>
+                            <option value="bogota">Bogotá y zonas aledañas</option>
+                            <option value="medellin">Medellín</option>
+                            <option value="cali">Cali</option>
+                            <option value="bucaramanga">Bucaramanga</option>
+                            <option value="otros" id="otrosOption">Otras ciudades</option>
+                            <option value="distancia">A distancia (Skype)</option>
+                        </select>
+                        <label for="city">¿En qué ciudad dictas las clases?</label>
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">watch_later</i>
+                        <select multiple id="time" name="time">
+                            <option value="" disabled selected>Escoge una o más</option>
+                            <option value="laboral">Entre semana</option>
+                            <option value="weekend">Fines de semana</option>
+                            <option value="morning">Mañanas</option>
+                            <option value="evening">Tardes</option>
+                            <option value="night">Noches</option>
+                        </select>
+                        <label for="time">¿Cuál es tu disponibilidad de tiempo?</label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l12 m12 s12">
-                        <i class="material-icons prefix">note_add</i>
-                        <textarea id="wantedCourse" name="wantedCourse" class="materialize-textarea" data-length="300"></textarea>
-                        <label for="wantedCourse">¿El área de tu interés no está en el listado? ¡Cuéntanos qué es!</label>
+                        <i class="material-icons prefix">description</i>
+                        <textarea id="experience" name="experience" class="materialize-textarea" data-length="300"></textarea>
+                        <label for="experience">Cuéntanos sobre tu experiencia</label>
                     </div>
                 </div>
                 <div class="row">
-                    <p>Tus conocimientos en esta(s) área(s) son:</p>
-                    <div class="col l6 m6 s12">
-                        <p>
-                            <input name="knowledgeType" type="checkbox" id="knowledgeType1" value="Profesional" />
-                            <label for="knowledgeType1">Profesionales</label>
-                        </p>
-                        <p>
-                            <input name="knowledgeType" type="checkbox" id="knowledgeType2" value="Empírico" />
-                            <label for="knowledgeType2">Empíricos</label>
-                        </p>
+                    <div class="input-field col l4 m4 s12">
+                        <i class="material-icons prefix">lightbulb_outline</i>
+                        <select multiple id="knowledgeType" name="knowledgeType">
+                            <option value="" disabled selected>Escoge uno o varios</option>
+                            <option value="profesional">Profesionales</option>
+                            <option value="empirico">Empíricos</option>
+                        </select>
+                        <label for="knowledgeType">Tus conocimientos en esta(s) área(s) son:</label>
                     </div>
                     <div class="col l6 m6 s12">
                         <p>Si son profesionales, adjunta tu hoja de vida o algún otro documento que certifique tu experiencia en esta(s) área(s).</p>
@@ -186,34 +218,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col l12 m12 s12">
-                        <i class="material-icons prefix">description</i>
-                        <textarea id="experience" name="experience" class="materialize-textarea" data-length="300"></textarea>
-                        <label for="experience">Cuéntanos sobre tu experiencia</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col l12 m12 s12">
-                        <i class="material-icons prefix">group</i>
-                        <textarea id="clients" name="clients" class="materialize-textarea" data-length="300"></textarea>
-                        <label for="clients">¿Con qué tipo de clientes has trabajado? (Ej: niños, adultos, etc)</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col l12 m12 s12">
-                        <i class="material-icons prefix">location_on</i>
-                        <input type="text" class="tooltipped" id="workingArea" name="workingArea"
-                               onfocus="$('.tooltipped').tooltip()" data-position="top"
-                               data-tooltip="Escribe localidades, barrios, sectores, etc. separados por comas">
-                        <p><span class="red-text">*</span> Si además quieres dictar clases a distancia, escribe la palabra "Skype"</p>
-                        <label for="workingArea">¿En qué sectores de la ciudad prefieres dictar las clases?*</label>
-                    </div>
-                </div>
                 <div class="row" align="center">
                     <div class="input-field col l12 m12 s12">
                         <a class="btn red lighten-2" onclick="showPersonalForm(false)">Regresar</a>
-                        <a class="btn green" onclick="showLastStepForm(true)">Continuar</a>
+                        <a class="btn green" onclick="showLastStepForm(false)">Continuar</a>
                     </div>
                 </div>
             </div>
@@ -294,6 +302,7 @@
                 </div>
             </div>
         </form>
+        <% } %>
     </div>
     <script type="text/javascript" src="/js/registrationForm.js"></script>
 </main>

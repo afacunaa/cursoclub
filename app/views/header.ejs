@@ -60,19 +60,22 @@
                     <li>
                         <form method="get" action="/cursos">
                             <div class="input-field i-nav-element">
-                                <input id="search" name="search" placeholder="Buscar cursos" required>
+                                <input id="search" name="search" placeholder="Buscar" required>
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                             </div>
                         </form>
                     </li>
                     <li>
+                        <a href="#modalCity" class="i-nav-element">Cambiar ciudad</a>
+                    </li>
+                    <li>
+                        <a href="/?env=n" class="i-nav-element">Clases particulares</a>
+                    </li>
+                    <li>
+                        <a href="/?env=v" class="i-nav-element">Cursos virtuales</a>
+                    </li>
+                    <li>
                         <a href="/blog" class="i-nav-element">Blog</a>
-                    </li>
-                    <li>
-                        <a href="/contactenos" class="i-nav-element">Contáctanos</a>
-                    </li>
-                    <li>
-                        <a href="/nosotros" class="i-nav-element">Nosotros</a>
                     </li>
                     <% if (user){ %>
                     <li>
@@ -223,6 +226,47 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modalCity" class="modal">
+        <div class="modal-content">
+            <h4>Escoge tu ciudad</h4>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <a href="/?env=n&city=bogota" class="btn btn-large i-corporate-purple i-wide-button">
+                        <h5 class="truncate">Bogotá</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <a href="/?env=n&city=medellin" class="btn btn-large i-corporate-purple i-wide-button">
+                        <h5 class="truncate">Medellín</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <a href="/?env=n&city=cali" class="btn btn-large i-corporate-purple i-wide-button">
+                        <h5>Cali</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <a href="/?env=n&city=bucaramanga" class="btn btn-large i-corporate-purple i-wide-button">
+                        <h5 class="truncate">Bucaramanga</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <a href="/?env=n&city=otra" class="btn btn-large i-corporate-purple i-wide-button">
+                        <h5 class="truncate">Otras ciudades</h5>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </header>

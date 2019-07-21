@@ -186,3 +186,10 @@ exports.recovery_user_post = function (req, res, next) {
             });
     }
 };
+
+exports.validate_user_get = function (req, res, next) {
+    User.findOne({'email': req.params.email}).exec(function (err, result) {
+        if (err) { return next(err) }
+        res.send(!!result);
+    });
+};

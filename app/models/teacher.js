@@ -2,6 +2,7 @@
  * Created by andres on 5/05/17.
  */
 
+let constants = require('../../config/constants');
 let moment = require('moment');
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
@@ -11,20 +12,24 @@ let teacherSchema = new Schema({
     lastName: { type: String, required: true },
     phone: { type: String, minlength: 7, maxlength: 10 },
     mobile: { type: String, minlength: 7, maxlength: 15 },
+    whatsapp: { type: Boolean },
     birthday: { type: Date },
-    city: { type: String },
+    city: [{ type: String }],
     address: String,
     document: { type: String, required: true },
-    courses : [ {
+    courses: [ {
         _id: false,
         course: { type: Schema.Types.ObjectId, ref: 'Course' },
         pricePerHour: Number
     } ],
-    wantedCourses: String,
+    offeredCourses: [String],
     knowledgeType: [String],
     attachment: [String],
     experienceSummary: String,
-    kindOfClients: String,
+    kindOfClients: [String],
+    time: [String],
+    price: String,
+    profileViews : [{ type: Date }],
     moreAbout: String,
     socialNetwork: {
         facebook: String,
@@ -84,6 +89,20 @@ teacherSchema.virtual('workingAreaAsLine').get(function () {
     return line;
 });
 
+teacherSchema.virtual('citiesAsLine').get(function () {
+    let line = "";
+    for (let i=0; i<this.city.length; i++) {
+        if (['bogota', 'medellin', 'cali', 'bucaramanga', 'otros', 'distancia'].indexOf(this.city[i]) > -1) {
+            line += constants.cities[this.city[i]];
+        } else {
+            line += this.city[i];
+        }
+        if (i !== this.city.length - 1)
+            line += ", ";
+    }
+    return line;
+});
+
 teacherSchema.virtual('nice_birthday').get(function () {
     return moment(this.birthday).utc().locale('es').format('D MMMM, YYYY');
 });
@@ -94,6 +113,9 @@ teacherSchema.virtual('nice_created').get(function () {
 
 teacherSchema.virtual('nice_updated').get(function () {
     return moment(this.updatedAt).locale('es').format('D MMMM, YYYY - h:mm:ss A');
+});
+teacherSchema.virtual('whatsapp_link').get(function () {
+    return 'https://wa.me/57' + this.mobile + '?text=Hola%2c%20te%20encontr%C3%A9%20desde%20Instructorio%20y%20estoy%20interesado%20en%20una%20clase';
 });
 
 module.exports = mongoose.model('Teacher', teacherSchema );

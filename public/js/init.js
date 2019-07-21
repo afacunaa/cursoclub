@@ -8,18 +8,8 @@ $(document).ready(function(){
     $(".button-collapse").sideNav({
         draggable: true
     });
-});
-$(document).ready(function() {
-    $('select').material_select();
-});
-$(document).ready(function(){
     $('.collapsible').collapsible();
-});
-$(document).ready(function(){
-    $('.slider').slider({ height: 450, interval: 10000 });
-});
-
-$(document).ready(function(){
+    $('select').material_select();
     $('.tooltipped').tooltip({delay: 50});
 });
 $(function () {
