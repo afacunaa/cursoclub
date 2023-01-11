@@ -15,7 +15,7 @@
     "connect": "latest",
     "connect-flash": "latest",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
+    "debug": "~3.1.0",
     "ejs": "^2.5.6",
     "express": "~4.15.2",
     "express-mailer": "^0.3.0",
